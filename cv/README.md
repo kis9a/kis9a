@@ -8,7 +8,6 @@
 | 誕生               | 2001/08                                                                                                         |
 | 場所               | 神奈川                                                                                                          |
 | サイト             | [kis9a - navigation](https://nav.kis9a.com/) / [kis9a/navigation · Github](https://github.com/kis9a/navigation) |
-| アウトプット       | [kis9a/notes · GitHub](https://github.com/kis9a/notes/tree/master/memos)                                        |
 | エディタ           | Neovim + coc.nvim                                                                                               |
 | PC/OS              | Macbook air 2017 / MacOS X                                                                                      |
 | メインスキル(自称) | #JavaScript #TypeScript #Vue.js #React.js #Bash #Shell #GraphQL #AWS #Docker                                    |
@@ -26,7 +25,6 @@
 **概要**  
 | | |
 | ------------ | ----------------------- |
-| 雇用形態 | アルバイト |
 | 開発形態 | アジャイル開発 (5~8 人) |
 | ポジション | フロントエンド |
 | 主な使用技術 | Vue.js, Typescript |

@@ -1,0 +1,261 @@
+[21~30] - #navigation release version 2.0
+- golang api deployment
+
+---
+https://ao-system.net/favicongenerator/
+
+[30]
+- neo4j: https://neo4j.com/developer/go/
+- go-library: https://qiita.com/hatai/items/f31914f37dc6c53b2bce
+- go mongodb graphql https://qiita.com/y4u0t2a1r0/items/486f0d768cfff8f35216
+
+
+[29]
+- #notes #tasks sqlite database init
+- #notes prostagesql initialization
+x #blog align example theme customization init
+x #blog mock post init
+x #blog minimize styles by default option
+x #blog hosting amplify
+
+[28]
+- curl -s https://api.github.com/users/kis9a/repos | grep \"clone_url\" | awk '{print $2}' | sed -e 's/"//g' -e 's/,//g' | xargs -n1 git clone
+
+- #dotfiles font setting https://qiita.com/delphinus/items/f472eb04ff91daf44274
+- #blog https://themes.gohugo.io//theme/smol/
+x #blog theme select https://github.com/kis9a/hugo-PaperMod
+
+[27]
+- #vim use alias https://stackoverflow.com/questions/4642822/how-to-make-bashrc-aliases-available-within-a-vim-shell-command
+- #vim apropos grep
+x #navigation vue-kinesis Home.vue test https://github.com/Aminerman/vue-kinesis
+x #notes chrome extensions init. mac init
+x #notes chrome vimium install
+o #dotfiles ~~auto~~ installation tmux-tpm, vim-plug(neovim, vim) documentation
+x #notes documentation initialization
+
+[26]
+x #social mac intialized and reinstall os
+x #social sim card setting iphone and shareing network test
+x #social fix capslock key preference
+x nerdfont install
+n #datas victor mono font push data
+x hyper-gruvbox fix styles and push
+
+[25]
+x #dotfiles git diff  <https://qiita.com/yuya_presto/items/ef199e08021dea777715>
+x #navigation speed preformance <https://qiita.com/nanocloudx/items/ed55c1cdb90f8d0f120c>
+x #social simcard creatting connection
+x #dotfiles <https://qiita.com/dhun/items/d794699158eb35aa572c>
+x #dotfiles <https://qiita.com/greymd/items/3515869d9ed2a1a61a49>
+x #dotfiles <https://qiita.com/hyshhryk/items/4936c4412daa866daf7d>
+x #dotfiles <https://qiita.com/hisayuki/items/dec5bb1dbeb2b3785443>
+x #spa <https://qiita.com/shohta-noda/items/a6c1b5264cb2fee7fc6d>
+x #awk https://qiita.com/shotets/items/b9ebf936b4152ea12aa1
+
+[24]
+x #hugo vuepress feature revietale <https://qiita.com/uphy/items/15d51ffbb13afda03f9f>
+x #hugo @documentation site https://qiita.com/Minasho/items/0a5f8547ade84b321af9
+x #hugo revietale <https://gist.github.com/sebz/efddfc8fdcb6b480f567>
+x #hugo <https://zenn.dev/estra/articles/ohzflow-zenn-hugo-obsidian>
+x #notes learn PKM
+x #dotfiles netrw <https://qiita.com/gorilla0513/items/bf2f78dfec67242f5bcf>
+- #anki algorithm with vim or terminal integration
+
+<https://tbsmcd.net/>
+
+[23]
+https://terashim.com/posts/create-hugo-blog-and-customize-mainroad-theme/
+https://tmkymd.go5.jp/posts/my-first-hugo-page/
+o #hugo-blog plantuml https://github.com/b4b4r07/tellme.tokyo/blob/3adfec8e5f4f213b25d593754fd1634edf77c967/content/post/hugo-mermaid.md
+x #hugo-blog initialized project https://terashim.com/posts/create-hugo-blog-and-customize-mainroad-theme/
+o #hugo-blog style customization
+x #gatsby-blog gatsby-cli <blog-starter https://gatsby-markdown-blog-starter.netlify.app/>
+x #gatsby-blog rss-reader
+x #gatsby-blog typesript init
+o ~~#gatsby-blog replace codes for typesript~~
+x 1p #blog read https://zenn.dev/tronperidot/articles/d6e2132367e0445b0536
+o #navigation Home.vue refactor like vue3 composition api
+o #notes test task grep (status, spendtime, project, content)
+o #notes s3 sync reseach
+o #kis9a github toppage navigation (https://shields.io/)
+x 1 #gist2localmd fix comment english
+x 1 #gist2localmd readme update
+ hellox #zenn conect zenn contents and github repository init test
+
+[21]
+x #notes platnuml modeling learn https://zenn.dev/kitabatake/articles/ff586edd162789862d71>[]
+x #navigation ionic icons module update 5.0 and fix code
+x #navigation read vue composition api design https://vue-composition-api-rfc.netlify.app/#summary
+
+[20]
+x navigation style fix
+x #navigation init prettier hook on commit husky
+x #navigation init eslint
+x #navigation vue-analizer-webpack init
+x #navigation SEO h1 tag meta decription ~ set and preformance up
+x #dotfiles custom gitio redirect dotfiles instal path
+x #notes read aws s3 sync <https://qiita.com/niusounds/items/bb8b8bd065d2589b9669> <https://qiita.com/kanadeee/items/122acbf6bc069c36b4da>
+x #notes create bucket and `aws s3 sync . s3://kis9ad`
+o #notes auto sync s3 with cron <https://qiita.com/khiraiwa/items/740fbc185e79f1e0cd78>
+o recaver dotfiles settings easymotion , alias,
+
+[19]
+https://git.io/JLEnA
+https://github.com/neoclide/coc.nvim/blob/master/data/schema.json#L938
+x #social 1p registter new address amazon account 
+x #social amazon buy sim card pre-paid
+o #socieal 4p read essential thinking flowing
+o #social 2p think task management with vim
+o #social megusuri type c to microUSB
+
+[12]
+x (2p) #dotfiles tmux statusline setting <https://qiita.com/nojima/items/9bc576c922da3604a72b>
+x (1p) # research yubaba qiita articles (1)
+  <!-- o #yubaba edit validator function for yubaba "荻野千尋" > "$(random_1char)" -->
+  <!-- o #yubaba feat validator regexp Kangi more 2chars > "$(random_1char)" -->
+
+### 13
+
+x (6p) #dotfiles set tmux statusbar
+x (4p) buy gloves and inners and books
+x (2p) book read chapter 1~2time management for SA
+
+### 14
+
+x (2p) netcat commands <https://qiita.com/hana_shin/items/97e6c03ac5e5ed67ce38>
+x sudo du -g -x -d 5 / | awk '$1 >= 5{print}'
+x match add vim search multiple
+x (1p) study multiple logic in read luickhl plugin
+x (4p) try vim tips source on twitter
+x (1p) init vim-gina plugin
+x (2p) amplify deploy branch amplify -> master
+
+### 15 ~ 18
+
+- 珠玉のプログラミングプログラミング
+- 天引きメソッド天引きメソッド
+
+  " javascript/typescript
+  " Plug 'yuezk/vim-js', { 'for': ['js', 'ts', 'jsx', 'tsx'] }
+  " Plug 'maxmellon/vim-jsx-pretty', { 'for': ['js', 'ts', 'jsx', 'tsx'] }
+  " Plug 'posva/vim-vue', { 'for': 'vue' }
+
+  " Plug 'pangloss/vim-javascript', { 'for': ['js', 'jsx', 'ts', 'tsx'] }
+  " Plug 'leafgarland/typescript-vim', { 'for': ['js', 'ts', 'jsx', 'tsx'] }
+  " Plug 'othree/yajs.vim', { 'for': ['js', 'jsx', 'ts', 'tsx'] }
+  " Plug 'HerringtonDarkholme/yats.vim', { 'for': ['js', 'ts', 'jsx', 'tsx'] }
+  " <https://github.com/search?q=filename%3Aplugins.lua+highlight+nvim&type=Code>
+
+  - <https://github.com/ray-x/dotfiles/blob/53d083dab359b43345c8be4daee570db23e00ad3/lua/plugins.lua>
+    <https://pixijs.io/examples/#/plugin-dragonbones/eyetracking.js>
+    <https://codepen.io/osublake/pen/ORJjGj>
+    <https://github.com/kis9a/kis9a-navigation/commit/ac3fa90ee70fdd0b2ed29f1139ea428c27c1f061#diff-ad8b7dd2a4c37637dfa1ffd9dea9672de865dc6373f71bd4daab070d9c088c12>
+    <https://www.aminerman.com/kinesis/#/>
+    <https://kawadev.net/vue-pwa/>
+
+x navigation vue-component lazzy loading test <https://vueschool.io/articles/vuejs-tutorials/lazy-loading-individual-vue-components-and-prefetching/>
+x #navigation vue-component CHeroImage.vue click to fetch image with async awit
+x #navigation vue browser catch <https://vueschool.io/articles/vuejs-tutorials/vue-js-performance-mastering-cache/>
+
+x (4p) #navigation pixi animation add
+x (2p) #navigation pixi animation liquired
+x (2p) #navigation pixi animation rewrite with typescript
+
+o (2p) #navigation vue test init
+o (1p) #navigation registter ttps://findy-code.io/required_profile
+o (2p) #social amazon card re register
+x (2p) #platform next.js tailwindcss init
+x (2p) #platform amplify delete api
+
+[11]
+x #dotfiles (1p) rmarkdown package install
+x #dotfiles (1p) rmarkdown install tinytex
+x ~~#dotfiles try to Auriga <https://github.com/anishathalye/auriga>~~
+o ~~#dotfiles install latexmk~~
+o ~~#dotfiles install <https://yihui.org/tinytex/>~~
+x #dotfiles (2p) zsh clean
+x #dotfiles (2p) zsh vcs prompt setting
+x #dotfiles (1p) initialized coc-project by create-coc-extention <https://samroeca.com/coc-plugin.html>
+x #dotfiles (1p) duplicate current buffer newtab in vim
+x #dotfiles (1p) read <https://medium.com/@chemzqm/create-coc-nvim-extension-to-improve-vim-experience-4461df269173>
+x create language server <https://qiita.com/Ikuyadeu/items/98458f9ab760d09660ff>
+
+<https://github.com/iamcco?tab=repositories&q=coc&type=&language>=
+
+ <!-- o create coc-plugins https://github.com/iamcco/coc-clock -->
+<!-- o typescript books practice issue -->
+
+- wget -r $site
+- grep -o
+- tlnet 80 yuba
+
+o <https://blog.zzzmisa.com/git_commit_date/>
+
+<https://qiita.com/atsushieno/items/ce31df9bd88e98eec5c4>
+<https://github.com/neoclide/coc-highlight>
+<https://github.com/iamcco/coc-clock#readme>
+
+
+[10]
+x #notes (1p) tasks file structure change to Icebox - Done - Review
+x #navigation (2p) ionicons add as module and pre-loading vue-ionicons
+x #vim (4p) plugins refactor and switch vim-plug on-demand loading add
+x #vim (2p) plugins.vim file layout change
+x #social (2p) uniqlo buy innner cloth
+x #notes (1p) rmarkdown compare latex
+x #dotfiles #vim (2p) rlang surpport
+x #dotfiles (2p) rstudio installation and setup
+
+[Done]
+x #gist2localmd declare valiables type
+x #gist2localmd exec-mode 'test' works improve and refactoring
+x #gist2localmd get gist_files direct fetch
+x #gist2localmd bash path and study how to global exec .sh files
+x #gist2localmd improve README.md image upload and usage explanation
+      [jq コマンドで json から必要なデータのみを取得する](https://qiita.com/buntafujikawa/items/a769ebabbdd324ff0d6f)
+      [jq コマンドを使う日常のご紹介](https://qiita.com/takeshinoda@github/items/2dec7a72930ec1f658af)
+
+o s3 image static delivery simple api or data
+- <https://qiita.com/kono-hiroki/items/6cccf3e33cb7d844c6f7>
+- <https://github.com/jalan/pdftotext>
+
+x #dotfiles >> 2020-11 summarize commmits
+x #dotfiles redirect dotfiles install path to dot.kis9a.com
+x #dotfiles nnoremap vim keymap assign open ~/notes/gtd/%Y/%D add
+x #aws CName Verificat Route53
+x @aws Domain setting reissue
+x memos productivity.md
+x notes/gtd splint month split to half month
+x #vim bg:0 align hyper-gruvbox background
+x #vim vim-grepper alternative
+x #vim nvim colorlizer > coc-higlight
+x #vim mapping replace word nnoremap vnnoremap
+x ~~vista #vim <https://github.com/liuchengxu/vista.vim#other-tips>~~ macos11.0 Not compatible
+x #aws confirm acm credits and setting cloudfront
+x vim-plug on-demand-loading startuptime modify
+x ~~#vim dev.to directory structure test~~
+x ~~#vim textlint coc-textlint install plugins~~
+x #vim vim-grammarous checkeer try
+x ~~#vim floating window todos.md flowterm keybind ba~~
+x ~~vim-plugin add python <https://qiita.com/lighttiger2505/items/3065164798bc9cd615d4>~~
+x ~~#vim vim english grammarous checker <https://www.reddit.com/r/vim/comments/i3zwmk/grammar_check_for_vim_is_there_any_good_plugin_to/>~~
+x ~~#vim proofreading in vim markdown docs~~
+x ~~#notes #vim add textlintrc config files at articles/ direcotry~~
+x ~~#vim jump H M L > add I(2/5) K(4/5)~~
+x #navigation add social icon <https://ionicons.com/>
+x #navigation add social Footer.vue component create
+x #navigation template style and layout change and extra clearn
+x #navigation invalidation touch action safari chrome
+x #navigation vue-router lazzy loading setup <https://vueschool.io/articles/vuejs-tutorials/vue-js-router-performance/>
+x #navigation prettier hook migration to github workflow
+x #navigation add vue3 composition api
+x #navigation manifest.json clean and link coverd image
+x #navigation firebase hosting domain replace with route53
+x #social buy microUSB-to-lightning conector
+x #social buy bag 11inch
+x #socieal buy bag handle
+x #social amazon register linepay card
+x #social linepay card reissue
+x #social macbookpasswad change to short
+

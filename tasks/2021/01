@@ -1,0 +1,81 @@
+[10]
+- empty line delete :v/./d
+
+[9]
+- Anki algorithm SM2-algorithm https://www.supermemo.com/en/archives1990-2015/english/ol/sm2
+- Active Recall Testing
+- creatte english word alias
+- englsh words collection to local scripts
+
+[8]
+- #dotfiles neovim dockerlize test
+- #dotfiles docker alias clean
+- #dotfiles
+- #vim-zalgolizer
+
+
+[7]
+x #social ffmpeg optimazation twitter image sizes and video
+m alias ffp='ffprobe -hide_banner -show_format'
+m alias twi='ls *(.png|.jpg) | xargs -I {} sips -Z 720 {}'
+m alias twgif='ls *(.mp4|.mov) | xargs -I {} ffmpeg -y -i {} -vf scale=720:-1 -r 10 {}.gif'
+m alias twmov2mp4a='ls *.mov | xargs -I {} ffmpeg -i {} -pix_fmt yuv420p {}.mp4'
+m alias twgif2mp4='ls *.gif | xargs -I {} ffmpeg -y -i {} -vf scale=720:-1 {}.mp4'
+
+[6]
+```sh
+curl -s https://qiita.com | pup '.css-qrra2n json{}' | jq -r -C '.[] | [.text, .href] | join(" < ")' | cat -n | fzf -m --ansi --border --prompt="Qiita trends open > " | xargs -I {} | grep -Eo '(http|https)://[^/"]+\/[^/"]+\/items/[^/"]+' | xargs open
+
+curl -s https://qiita.com | pup '.css-qrra2n json{}' | jq -r -C '.[] | [.text, .href] | join(" < ")' | cat -n | fzf -m --ansi --border --prompt="Qiita trends open > " | xargs -I {} | grep -Eo '(http|https)://[^/"]+\/[^/"]+\/items/[^/"]+' | xargs curl -s | pup '.it-MdContent' | pup 'text{}' | sed '/^[[:space:]]*$/d' | less
+
+curl -s https://qiita.com | pup '.css-qrra2n json{}' | jq -r -C '.[] | [.text, .href] | join(" < ")' | cat -n | fzf -m --ansi --border --prompt="Qiita trends fetch > " | xargs -I {} | grep -Eo '(http|https)://[^/"]+\/[^/"]+\/items/[^/"]+' | xargs -I {} curl {} | pup 'body text{}'
+```
+
+[5]
+x #dotfiles inistall script modify
+x #dotfiles inialize is_osx brew bundle parallel
+r #bash https://qiita.com/piroor/items/77233173707a0baa6360
+r #bash https://qiita.com/ebisennet/items/573618ab827ce1660b0e
+r #bash https://qiita.com/Ping/items/57fd75465dfada76e633
+
+[4]
+insanely fast dev.to
+
+[3]
+x #dotfiles alacrity not work keybinds q LBracket https://qiita.com/cyrt/items/b3415e892aedf5b21925
+x #dotfiles alacrity font setting right
+x #blog hugo-blog customiezed blog styles
+x #blog hugo create template first one kis9a-hugo and initialized by blank theme
+x #blog submodule add theme and cut branch for blog
+x #blog alias application
+
+[2]
+
+x #dotfiles add linter for english grammarous with ale
+x #dotfiles spellBad hilight fix and spellCheck configure
+x #navigation vue home icon fix. vuepwacompat try
+x #navigation vue home icon fix. remove vuepwacompat and add icons for mlti devices
+x #navigation site icons re generate
+x #dotfiles onliner for generate manifest icons tested
+
+https://qiita.com/syu_cream/items/71a5672a5780f39a054d
+https://jdhao.github.io/2020/09/20/nvim_grammar_check_languagetool/
+https://www.rockyourcode.com/lint-your-markdown-files-in-vim/
+https://github.com/hsanson/dotvim/blob/3e1f64f98e1bc1c5801af2c6e94e8abdb6cb4118/init.vim
+https://github.com/S1M0N38/dotfiles/blob/3b629dfaa9fbe74f6cd803b30ba14dea0b74f350/config/nvim/init.vim
+https://github.com/S1M0N38/dotfiles/blob/3b629dfaa9fbe74f6cd803b30ba14dea0b74f350/config/nvim/init.vim
+https://github.com/S1M0N38/dotfiles/blob/3b629dfaa9fbe74f6cd803b30ba14dea0b74f350/config/nvim/init.vim
+https://github.com/S1M0N38/dotfiles/blob/3b629dfaa9fbe74f6cd803b30ba14dea0b74f350/config/nvim/init.vim
+
+[1]
+
+/* help me facking goods */
+
+/* 記号	英語	日本語	カーチャンでもわかる */
+/* ( )	Parentheses	丸括弧	まるかっこ */
+/* [ ]	Brackets	角括弧	しかくかっこ */
+/* { }	Braces	波括弧	にょろかっこ */
+/* < >	Angle brackets	山括弧	とんがりかっこ */
+/* 「 」	Angles	鍵括弧	かぎかっこ */
+/* 【 】		隅付き括弧	見出しのかっこ */
+/* ⟦ ⟧	Double brackets */
