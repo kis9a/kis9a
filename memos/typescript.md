@@ -152,13 +152,4 @@ derivedCtor.prototype[name] = baseCtor.prototype[name];
 
 <!--}}}-->
 
-[ ./type-challenge ] generics<!--{{{-->
-https://www.typescriptlang.org/docs/handbook/generics.html
-
-```ts
-function identity<T>(arg: T): T {
-  return arg;
-}
-```
-
-<!--}}}-->
+[ ./type-challenge.md ]
