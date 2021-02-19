@@ -1,8 +1,7 @@
 {
-    "window.zoomLevel": -2,
-    "window.nativeTabs": false,
-    "window.titleBarStyle": "native",
-
+"window.zoomLevel": -2,
+"window.nativeTabs": false,
+"window.titleBarStyle": "native",
 
     "editor.tabSize": 2,
     "editor.minimap.enabled": false,
@@ -35,7 +34,7 @@
     "customizeUI.font.monospace": "Cascadia Code",
     "customizeUI.activityBar": "bottom",
 
-    
+
     "vim.useSystemClipboard": true,
     "vim.visualstar": true,
     "vim.hlsearch": true,
@@ -73,4 +72,5 @@
     "explorer.confirmDelete": false,
     "extensions.ignoreRecommendations": true,
     "breadcrumbs.enabled": true,
+
 }
