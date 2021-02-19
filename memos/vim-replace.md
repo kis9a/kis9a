@@ -43,3 +43,20 @@ a または b を、c に置換する
 a または b を、ac または bc に置換する
 \1 は ( ) にマッチしたパターン文字列になる
 oniguruma の$1 と同じ
+
+" カレントディレクトリ以下のあらゆるファイルを対象にする
+:vim {pattern} \*\*
+
+" app/views 以下のあらゆるファイルを対象にする（ディレクトリを再帰的に検索）
+:vim {pattern} app/views/\*\*
+
+" app/views/users 内のファイルを対象にする
+:vim {pattern} app/views/users/\_
+
+" app/views 以下の erb ファイルを対象にする
+:vim {pattern} app/views/\*\*/\_.erb
+
+" app/views 以下で*で始まる erb ファイルを対象にする
+:vim {pattern} app/views/\*\*/*\*.erb
+
+cdo %s/pre/after/ge | update

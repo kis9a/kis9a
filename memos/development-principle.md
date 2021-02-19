@@ -1,0 +1,1 @@
+- [コーディングを始めたときに知っておきたかった 65 のこと - Qiita](https://qiita.com/rana_kualu/items/63ad0f68d66c5f0a464b)
