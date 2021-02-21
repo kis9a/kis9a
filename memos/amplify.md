@@ -50,3 +50,5 @@ https://aws-amplify.github.io/amplify-js/api/
 
 https://qiita.com/nagym/items/638974a3a5aaa63841c8
 GraphQL API開発スピードを爆上げするAWS Amplify Mockingことはじめ
+
+- [How to allow guest users to access web applications?  (Amplify, AWS AppSync, Cognito  IAM) - YouTube](https://www.youtube.com/watch?v=ZRJbosMAWU4&ab_channel=EnlearAcademy)

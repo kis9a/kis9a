@@ -1,63 +1,94 @@
-# 概要
+### 概要
 
-|                    |                                                                                                                 |
-| ------------------ | --------------------------------------------------------------------------------------------------------------- |
-| 名前               | 海斗                                                                                                            |
-| アカウント         | @kis9a                                                                                                          |
-| ポジション         | フロントエンドエンジニア ( 見習い )                                                                             |
-| 誕生               | 2001/08                                                                                                         |
-| 場所               | 神奈川                                                                                                          |
-| サイト             | [kis9a - navigation](https://nav.kis9a.com/) / [kis9a/navigation · Github](https://github.com/kis9a/navigation) |
-| エディタ           | Neovim + coc.nvim                                                                                               |
-| PC/OS              | Macbook air 2017 / MacOS X                                                                                      |
-| メインスキル(自称) | #JavaScript #TypeScript #Vue.js #React.js #Bash #Shell #GraphQL #AWS #Docker                                    |
+|            |                                                                              |
+| ---------- | ---------------------------------------------------------------------------- |
+| 名前       | 森 海斗 (Mori Kaito)                                                         |
+| ポジション | フロントエンドエンジニア (Frontend Software Engineer)                        |
+| アカウント | @kis9a                                                                       |
+| 誕生       | 2001/08                                                                      |
+| エディタ   | Neovim + coc.nvim                                                            |
+| PC/OS      | Macbook air 2017 / MacOS X                                                   |
+| スキル     | #JavaScript #TypeScript #Vue.js #React.js #Bash #Shell #GraphQL #AWS #Docker |
 
 ### 業務経験
 
 <details>
 <summary>
-<strong>企業向けRPAの開発保守 </strong> (2019/12 ~ 2020/10) #Vue2 #Typescript
+<strong>企業向けRPAの開発保守 </strong> (2019/12 ~ 2020/11)
 
 </summary>
 <div>
 <br/>
 
-**概要**  
-| | |
-| ------------ | ----------------------- |
-| 開発形態 | アジャイル開発 (5~8 人) |
-| ポジション | フロントエンド |
-| 主な使用技術 | Vue.js, Typescript |
+**概要**
+
+|              |                            |
+| ------------ | -------------------------- |
+| 主な使用技術 | Vue.js, Typescript         |
+| 開発形態     | アジャイル開発 (3-5 人)    |
+| ポジション   | フロントエンド/ モバイル版 |
 
 **内容**
 
-- 新規機能要件の簡易設計、実装、バグの改善。
-- チーム wiki の移行スクリプトやドキュメント作成。
+- PC 版にある機能を参考にモバイル版に機能を実装する。
+- モバイル版に特別に追加する新規機能要件の簡易設計、実装、改善等一貫して担当。
+- チーム wiki の Growi 移行の際のスクリプトを少し書いた。
+- 大まかな枠組み（チーム、技術的アーキテクチャ）は整っていたが、自分のような技術的な経験の浅い人間にはハマる点が多かったため、ログをこまめに残すようにした。
+- PC 版の機能をモバイル版に持って来るのが主だったが、その機能が本当に必要かどうか思った点は、デザインチームに提案していた。
+- 技術的に未熟だったため、15 分調べてわからない点は上長に質問。基準をもうけて、課題点のインデックスをもらうようにしていた。
+- 技術的な面での大きな設計改善は、担当できなかったが特にチーム貢献や、ソフトウェアの品質の面での貢献ができたと思う。
 
 **技術詳細/ツール**
 
-- | Vue-class-component | Vuex | Storybook | Jest | Docker | Ruby | Gitlab | Redmine | Swagger | Slack | Gsuites | Google Drive/SpreadSheet | Google meet | Zoom | Growi |
+- (Vuex/Storybook/Jest/Docker/Ruby/Gitlab/VSCode/Redmine/Swagger/Slack/Gsuites/Google meet/Zoom)
 
 </div>
 </details>
 
-### ポートフォリオ<!--{{{-->
+### 学歴
 
 <details>
 <summary>
-<strong>ポートフォリオ (色々と開発中)</strong>
+<strong> 2020/12: 高専自主退学 </strong> (2019/12 ~ 2020/11)
 
 </summary>
 <div>
+<br/>
 
-- [kis9a/navigation: Impressive animation site for introduction personal activities links | nav.kis9a.com](https://github.com/kis9a/navigation)
-- [kis9a/dotfiles: Personal preferences, terminal integration support my development workflow.](https://github.com/kis9a/dotfiles)
-- [kis9a/gist2local: Export the GitHub gists of the user to a local files used GitHub API v3](https://github.com/kis9a/gist2local)
-- [kis9a/tstask: Create task management cli in private package used oclif framework, typescript...](https://github.com/kis9a/tstask)
-- [kis9a/weatherweb: Create weather searcher with openweathermap.org, use react, redux ....](https://github.com/kis9a/weatherweb)
-- [kis9a/learn-javascript: Learn javascript and various node modules loosely based on vite + react.js project.](https://github.com/kis9a/learn-javascript)
-- [kis9a/ghrepos: Create search github repositories cli with ink tools, React hooks, github graphql api](https://github.com/kis9a/ghrepos)
+##### 高専やめた理由<!--{{{-->
+
+- 高専の準学士号
+
+  > 日本国では高等専門学校を卒業した者が称することができる**日本国内にのみ通用する学術称号**（学位に準ずる「称号」）のことである。
+  > また、短期大学専攻科および高等専門学校専攻科を修了して学士の学位を得た者は、この者は大学院修士課程に進学する事が出来る[1][2]。
+  > <https://ja.wikipedia.org/wiki/%E6%BA%96%E5%AD%A6%E5%A3%AB>
+
+  - 準学士取得後の進学は、日本国内の大学に限られ、同様の学科意外に転属するの難しい。
+  - CS の学位欲しく、H1-B ビザ取得にも最適でないと思った。
+
+- 学科の選択ミス。
+
+  電子制御工学科、興味なかった。
+  入学前は、 モダンなプログラムが書けるようになって、
+  いけてる IT 企業に爆誕できると思っていた。
+
+- 教育に対する不満。
+  具体的なスキルが全くつかない。
+
+- 寮規則厳しい問題。
+
+  8 時以降の外出は、ほとんど禁止で、
+  時間外外出もほぼ認められない。
+  Wifi の設置がないどころか、Wifi の持ち込みも原則禁止
+  プログラミングどころじゃない。スマートフォンも９時以降は禁止
+
+- 社会隔離問題。
+
+  バイトも制約が多い。
+  明らかに街の中心部から離れている。
+  インターンに参加する人間も紹介もほぼない
+
+<!--}}}-->
 
 </div>
 </details>
-<!--}}}-->

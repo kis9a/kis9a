@@ -1,9 +1,7 @@
-
 [./sed.md]
 [./awk.md]
 [./grep.md]
 [./xargs.md]
-
 
 script
 nc
@@ -35,6 +33,7 @@ ls
 pmset
 
 ---
+
 ripgrep
 fd
 pup
@@ -116,11 +115,10 @@ lshw, lscpu, lspci, lsusb, dmidecode: hardware information, including CPU, BIOS,
 lsmod and modinfo: List and show details of kernel modules.
 fortune, ddate, and sl: um, well, it depends on whether you consider steam locomotives and Zippy quotations "useful"
 
-
 https://www.gnu.org/software/
 http://bsd.org/
 
-curl -s "https://www.gnu.org/software/" | pup ".package-list text{}" | sed '/^[[:space:]]*$/d' | xargs -P3 -I {} brew install {}
+curl -s "https://www.gnu.org/software/" | pup ".package-list text{}" | sed '/^[[:space:]]\*$/d' | xargs -P3 -I {} brew install {}
 a2ps
 acct
 acm
@@ -514,4 +512,3 @@ xmlat
 xnee
 xorriso
 zile
-
