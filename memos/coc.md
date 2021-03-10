@@ -101,3 +101,28 @@ Software Engineer Beginner. Kaito.M*kis9a, 2001/8(19). 📚 Typescript, Go, and 
 "typescript",
 "typescriptreact"
 ],
+
+" nnoremap <c-t> [s1z=<c-o>"
+nnoremap cy ce<C-r>0<ESC>:let @/=@1<CR>:noh<CR>
+
+```vim
+  " try
+  "   let a_save = @a
+  "   silent! normal! gv"ay
+  "   return @a
+  " finally
+  "   let @a = a_save
+  "   echom @a
+  " endtry
+
+    execute "normal! `<v`>y"
+
+
+command! P :call PPngUp()<CR>
+
+function! PPngUp()
+  execute "!echo @@ | !curl -s -T - https://ppng.io/kis9a"
+endfunction
+
+
+```

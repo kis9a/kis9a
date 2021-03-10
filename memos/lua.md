@@ -11,3 +11,5 @@ brew install luarocks
 ■Lua は標準ライブラリが少なく、他のライブラリを用いると依存性が高まる
 ■ オブジェクト指向の定義方法が言語に規定されていない
 ■Lua は言語仕様・その構造的に、セキュリティ確保が難しい
+
+- [lua 5.3](http://milkpot.sakura.ne.jp/lua/lua53_manual_ja.html)
