@@ -26,3 +26,5 @@ As a special case, you may use "A...B" as a shortcut for the merge base of A and
 git rebase --root -i.
 git log --pretty=fuller
 git rebase --committer-date-is-author-date
+
+git clone -b v1 --depth=1 https://github.com/nkjm/bootcamp-sushi-bot.git
