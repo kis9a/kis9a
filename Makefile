@@ -3,6 +3,31 @@
 null:
 	@:
 
+tasks-push:
+	@git reset
+	@git add ./tasks/*
+	@git commit -m "tasks: udpate"
+	@git push
+
+cv-push:
+	@git reset
+	@git add ./cv/*
+	@git commit -m "cv: update"
+	@git push
+
+images-push:
+	# TODO: compression and fix size of images
+	@git reset
+	@git add ./images/*
+	@git commit -m "images: update"
+	@git push
+
+src-push:
+	@git reset
+	@git add ./src/*
+	@git commit -m "src: update"
+	@git push
+
 memos-push:
 	@git reset
 	@git add ./memos/*
