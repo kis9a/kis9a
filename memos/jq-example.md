@@ -165,6 +165,8 @@ to_entries[] | [.key, .value]
 
 <!--}}}-->
 
+<!--{{{-->
+
 ```
 {
     "name": "John",
@@ -192,5 +194,46 @@ $ jq -s '.' < tmp.json
 ]
 
 ``
+
+```
+
+<!--}}}-->
+
+```
+jq -n '{christmas: $ARGS.named}' \
+  --arg one 'partridge in a "pear" tree' \
+  --arg two 'turtle doves'
+
+{
+  "christmas": {
+    "one": "partridge in a \"pear\" tree",
+    "two": "turtle doves"
+  }
+}
+```
+
+```
+jq -n '{first: {name: $one, count: $ARGS.positional[0]}, all: $ARGS}' \
+  --arg one 'partridge in a "pear" tree' \
+  --arg two 'turtle doves' \
+  --args 1 2 3
+
+{
+  "first": {
+    "name": "partridge in a \"pear\" tree",
+    "count": "1"
+  },
+  "all": {
+    "positional": [
+      "1",
+      "2",
+      "3"
+    ],
+    "named": {
+      "one": "partridge in a \"pear\" tree",
+      "two": "turtle doves"
+    }
+  }
+}
 
 ```
