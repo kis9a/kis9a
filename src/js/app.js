@@ -4,8 +4,8 @@ let memos = [];
 const main = async () => {
   memos = (await getMemosJson()) || [];
   renderHeader();
-  renderContent();
   renderNavs();
+  renderContent();
 };
 
 const renderNavs = async () => {
@@ -22,8 +22,8 @@ const renderNavs = async () => {
 };
 
 const onClickMemoButton = (name = "") => {
-  renderContent();
-  console.log(name);
+  const memo = memos.find((memo) => memo.name === name);
+  renderContent(memo);
 };
 
 const renderHeader = () => {
@@ -37,12 +37,18 @@ const renderHeader = () => {
   header.appendChild(headerLink);
 };
 
-const renderContent = () => {
+const renderContent = (memo = { name: "", content: "" }) => {
+  const oldContent = document.getElementById("content");
+  if (oldContent) {
+    app.removeChild(oldContent);
+  }
   const content = document.createElement("div");
-  content.setAttribute("class", "content");
-  content.innerHTML = marked(
-    "# Marked in the browser\n\nRendered by **marked**."
-  );
+  content.setAttribute("id", "content");
+  content.innerHTML = marked(memo.content);
+
+  const label = document.createElement("h1");
+  label.setAttribute("id", "label");
+  content.appendChild(label);
   app.appendChild(content);
 };
 
