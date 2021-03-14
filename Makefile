@@ -35,6 +35,8 @@ memos-push: # push memos
 	@git add ./src/memos.json
 	@git commit -m "memos: update"
 	@git push
+	@cp -rf memos/ src/
+	@npx gh-pages -d src
 
 memos2json: # memos export json
 	# MEMO if only names: @tree memos -J | jq '.[0].contents | .[] | { "name": .name }'  > ./src/memos.json
