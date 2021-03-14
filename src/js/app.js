@@ -6,13 +6,19 @@ const main = () => {
   readFile();
 };
 
+const renderNavs = () => {
+  const navs = document.createElement("div");
+  navs.setAttribute("class", "navs");
+  app.appendChid(navs);
+};
+
 const renderHeader = () => {
   const header = document.createElement("div");
   header.setAttribute("class", "header");
   app.appendChild(header);
 
   const headerLink = document.createElement("a");
-  headerLink.setAttribute("href", "/");
+  headerLink.setAttribute("href", "/kis9a");
   headerLink.append("HOME");
   header.appendChild(headerLink);
 };
@@ -27,9 +33,7 @@ const renderContent = () => {
 };
 
 const readFile = async () => {
-  let code = await fetch(`../../memos/go.md`).then((response) =>
-    response.text()
-  );
+  let code = await fetch(`./memos/go.md`).then((response) => response.text());
   console.log(code);
 };
 
