@@ -1,6 +1,0 @@
-- [AtCoder に登録したら次にやること ～ これだけ解けば十分闘える！過去問精選 10 問 ～ - Qiita](https://qiita.com/drken/items/fd4e5e3630d0f5859067)
-- [何か色々な - AtCoder に登録したら解くべき精選過去問 10 問を Lua で解いてみた](https://sites.google.com/view/nobuyuki1097/programming/atcoder-by-lua)
-- [AtCoder に登録したら解くべき精選過去問 10 問 を Go で解いてみた - Qiita](https://qiita.com/ktateish/items/afdda77497c8e2ee0742)
-- [AtCoder に登録したら解くべき精選過去問 10 問を AWK で解いてみた - Qiita](https://qiita.com/kotatsugame/items/2619398606b30aaf097b)
-- [AtCoder 精選過去問 10 問を JS ワンライナー で挑戦 - Qiita](https://qiita.com/dsudo/items/e1abbd27b178ec8a4605)
-- [AtCoder に登録したら解くべき精選過去問 10 問を Bash で解いてみた](https://qiita.com/cympfh/items/b860ecb5f5415b15f3c9javascript_reference-ed0a9eabc29a068454c8)

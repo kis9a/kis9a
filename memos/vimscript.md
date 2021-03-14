@@ -1,2 +1,0 @@
-- [Vim Plugin でも Unit test を回したい！ - Qiita](https://qiita.com/getmepower/items/caee93396c32d12e53a4)
-- [GitHub - kazukazuinaina/Weather.vim: This is a Vim plugin to know the weather with Vim.](https://github.com/kazukazuinaina/Weather.vim)

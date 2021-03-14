@@ -1,1 +1,0 @@
-- [Next.js でページ共通の処理をする（useEffect を使う例）](https://zenn.dev/catnose99/articles/2169dae14b58b6)

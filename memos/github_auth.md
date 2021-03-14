@@ -1,1 +1,0 @@
-- [Github の OAuth2.0 の仕様について理解する（Github ログイン） - ぺい](https://tikasan.hatenablog.com/entry/2017/05/02/232719)

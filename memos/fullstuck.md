@@ -1,1 +1,0 @@
-- [Zenn を支える技術とサービス構成](https://zenn.dev/catnose99/articles/zenn-dev-stack)
