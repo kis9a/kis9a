@@ -1,15 +1,29 @@
 const app = document.getElementById("app");
+let memos = [];
 
-const main = () => {
+const main = async () => {
+  memos = (await getMemosJson()) || [];
   renderHeader();
   renderContent();
-  readFile();
+  renderNavs();
 };
 
-const renderNavs = () => {
+const renderNavs = async () => {
   const navs = document.createElement("div");
   navs.setAttribute("class", "navs");
-  app.appendChid(navs);
+  app.appendChild(navs);
+
+  memos.forEach((memo) => {
+    const button = document.createElement("button");
+    button.setAttribute("onClick", `onClickMemoButton('${memo.name}')`);
+    button.append(memo.name);
+    navs.appendChild(button);
+  });
+};
+
+const onClickMemoButton = (name = "") => {
+  renderContent();
+  console.log(name);
 };
 
 const renderHeader = () => {
@@ -32,9 +46,11 @@ const renderContent = () => {
   app.appendChild(content);
 };
 
-const readFile = async () => {
-  let code = await fetch(`./memos/go.md`).then((response) => response.text());
-  console.log(code);
+const getMemosJson = async () => {
+  const memosJson = await fetch(`./memos.json`).then((response) =>
+    response.text()
+  );
+  return JSON.parse(memosJson);
 };
 
 main();
