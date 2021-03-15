@@ -9,39 +9,17 @@ const main = async () => {
 };
 
 const renderLinks = async () => {
-  // const links = document.createElement("div");
-  // app.appendChild(links);
   const linkContainer = document.createElement("div");
   linkContainer.setAttribute("div", "link-container");
 
   const linkSearch = document.createElement("input");
   linkSearch.setAttribute("id", "link-search");
+  linkSearch.setAttribute("placeholder", "Search index");
   linkContainer.appendChild(linkSearch);
 
-  // const linkSearch = document.getElementById("link-search");
-
-  linkSearch.addEventListener(
-    "input",
-    function (e) {
-      const oldLinks = document.getElementById("links");
-      if (oldLinks) {
-        linkContainer.removeChild(oldLinks);
-      } else {
-        const links = document.createElement("div");
-        links.setAttribute("id", "links");
-      }
-      memos.forEach((memo) => {
-        const link = document.createElement("div");
-        link.setAttribute("onClick", `onClickMemoLink('${memo.name}')`);
-        link.setAttribute("class", "link");
-        link.append(memo.name);
-        links.appendChild(link);
-      });
-    },
-    false
-  );
   const links = document.createElement("div");
   links.setAttribute("id", "links");
+
   memos.forEach((memo) => {
     const link = document.createElement("div");
     link.setAttribute("onClick", `onClickMemoLink('${memo.name}')`);
@@ -50,7 +28,41 @@ const renderLinks = async () => {
     links.appendChild(link);
   });
   linkContainer.appendChild(links);
+
   app.appendChild(linkContainer);
+
+  linkSearch.addEventListener(
+    "input",
+    function (e) {
+      const oldLinks = document.getElementById("links");
+      if (oldLinks) {
+        linkContainer.removeChild(oldLinks);
+      }
+
+      const links = document.createElement("div");
+      links.setAttribute("id", "links");
+
+      if (!e.target.value.trim() === "") {
+        const link = document.createElement("div");
+        link.setAttribute("onClick", `onClickMemoLink('${memo.name}')`);
+        link.setAttribute("class", "link");
+        link.append(memo.name);
+        links.appendChild(link);
+      } else {
+        memos.forEach((memo) => {
+          if (~memo.name.indexOf(e.target.value)) {
+            const link = document.createElement("div");
+            link.setAttribute("onClick", `onClickMemoLink('${memo.name}')`);
+            link.setAttribute("class", "link");
+            link.append(memo.name);
+            links.appendChild(link);
+          }
+        });
+      }
+      linkContainer.appendChild(links);
+    },
+    false
+  );
 };
 
 const onClickMemoLink = (name = "") => {
@@ -68,10 +80,11 @@ const renderHeader = () => {
   headerLink.append("HOME");
   header.appendChild(headerLink);
 
-  const memoSearch = document.createElement("input");
-  memoSearch.setAttribute("type", "text");
-  memoSearch.setAttribute("id", "memo-search");
-  header.appendChild(memoSearch);
+  // TODO search memo content string
+  // const memoSearch = document.createElement("input");
+  // memoSearch.setAttribute("type", "text");
+  // memoSearch.setAttribute("id", "memo-search");
+  // header.appendChild(memoSearch);
 };
 
 const renderContent = (memo = { name: "", content: "" }) => {
