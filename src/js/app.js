@@ -25,6 +25,17 @@ const renderLinks = async () => {
   linkSearch.setAttribute("placeholder", "Search index");
   linkContainer.appendChild(linkSearch);
 
+  if (screen.width <= 800) {
+    linkContainer.setAttribute("style", "display: none;");
+  }
+
+  window.onresize = () => {
+    if (screen.width <= 800) {
+      console.log("resize");
+      linkContainer.setAttribute("style", "display: none;");
+    }
+  };
+
   const links = document.createElement("div");
   links.setAttribute("id", "links");
 
@@ -109,7 +120,8 @@ const onClickBerger = () => {
   } else {
     linkContainer.style.display = "none";
   }
-  app.appendChild(linkContainer);
+  const header = getElementById("header");
+  header.append(linkContainer);
 };
 
 const renderContent = (memo = { name: "", content: "" }) => {
