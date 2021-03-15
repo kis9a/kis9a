@@ -16,7 +16,7 @@ cv-push: # push cv
 	@git push
 
 images-push: # push images
-	# TODO: compression and fix size of images
+	@ls ./images | xargs -I {} sips -Z 720 images/{}
 	@git reset
 	@git add ./images/*
 	@git commit -m "images: update"
