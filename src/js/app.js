@@ -3,6 +3,14 @@ let memos = [];
 
 const main = async () => {
   memos = (await getMemosJson()) || [];
+  marked.setOptions({
+    // code要素にdefaultで付くlangage-を削除
+    langPrefix: "",
+    // highlightjsを使用したハイライト処理を追加
+    highlight: function (code, lang) {
+      return hljs.highlightAuto(code, [lang]).value;
+    },
+  });
   renderHeader();
   renderLinks();
   renderContent();
@@ -10,7 +18,7 @@ const main = async () => {
 
 const renderLinks = async () => {
   const linkContainer = document.createElement("div");
-  linkContainer.setAttribute("div", "link-container");
+  linkContainer.setAttribute("id", "link-container");
 
   const linkSearch = document.createElement("input");
   linkSearch.setAttribute("id", "link-search");
@@ -72,13 +80,19 @@ const onClickMemoLink = (name = "") => {
 
 const renderHeader = () => {
   const header = document.createElement("div");
-  header.setAttribute("class", "header");
+  header.setAttribute("id", "header");
   app.appendChild(header);
 
   const headerLink = document.createElement("a");
   headerLink.setAttribute("href", "/kis9a");
   headerLink.append("HOME");
   header.appendChild(headerLink);
+
+  const burgerButton = document.createElement("div");
+  burgerButton.setAttribute("onClick", "onClickBerger()");
+  burgerButton.setAttribute("id", "burger-button");
+  burgerButton.append("-_-");
+  header.appendChild(burgerButton);
 
   // TODO search memo content string
   // const memoSearch = document.createElement("input");
@@ -87,18 +101,32 @@ const renderHeader = () => {
   // header.appendChild(memoSearch);
 };
 
+const onClickBerger = () => {
+  const linkContainer = document.getElementById("link-container");
+  if (!linkContainer || linkContainer.style.display === "none") {
+    console.log("hello");
+    linkContainer.style.display = "block";
+  } else {
+    linkContainer.style.display = "none";
+  }
+  app.appendChild(linkContainer);
+};
+
 const renderContent = (memo = { name: "", content: "" }) => {
   const oldContent = document.getElementById("content");
+  const oldLabel = document.getElementById("label");
   if (oldContent) {
     app.removeChild(oldContent);
+    app.removeChild(oldLabel);
   }
+  const label = document.createElement("h1");
+  label.setAttribute("id", "label");
+  label.append(memo.name);
+  app.appendChild(label);
+
   const content = document.createElement("div");
   content.setAttribute("id", "content");
   content.innerHTML = marked(memo.content);
-
-  const label = document.createElement("h1");
-  label.setAttribute("id", "label");
-  content.appendChild(label);
   app.appendChild(content);
 };
 
