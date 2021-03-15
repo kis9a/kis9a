@@ -29,3 +29,5 @@ if (~str.indexOf("hoge")) {
   //strにhogeを含む場合の処理
 }
 ```
+
+- [Javascript Searching Algorithms - DEV Community Exit fullscreen mode](https://dev.to/imranib/javascript-searching-algorithms-2il2)
