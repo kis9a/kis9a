@@ -28,3 +28,41 @@ git log --pretty=fuller
 git rebase --committer-date-is-author-date
 
 git clone -b v1 --depth=1 https://github.com/nkjm/bootcamp-sushi-bot.git
+
+alias gco=gco
+function gco() {
+date=$(date -v -$1d)
+git commit --date $date
+}
+alias gcoa='git rebase HEAD~ --committer-date-is-author-date'
+
+```
+UU（both modified）
+3ウェイマージした結果のコンフリクトファイル．
+=>コンフリクトしている箇所を編集する必要あり．
+
+AA（both added）
+マージされるブランチ（HEAD）にあるファイルと、マージするブランチにあるファイルをマージした結果、変更箇所がコンフリクトしているファイル
+=>コンフリクトしている箇所を編集する必要あり．
+
+UD（deleted by them)
+マージされるブランチ（HEAD)に存在するファイルが、マージするブランチでは削除されているファイル
+=>ファイルを削除するか， 残すか選択
+
+DU（deleted by us）
+マージするブランチに存在するファイルが、マージされるブランチ（HEAD）では削除されているファイル.
+=>ファイルを削除するか， 残すか選択
+
+修正が不要
+AU（added by us）
+マージされるブランチ（HEAD）にのみ存在するファイル．
+=>ファイルはそのまま
+
+UA（added by them）
+マージするブランチにのみ存在するファイルです。
+=>自動的にstagingに乗る．
+
+DD（both deleted)
+マージされるブランチ（HEAD）及び、マージするブランチから削除されたファイル.
+=>自動で削除
+```

@@ -1,3 +1,26 @@
+tail
+tar
+uname
+uptime
+wc
+id
+chmod
+chown
+df
+wc
+ping
+ps
+nc/netcat
+netstat
+ifconfig
+iostat
+diff
+du
+
+install Apache + PHP7.2 + MySQL with homebrew
+install memcached
+Apache Settings , and make php run with apache in your mac
+
 [./sed.md]
 [./awk.md]
 [./grep.md]
