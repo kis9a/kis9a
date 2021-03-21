@@ -16,7 +16,7 @@ get_memo() {
 main() {
 	local result
 	result=$(get_memo)
-	echo "$result" | jq -s -c >"$KIS9A"/src/memos.json
+	echo "$result" | jq -s -c >"$PROFILE"/src/memos.json
 }
 
 main

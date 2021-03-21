@@ -4,9 +4,7 @@ let memos = [];
 const main = async () => {
   memos = (await getMemosJson()) || [];
   marked.setOptions({
-    // code要素にdefaultで付くlangage-を削除
     langPrefix: "",
-    // highlightjsを使用したハイライト処理を追加
     highlight: function (code, lang) {
       return hljs.highlightAuto(code, [lang]).value;
     },

@@ -7,6 +7,15 @@ a {
   color: white;
 }
 
+pre,
+code {
+  width: 100%;
+  word-wrap: normal;
+}
+code.hljs-keyword {
+  word-wrap: normal;
+}
+
 #app {
   margin: 12px;
 }
