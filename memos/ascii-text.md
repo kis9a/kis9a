@@ -1,3 +1,5 @@
+- [コマンド入力一撃で端末を大量に分割してタスクを瞬殺する tmux-xpanes - Qiita](https://qiita.com/greymd/items/8744d1c4b0b2b3004147)
+
 ```
 figlet -f kban
 
