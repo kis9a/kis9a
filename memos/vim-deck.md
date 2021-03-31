@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 # 
 ### Why use Vim ?
 
@@ -26,3 +27,19 @@ Probably CUI tool is provide more essential solutions.
 - LSP, CoC.nvim
 - nvim treesitter
 
+=======
+## Why I use vim.
+
+### Speeed.
+
+- startuptime
+  GUI editor 1 ~ 2 second.
+  CUI vim 0.1 second.
+
+## How to select software ?
+
+- preformance, feature, usage.
+- initial const.
+- ops cost.
+- multi platform.
+>>>>>>> Stashed changes

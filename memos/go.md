@@ -41,3 +41,5 @@ function get($q)
 }
 
 ```
+
+- [grep の -l オプション (一覧表示) と -v (条件反転) オプションを併用すると死ぬ - Qiita](https://qiita.com/mpyw/items/b73a38a72391807148b9)

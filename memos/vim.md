@@ -172,3 +172,41 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 ```
+
+" --- command ---{{{
+command! Rmt :%s/\s\+$//e " delete trailing space
+match errorMsg /\s\+$/ " hilight trailing space
+" }}}
+
+```
+" -- not usually {{{
+" Plug 'gruvbox/gruvbox.vim'
+" Plug 'wakatime/vim-wakatime'
+" Plug 'easymotion/vim-easymotion'
+" Plug 'voldikss/vim-translator'
+" Plug 'thinca/vim-quickrun', { 'on': 'QuickRun' }
+" Plug 'cocopon/colorswatch.vim', { 'on': 'ColorSwatchGenerate' }
+" Plug 'dhruvasagar/vim-table-mode', { 'for': 'markdown' }
+" Plug 'lambdalisue/gina.vim', { 'on': 'Gina' }
+" Plug 'iamcco/markdown-preview.nvim', { 'for': 'markdown', 'on': 'MarkdownPreview' }
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim', { 'on': [ 'Files', 'GFiles', 'Commands', 'Commits', 'Buffers', 'Rg' ] }
+" Plug 'liuchengxu/vista.vim', { 'on': 'Vista' }
+" Plug 't9md/vim-quickhl', { 'on': 'QuickhlCwordToggle' }
+" Plug 'kshenoy/vim-signature', { 'on': 'SignatureListGlobalMarks' }
+" Plug 'junegunn/vim-easy-align', { 'on': 'EasyAlign' }
+" Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+" Plug 'dstein64/vim-startuptime', { 'on': 'StartupTime' }
+" Plug 'junegunn/limelight.vim', { 'on': [ 'Limelight', 'Limelight!', 'Limelight!!' ] }
+" Plug 'simeji/winresizer', { 'on': [ 'WinResizerStartFocus', 'WinResizerStartResize'] }
+"}}}
+```
+
+| オプション名 | 補足                                                     |
+| ------------ | -------------------------------------------------------- |
+| expandtab    | tab キーを押すとスペースが入力される                     |
+| tabstop      | 画面上で表示する 1 つのタブの幅                          |
+| softtabstop  | いくつの連続した空白を 1 回で削除できるようにするか      |
+| shiftwidth   | 自動インデントでのインデントの長さ                       |
+| autoindent   | 改行した時に自動でインデントします                       |
+| smartindent  | {があると次の行は自動で 1 段深く自動インデントしてくれる |

@@ -13,7 +13,18 @@ git cherry [-v] [<upstream> [<head> [<limit>]]]
 
 ```
 
+```
+o search the commit log (across all branches) for the given text:
+
+git log --all --grep='Build 0051'
+To search the actual content of commits through a repo's history, use:
+
+git grep 'Build 0051' $(git rev-list --all)
 ### new base branch --onto <newbase>
+
+```
+
+### git rebase --onto
 
 ```sh
 git rebase --onto
