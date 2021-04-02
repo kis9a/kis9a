@@ -1,5 +1,6 @@
 - [コマンドライン JSON プロセッサー jq の演算子と関数 エラーの向こうへ](https://tech.mktime.com/entry/127)
 - [jq コマンドで覚えておきたい使い方 17 個 | 俺的備忘録 〜なんかいろいろ〜](https://orebibou.com/ja/home/201605/20160510_001/)
+- [jq コマンドを使う日常のご紹介 - Qiita](https://qiita.com/takeshinoda@github/items/2dec7a72930ec1f658af)
 
 https://qiita.com/bouzuya/items/36e21c778539ce6bc486<!--{{{-->
 
@@ -236,4 +237,37 @@ jq -n '{first: {name: $one, count: $ARGS.positional[0]}, all: $ARGS}' \
   }
 }
 
+```
+map
+```
+$ echo '{"items":[{"item_id":1,"name":"すてきな雑貨","price":2500},{"item_id":2,"name":"格好いい置物","price":4500}]}' \
+| jq '.items | map({ name: .name, yen: .price })'
+[
+  {
+    "name": "すてきな雑貨",
+    "yen": 2500
+  },
+  {
+    "name": "格好いい置物",
+    "yen": 4500
+  }
+]
+```
+reduce
+```
+$ echo '{"items":[{"item_id":1,"name":"すてきな雑貨","price":2500},{"item_id":2,"name":"格好いい置物","price":4500}]}' \
+| jq 'reduce .items[] as $item (0; . + $item.price)'
+7000
+```
+unique
+
+```
+
+echo '{"items":[{"item_id":1,"name":"すてきな雑貨","price":2500},{"item_id":2,"name":"格好いい置物","price":4500},{"item_id":3,"name":"ナイスなお皿","price":4500}]}' \
+| jq '[.items[].price] | unique'
+[
+  2500,
+  4500
+]
+```
 ```
