@@ -1,2 +1,0 @@
-- [GitHub - keitakn/cv: My resume and work resume](https://github.com/keitakn/cv)
-- [kis9a (kis9a) · GitHub](https://github.com/kis9a)

@@ -1,5 +1,8 @@
 find . -type d -name "_log_" | xargs -I {} sh -c "echo {}; ls -la {} | tail -2"
 
+ls -1 \*.png | xargs -n 1 bash -c 'convert "$0" "${0%.png}.jpg"'
+find . -type d -name "_log_" | xargs -I {} sh -c "echo {}; ls -la {} | tail -2"
+
 ls | xargs -r -L 2 bash -c 'echo "Output:" ${0}'
 
 echo 'https://nav.kis9a.com/' | xargs -r -L 2 -I@ `echo @ echo curl -s @ | grep -o "<title>[^<]*" | tail -c+8 | xargs -I {} echo '[{}]()_'`

@@ -1,5 +1,3 @@
-.DEFAULT_GOAL := help
-
 null:
 	@:
 
@@ -16,11 +14,19 @@ cv-push: # push cv
 	@git push
 
 images-push: # push images
-	@ls ./images | xargs -I {} sips -Z 480 images/{}
+	@make images-resize
+	@make images-format
 	@git reset
 	@git add ./images/*
 	@git commit -m "images: update"
 	@git push
+
+images-resize:
+	@ls ./images | xargs -I {} sips -Z 480 images/{}
+
+images-format:
+	# (cd ./images; ls -1 *.jpg | xargs -n 1 bash -c 'convert "$0" "${0%.jpg}.png"')
+	# (cd ./images; ls | xargs -I {} -n 1 bash -c 'sips -s format ')
 
 src-push: # push src
 	@git reset
@@ -37,11 +43,14 @@ memos-push: # push memos
 	@git push
 	@rm -rf src/memos
 	@cp -rf memos/ src/memos
-	@npx gh-pages -d src -t
+	@make ghpush
 
 memos2json: # memos export json
 	# MEMO if only names: @tree memos -J | jq '.[0].contents | .[] | { "name": .name }'  > ./src/memos.json
 	@bash ./src/memos2json.sh
+
+ghpush:
+	@npx gh-pages -d src -t
 
 help: # show commands
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
