@@ -35,14 +35,11 @@ src-push: # push src
 	@git push
 
 memos-push: # push memos
-	@make memos2json
 	@git reset
 	@git add ./memos/*
 	@git add ./src/memos.json
 	@git commit -m "memos: update"
 	@git push
-	@rm -rf src/memos
-	@cp -rf memos/ src/memos
 	@make ghpush
 
 memos2json: # memos export json
@@ -50,6 +47,9 @@ memos2json: # memos export json
 	@bash ./src/memos2json.sh
 
 ghpush:
+	@rm -rf src/memos
+	@cp -rf memos/ src/memos
+	@make memos2json
 	@npx gh-pages -d src -t
 
 help: # show commands
