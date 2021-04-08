@@ -23,6 +23,7 @@ sed -i -e 's/$/\r/' source.txt
 sed '1,9d' sample.txt
 
 1 番目に出現した'Linux'を'リナックス'に
+sed -e '0,/claudio/ s/claudio/claudia/' nomi
 sed -e 's/Linux/リナックス/' source.txt
 
 3 番目に出現した'Linux'を'リナックス'に
