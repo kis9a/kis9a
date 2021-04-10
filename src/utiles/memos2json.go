@@ -24,8 +24,8 @@ func main() {
 		content["content"] = getContentStr(fname)
 		contents = append(contents, content)
 	}
-	reWriteFile("src/memos-indexes.json", arr2json(indexes))
-	reWriteFile("src/memos-contents.json", arr2json(contents))
+	reWriteFile("src/data/memos-indexes.json", arr2json(indexes))
+	reWriteFile("src/data/memos-contents.json", arr2json(contents))
 }
 
 func arr2json(arr []map[string]interface{}) []byte {

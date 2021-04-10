@@ -1,4 +1,4 @@
-import { app, h, text } from "../lib/hyperapp.js";
+import { app, h, text } from "./lib/hyperapp.js";
 
 app({
   init: {},

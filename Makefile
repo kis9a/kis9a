@@ -44,8 +44,8 @@ memos-push: # push memos
 
 memos2json: # memos export json
 	# MEMO if only names: @tree memos -J | jq '.[0].contents | .[] | { "name": .name }'  > ./src/memos.json
-	# @bash ./src/memos2json.sh
-	@go run ./src/memos2json.go
+	# @bash ./src/utiles/memos2json.sh
+	@go run ./src/utiles/memos2json.go
 
 ghpush:
 	@rm -rf src/memos
