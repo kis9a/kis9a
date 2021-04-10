@@ -1,150 +1,79 @@
-const app = document.getElementById("app");
-let memos = [];
+import { app, h, text } from "../lib/hyperapp.js";
 
-const main = async () => {
-  memos = (await getMemosJson()) || [];
-  marked.setOptions({
-    langPrefix: "",
-    highlight: function (code, lang) {
-      return hljs.highlightAuto(code, [lang]).value;
-    },
-  });
-  renderHeader();
-  renderLinks();
-  renderContent();
-};
+app({
+  init: {},
+  node: document.getElementById("app"),
+  view: () => h("h1", {}, [text("Hello "), h("i", {}, text("World!"))]),
+});
 
-const renderLinks = async () => {
-  const linkContainer = document.createElement("div");
-  linkContainer.setAttribute("id", "link-container");
+/**
+ * Emoji Search - Hyperapp.js Example
+ * Based on https://github.com/ahfarmer/emoji-search
+ */
 
-  const linkSearch = document.createElement("input");
-  linkSearch.setAttribute("id", "link-search");
-  linkSearch.setAttribute("placeholder", "Search index");
-  linkContainer.appendChild(linkSearch);
+// const { h, app } = hyperapp;
 
-  if (screen.width <= 800) {
-    linkContainer.setAttribute("style", "display: none;");
-  }
+/**
+ * Default Emoji List
+ * The complete list will be fetched from a JSON file when main container is created
+ */
+// let emojiList = [
+//   {
+//     symbol: "⏳",
+//     title: "Loading...",
+//   },
+// ];
 
-  window.onresize = () => {
-    if (screen.width <= 800) {
-      console.log("resize");
-      linkContainer.setAttribute("style", "display: none;");
-    }
-  };
+// const filterEmoji = (searchText, maxResults) => {
+//   return emojiList
+//     .filter((emoji) => {
+//       if (emoji.title.toLowerCase().includes(searchText.toLowerCase())) {
+//         return true;
+//       }
 
-  const links = document.createElement("div");
-  links.setAttribute("id", "links");
+//       if (emoji.keywords.includes(searchText)) {
+//         return true;
+//       }
 
-  memos.forEach((memo) => {
-    const link = document.createElement("div");
-    link.setAttribute("onClick", `onClickMemoLink('${memo.name}')`);
-    link.setAttribute("class", "link");
-    link.append(memo.name);
-    links.appendChild(link);
-  });
-  linkContainer.appendChild(links);
+//       return false;
+//     })
+//     .slice(0, maxResults);
+// };
 
-  app.appendChild(linkContainer);
+// const state = {
+//   filteredEmoji: filterEmoji("", 20),
+// };
 
-  linkSearch.addEventListener(
-    "input",
-    function (e) {
-      const oldLinks = document.getElementById("links");
-      if (oldLinks) {
-        linkContainer.removeChild(oldLinks);
-      }
+// const actions = {
+//   search: (text) => ({ filteredEmoji: filterEmoji(text, 20) }),
+//   getEmojiList: () => (state, actions) => {
+//     fetch(
+//       "https://raw.githubusercontent.com/ahfarmer/emoji-search/master/src/emojiList.json"
+//     )
+//       .then((data) => data.json())
+//       .then((data) => {
+//         emojiList = data;
+//         actions.search("");
+//       });
+//   },
+// };
 
-      const links = document.createElement("div");
-      links.setAttribute("id", "links");
+// const EmojiItem = (emoji) => h("li", {}, `${emoji.symbol} ${emoji.title}`);
 
-      if (!e.target.value.trim() === "") {
-        const link = document.createElement("div");
-        link.setAttribute("onClick", `onClickMemoLink('${memo.name}')`);
-        link.setAttribute("class", "link");
-        link.append(memo.name);
-        links.appendChild(link);
-      } else {
-        memos.forEach((memo) => {
-          if (~memo.name.indexOf(e.target.value)) {
-            const link = document.createElement("div");
-            link.setAttribute("onClick", `onClickMemoLink('${memo.name}')`);
-            link.setAttribute("class", "link");
-            link.append(memo.name);
-            links.appendChild(link);
-          }
-        });
-      }
-      linkContainer.appendChild(links);
-    },
-    false
-  );
-};
+// const EmojiList = (emojis) => {
+//   const list = emojis.map((emoji) => EmojiItem(emoji));
+//   return h("ul", {}, list.length ? list : h("li", {}, "No matches"));
+// };
 
-const onClickMemoLink = (name = "") => {
-  const memo = memos.find((memo) => memo.name === name);
-  renderContent(memo);
-};
+// const view = (state, actions) =>
+//   h("div", { className: "container", oncreate: () => actions.getEmojiList() }, [
+//     h("h1", {}, "Emoji Search"),
+//     h("input", {
+//       type: "search",
+//       placeholder: "Search...",
+//       oninput: (e) => actions.search(e.target.value),
+//     }),
+//     EmojiList(state.filteredEmoji),
+//   ]);
 
-const renderHeader = () => {
-  const header = document.createElement("div");
-  header.setAttribute("id", "header");
-  app.appendChild(header);
-
-  const headerLink = document.createElement("a");
-  headerLink.setAttribute("href", "/kis9a");
-  headerLink.append("HOME");
-  header.appendChild(headerLink);
-
-  const burgerButton = document.createElement("div");
-  burgerButton.setAttribute("onClick", "onClickBerger()");
-  burgerButton.setAttribute("id", "burger-button");
-  burgerButton.append("-_-");
-  header.appendChild(burgerButton);
-
-  // TODO search memo content string
-  // const memoSearch = document.createElement("input");
-  // memoSearch.setAttribute("type", "text");
-  // memoSearch.setAttribute("id", "memo-search");
-  // header.appendChild(memoSearch);
-};
-
-const onClickBerger = () => {
-  const linkContainer = document.getElementById("link-container");
-  if (!linkContainer || linkContainer.style.display === "none") {
-    console.log("hello");
-    linkContainer.style.display = "block";
-  } else {
-    linkContainer.style.display = "none";
-  }
-  const header = getElementById("header");
-  header.append(linkContainer);
-};
-
-const renderContent = (memo = { name: "", content: "" }) => {
-  const oldContent = document.getElementById("content");
-  const oldLabel = document.getElementById("label");
-  if (oldContent) {
-    app.removeChild(oldContent);
-    app.removeChild(oldLabel);
-  }
-  const label = document.createElement("h1");
-  label.setAttribute("id", "label");
-  label.append(memo.name);
-  app.appendChild(label);
-
-  const content = document.createElement("div");
-  content.setAttribute("id", "content");
-  content.innerHTML = marked(memo.content);
-  app.appendChild(content);
-};
-
-const getMemosJson = async () => {
-  const memosJson = await fetch(`./memos.json`).then((response) =>
-    response.text()
-  );
-  return JSON.parse(memosJson);
-};
-
-main();
+// window.main = app(state, actions, view, document.getElementById("app"));

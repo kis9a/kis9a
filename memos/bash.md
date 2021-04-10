@@ -1,3 +1,5 @@
+[bash tips](http://kodama.fubuki.info/wiki/wiki.cgi/bash/tips?lang=jp)
+
 - https://gnu.org/savannah-checkouts/gnu/bash/manual/bash.html
 - https://github.com/google/styleguide/blob/gh-pages/shellguide.md
 - https://github.com/josa42/coc-sh
@@ -123,7 +125,7 @@ string comparison
 
     if [ "$a" = "$b" ]
 
-    Caution	
+    Caution
 
     Note the whitespace framing the =.
 
@@ -136,7 +138,7 @@ string comparison
 
     This is a synonym for =.
 
-    Note	
+    Note
 
     The == comparison operator behaves differently within a double-brackets test than within single brackets.
 
@@ -192,7 +194,7 @@ string comparison
 
     string is not null.
 
-    Caution	
+    Caution
 
     The -n test require
 
@@ -242,3 +244,4 @@ string comparison
 シングルクォート　「’」　内容を文字列として出力
 ダブルクォート 　「”」　変数の内容を文字列として出力
 バッククォート 　「`」　コマンドとして実行して結果を出力
+```
