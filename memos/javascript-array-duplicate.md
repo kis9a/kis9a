@@ -34,4 +34,3 @@ this.isDuplicatedEmployeeDate = this.employeeItems.some((v, i, a) =>
   a.some((v1, i1) => (v !== v1 ? v.dateData === v1.dateData : false))
 );
 ```
-
