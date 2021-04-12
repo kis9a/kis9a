@@ -1,3 +1,9 @@
+1stcase
+create api to return first 20post and thread length.
+
+2stcase
+
+
 インメモリデータベース
 ディスクではなく高速なメインメモリにデータを格納
 高速かつ安定したパフォーマンスを提供
@@ -69,6 +75,25 @@ redis-cli
 > sorted set
 > zrank keyname value
 > zrem key
+
+# キー一覧
+keys *
+
+# キーの値を取得
+get #{key名}
+
+# キーをセット
+set #{key名} #{値}
+
+# キーを削除
+del #{key名}
+
+# ttl取得 (-1の場合は値がないか、期限がない)
+ttl #{key名}
+
+# キーを全削除
+flushall
+
 ```
 
 new

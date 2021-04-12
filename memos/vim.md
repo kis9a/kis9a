@@ -210,3 +210,5 @@ match errorMsg /\s\+$/ " hilight trailing space
 | shiftwidth   | 自動インデントでのインデントの長さ                       |
 | autoindent   | 改行した時に自動でインデントします                       |
 | smartindent  | {があると次の行は自動で 1 段深く自動インデントしてくれる |
+
+"coc.preferences.formatOnSaveFiletypes": ["*"],
