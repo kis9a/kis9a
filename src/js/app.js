@@ -41,17 +41,18 @@ const onIndexSearch = (state) => {
 // -  value: event.target.value,
 // -});
 
-const onClickIndex = (state) => {
-  console.log("hello", state);
-};
+const onClickIndex = (state,event) => ({
+  ...state,
+  content: getContent(event)
+});
 
 const searchIndex = (state) => {
   console.log(state);
 };
 
 app({
-  init: { indexes: memosIndexes, value: "" },
-  view: ({ indexes, value }) =>
+  init: { indexes: memosIndexes, content: "" },
+  view: ({ indexes, content }) =>
     h("main", { class: "main" }, [
       h("header", { class: "header" }, [
         h("span", { class: "home" }, text("kis9a/memos")),
@@ -61,7 +62,6 @@ app({
           type: "text",
           onchange: onIndexSearch,
           placeholder: "search index",
-          value,
           class: "index-search",
         }),
         h(
@@ -70,7 +70,7 @@ app({
           indexes.map((index) =>
             h(
               "span",
-              { class: "index", onclick: onClickIndex },
+              { class: "index", onclick: onClickIndex() },
               text(index.name)
             )
           )
