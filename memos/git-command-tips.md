@@ -77,3 +77,9 @@ DD（both deleted)
 マージされるブランチ（HEAD）及び、マージするブランチから削除されたファイル.
 =>自動で削除
 ```
+
+git credential fill
+git credential reject
+
+git remote set-url origin git://<userid>:<passwd>@github.com/user/myapp.git`
+git config --global url."https://<userid>@github.com".insteadOf "https://github.com"

@@ -1,5 +1,12 @@
 import { app, h, text } from "../lib/hyperapp.js";
 
+marked.setOptions({
+  langPrefix: "",
+  highlight: function (code, lang) {
+    return hljs.highlightAuto(code, [lang]).value;
+  },
+});
+
 const getJson = async (target) => {
   try {
     const memosJson = await fetch(`./data/${target}.json`).then((response) =>
@@ -16,7 +23,9 @@ const memosIndexes = await getJson("memos-indexes").then((r) => r);
 
 const getContent = async (target) => {
   try {
-    return await fetch(`./memos/${target}`).then((response) => response.text());
+    return await fetch(`../memos/${target}`).then((response) =>
+      response.text()
+    );
   } catch (e) {
     console.error(e);
   }
@@ -24,35 +33,36 @@ const getContent = async (target) => {
 };
 
 const memoContent = await getContent("figlet.md");
-console.log(memoContent);
 
-const onIndexSearch = (state) => {
-  console.log("hlo")
+const onClickIndex = async (state, event) => {
+  const content = await getContent(event.target.innerText).then((r) => r);
+  console.log({ ...state, content: content });
+  return { ...state, content: content };
 };
 
-// -const AddTodo = (state) => ({
-// -  ...state,
-// -  value: "",
-// -  todos: state.todos.concat(state.value),
-// -});
-// -
-// -const NewValue = (state, event) => ({
-// -  ...state,
-// -  value: event.target.value,
-// -});
+const setInputValue = (state, event) => {
+  const str = event.target.value;
+  const indexes = onSearchIndex(state, str);
+  return { ...state, inputValue: str, indexes: indexes };
+};
 
-const onClickIndex = (state,event) => ({
-  ...state,
-  content: getContent(event)
-});
+const setInitialIndex = (state) => {
+  state.indexes = memosIndexes;
+};
 
-const searchIndex = (state) => {
-  console.log(state);
+const viewContent = (content) => h("div", { class: "content" }, text(content));
+
+const onSearchIndex = (state, str) => {
+  if (!str) setInitialIndex(state);
+  const indexes = state.indexes.filter((e) =>
+    ~e.name.indexOf(str) ? true : false
+  );
+  return indexes;
 };
 
 app({
-  init: { indexes: memosIndexes, content: "" },
-  view: ({ indexes, content }) =>
+  init: { indexes: memosIndexes, content: memoContent, inputValue: "" },
+  view: ({ indexes, content, inputValue }) =>
     h("main", { class: "main" }, [
       h("header", { class: "header" }, [
         h("span", { class: "home" }, text("kis9a/memos")),
@@ -60,21 +70,24 @@ app({
       h("div", { class: "container" }, [
         h("input", {
           type: "text",
-          onchange: onIndexSearch,
-          placeholder: "search index",
+          value: inputValue,
+          oninput: setInputValue,
+          placeholder: "Search index",
           class: "index-search",
         }),
         h(
           "div",
           { class: "indexes" },
-          indexes.map((index) =>
-            h(
-              "span",
-              { class: "index", onclick: onClickIndex() },
-              text(index.name)
+          indexes &&
+            indexes.map((index) =>
+              h(
+                "span",
+                { class: "index", onclick: onClickIndex },
+                text(index.name)
+              )
             )
-          )
         ),
+        viewContent(content),
       ]),
     ]),
   node: document.getElementById("app"),

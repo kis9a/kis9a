@@ -1,0 +1,12 @@
+qiita
+docker
+zenn.dev
+discord
+slack
+apple
+gmail
+google
+aws
+line
+youtube
+spotify

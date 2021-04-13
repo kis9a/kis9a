@@ -55,7 +55,7 @@ code.hljs-keyword {
   background: rgba(255, 255, 255, 0.5);
   font-family: inherit;
   font-size: inherit;
-  padding: 0.1em;
+  padding: 0.1rem 0.4rem;
 }
 
 .index-search:focus {
