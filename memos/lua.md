@@ -28,3 +28,4 @@ brew install luarocks
 - [GitHub - amireh/lua_cliargs: A command-line argument parsing module for Lua.](https://github.com/amireh/lua_cliargs)
 - [GitHub - hoelzro/lua-term: Terminal operations for Lua](https://github.com/hoelzro/lua-term)
 - [GitHub - mpeterv/argparse: Feature-rich command line parser for Lua](https://github.com/mpeterv/argparse)
+- [Lua オブジェクト指向プログラミング　メタテーブルを使用する場合としない場合 - Qiita](https://qiita.com/demoin/items/fe2d243fa79745977758)

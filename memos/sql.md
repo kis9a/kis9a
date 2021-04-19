@@ -21,6 +21,7 @@ SELECT title, year FROM movies WHERE year < 2000 OR year > 2010;
 
 show table status from emails where name='email_threads_10'
 "select * from email_threads_10 where bid=", bid, "limit 20"
+ SHOW TABLES FORM wordpress LIKE "%meta";
 
 ```
 

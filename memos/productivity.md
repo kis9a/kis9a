@@ -60,3 +60,12 @@
 4. dicide hobit routines and trust this process
 5. force focus a project
 6. unification task management tools
+
+- We have to do.
+  Make more clear and simply tasks and manage implementer.
+
+- I have to do.
+  Prioritize task and feedback speed more than quality.
+
+- You have to do.
+  clearly incentive and make gamification to mind manage.<!--}}}-->
