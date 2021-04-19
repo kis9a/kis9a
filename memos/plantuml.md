@@ -1,3 +1,5 @@
+- [GoのコードからPlantUMLコードを生成する静的解析ツールを作っている - 日記マン](https://i101330.hatenablog.com/entry/2019/04/14/205522)
+
 # plantuml
 
 https://plantuml.com/sequence-diagram>

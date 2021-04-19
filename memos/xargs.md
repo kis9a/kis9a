@@ -30,7 +30,7 @@ get ASN for any targets via dig + whois tools…
 
 dig +short uber | xargs -I %% bash -c 'whois -h http://whois.cymru.com " -f -p %%"'
 
-seq 3 8 | nl | xargs -n2 bash -c 'seq $1 | sed "s/^/printf \$(tput setaf 0)\$(tput setab $(($0 % 9)))$1\$(tput sgr0)\"...
+seq 4 8 | nl | xargs -n2 bash -c 'seq $1 | sed "s/^/printf \$(tput setaf 0)\$(tput setab $(($0 % 9)))$1\$(tput sgr0)\"...
 
 bash gist2localmd.bash | jq | sed -e "s/[//g' -e 's/]//g" | tr -s "\n"
 
