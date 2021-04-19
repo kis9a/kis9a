@@ -37,6 +37,7 @@ const memoContent = await getContent("figlet.md");
 const onClickIndex = async (state, event) => {
   const content = await getContent(event.target.innerText).then((r) => r);
   console.log({ ...state, content: content });
+  // return { ...state, content: content };
   return { ...state, content: content };
 };
 

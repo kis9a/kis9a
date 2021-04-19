@@ -1,4 +1,4 @@
-# Introduce my workflow and how to manage sources.
+# Introduce my workflow and how to manage sources
 
 ## zsh<!--{{{-->
 
@@ -30,7 +30,13 @@ tmux is a terminal multiplexer.
 
 ### roadmap
 
+<<<<<<< HEAD
 -
+=======
+- set your favorite prefix key.
+- custom bindkeys
+- tmux plugins with tmux plugin manager tmp
+>>>>>>> 6a5dd4b9264d41dafe9c4b346c1f1d0e7e947908
 
 ### links
 

@@ -125,3 +125,14 @@ rg -F string
 ---
 
 
+```
+
+- [grep の -l オプション (一覧表示) と -v (条件反転) オプションを併用すると死ぬ - Qiita](https://qiita.com/mpyw/items/b73a38a72391807148b9)
+
+// for i, v := range []string{"foo", "bar", "baz"} {
+// fmt.Println(i, v)
+// }
+
+// for k, v := range map[string]int{"key-1": 100, "key-2": 200, "key-3": 300} {
+// fmt.Println(k, v)
+// }
