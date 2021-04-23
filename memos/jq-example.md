@@ -1,6 +1,8 @@
 - [コマンドライン JSON プロセッサー jq の演算子と関数 エラーの向こうへ](https://tech.mktime.com/entry/127)
 - [jq コマンドで覚えておきたい使い方 17 個 | 俺的備忘録 〜なんかいろいろ〜](https://orebibou.com/ja/home/201605/20160510_001/)
 - [jq コマンドを使う日常のご紹介 - Qiita](https://qiita.com/takeshinoda@github/items/2dec7a72930ec1f658af)
+- [ズンドコキヨシ with jq - Qiita](https://qiita.com/takeshinoda@github/items/bd74b3f621177daefb95)
+- [ゴリラ言語の読み方 - Qiita](https://qiita.com/mattn/items/65ec8f5256e244e1ed77)
 
 https://qiita.com/bouzuya/items/36e21c778539ce6bc486<!--{{{-->
 

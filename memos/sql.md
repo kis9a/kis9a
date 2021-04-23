@@ -25,7 +25,15 @@ show table status from emails where name='email_threads_10'
 
 ```
 
-
 ```
-CREATE table bots_cp AS SELECT * FROM bots
+DROP TABLE test_db_transaction_lua;
+
+CREATE TABLE IF NOT EXISTS test_db_transaction_lua (
+    name VARCHAR(255) NOT NULL,
+    id bigint(20) NOT NULL AUTO_INCREMENT,
+    ins_t TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)  ENGINE=INNODB;
+
+INSERT INTO test_db_transaction_lua (name) VALUES ("one");
+
 ```
