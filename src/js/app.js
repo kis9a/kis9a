@@ -34,11 +34,16 @@ const getContent = async (target) => {
 
 const memoContent = await getContent("figlet.md");
 
-const onClickIndex = async (state, event) => {
-  const content = await getContent(event.target.innerText).then((r) => r);
-  console.log({ ...state, content: content });
+const onClickIndex = async (state, actions) => {
+  console.log(actions)
+  actions.up(10)
+  // const content = await getContent(event.target.innerText).then((r) => r);
+  // console.log({ ...state, content: content });
+  // state.content = content;
+  // actions.up(10); ///<<<< why should this change state?
   // return { ...state, content: content };
-  return { ...state, content: content };
+  console.log(actions)
+  return { ...state, content: "" };
 };
 
 const setInputValue = (state, event) => {

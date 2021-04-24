@@ -100,3 +100,19 @@ createElement()
 updateElement()
 removeChildren()
 removeElement()
+
+https://github.com/jorgebucaran/hyperapp/issues/682
+
+V2 の README https://github.com/jorgebucaran/hyperapp/blob/master/README.md
+V2 マイルストーン https://github.com/jorgebucaran/hyperapp/milestone/7
+V2 のプルリク https://github.com/jorgebucaran/hyperapp/pull/726
+Action API https://github.com/jorgebucaran/hyperapp/issues/749
+Effects API https://github.com/jorgebucaran/hyperapp/issues/750
+Subscriptions API https://github.com/jorgebucaran/hyperapp/issues/752
+class/className attribute API https://github.com/jorgebucaran/hyperapp/issues/754
+Lazy Views https://github.com/jorgebucaran/hyperapp/pull/777
+Middleware API https://github.com/jorgebucaran/hyperapp/issues/753
+
+ハイパーアプリビューは、入力としていくつかの状態を受け取り、出力として仮想 DOM 表現を生成する純粋関数です。スコープ、バインディング、this、async / await、promise、callback、observable、reactive 式、reactive 割り当て、reactive 宣言、サブクラス化、フック、ミューテーション、グローバル状態、または副作用はありません。
+
+- [V2 Effects · Issue #750 · jorgebucaran/hyperapp · GitHub](https://github.com/jorgebucaran/hyperapp/issues/750)
