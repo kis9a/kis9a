@@ -30,13 +30,9 @@ tmux is a terminal multiplexer.
 
 ### roadmap
 
-<<<<<<< HEAD
--
-=======
 - set your favorite prefix key.
 - custom bindkeys
 - tmux plugins with tmux plugin manager tmp
->>>>>>> 6a5dd4b9264d41dafe9c4b346c1f1d0e7e947908
 
 ### links
 
@@ -55,17 +51,17 @@ tmux is a terminal multiplexer.
 - too many, so you have to copy and paste configures by searched item with google.
 - and try to hard. my configure is most simple and poweful. kis9a/dotfiles (master)
 
-
 <!--}}}-->
 
-## learn just "edditting"
+## learn just "edditting"<!--{{{-->
 
-- Basically all editors surpport the same solution.
-- and basically on same technology (LSP)
-- [language server protocolについて (前編) - Qiita](https://qiita.com/atsushieno/items/ce31df9bd88e98eec5c4)
+- Basically all editors provide same solution.
+- and basically baseed on same technology (LSP)
+- [language server protocol について (前編) - Qiita](https://qiita.com/atsushieno/items/ce31df9bd88e98eec5c4)
 - but have characteristic
+<!--}}}-->
 
-### this case vscode is prefer
+### this case vscode is prefer<!--{{{-->
 
 - initialcost in the os what surpport gui.
 - team development.
@@ -73,18 +69,35 @@ tmux is a terminal multiplexer.
 - explain to beginner.
 - live coding.
 - mob programming.
+...
+<!-- }}} -->
 
-### this case (neo)vim is prefere
+### this case (neo)vim is prefere<!--{{{-->
 
-## dotfiles
+#### nice comunity
 
+**vim-jp** (slack, conferences)
+
+<!--}}}-->
+
+### Why use (neo)vim<!--{{{-->
+
+- speed
+- nice comunity.
+- one of the preformance
+
+for why use neovim
+
+<!--}}}-->
+
+## dotfiles<!--{{{-->
+
+manage your configures and ...
 
 - [最強の dotfiles 駆動開発と GitHub で管理する運用方法 - Qiita](https://qiita.com/b4b4r07/items/b70178e021bef12cd4a2)
+<!--}}}-->
 
-### consolution
+# consolution<!--{{{-->
 
-
-### I subscribe
-
-- **vim-jp** (slack, conferences)
-
+manage snippets.
+manage<!--}}}-->

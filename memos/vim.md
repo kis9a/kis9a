@@ -1,3 +1,4 @@
+<https://zenn.dev/hituzi_no_sippo/articles/871c06cdbc45b53181e3#package-manager>
 # vim
 
 :for i in range(1,10) | put ='192.168.0.'.i | endfor
