@@ -1,4 +1,6 @@
 import { app, h, text } from "../lib/hyperapp.js";
+// import { Http } from "../lib/hyperappFx.js"
+import * as Fx from "../lib/hyperappFx.js";
 
 marked.setOptions({
   langPrefix: "",
@@ -35,14 +37,17 @@ const getContent = async (target) => {
 const memoContent = await getContent("figlet.md");
 
 const onClickIndex = async (state, actions) => {
-  console.log(actions)
-  actions.up(10)
+
+  Fx.Http({
+    url: "https://api.quotable.io/random",
+    action: (_, { content }) => content,
+  });
   // const content = await getContent(event.target.innerText).then((r) => r);
   // console.log({ ...state, content: content });
   // state.content = content;
   // actions.up(10); ///<<<< why should this change state?
   // return { ...state, content: content };
-  console.log(actions)
+  console.log(actions);
   return { ...state, content: "" };
 };
 

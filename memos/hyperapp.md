@@ -116,3 +116,4 @@ Middleware API https://github.com/jorgebucaran/hyperapp/issues/753
 ハイパーアプリビューは、入力としていくつかの状態を受け取り、出力として仮想 DOM 表現を生成する純粋関数です。スコープ、バインディング、this、async / await、promise、callback、observable、reactive 式、reactive 割り当て、reactive 宣言、サブクラス化、フック、ミューテーション、グローバル状態、または副作用はありません。
 
 - [V2 Effects · Issue #750 · jorgebucaran/hyperapp · GitHub](https://github.com/jorgebucaran/hyperapp/issues/750)
+- [](https://github.com/okwolf/hyperapp-fx/blob/master/api.md)
