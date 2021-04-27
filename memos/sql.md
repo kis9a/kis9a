@@ -29,11 +29,27 @@ show table status from emails where name='email_threads_10'
 DROP TABLE test_db_transaction_lua;
 
 CREATE TABLE IF NOT EXISTS test_db_transaction_lua (
+    id BIGINT(20) AUTO_INCREMENT NOT NULL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    id bigint(20) NOT NULL AUTO_INCREMENT,
     ins_t TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )  ENGINE=INNODB;
 
 INSERT INTO test_db_transaction_lua (name) VALUES ("one");
 
+DESCRIBE article;
+DROP DATABASE media;
 ```
+
+```
+CREATE DATABASE db;
+SHOW databases;
+USE db;
+.
+
+
+CREATE TABLE no.test (
+    id INT VARCHAR(56) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    title VARCHAR(50),
+    content TEXT,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

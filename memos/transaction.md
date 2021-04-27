@@ -5,6 +5,8 @@
 - [ ] mysql error method.
 - [ ] rollback function.
 
+[Search Conversations](https://groups.google.com/g/openresty/search?q=mysql%20transaction)
+
 ```
 DROP TABLE test_db_transaction_lua;
 
@@ -21,6 +23,12 @@ INSERT INTO test_db_transaction_lua (name) VALUES ("four");
 DELETE FROM test_db_transaction_lua where name = four
 
 ```
+
+INSERT INTO test (name) VALUES ("one");
+INSERT INTO test (name) VALUES ("two");
+INSERT INTO test (name) VALUES ("three");
+INSERT INTO test (name) VALUES ("four");
+DELETE FROM test where name = four
 
 <!-- - [ ] -->
 
