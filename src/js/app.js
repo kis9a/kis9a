@@ -1,6 +1,23 @@
 import { app, h, text } from "../lib/hyperapp.js";
-// import { Http } from "../lib/hyperappFx.js"
-import * as Fx from "../lib/hyperappFx.js";
+// import { exports } from "../lib/hyperappFx.js"
+// import * as Fx from "../lib/hyperappFx.js";
+import { Http } from "../lib/hyperapp-fx/index.js";
+
+// const GetQuote = () => 
+
+//   [
+//   "...",
+//   Http({
+//     url: "https://api.quotable.io/random",
+//     action: (_, { content }) => content,
+//   }),
+// ];
+
+// app({
+//   init: "Click here for quotes",
+//   view: (quote) => h("h1", { onclick: GetQuote }, text(quote)),
+//   node: document.getElementById("app"),
+// });
 
 marked.setOptions({
   langPrefix: "",
@@ -37,8 +54,7 @@ const getContent = async (target) => {
 const memoContent = await getContent("figlet.md");
 
 const onClickIndex = async (state, actions) => {
-
-  Fx.Http({
+  Http({
     url: "https://api.quotable.io/random",
     action: (_, { content }) => content,
   });
