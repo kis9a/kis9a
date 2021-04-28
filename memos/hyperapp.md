@@ -117,3 +117,11 @@ Middleware API https://github.com/jorgebucaran/hyperapp/issues/753
 
 - [V2 Effects · Issue #750 · jorgebucaran/hyperapp · GitHub](https://github.com/jorgebucaran/hyperapp/issues/750)
 - [](https://github.com/okwolf/hyperapp-fx/blob/master/api.md)
+- [] https://github.com/jorgebucaran/hyperapp-router
+  @hyperapp/render
+- [GitHub - kwasniew/hyperapp2-real-world-example: https://hyperapp2.netlify.com/](https://github.com/kwasniew/hyperapp2-real-world-example)
+
+oncreate … ElementがDOMとして構築されたとき
+onupdate … Elementの要素が更新されたとき
+onremove … ElementがDOMから消える直前
+ondestroy … ElementがDOMから消える直後

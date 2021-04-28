@@ -1,0 +1,85 @@
+div {
+  border-radius: 2px;
+}
+
+.main {
+  padding: 0 1rem;
+}
+
+.header {
+  height: 5rem;
+  display: block;
+  display: flex;
+  padding: 1rem 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-size: 1.6rem;
+  background: var(--color-shadow);
+  border: 1px solid var(--color-bg-secondary);
+}
+
+.container {
+  margin-top: calc(7rem)
+}
+
+.home {
+  margin: auto 1.2rem;
+  letter-spacing: 0.4rem;
+}
+
+.inputs {
+  display: flex;
+  align-items: center;
+  padding: 0.6rem 0;
+  background-color: var(--color-shadow);
+  border: 1px solid var(--color-bg-secondary);
+}
+
+.inputs input {
+  margin: 0;
+}
+
+.inputs .index-toggle-button {
+  font-weight: 500;
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 0 0.6rem;
+}
+
+.indexes {
+  display: flex;
+  flex-wrap: wrap;
+  word-break: break-all;
+  margin: 1.2rem 0px;
+}
+
+.index {
+  display: block;
+  margin: 2px;
+  padding: 2px 4px;
+  width: auto;
+  font-size: 10px;
+  letter-spacing: 2px;
+  background-color: var(--color-shadow);
+  cursor: pointer;
+}
+
+.content {
+  font-size: 1.2rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: var(--color-shadow);
+  border: 1px solid var(--color-bg-secondary);
+}
+
+.top {
+  cursor: pointer;
+  border: 1px solid var(--color-bg-secondary);
+}
+
+.hide {
+  display: none;
+}
+
