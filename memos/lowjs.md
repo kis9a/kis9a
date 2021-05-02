@@ -11,3 +11,5 @@ hyperlit 0.8kB
 hyperapp-fx 1.6kB
 snarkdown 1.0kB
 page 3.9kB (this one has 1 dependency)
+
+[GitHub - talentlessguy/tinyhttp: 🦄 0-legacy, tiny &amp; fast web framework as a replacement of Express](https://github.com/talentlessguy/tinyhttp)

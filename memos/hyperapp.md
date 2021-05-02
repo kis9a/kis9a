@@ -125,3 +125,79 @@ oncreate … ElementがDOMとして構築されたとき
 onupdate … Elementの要素が更新されたとき
 onremove … ElementがDOMから消える直前
 ondestroy … ElementがDOMから消える直後
+
+```
+const SuccessResponse = (state, response) => ({
+  ...state,
+  response,
+  error: null,
+  fetching: false
+});
+
+const ErrorResponse = (state, error) => ({
+  ...state,
+  response: null,
+  error,
+  fetching: false
+});
+
+const SendHttp = state => [
+  { ...state, response: "...", error: null, fetching: true },
+  Http({
+    url: state.url,
+    response: "text",
+    action: SuccessResponse,
+    error: ErrorResponse
+  })
+];
+
+// ---
+
+/* eslint-disable */
+
+const fx = (argsToProps, fx) => (...args) => [fx, argsToProps(args)];
+
+export const pushUrl = fx(
+  ([url]) => ({ url }),
+  (_, { url }) => {
+    history.pushState({}, "", url);
+    dispatchEvent(new CustomEvent("hyperapp-pushstate"));
+  }
+);
+
+export const onUrlChange = fx(
+  ([action]) => ({ action }),
+  (dispatch, { action }) => {
+    const popstate = (_) => dispatch(action, location);
+
+    addEventListener("popstate", popstate);
+    addEventListener("hyperapp-pushstate", popstate);
+
+    return () =>
+      ["popstate", "hyperapp-pushstate"].map((e) =>
+        removeEventListener(e, popstate)
+      );
+  }
+);
+
+export const onUrlRequest = fx(
+  ([action]) => ({ action }),
+  (dispatch, { action }) => {
+    const clicks = (event) => {
+      if (
+        !event.ctrlKey &&
+        !event.metaKey &&
+        !event.shiftKey &&
+        event.target.matches("a")
+      ) {
+        event.preventDefault();
+        const href = event.target.getAttribute("href");
+        dispatch(action, { pathname: href });
+      }
+    };
+    addEventListener("click", clicks);
+    return () => addEventListener("click", clicks);
+  }
+);
+
+```

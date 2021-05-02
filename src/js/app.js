@@ -1,18 +1,18 @@
 import { app, h, text } from "../lib/hyperapp.js";
-import { Http } from "../lib/hyperapp-fx/index.js";
+import { Http } from "../lib/hyperapp-fx/fx/Http.js";
 import snarkdown from "../lib/snarkdown.js";
 
-const getJson = async (target) => {
-  try {
-    const memosJson = await fetch(`./data/${target}.json`).then((response) =>
-      response.text()
-    );
-    return JSON.parse(memosJson);
-  } catch (e) {
-    console.error(e);
-  }
-  return [];
-};
+const getJson = Http({
+  url: "./data/memos-indexes.json",
+  response: "json",
+  action: (state, content) => {
+    initialState[0].indexes = content;
+    return {
+      ...state,
+      indexes: content || [],
+    };
+  },
+});
 
 const getContent = (state, event) => [
   state,
@@ -32,37 +32,39 @@ const setInputValue = (state, event) => {
 };
 
 const onSearchIndex = (state, str) => {
-  if (!str) state.indexes = initialState.indexes;
-  const indexes = initialState.indexes.filter((e) =>
+  if (!str) state.indexes = initialState[0].indexes;
+  const indexes = initialState[0].indexes.filter((e) =>
     ~e.name.indexOf(str) ? true : false
   );
   return indexes;
 };
 
 const toggleShowIndex = (state) => {
-  return { ...state, show: !state.show };
+  return { ...state, showIndexes: !state.showIndexes };
 };
 
-const svgstr =
+const topsvg =
   '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 11l3-3m0 0l3 3m-3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z"></path></svg>';
 
 const Top = (state) => {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
-  return state
-}
+  return state;
+};
 
-const initialState = {
-  indexes: await getJson("memos-indexes").then((r) => r),
+const state = {
+  indexes: "",
   content: "",
   inputValue: "",
-  show: true,
+  showIndexes: true,
 };
+
+const initialState = [state, getJson];
 
 app({
   init: initialState,
-  view: ({ indexes, content, inputValue, show }) =>
-    h("div", { class: "main" }, [
+  view: ({ indexes, content, inputValue, showIndexes }) =>
+    h("main", { class: "main" }, [
       h("header", { class: "header" }, [
         h("span", { class: "home" }, text("kis9a/memos")),
       ]),
@@ -71,7 +73,7 @@ app({
           h("div", {
             class: "index-toggle-button",
             onclick: toggleShowIndex,
-            innerHTML: `${show ? "&#9660" : "&#9650"}`,
+            innerHTML: `${showIndexes ? "&#9660" : "&#9650"}`,
           }),
           h("input", {
             type: "text",
@@ -82,7 +84,7 @@ app({
         ]),
         h(
           "div",
-          { class: `indexes  ${show ? "show" : "hide"}` },
+          { class: `indexes  ${showIndexes ? "showIndexes" : "hide"}` },
           indexes &&
             indexes.map((index) =>
               h(
@@ -92,8 +94,11 @@ app({
               )
             )
         ),
-        h("div", { class: "content", innerHTML: snarkdown(content) }),
-        h("div", { class: "top", innerHTML: svgstr, onclick: Top }),
+        h("div", {
+          class: `content ${content ? "" : "hide"}`,
+          innerHTML: snarkdown(content),
+        }),
+        h("div", { class: "top", innerHTML: topsvg, onclick: Top }),
       ]),
     ]),
   node: document.getElementById("app"),

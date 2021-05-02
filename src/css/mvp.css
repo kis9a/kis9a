@@ -365,6 +365,10 @@ form header {
     padding: 1.5rem 0;
 }
 
+textarea:focus, input:focus{
+    outline: none;
+}
+
 input,
 label,
 select,
