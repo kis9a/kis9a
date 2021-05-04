@@ -400,7 +400,8 @@ export var app = ({
   };
 
   return (
-    (dispatch = dispatch((action, props) =>
+    (dispatch = dispatch((action, props) => {
+      // console.log("action", action);
       typeof action === "function"
         ? dispatch(action(state, props))
         : isArray(action)
@@ -412,8 +413,8 @@ export var app = ({
                 (fx) => fx && fx !== true && fx[0](dispatch, fx[1]),
                 update(action[0])
               )
-        : update(action)
-    ))(init),
+        : update(action);
+    }))(init),
     dispatch
   );
 };

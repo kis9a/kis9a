@@ -110,13 +110,15 @@ div {
 }
 
 .tab {
-  padding: 0.3rem;
+  padding: 0.4rem;
   background-color: var(--color-shadow);
   border: 1px solid var(--color-bg-secondary);
   cursor: pointer;
   white-space: nowrap;
   border-radius: 2px 10px 0 0;
   border-style: solid;
+  display: flex;
+  align-items: center;
 }
 
 .tab:hover {
@@ -125,6 +127,17 @@ div {
 
 .tab-label {
   margin-right: 0.3rem;
+}
+
+.tab-close {
+  display: flex;
+  align-items: center;
+}
+
+.tab-close:hover {
+  padding: 0 0.2rem;
+  font-weight: 600;
+  color: black;
 }
 
 .tab-memo {
@@ -143,7 +156,7 @@ div {
   border: 1px solid var(--color-bg-secondary);
 }
 
-.top {
+.svg-top {
   cursor: pointer;
   margin: 1rem;
   width: 3rem;
@@ -157,7 +170,15 @@ div {
   color: gray;
 }
 
-.top:hover {
+.tabs svg {
+  width: 1.2rem;
+  height: 1.5rem;
+  cursor: pointer;
+  opacity: 0.8;
+  color: gray;
+}
+
+.svg-top:hover {
   color: black;
 }
 

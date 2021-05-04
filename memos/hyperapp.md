@@ -121,10 +121,10 @@ Middleware API https://github.com/jorgebucaran/hyperapp/issues/753
   @hyperapp/render
 - [GitHub - kwasniew/hyperapp2-real-world-example: https://hyperapp2.netlify.com/](https://github.com/kwasniew/hyperapp2-real-world-example)
 
-oncreate … ElementがDOMとして構築されたとき
-onupdate … Elementの要素が更新されたとき
-onremove … ElementがDOMから消える直前
-ondestroy … ElementがDOMから消える直後
+oncreate … Element が DOM として構築されたとき
+onupdate … Element の要素が更新されたとき
+onremove … Element が DOM から消える直前
+ondestroy … Element が DOM から消える直後
 
 ```
 const SuccessResponse = (state, response) => ({
@@ -199,5 +199,28 @@ export const onUrlRequest = fx(
     return () => addEventListener("click", clicks);
   }
 );
+
+```
+
+```
+  subscriptions: state => [
+    tick(...),
+    foo(...),
+  ],
+
+  
+// 指定した時間後に指定したActionを呼び出すEffect Runner
+const delayRunner = (dispatch, { action, interval }) => {
+  setTimeout(() => dispatch(action, "delay!"), interval);
+};
+
+// delayRunnerを実行するEffectを作成するEffect Constructor
+const delay = (action, { interval }) => [delayRunner, { action, interval }];
+
+// delayから呼び出されるAction （最終的にtextへ'delay!'が設定される）
+const Delayed = (state, payload) => ({ ...state, text: payload });
+
+// Effectのdelayを呼び出すAction （1000ms後にDelaydを呼び出す）
+const DelayWithAction = (state) => [state, delay(Delayed, { interval: 1000 })];
 
 ```

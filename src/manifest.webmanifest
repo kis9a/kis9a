@@ -3,7 +3,7 @@
   "name": "kis9a/kis9a",
   "description": "kis9a/kis9a sources",
   "display": "fullscreen",
-  "start_url": "/",
+  "start_url": "/kis9a",
   "theme_color": "red",
   "background_color": "red",
   "orientation": "portrait",
