@@ -55,7 +55,6 @@ const setInputValue = (state, event) => {
 
 const setInputContent = (state, event) => {
   const value = event.target.value;
-  console.log(state);
   const content = state.contents.map((v) => {
     if (v.name == "memo") {
       v.content = value;
@@ -117,13 +116,15 @@ const Top = (state) => {
   return state;
 };
 
-const state = {
+let state = {
   indexes: "",
   content: { name: "memo", content: "" },
   contents: [{ name: "memo", content: "" }],
   inputValue: "",
   showIndexes: true,
 };
+
+state = { ...state, ...JSON.parse(window.localStorage.getItem("app")) };
 
 const initialState = [state, getJson];
 
@@ -187,9 +188,7 @@ app({
               h(
                 "div",
                 {
-                  class: `tab ${
-                    content.name === c.name ? "selected" : ""
-                  }`,
+                  class: `tab ${content.name === c.name ? "selected" : ""}`,
                 },
                 [
                   h(
@@ -227,5 +226,7 @@ app({
         h("div", { class: "top", innerHTML: topsvg, onclick: Top }),
       ]),
     ]),
+  subscriptions: (state) =>
+    window.localStorage.setItem("app", JSON.stringify(state)),
   node: document.getElementById("app"),
 });

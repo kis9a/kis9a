@@ -115,6 +115,8 @@ div {
   border: 1px solid var(--color-bg-secondary);
   cursor: pointer;
   white-space: nowrap;
+  border-radius: 2px 10px 0 0;
+  border-style: solid;
 }
 
 .tab:hover {
