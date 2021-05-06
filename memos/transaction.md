@@ -92,3 +92,5 @@ Isolation − Intermediate results of a transaction are not visible outside the 
 Durability − Once a transaction was committed, the effects are persistent, even after a system failure.
 
 Transaction starts with START TRANSACTION; and ends with commit or rollback statement.
+
+- [トランザクション分離レベルについてのまとめ - Qiita](https://qiita.com/song_ss/items/38e514b05e9dabae3bdb)

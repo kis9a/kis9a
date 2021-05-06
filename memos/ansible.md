@@ -1,0 +1,1 @@
+ - [色んなプロジェクトを跨いだAnsibleのベストプラクティスについて改めて考えてみる - Qiita](https://qiita.com/t-okibayashi/items/2dd340dfd16c2d2e4ca1)
