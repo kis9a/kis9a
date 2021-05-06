@@ -1,27 +1,27 @@
-import { assign } from "../utils.js"
+import { assign } from "../utils.js";
 
 function storageArea(area) {
-  return window[area + "Storage"] || localStorage
+  return window[area + "Storage"] || localStorage;
 }
 
 function writeToStorageEffect(_, props) {
-  var value = props.converter(props.value)
-  storageArea(props.area).setItem(props.key, value)
+  var value = props.converter(props.value);
+  storageArea(props.area).setItem(props.key, value);
 }
 
 function readFromStorageEffect(dispatch, props) {
   try {
-    var value = props.converter(storageArea(props.area).getItem(props.key))
-    var dispatchProps = assign({}, props.props || {})
-    dispatchProps[props.prop || "value"] = value
-    dispatch(props.action, dispatchProps)
+    var value = props.converter(storageArea(props.area).getItem(props.key));
+    var dispatchProps = assign({}, props.props || {});
+    dispatchProps[props.prop || "value"] = value;
+    dispatch(props.action, dispatchProps);
   } catch (error) {
-    dispatch(props.error)
+    dispatch(props.error);
   }
 }
 
 function removeFromStorageEffect(_, props) {
-  storageArea(props.area).removeItem(props.key)
+  storageArea(props.area).removeItem(props.key);
 }
 
 /**
@@ -52,11 +52,11 @@ export function WriteToStorage(props) {
     writeToStorageEffect,
     assign(
       {
-        converter: props.converter || JSON.stringify
+        converter: props.converter || JSON.stringify,
       },
       props
-    )
-  ]
+    ),
+  ];
 }
 
 /**
@@ -90,11 +90,11 @@ export function ReadFromStorage(props) {
     assign(
       {
         converter: props.converter || JSON.parse,
-        error: props.error
+        error: props.error,
       },
       props
-    )
-  ]
+    ),
+  ];
 }
 
 /**
@@ -118,5 +118,5 @@ export function ReadFromStorage(props) {
  */
 
 export function RemoveFromStorage(props) {
-  return [removeFromStorageEffect, props]
+  return [removeFromStorageEffect, props];
 }

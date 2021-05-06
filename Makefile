@@ -1,59 +1,100 @@
-null:
+PROFILE := $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
+EXCLUDES := Makefile .git .gitignore
+DIRS := $(filter-out $(EXCLUDES), $(wildcard ??*))
+.DEFAULT_GOAL := help
+
+all:
 	@:
 
-tasks-push: # push tasks
-	@git reset
-	@git add ./tasks/*
-	@git commit -m "tasks: udpate"
+# aliases
+p: push
+s: server
+ls: show-list
+help: show-help
+
+push: ## push ${dir}
+	@git reset .
+	@git add ${dir}/*
+	@make check-staged
+	@git commit -m "update: ${dir}"
 	@git push
 
-cv-push: # push cv
-	@git reset
-	@git add ./cv/*
-	@git commit -m "cv: update"
-	@git push
+test-staged:
+	@echo "start"
+	@make check-staged
+	@echo "end"
 
-images-push: # push images
+check-staged:
+	@git status --short | grep '^\w.' # show staged files or error stop
+
+images-resize: ## images resize
+	@ls ./images | xargs -I {} sips -Z 480 images/{}
+
+images-format: ## images format
+	# (cd ./images; ls -1 *.jpg | xargs -n 1 bash -c 'convert "$0" "${0%.jpg}.png"')
+	# (cd ./images; ls | xargs -I {} -n 1 bash -c 'sips -s format ')
+
+memos2json: ## memos export json
+	# MEMO if only names: @tree memos -J | jq '.[0].contents | .[] | { "name": .name }'  > ./src/data/memos.json
+	# @bash ./src/utiles/memos2json.sh
+	@go run ./src/utiles/memos2json.go
+
+push-images: ## push optimized images
 	@make images-resize
 	@make images-format
 	@git reset
 	@git add ./images/*
+	@make check-staged
 	@git commit -m "images: update"
 	@git push
 
-images-resize:
-	@ls ./images | xargs -I {} sips -Z 480 images/{}
-
-images-format:
-	# (cd ./images; ls -1 *.jpg | xargs -n 1 bash -c 'convert "$0" "${0%.jpg}.png"')
-	# (cd ./images; ls | xargs -I {} -n 1 bash -c 'sips -s format ')
-
-src-push: # push src
+push-src: ## push src
 	@git reset
 	@git add ./src/*
+	@make check-staged
 	@git commit -m "src: update"
 	@git push
 
-memos-push: # push memos
+push-memos: ## push memos with build
 	@git reset
 	@git add ./memos/*
 	@git add ./src/memos.json
+	@make check-staged
 	@git commit -m "memos: update"
 	@git push
 	@make ghpush
 
-memos2json: # memos export json
-	# MEMO if only names: @tree memos -J | jq '.[0].contents | .[] | { "name": .name }'  > ./src/memos.json
-	# @bash ./src/utiles/memos2json.sh
-	@go run ./src/utiles/memos2json.go
+push-tasks: ## push tasks
+	@git reset
+	@git add ./tasks/*
+	@make check-staged
+	@git commit -m "tasks: udpate"
+	@git push
 
-ghpush:
+push-cv: ## push cv
+	@git reset
+	@git add ./cv/*
+	@make check-staged
+	@git commit -m "cv: update"
+	@git push
+
+push-gh: ## push src to gh-pages
 	@rm -rf src/memos
-	@cp -rf memos/ src/memos
 	@make memos2json
+	@cp -rf memos/ src/memos
 	@npx gh-pages -d src -t
+	-@(which curl >/dev/null && gh-pages -d src -t)
+	-@(which curl >/dev/null || npx gh-pages -d src -t)
+	@rm -rf src/memos
 
-help: # show commands
+server: ## live-server --port 9000
+	-@(which curl >/dev/null && live-server --port=9000)
+	-@(which curl >/dev/null || npx live-server --port=9000)
+
+show-list: ## show list dir
+	@$(foreach val, $(DIRS), /bin/ls -dF $(val);)
+
+show-help: ## show help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
 		| sort \
-		| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
+		| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

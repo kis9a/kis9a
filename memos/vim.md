@@ -83,3 +83,13 @@ match errorMsg /\s\+$/ " hilight trailing space
 | smartindent  | {があると次の行は自動で 1 段深く自動インデントしてくれる |
 
 "coc.preferences.formatOnSaveFiletypes": ["*"],
+
+前回に編集した箇所を記憶して、次回起動時にその箇所に移動するようにする。
+
+augroup vimrcEx
+  autocmd!
+  autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line('$') |
+    \   exe "normal! g`\"" |
+    \ endif
+augroup END

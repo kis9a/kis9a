@@ -117,3 +117,110 @@ Middleware API https://github.com/jorgebucaran/hyperapp/issues/753
 
 - [V2 Effects · Issue #750 · jorgebucaran/hyperapp · GitHub](https://github.com/jorgebucaran/hyperapp/issues/750)
 - [](https://github.com/okwolf/hyperapp-fx/blob/master/api.md)
+- [] https://github.com/jorgebucaran/hyperapp-router
+  @hyperapp/render
+- [GitHub - kwasniew/hyperapp2-real-world-example: https://hyperapp2.netlify.com/](https://github.com/kwasniew/hyperapp2-real-world-example)
+
+oncreate … Element が DOM として構築されたとき
+onupdate … Element の要素が更新されたとき
+onremove … Element が DOM から消える直前
+ondestroy … Element が DOM から消える直後
+
+```
+const SuccessResponse = (state, response) => ({
+  ...state,
+  response,
+  error: null,
+  fetching: false
+});
+
+const ErrorResponse = (state, error) => ({
+  ...state,
+  response: null,
+  error,
+  fetching: false
+});
+
+const SendHttp = state => [
+  { ...state, response: "...", error: null, fetching: true },
+  Http({
+    url: state.url,
+    response: "text",
+    action: SuccessResponse,
+    error: ErrorResponse
+  })
+];
+
+// ---
+
+/* eslint-disable */
+
+const fx = (argsToProps, fx) => (...args) => [fx, argsToProps(args)];
+
+export const pushUrl = fx(
+  ([url]) => ({ url }),
+  (_, { url }) => {
+    history.pushState({}, "", url);
+    dispatchEvent(new CustomEvent("hyperapp-pushstate"));
+  }
+);
+
+export const onUrlChange = fx(
+  ([action]) => ({ action }),
+  (dispatch, { action }) => {
+    const popstate = (_) => dispatch(action, location);
+
+    addEventListener("popstate", popstate);
+    addEventListener("hyperapp-pushstate", popstate);
+
+    return () =>
+      ["popstate", "hyperapp-pushstate"].map((e) =>
+        removeEventListener(e, popstate)
+      );
+  }
+);
+
+export const onUrlRequest = fx(
+  ([action]) => ({ action }),
+  (dispatch, { action }) => {
+    const clicks = (event) => {
+      if (
+        !event.ctrlKey &&
+        !event.metaKey &&
+        !event.shiftKey &&
+        event.target.matches("a")
+      ) {
+        event.preventDefault();
+        const href = event.target.getAttribute("href");
+        dispatch(action, { pathname: href });
+      }
+    };
+    addEventListener("click", clicks);
+    return () => addEventListener("click", clicks);
+  }
+);
+
+```
+
+```
+  subscriptions: state => [
+    tick(...),
+    foo(...),
+  ],
+
+  
+// 指定した時間後に指定したActionを呼び出すEffect Runner
+const delayRunner = (dispatch, { action, interval }) => {
+  setTimeout(() => dispatch(action, "delay!"), interval);
+};
+
+// delayRunnerを実行するEffectを作成するEffect Constructor
+const delay = (action, { interval }) => [delayRunner, { action, interval }];
+
+// delayから呼び出されるAction （最終的にtextへ'delay!'が設定される）
+const Delayed = (state, payload) => ({ ...state, text: payload });
+
+// Effectのdelayを呼び出すAction （1000ms後にDelaydを呼び出す）
+const DelayWithAction = (state) => [state, delay(Delayed, { interval: 1000 })];
+
+```
