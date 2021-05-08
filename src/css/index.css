@@ -135,9 +135,9 @@ div {
 }
 
 .tab-close:hover {
-  padding: 0 0.2rem;
   font-weight: 600;
   color: black;
+  opacity: 1;
 }
 
 .tab-memo {

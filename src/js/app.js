@@ -124,7 +124,7 @@ const copyUrl = (state) => {
   document.execCommand("copy");
   document.body.removeChild(element);
   alert("copied url to share link");
-  return {...state}
+  return { ...state };
 };
 
 const svg_top =
@@ -168,7 +168,6 @@ const initContent = [
       const action = (state) => {
         content = state.contents.find((v) => v.name === cname);
         if (!content) {
-          console.log("!content");
           content = getContent(cname);
           return [state, content];
         }
