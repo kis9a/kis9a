@@ -6,14 +6,34 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"os/exec"
 	"strings"
 )
 
 func main() {
-	files, err := ioutil.ReadDir("memos")
-	if err != nil {
-		log.Fatal(err)
+	if len(os.Args) > 1 {
+		switch arg := os.Args[1]; arg {
+		case "all":
+			fmt.Println("all")
+			all()
+		default:
+			fmt.Println("dif")
+			diff()
+		}
+	} else {
+		diff()
 	}
+}
+
+func diff() {
+	gs, err := exec.Command("git", "status", "-s").Output()
+	checkError(err)
+	fmt.Println(string(gs))
+}
+
+func all() {
+	files, err := ioutil.ReadDir("memos")
+	checkError(err)
 	indexes, contents := make([]map[string]interface{}, 0, 0), make([]map[string]interface{}, 0, 0)
 	for _, file := range files {
 		fname := file.Name()
@@ -30,21 +50,16 @@ func main() {
 
 func arr2json(arr []map[string]interface{}) []byte {
 	json, err := json.Marshal(arr)
-	if err != nil {
-		log.Fatal(err)
-	}
+	checkError(err)
 	return json
 }
 
 func getContentStr(fname string) string {
 	fc, err := ioutil.ReadFile("memos/" + fname)
-	if err != nil {
-		log.Fatal(err)
-	}
+	checkError(err)
 	fcStr := string(fc)
 	fcStr = strings.ReplaceAll(fcStr, "\n", "")
 	fcStr = strings.ReplaceAll(fcStr, " ", "")
-	fmt.Println(fcStr)
 	return fcStr
 }
 
@@ -52,4 +67,10 @@ func reWriteFile(fname string, fcontent []byte) {
 	os.Remove(fname)
 	os.Create(fname)
 	ioutil.WriteFile(fname, fcontent, 0)
+}
+
+func checkError(err error) {
+	if err != nil {
+		log.Fatal(err)
+	}
 }
