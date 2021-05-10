@@ -24,6 +24,7 @@ func main() {
 	}
 
 	out, err := GetShortStatus(args[0])
+	// console.log(getShorStatus)
 	if err != nil {
 		log.Fatalf("unable to read git repository status : %s", err.Error())
 	}
@@ -85,6 +86,8 @@ func parseBranch(input string) string {
 
 // GetShortStatus read the git status of the repository located at path
 func GetShortStatus(path string) (io.Reader, error) {
+	// a, _ := execOutput("git status -s -b")
+	// fmt.Println(reflect.TypeOf(a))
 	return execOutput(fmt.Sprintf("git -C %s status -s -b --porcelain", path))
 }
 

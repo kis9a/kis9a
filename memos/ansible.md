@@ -1,1 +1,5 @@
  - [色んなプロジェクトを跨いだAnsibleのベストプラクティスについて改めて考えてみる - Qiita](https://qiita.com/t-okibayashi/items/2dd340dfd16c2d2e4ca1)
+- [Ansibleの基本① - Ansibleの概要](https://zenn.dev/kudloid/articles/6b7e1584f204d6)
+- [Ansible勉強＆実践結果（随時更新） - Qiita](https://qiita.com/comefigo/items/d749001da5637e09cb1b)
+- [[随時更新]ansibleでよく使うコマンド・モジュールまとめ - Qiita](https://qiita.com/uzresk/items/1aa391eef232766bf817)
+- [検索 | Zenn](https://zenn.dev/search?q=ansible)
