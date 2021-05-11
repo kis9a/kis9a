@@ -40,8 +40,8 @@ $ terraform apply -target module.VPC
 $ ansible-galaxy init nginx
 ```
 
+- [Terraform 設計・運用のノウハウ - Qiita](https://qiita.com/naomichi-y/items/4501331d114b4ef9d584)
 
-- [Terraform設計・運用のノウハウ  - Qiita](https://qiita.com/naomichi-y/items/4501331d114b4ef9d584)
 ```
 # 構築する対象サービス。EC2、Security Groupといった単位
 {service}
@@ -90,4 +90,3 @@ providers
             ecs
             ...
 ```
-

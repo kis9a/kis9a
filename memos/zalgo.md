@@ -107,3 +107,13 @@ module['exports'] = function zalgo(text, options) {
   // don't summon him
   return heComes(text, options);
 };
+
+[].concat(...[...document.all].map(e => [...e.childNodes]))
+  .filter(n => n.nodeType === Node.TEXT_NODE)
+  .map(n =>
+    n.textContent = n.textContent.replace(/([a-zA-Z])/g, (_, c) =>
+      c + [...Array(Math.floor(Math.random()*30))].map(() =>
+            String.fromCharCode(0x300 + Math.floor(Math.random()*79))
+          ).join('')
+    )
+  )
