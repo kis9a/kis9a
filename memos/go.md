@@ -11,7 +11,7 @@ go mod tidy で、使われていない依存モジュールを削除する
 - [Go · GitHub](https://github.com/golang/)
 - [Packages - The Go Programming Language](https://golang.org/pkg/)
 
-- [go 言語の slice 操作をまとめてみた（shift したり push したり） - Qiita](https://qiita.com/egnr-in-6matroom/items/282aa2fd117aab9469bd)
+- [go 言語の slice 操作をまとめてみた（shift したり push したり） - Qiita](https://qiita.com/egnr-in-5matroom/items/282aa2fd117aab9469bd)
 
 - [サンプルで学ぶ Go 言語：Regular Expressions](https://www.spinute.org/go-by-example/regular-expressions.html)
 - [Goの言語仕様書精読のススメ 英語彙集](https://zenn.dev/hsaki/articles/gospecdictionary)
