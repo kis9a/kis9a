@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
@@ -111,12 +110,15 @@ func all() {
 }
 
 func buildDiff(files []string) {
-	contents, _ := ioutil.ReadFile("src/data/memos-contents.json")
+	// contents, _ := ioutil.ReadFile("src/data/memos-contents.json")
 	// fmt.Println(string(contents))
-	var slice []string
-	err := json.Unmarshal(contents, &slice)
-	checkError(err)
-	fmt.Println(slice)
+	// var slice []string
+	// fmt.Println(string(contents))
+	// json, err := json.Marshaler(contents)
+	// err := json.Unmarshal(contents, &slice)
+	// checkError(err)
+	// fmt.Println(slice)
+	// fmt.Println(json)
 }
 
 func arr2json(arr []map[string]interface{}) []byte {

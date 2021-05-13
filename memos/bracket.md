@@ -7,3 +7,12 @@
 ⟦ ⟧ – double square brackets, white square brackets, Scott brackets
 〔 〕 – tortoise shell brackets
 ```
+
+記号 英語 日本語 カーチャンでもわかる
+( ) Parentheses 丸括弧 まるかっこ
+[ ] Brackets 角括弧 しかくかっこ
+{ } Braces 波括弧 にょろかっこ
+< > Angle brackets 山括弧 とんがりかっこ
+「 」 Angles 鍵括弧 かぎかっこ
+【 】 隅付き括弧 見出しのかっこ
+⟦ ⟧ Double brackets

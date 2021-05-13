@@ -436,3 +436,28 @@ Terraform をデバッグする技術
 Terraform のソースコードをコンパイルする
 デバッグログにソースコードのファイル名と行番号を付ける
 Terraform をデバッガでステップ実行するッ
+
+
+terraform reagion osaka not surpported - <https://github.com/hashicorp/terraform-provider-aws/issues/5835>
+
+- [第 1 回「EC2」@Baby Step Terraform for AWS - Qiita](https://qiita.com/sky0621/items/4fa9a9e0f7c9de4b46bf){{{
+
+1. アプリ（※）を EC2 上で動かしてみる。
+2. マネージドな DB に接続しにいく。
+3. デフォルトのネットワークを使うのではなく vpc、subnet を定義する。
+4. マルチ AZ(アベイラビリティゾーン)化とロードバランサーを導入する。 (5. 画像ファイルを S3 に置いて CloudFront 経由でアクセスさせる。) ※
+5. アプリ（※）を Docker 化して ECS で動かすようにする。
+6. 最後は CI/CD。GitHub にアプリのソースをプッシュしたら自動でビルド・デプロイが走るようにする。
+7. Route 53 使って独自ドメインでアクセスできるようにする。
+8. デフォルトユーザーを変える(ec2-user)
+9. https での接続
+10. ECS で作成
+11. 秘匿情報をパラメーターストアで管理
+12. RDS にログの追加
+13. メールサーバーの設定
+14. VPN の導入
+15. 本番運用を想定した記述。tfstate の管理
+<!--}}}-->
+
+- [Terraform 職人再入門 2020 - Qiita](https://qiita.com/minamijoyo/items/3a7467f70d145ac03324)
+
