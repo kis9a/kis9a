@@ -22,3 +22,6 @@ fd -e flac -x ffmpeg -i {} -c:a libopus {.}.opus
 
 # Count the number of lines in Rust files (the command template can be terminated with ';'):
 fd -x wc -l \; -e rs
+
+# if statement
+ curl -s "https://api.github.com/users/kis9a/repos" | jq '.[] | select(.fork == false) | .'

@@ -4,6 +4,9 @@
 - [ズンドコキヨシ with jq - Qiita](https://qiita.com/takeshinoda@github/items/bd74b3f621177daefb95)
 - [ゴリラ言語の読み方 - Qiita](https://qiita.com/mattn/items/65ec8f5256e244e1ed77)
 
+ curl -s "https://api.github.com/users/kis9a/repos" | jq '.[] | select(.fork == false) | .'
+
+
 https://qiita.com/bouzuya/items/36e21c778539ce6bc486<!--{{{-->
 
 ```sh

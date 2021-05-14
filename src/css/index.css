@@ -115,7 +115,7 @@ div {
   border: 1px solid var(--color-bg-secondary);
   cursor: pointer;
   white-space: nowrap;
-  border-radius: 2px 10px 0 0;
+  border-radius: 2px 6px 0 0;
   border-style: solid;
   display: flex;
   align-items: center;
@@ -150,7 +150,9 @@ div {
 .content {
   font-size: 1.2rem;
   margin: 0;
-  margin-bottom: 2rem;
+  margin-bottom: 0.8rem 0.4rem;
+  word-wrap: wrap;
+  word-break: break-all;
   padding: 1rem;
   background-color: var(--color-shadow);
   border: 1px solid var(--color-bg-secondary);

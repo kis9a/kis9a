@@ -127,6 +127,10 @@ const copyUrl = (state) => {
   return { ...state };
 };
 
+const toggleRaw = (state) => {
+  return { ...state, rawMode: !state.rawMode };
+};
+
 const svg_top =
   '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 11l3-3m0 0l3 3m-3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z"></path></svg>';
 
@@ -138,6 +142,21 @@ const svg_clear =
 
 const svg_share =
   '<svg class="w-6 h-6" data-darkreader-inline-fill="" data-darkreader-inline-stroke="" fill="none" stroke="currentColor" style="--darkreader-inline-fill:none; --darkreader-inline-stroke:currentColor;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>';
+
+const svg_raw =
+  '<svg class="w-6 h-6" data-darkreader-inline-fill="" data-darkreader-inline-stroke="" fill="none" stroke="currentColor" style="--darkreader-inline-fill:none; --darkreader-inline-stroke:currentColor;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>';
+
+const svg_memo =
+  '<svg class="w-6 h-6" data-darkreader-inline-fill="" data-darkreader-inline-stroke="" fill="none" stroke="currentColor" style="--darkreader-inline-fill:none; --darkreader-inline-stroke:currentColor;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg>';
+
+onscroll = function (state) {
+  console.log("hello");
+  var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  if (scrollTop > 500) {
+    console.log(state);
+  } else {
+  }
+};
 
 const Top = (state) => {
   document.body.scrollTop = 0;
@@ -151,6 +170,7 @@ const pureState = {
   contents: [{ name: "memo", content: "" }],
   inputValue: "",
   showIndexes: true,
+  rawMode: true,
 };
 
 const baseName = (str) => {
@@ -190,9 +210,19 @@ const state = storageState ? storageState : pureState;
 
 const initialState = [state, initIndexes, initContent];
 
+onscroll = function () {
+  const top = document.getElementById("top");
+  var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  if (scrollTop > 500) {
+    top.classList.remove("hide");
+  } else {
+    top.classList.add("hide");
+  }
+};
+
 app({
   init: initialState,
-  view: ({ indexes, content, contents, inputValue, showIndexes }) =>
+  view: ({ indexes, content, contents, inputValue, showIndexes, rawMode }) =>
     h("main", { class: "main" }, [
       h("header", { class: "header" }, [
         h("div", { class: "home" }, [
@@ -253,6 +283,11 @@ app({
             onclick: () => copyUrl,
             innerHTML: svg_share,
           }),
+          h("div", {
+            class: "tab svg-share tab-share",
+            onclick: () => toggleRaw,
+            innerHTML: svg_raw,
+          }),
           ...(contents &&
             contents.map((c) =>
               h(
@@ -288,9 +323,14 @@ app({
             })
           : h("div", {
               class: `content ${content.content ? "" : "hide"}`,
-              innerHTML: snarkdown(content.content),
+              innerHTML: rawMode ? content.content : snarkdown(content.content),
             }),
-        h("div", { class: "svg-top", innerHTML: svg_top, onclick: Top }),
+        h("div", {
+          id: "top",
+          class: "svg-top hide",
+          innerHTML: svg_top,
+          onclick: Top,
+        }),
       ]),
     ]),
   subscriptions: (state) => {
