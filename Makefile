@@ -12,6 +12,8 @@ p: push
 ss: serve-src
 sz: serve-zenn
 ls: show-list
+pbz: publish-zenn
+pbs: publish-src
 help: show-help
 
 date:
@@ -77,13 +79,6 @@ push-tasks: ## push tasks
 	@git commit -m "tasks: udpate ${DATE}"
 	@git push
 
-push-cv: ## push cv
-	@git reset
-	@git add ./cv/*
-	@make check-staged
-	@git commit -m "cv: update ${DATE}"
-	@git push
-
 push-zenn: ## push zenn
 	@git reset
 	@git add ./zenn/*
@@ -98,20 +93,23 @@ push-snippets: ## push snippets
 	@git commit -m "snippets: update ${DATE}"
 	@git push
 
-push-gh: ## push src to gh-pages
+publish-src: ## publish src
 	@rm -rf src/memos
 	@make memos2json
 	@cp -rf memos/ src/memos
-	@npx gh-pages -d src -t
 	-@(which gh-pages >/dev/null && gh-pages -d src -t)
 	-@(which gh-pages >/dev/null || npx gh-pages -d src -t)
 	@rm -rf src/memos
 
-serve-src: ## serve src. live-server --port 9000.&
+publish-zenn: ## publish zenn
+	-@(which gh-pages >/dev/null && gh-pages -b zenn -d zenn -t)
+	-@(which gh-pages >/dev/null || gh-pages -b zenn -d zenn -t)
+
+serve-src: ## serve src
 	-@(which live-server >/dev/null && live-server --port=9000 &)
 	-@(which live-server >/dev/null || npx live-server --port=9000 &)
 
-serve-zenn: ## serve zenn. zenn preview -p 7000 &
+serve-zenn: ## serve zenn
 	-@(which zenn >/dev/null && (cd ./zenn; zenn preview -p 7000 &))
 	-@(which zenn >/dev/null || (cd ./zenn; npx zenn preview -p 7000 &))
 
