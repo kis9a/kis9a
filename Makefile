@@ -2,6 +2,7 @@ PROFILE := $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
 EXCLUDES := Makefile .git .gitignore
 DIRS := $(filter-out $(EXCLUDES), $(wildcard ??*))
 .DEFAULT_GOAL := help
+DATE := $(shell date +"%F")
 
 all:
 	@:
@@ -12,11 +13,14 @@ s: server
 ls: show-list
 help: show-help
 
+date:
+	@echo ${DATE}
+
 push: ## push ${dir}
 	@git reset .
 	@git add ${dir}/*
 	@make check-staged
-	@git commit -m "update: ${dir}"
+	@git commit -m "${dir}: update ${DATE}"
 	@git push
 
 test-staged:
@@ -46,14 +50,14 @@ push-images: ## push optimized images
 	@git reset
 	@git add ./images/*
 	@make check-staged
-	@git commit -m "images: update"
+	@git commit -m "images: update ${DATE}"
 	@git push
 
 push-src: ## push src
 	@git reset
 	@git add ./src/*
 	@make check-staged
-	@git commit -m "src: update"
+	@git commit -m "src: update ${DATE}"
 	@git push
 
 push-memos: ## push memos with build
@@ -61,7 +65,7 @@ push-memos: ## push memos with build
 	@git add ./memos/*
 	@git add ./src/memos.json
 	@make check-staged
-	@git commit -m "memos: update"
+	@git commit -m "memos: update ${DATE}"
 	@git push
 	@make ghpush
 
@@ -69,14 +73,14 @@ push-tasks: ## push tasks
 	@git reset
 	@git add ./tasks/*
 	@make check-staged
-	@git commit -m "tasks: udpate"
+	@git commit -m "tasks: udpate ${DATE}"
 	@git push
 
 push-cv: ## push cv
 	@git reset
 	@git add ./cv/*
 	@make check-staged
-	@git commit -m "cv: update"
+	@git commit -m "cv: update ${DATE}"
 	@git push
 
 push-gh: ## push src to gh-pages
