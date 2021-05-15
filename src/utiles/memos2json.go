@@ -13,6 +13,17 @@ import (
 	"strings"
 )
 
+type (
+	mapf    func(interface{}) interface{}
+	reducef func(interface{}, interface{}) interface{}
+	filterf func(interface{}) bool
+)
+
+type Content struct {
+	Name    string `json:"name"`
+	Content string `json:"content"`
+}
+
 type Output struct {
 	Branch      string
 	FilesStatus []string
@@ -110,15 +121,26 @@ func all() {
 }
 
 func buildDiff(files []string) {
-	// contents, _ := ioutil.ReadFile("src/data/memos-contents.json")
-	// fmt.Println(string(contents))
-	// var slice []string
-	// fmt.Println(string(contents))
-	// json, err := json.Marshaler(contents)
-	// err := json.Unmarshal(contents, &slice)
-	// checkError(err)
-	// fmt.Println(slice)
-	// fmt.Println(json)
+	cjson, err := os.Open("src/data/memos-contents.json")
+	checkError(err)
+	defer cjson.Close()
+	byteValue, _ := ioutil.ReadAll(cjson)
+	var c []Content
+	json.Unmarshal([]byte(byteValue), &c)
+
+	// for _, f = range files {
+	// 	Map(c, func(cv interface{}) interface{} {
+	// 		// fmt.Println(cv.(Content).Name == "go.md")
+	// 		fmt.Println(f)
+	// 		return cv
+	// 	})
+	// }
+	// fmt.Println(typeof(c))
+
+	// fmt.Println("MAP:", b)
+
+	// for _, f range files {
+	// }
 }
 
 func arr2json(arr []map[string]interface{}) []byte {
@@ -146,4 +168,34 @@ func checkError(err error) {
 	if err != nil {
 		log.Fatal(err)
 	}
+}
+
+func Map(in interface{}, fn mapf) interface{} {
+	val := reflect.ValueOf(in)
+	out := make([]interface{}, val.Len())
+	for i := 0; i < val.Len(); i++ {
+		out[i] = fn(val.Index(i).Interface())
+	}
+	return out
+}
+
+func Reduce(in interface{}, memo interface{}, fn reducef) interface{} {
+	val := reflect.ValueOf(in)
+	for i := 0; i < val.Len(); i++ {
+		memo = fn(val.Index(i).Interface(), memo)
+	}
+	return memo
+}
+
+func Filter(in interface{}, fn filterf) interface{} {
+	val := reflect.ValueOf(in)
+	out := make([]interface{}, 0, val.Len())
+	for i := 0; i < val.Len(); i++ {
+		current := val.Index(i).Interface()
+
+		if fn(current) {
+			out = append(out, current)
+		}
+	}
+	return out
 }

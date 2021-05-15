@@ -15,3 +15,4 @@ go mod tidy で、使われていない依存モジュールを削除する
 
 - [サンプルで学ぶ Go 言語：Regular Expressions](https://www.spinute.org/go-by-example/regular-expressions.html)
 - [Goの言語仕様書精読のススメ 英語彙集](https://zenn.dev/hsaki/articles/gospecdictionary)
+- [Golangでプログレスバーを表示するためのパッケージ3選 - Qiita](https://qiita.com/Akazawa_Naoki/items/a63193e3ac4c8cd4f19a)

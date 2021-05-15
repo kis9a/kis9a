@@ -37,6 +37,7 @@ images-format: ## images format
 memos2json: ## memos export json
 	# MEMO if only names: @tree memos -J | jq '.[0].contents | .[] | { "name": .name }'  > ./src/data/memos.json
 	# @bash ./src/utiles/memos2json.sh
+	# @go run ./src/utiles/memos2json.go
 	@go run ./src/utiles/memos2json.go all
 
 push-images: ## push optimized images
