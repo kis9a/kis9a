@@ -9,7 +9,8 @@ all:
 
 # aliases
 p: push
-s: server
+ss: serve-src
+sz: serve-zenn
 ls: show-list
 help: show-help
 
@@ -83,18 +84,36 @@ push-cv: ## push cv
 	@git commit -m "cv: update ${DATE}"
 	@git push
 
+push-zenn: ## push zenn
+	@git reset
+	@git add ./zenn/*
+	@make check-staged
+	@git commit -m "zenn: update ${DATE}"
+	@git push
+
+push-snippets: ## push snippets
+	@git reset
+	@git add ./snippets/*
+	@make check-staged
+	@git commit -m "snippets: update ${DATE}"
+	@git push
+
 push-gh: ## push src to gh-pages
 	@rm -rf src/memos
 	@make memos2json
 	@cp -rf memos/ src/memos
 	@npx gh-pages -d src -t
-	-@(which curl >/dev/null && gh-pages -d src -t)
-	-@(which curl >/dev/null || npx gh-pages -d src -t)
+	-@(which gh-pages >/dev/null && gh-pages -d src -t)
+	-@(which gh-pages >/dev/null || npx gh-pages -d src -t)
 	@rm -rf src/memos
 
-server: ## live-server --port 9000
-	-@(which curl >/dev/null && live-server --port=9000)
-	-@(which curl >/dev/null || npx live-server --port=9000)
+serve-src: ## serve src. live-server --port 9000.&
+	-@(which live-server >/dev/null && live-server --port=9000 &)
+	-@(which live-server >/dev/null || npx live-server --port=9000 &)
+
+serve-zenn: ## serve zenn. zenn preview -p 7000 &
+	-@(which zenn >/dev/null && (cd ./zenn; zenn preview -p 7000 &))
+	-@(which zenn >/dev/null || (cd ./zenn; npx zenn preview -p 7000 &))
 
 show-list: ## show list dir
 	@$(foreach val, $(DIRS), /bin/ls -dF $(val);)
