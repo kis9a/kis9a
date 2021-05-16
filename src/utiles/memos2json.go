@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
@@ -132,21 +131,16 @@ func buildDiff(files []string) {
 	for _, f := range files {
 		fn := strings.Split(f, "/")
 		fnn := fn[len(fn)-1]
-		Map(c, func(ci interface{}) interface{} {
-			if ci.(Content).Name == fnn {
-				fmt.Println(typeof(ci.(Content).Content))
-				fmt.Println(typeof(getContentStr(fnn)))
-				// ci.(Content).Content = getContentStr(fnn)
+		for i, ci := range c {
+			if ci.Name == fnn {
+				ci.Content = getContentStr(fnn)
 			}
-			return ci
-		})
+			c[i] = ci
+		}
 	}
-	// fmt.Println(typeof(c))
-
-	// fmt.Println("MAP:", b)
-
-	// for _, f range files {
-	// }
+	json, err := json.Marshal(c)
+	checkError(err)
+	reWriteFile("src/data/memos-contents.json", json)
 }
 
 func arr2json(arr []map[string]interface{}) []byte {
