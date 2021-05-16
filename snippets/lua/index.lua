@@ -19,6 +19,7 @@ index.main = function(oarg)
         compare = index.compare,
         pattern = index.pattern,
         range = index.range,
+        serial = index.serial,
         extra = extra.greet
     }
     local function pkeys() for k, _ in pairs(index) do print(k) end end
@@ -152,6 +153,16 @@ index.commentout = function()
 	]]
     print(
         "-- this is online comment out\n [[ multiple line comment out multiple line comment out ]] ")
+end
+
+index.serial = function(len)
+    len = len or 10
+    math.randomseed(os.time())
+    for n = 0, 100 do
+        local res = ""
+        for i = 1, 10 do res = res .. string.char(math.random(97, 122)) end
+        print(res)
+    end
 end
 
 -- index.main(arg)
