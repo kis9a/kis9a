@@ -63,6 +63,13 @@ push-src: ## push src
 	@git commit -m "src: update ${DATE}"
 	@git push
 
+push-waka: ## push waka
+	@git reset
+	@git add ./waka/*
+	@make check-staged
+	@git commit -m "waka: update ${DATE}"
+	@git push
+
 push-memos: ## push memos with build
 	@git reset
 	@git add ./memos/*
