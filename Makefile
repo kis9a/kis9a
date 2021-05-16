@@ -73,7 +73,6 @@ push-waka: ## push waka
 push-memos: ## push memos with build
 	@git reset
 	@git add ./memos/*
-	@git add ./src/memos.json
 	@make check-staged
 	@git commit -m "memos: update ${DATE}"
 	@git push
