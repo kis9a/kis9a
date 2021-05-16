@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
@@ -128,13 +129,18 @@ func buildDiff(files []string) {
 	var c []Content
 	json.Unmarshal([]byte(byteValue), &c)
 
-	// for _, f = range files {
-	// 	Map(c, func(cv interface{}) interface{} {
-	// 		// fmt.Println(cv.(Content).Name == "go.md")
-	// 		fmt.Println(f)
-	// 		return cv
-	// 	})
-	// }
+	for _, f := range files {
+		fn := strings.Split(f, "/")
+		fnn := fn[len(fn)-1]
+		Map(c, func(ci interface{}) interface{} {
+			if ci.(Content).Name == fnn {
+				fmt.Println(typeof(ci.(Content).Content))
+				fmt.Println(typeof(getContentStr(fnn)))
+				// ci.(Content).Content = getContentStr(fnn)
+			}
+			return ci
+		})
+	}
 	// fmt.Println(typeof(c))
 
 	// fmt.Println("MAP:", b)
