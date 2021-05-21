@@ -111,6 +111,7 @@ div {
 
 .tab {
   padding: 0.4rem;
+  height: 1.5rem;
   background-color: var(--color-shadow);
   border: 1px solid var(--color-bg-secondary);
   cursor: pointer;
@@ -127,6 +128,7 @@ div {
 
 .tab-label {
   margin-right: 0.3rem;
+  margin: auto auto;
 }
 
 .tab-close {
@@ -141,10 +143,25 @@ div {
 }
 
 .tab-memo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   width: calc(100% - 2.4rem);
+}
+
+.tab-memo-input {
   max-width: unset;
   margin: 0;
   padding: 0.5rem;
+  max-width: unset;
+  font-size: 2rem;
+}
+
+.tab-memo-view {
+  max-width: unset;
+  margin: 0;
+  padding: 0.5rem;
+  font-size: 2rem;
 }
 
 .content {
@@ -189,6 +206,6 @@ div {
 }
 
 .selected {
-  background-color: var(--color-bg-secondary);
+  background-color: #efefef;
   font-weight: 500;
 }
