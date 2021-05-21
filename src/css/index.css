@@ -63,6 +63,7 @@ div {
 }
 
 .inputs input {
+  height: 1.2rem;
   margin: 0;
 }
 
@@ -75,8 +76,36 @@ div {
   color: gray;
 }
 
+.inputs .index-search {
+  margin-right: 1rem;
+}
+
 .inputs .index-toggle-button:hover {
   color: black;
+}
+
+[type="date"] {
+  background: #fff /* background- */
+    /* url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png) */
+    url('data:image/svg+xml;charset=UTF-8,<svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>')
+    no-repeat right center;
+  background-repeat: no-repeat;
+  background-size: 1.2rem;
+}
+
+[type="date"]::after {
+  background: #fff /* background- */
+    /* url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png) */
+    url('data:image/svg+xml;charset=UTF-8,<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>')
+    no-repeat right center;
+}
+
+[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+
+[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
 }
 
 .indexes {

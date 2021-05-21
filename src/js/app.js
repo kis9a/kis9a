@@ -259,6 +259,17 @@ app({
             oninput: setInputValue,
             class: "index-search",
           }),
+          h("input", {
+            type: "date",
+            placeholder: " ",
+            class: "input",
+          }),
+          h("span", {}, text(":")),
+          h("input", {
+            type: "date",
+            placeholder: " ",
+            class: "input",
+          }),
         ]),
         h(
           "div",
@@ -301,9 +312,9 @@ app({
                     {
                       onclick: () => [onSelect, c.name],
                       class: "tab-label",
-                      innerHTML: c.name === "memo" && svg_memo
+                      innerHTML: c.name === "memo" ? svg_memo : ""
                     },
-                    c.name !== "memo" && text(c.name)
+                    c.name !== "memo" ? text(c.name) : text("")
                   ),
                   c.name !== "memo" &&
                     h("div", {
@@ -341,6 +352,7 @@ app({
       ]),
     ]),
   subscriptions: (state) => {
+    console.log(state);
     const cname = state.content && state.content.name;
     if (cname && cname !== "memo") {
       window.location.href = `#/${cname}`;
