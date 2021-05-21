@@ -3,7 +3,7 @@ import { Http } from "../lib/hyperapp-fx/fx/Http.js";
 import snarkdown from "../lib/snarkdown.js";
 
 const getIndexesJson = Http({
-  url: "./data/memos-indexes.json",
+  url: "../data/memos-indexes.json",
   response: "json",
   action: (state, indexes) => {
     initialState[0].indexes = indexes;
@@ -16,7 +16,7 @@ const getIndexesJson = Http({
 
 const getContent = (index) => {
   return Http({
-    url: `./memos/${index}`,
+    url: `../memos/${index}`,
     response: "text",
     action: (state, content) => {
       return {
@@ -91,10 +91,15 @@ const onSelect = (state, index) => {
   const content = state.contents.find((v) => {
     return v.name === index;
   });
-  return {
-    ...state,
-    content: content,
-  };
+  console.log(state);
+  if (content) {
+    return {
+      ...state,
+      content: content,
+    };
+  } else {
+    return { ...state };
+  }
 };
 
 const onSearchIndex = (state, str) => {
@@ -150,10 +155,8 @@ const svg_memo =
   '<svg class="w-6 h-6" data-darkreader-inline-fill="" data-darkreader-inline-stroke="" fill="none" stroke="currentColor" style="--darkreader-inline-fill:none; --darkreader-inline-stroke:currentColor;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg>';
 
 onscroll = function (state) {
-  console.log("hello");
   var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
   if (scrollTop > 500) {
-    console.log(state);
   } else {
   }
 };
@@ -169,8 +172,8 @@ const pureState = {
   content: { name: "memo", content: "" },
   contents: [{ name: "memo", content: "" }],
   inputValue: "",
-  showIndexes: true,
-  rawMode: true,
+  showIndexes: false,
+  rawMode: false,
 };
 
 const baseName = (str) => {
@@ -248,11 +251,6 @@ app({
       ]),
       h("div", { class: "container" }, [
         h("div", { class: "inputs" }, [
-          h("div", {
-            class: "index-toggle-button",
-            onclick: toggleShowIndex,
-            innerHTML: `${showIndexes ? "&#9660" : "&#9650"}`,
-          }),
           h("input", {
             type: "text",
             value: inputValue,
@@ -261,14 +259,18 @@ app({
           }),
           h("input", {
             type: "date",
-            placeholder: " ",
+            placeholder: "Date",
             class: "input",
           }),
-          h("span", {}, text(":")),
           h("input", {
             type: "date",
-            placeholder: " ",
+            placeholder: "Date",
             class: "input",
+          }),
+          h("div", {
+            class: "index-toggle-button",
+            onclick: toggleShowIndex,
+            innerHTML: `${showIndexes ? "&#9660" : "&#9650"}`,
           }),
         ]),
         h(
@@ -312,7 +314,7 @@ app({
                     {
                       onclick: () => [onSelect, c.name],
                       class: "tab-label",
-                      innerHTML: c.name === "memo" ? svg_memo : ""
+                      innerHTML: c.name === "memo" ? svg_memo : "",
                     },
                     c.name !== "memo" ? text(c.name) : text("")
                   ),
@@ -352,7 +354,6 @@ app({
       ]),
     ]),
   subscriptions: (state) => {
-    console.log(state);
     const cname = state.content && state.content.name;
     if (cname && cname !== "memo") {
       window.location.href = `#/${cname}`;

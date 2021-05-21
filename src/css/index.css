@@ -55,7 +55,7 @@ div {
 .inputs {
   display: flex;
   align-items: center;
-  padding: 0.6rem 0;
+  padding: 0.6rem;
   background-color: var(--color-shadow);
   border: 1px solid var(--color-bg-secondary);
   margin: 0;
@@ -72,12 +72,14 @@ div {
   font-size: 1.4rem;
   cursor: pointer;
   padding: 0 0.6rem;
-  opacity: 0.8;
-  color: gray;
+  opacity: 0.6;
+  color: black;
+  margin-left: auto;
 }
 
 .inputs .index-search {
   margin-right: 1rem;
+  min-width: 14rem;
 }
 
 .inputs .index-toggle-button:hover {
@@ -85,19 +87,13 @@ div {
 }
 
 [type="date"] {
-  background: #fff /* background- */
-    /* url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png) */
+  background: #fff
     url('data:image/svg+xml;charset=UTF-8,<svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>')
-    no-repeat right center;
+    no-repeat 95% center;
+  color: gray;
   background-repeat: no-repeat;
   background-size: 1.2rem;
-}
-
-[type="date"]::after {
-  background: #fff /* background- */
-    /* url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png) */
-    url('data:image/svg+xml;charset=UTF-8,<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>')
-    no-repeat right center;
+  opacity: 0.6;
 }
 
 [type="date"]::-webkit-inner-spin-button {
@@ -136,6 +132,14 @@ div {
   align-items: center;
   width: 100%;
   overflow-x: scroll;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 70px;
+  background: var(--color-shadow);
+  border: 0.5px solid var(--color-bg-secondary);
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
 
 .tab {
@@ -156,8 +160,8 @@ div {
 }
 
 .tab-label {
-  margin-right: 0.3rem;
   margin: auto auto;
+  margin-right: 0.5rem;
 }
 
 .tab-close {
