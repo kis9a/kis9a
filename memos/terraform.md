@@ -459,3 +459,53 @@ terraform reagion osaka not surpported - <https://github.com/hashicorp/terraform
 <!--}}}-->
 
 - [Terraform 職人再入門 2020 - Qiita](https://qiita.com/minamijoyo/items/3a7467f70d145ac03324)
+
+## Terragrunt
+
+<https://terragrunt.gruntwork.io/docs/getting-started/quick-start/>
+
+### why terragrunt ?
+
+1. Keep your backend configuration DRY.
+   terraform backend { } cant use variables. so to manage multiple environment and state you have to create directory and copy and manually change statefile-name backend.tf file.
+   -> write root/ `terragrunt.hcl` file
+
+```
+# stage/terragrunt.hcl
+remote_state {
+  backend = "s3"
+  generate = {
+    path      = "backend.tf"
+    if_exists = "overwrite_terragrunt"
+  }
+  config = {
+    bucket = "my-terraform-state"
+
+    key = "${path_relative_to_include()}/terraform.tfstate"
+    region         = "us-east-1"
+    encrypt        = true
+    dynamodb_table = "my-lock-table"
+  }
+}
+```
+
+### Keep your Terraform CLI arguments DRY
+
+$ terraform apply \
+ -var-file=../../common.tfvars \
+ -var-file=../region.tfvars
+
+$ terragrunt.hcl
+terraform {
+  extra_arguments "common_vars" {
+    commands = ["plan", "apply"]
+
+    arguments = [
+      "-var-file=../../common.tfvars",
+      "-var-file=../region.tfvars"
+    ]
+  }
+}
+
+### Promote immutable, versioned Terraform modules across environments
+

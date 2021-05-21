@@ -301,8 +301,9 @@ app({
                     {
                       onclick: () => [onSelect, c.name],
                       class: "tab-label",
+                      innerHTML: c.name === "memo" ? svg_memo : ""
                     },
-                    text(c.name)
+                    c.name !== "memo" ? text(c.name) : text("")
                   ),
                   c.name !== "memo" &&
                     h("div", {
@@ -315,12 +316,18 @@ app({
             )),
         ]),
         content.name == "memo"
-          ? h("textarea", {
-              rows: 20,
-              value: content.content,
-              oninput: setInputContent,
-              class: "content tab-memo",
-            })
+          ? h("div", { class: "tab-memo" }, [
+              h("textarea", {
+                rows: 20,
+                value: content.content,
+                oninput: setInputContent,
+                class: "content tab-memo-input",
+              }),
+              h("div", {
+                class: "content tab-memo-view",
+                innerHTML: snarkdown(content.content),
+              }),
+            ])
           : h("div", {
               class: `content ${content.content ? "" : "hide"}`,
               innerHTML: rawMode ? content.content : snarkdown(content.content),
