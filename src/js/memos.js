@@ -91,7 +91,6 @@ const onSelect = (state, index) => {
   const content = state.contents.find((v) => {
     return v.name === index;
   });
-  console.log(state);
   if (content) {
     return {
       ...state,
@@ -233,20 +232,13 @@ app({
             "span",
             {
               onclick: () => {
-                window.location.href = "./";
+                window.location.href = "/";
               },
             },
-            text("kis9a/")
+            text("kis9a")
           ),
-          h(
-            "span",
-            {
-              onclick: () => {
-                window.location.href = "./";
-              },
-            },
-            text("memos")
-          ),
+          h("span", {}, text(".")),
+          h("span", {}, text("memos")),
         ]),
       ]),
       h("div", { class: "container" }, [
@@ -328,23 +320,24 @@ app({
               )
             )),
         ]),
-        content.name == "memo"
-          ? h("div", { class: "tab-memo" }, [
-              h("textarea", {
-                rows: 20,
-                value: content.content,
-                oninput: setInputContent,
-                class: "content tab-memo-input",
-              }),
-              h("div", {
-                class: "content tab-memo-view",
-                innerHTML: snarkdown(content.content),
-              }),
-            ])
-          : h("div", {
-              class: `content ${content.content ? "" : "hide"}`,
-              innerHTML: rawMode ? content.content : snarkdown(content.content),
+        content.name === "memo" &&
+          h("div", { class: "tab-memo" }, [
+            h("textarea", {
+              rows: 20,
+              value: content.content || " ",
+              oninput: setInputContent,
+              class: "content tab-memo-input",
             }),
+            h("div", {
+              class: "content tab-memo-view",
+              innerHTML: snarkdown(content.content),
+            }),
+          ]),
+        content.name !== "memo" &&
+          h("div", {
+            class: `content ${content.content ? "" : "no-content"}`,
+            innerHTML: rawMode ? content.content : snarkdown(content.content),
+          }),
         h("div", {
           id: "top",
           class: "svg-top hide",
