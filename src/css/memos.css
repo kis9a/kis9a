@@ -44,8 +44,7 @@ div {
 }
 
 .home span:first-child {
-    cursor: pointer;
-    border-bottom: 0.5px solid var(--color-secondary);
+  cursor: pointer;
 }
 
 .home span:first-child:hover {

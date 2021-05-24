@@ -35,8 +35,6 @@
 
 ToHtml function with external.
 
-[redis](https://evolany.larksuite.com/docs/docusJzCisQ6M6wJEmErDDjMBTd)
-
 [GitHub - openresty/lua-resty-redis: Lua redis client driver for the ngx_lua based on the cosocket API](https://github.com/openresty/lua-resty-redis)
 
 ### cui solutions

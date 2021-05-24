@@ -21,6 +21,6 @@ instagram
 | ---------------- | ----------- |
 | aws              | 5$ ~ 30$ /m |
 | youtube-premium  | 3$ /m       |
-| wakatime-premium | 9$ /m       |
+<!-- | wakatime-premium | 9$ /m       | -->
 
 reduce wakatime-premium -> create time tracking and totalization for me.
