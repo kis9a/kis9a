@@ -235,7 +235,7 @@ app({
                 window.location.href = "/";
               },
             },
-            text("kis9a")
+            text("KIS9A")
           ),
           h("span", {}, text(".")),
           h("span", {}, text("memos")),
@@ -305,7 +305,7 @@ app({
                     "span",
                     {
                       onclick: () => [onSelect, c.name],
-                      class: "tab-label",
+                      class: "tab-label memo-tab-label",
                       innerHTML: c.name === "memo" ? svg_memo : "",
                     },
                     c.name !== "memo" ? text(c.name) : text("")

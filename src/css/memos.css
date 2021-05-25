@@ -36,6 +36,7 @@ div {
   max-width: var(--width-content);
   letter-spacing: 0.3rem;
   width: 100%;
+  display: flex;
 }
 
 .home span {
@@ -45,6 +46,15 @@ div {
 
 .home span:first-child {
   cursor: pointer;
+  font-family: Avenir;
+  -webkit-font-smoothing: antialiased;
+  color: #000;
+  font-size: 1.6rem;
+  font-weight: 600;
+  display: block;
+  margin: 0;
+  padding: 4px;
+  letter-spacing: 1.2px;
 }
 
 .home span:first-child:hover {
@@ -53,6 +63,8 @@ div {
 
 .home span:last-child {
   font-size: 1.5rem;
+  letter-spacing: 1px;
+  margin-top: auto;
 }
 
 .home span:last-child {
@@ -169,12 +181,12 @@ div {
 
 .tab-label {
   margin: auto auto;
-  margin-right: 0.5rem;
 }
 
 .tab-close {
   display: flex;
   align-items: center;
+  margin-left: 0.5rem;
 }
 
 .tab-close:hover {
@@ -226,8 +238,8 @@ div {
   position: fixed;
   bottom: 0;
   right: 0;
-  opacity: 0.8;
-  color: gray;
+  opacity: 0.6;
+  color: black;
 }
 
 .tabs svg {
