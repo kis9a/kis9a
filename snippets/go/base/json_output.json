@@ -1,0 +1,23 @@
+{
+	"id": 11111,
+	"author": "hey",
+	"content": "",
+	"comment": {
+		"comment_id": 999999,
+		"message": "sugeeeeeee"
+	},
+	"books": [
+		{
+			"book_id": 1004,
+			"title": "shika"
+		},
+		{
+			"book_id": 2006,
+			"title": "aki"
+		},
+		{
+			"book_id": 4005,
+			"title": "niti"
+		}
+	]
+}
