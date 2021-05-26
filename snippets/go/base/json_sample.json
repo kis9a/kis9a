@@ -1,0 +1,23 @@
+{
+  "id" : 1,
+  "author" : "hogefuga",
+  "content" : "Hellooooooooo!!",
+  "comment" : {
+    "comment_id" : 11,
+    "message" : "very gooood"
+  },
+  "books" : [
+    {
+      "book_id" : 23,
+      "title"  : "hogefuga"
+    },
+    {
+      "book_id" : 54,
+      "title"  : "wahahahahaha"
+    },
+    {
+      "book_id" : 76,
+      "title"  : "ohhhnoooo"
+    }
+  ]
+}

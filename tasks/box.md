@@ -1,3 +1,8 @@
+## Infrabuilder
+
+- [ ] code generator cli. ./infra create <option> command
+- [ ] 構文解析 terraform with golang.
+
 ## Frontend
 
 - [ ] /kis9a 512 > icons generator golang, shellscript.
@@ -58,6 +63,8 @@
 
 ## Algorithms
 
+- [ ] <https://github.com/fabianishere/brainfuck>
+- [ ] <https://github.com/llathasa-veleth/vim-brainfuck>
 - [ ] ~~leetcode termplate and snippet algorithms.~~ --> go algorithms
 - [ ] プログラムの高速化のための最適化技法 memolize, etc...
 - [AtCoder 黄色を目指してやってきたこと - Qiita](https://qiita.com/hamamu/items/2e342d46d9f54732d42c)
@@ -79,3 +86,17 @@
 - [ ] terragrunt website configuration <https://github.com/gruntwork-io/terragrunt/tree/master/docs>
 
 ## Post output
+
+## Golang
+
+- [ ] create default tmpls and json.
+- [ ] golang create template output function.
+- [ ] golang template useage.
+- [ ] golang exporter json.
+- [ ] error handling golang <https://tellme.tokyo/post/2018/04/02/golang-shell-exit-code/>
+- [ ] default.variables.tf, env.variables.tf.
+      <https://github.com/urfave/cli/blob/master/errors.go>
+- [ ] how to overwrite variables in terraform.
+- [ ] create go cli interactive.
+- [ ] golang address structure.
+- [ ] [mapstructureを使って複雑な構造のJSONを構造体にマッピングする - Qiita](https://qiita.com/syumai/items/9e2441b0e8fda8281fdf)
