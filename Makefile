@@ -1,4 +1,5 @@
 PROFILE := $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
+LINKFILES := memos images
 EXCLUDES := Makefile .git .gitignore
 DIRS := $(filter-out $(EXCLUDES), $(wildcard ??*))
 .DEFAULT_GOAL := help
@@ -110,6 +111,12 @@ publish-src: ## publish src
 publish-zenn: ## publish zenn
 	-@(which gh-pages >/dev/null && gh-pages -b zenn -d zenn -t)
 	-@(which gh-pages >/dev/null || gh-pages -b zenn -d zenn -t)
+
+link:
+	@$(foreach val, $(LINKFILES), ln -sfnv $(abspath $(val)) $(PROFILE)/src/$(val);)
+
+unlink:
+	@$(foreach val, $(LINKFILES), unlink $(PROFILE)/src/$(val);)
 
 serve-src: ## serve src
 	-@(cd ./src; which live-server >/dev/null && live-server --port=9000 &)
