@@ -112,8 +112,8 @@ publish-zenn: ## publish zenn
 	-@(which gh-pages >/dev/null || gh-pages -b zenn -d zenn -t)
 
 serve-src: ## serve src
-	-@(which live-server >/dev/null && live-server --port=9000 &)
-	-@(which live-server >/dev/null || npx live-server --port=9000 &)
+	-@(cd ./src; which live-server >/dev/null && live-server --port=9000 &)
+	-@(cd ./src; which live-server >/dev/null || npx live-server --port=9000 &)
 
 serve-zenn: ## serve zenn
 	-@(which zenn >/dev/null && (cd ./zenn; zenn preview -p 7000 &))
