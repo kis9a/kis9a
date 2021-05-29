@@ -1,6 +1,7 @@
-import { app, h, text } from "../lib/hyperapp.js";
-import { Http } from "../lib/hyperapp-fx/fx/Http.js";
-import snarkdown from "../lib/snarkdown.js";
+import { app, h, text } from "/lib/hyperapp.js";
+import { Http } from "/lib/hyperapp-fx/fx/Http.js";
+import snarkdown from "/lib/snarkdown.js";
+import { Header } from "/js/components/header.js";
 
 const getIndexesJson = Http({
   url: "../data/memos-indexes.json",
@@ -226,21 +227,7 @@ app({
   init: initialState,
   view: ({ indexes, content, contents, inputValue, showIndexes, rawMode }) =>
     h("main", { class: "main" }, [
-      h("header", { class: "header" }, [
-        h("div", { class: "home" }, [
-          h(
-            "span",
-            {
-              onclick: () => {
-                window.location.href = "/";
-              },
-            },
-            text("KIS9A")
-          ),
-          h("span", {}, text(".")),
-          h("span", {}, text("memos")),
-        ]),
-      ]),
+      Header(),
       h("div", { class: "container" }, [
         h("div", { class: "inputs" }, [
           h("input", {
