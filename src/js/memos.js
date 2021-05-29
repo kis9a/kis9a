@@ -1,6 +1,6 @@
-import { app, h, text } from "/lib/hyperapp.js";
-import { Http } from "/lib/hyperapp-fx/fx/Http.js";
-import snarkdown from "/lib/snarkdown.js";
+import { app, h, text } from "/js/lib/hyperapp.js";
+import { Http } from "/js/lib/hyperapp-fx/fx/Http.js";
+import snarkdown from "/js/lib/snarkdown.js";
 import { Header } from "/js/components/header.js";
 
 const getIndexesJson = Http({

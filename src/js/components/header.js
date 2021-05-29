@@ -1,4 +1,4 @@
-import { h, text } from "/lib/hyperapp.js";
+import { h, text } from "/js/lib/hyperapp.js";
 
 export const Header = () => {
   return h("header", { class: "header" }, [
