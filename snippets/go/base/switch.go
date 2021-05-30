@@ -9,7 +9,6 @@ import (
 )
 
 func main() {
-
 	// Here's a basic `switch`.
 	i := 2
 	fmt.Print("Write ", i, " as ")
@@ -60,4 +59,16 @@ func main() {
 	whatAmI(true)
 	whatAmI(1)
 	whatAmI("hey")
+	num := 15
+
+	switch {
+	case num == 1:
+		fmt.Println(1)
+	case (num > 5 && num < 11) && (num > 5 && num < 16):
+		fmt.Println(2)
+	case (num > 5 && num < 11) || (num > 5 && num < 16):
+		fmt.Println(3)
+	default:
+		fmt.Println("default")
+	}
 }

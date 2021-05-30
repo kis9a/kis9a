@@ -65,3 +65,6 @@ rawstringも
 - [Go Template、最高のプログラミング言語 - Qiita](https://qiita.com/Syuparn/items/4157d13c39b95185acfd)
 
 <!--}}}-->
+
+
+- [goのTUIについて | Noboru Saito's page](https://noborus.github.io/blog/go_tui/)
