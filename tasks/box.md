@@ -11,17 +11,19 @@
 - [ ] /kis9a rss feed with pure js test zenn post.
 - [ ] /kis9a add draw/ with javascript. reference dev.to.
 - [ ] /kis9a /snippets plantuml syntaxs collection to can actually use with scrooloose/vim-slumlord.
-- [ ] /kis9a /src hyperapp views separate components.
 - [ ] /kis9a /src content search with loading.
 - [ ] /kis9a /src manage common meta-tags with js.
 - [ ] /kis9a /snippets rust basic syntax
 - [ ] /kis9a /uml usecase and basic syntaxes search.
 - [ ] /kis9a <https://zenn.dev/mebiusbox/books/22d4c1ed9b0003>
 - [ ] /kis9a buy me a cofee to cooperation to github and supporter.
+- [ ] /kis9a design to minimal and modern.
+- [ ] gh-pages script rewriting with option to contain ignore files.
+- [ ] create hyperapp module for production.
+      and create version controll cli.
+- [ ] Apply biz confort.
 - [ ] kis9a/ mmeos buliding AST markdown golang.
 - [ ] code reading superfine. <https://github.com/jorgebucaran/superfine/>
-- [ ] code reading esbuild <https://github.com/evanw/esbuild/> how to html, css, js, scss.
-- [ ] read [esbuild/architecture.md at master · evanw/esbuild · GitHub](https://github.com/evanw/esbuild/blob/master/docs/architecture.md)
 - [ ] [Go 言語の golang/go パッケージで初めての構文解析 - Qiita](https://qiita.com/po3rin/items/a19d96d29284108ad442)
 - [ ] [Go で Headless browser を使い Client Side Rendering を Cloud Run で動かす](https://zenn.dev/0gm/articles/go_headless-browser_cloud-run)
 - [ ] [もっと楽して式の評価器を作る #golang - Qiita](https://qiita.com/tenntenn/items/590caa61b9701d2ada23)
@@ -93,10 +95,24 @@
 - [ ] golang create template output function.
 - [ ] golang template useage.
 - [ ] golang exporter json.
-- [ ] error handling golang <https://tellme.tokyo/post/2018/04/02/golang-shell-exit-code/>
 - [ ] default.variables.tf, env.variables.tf.
       <https://github.com/urfave/cli/blob/master/errors.go>
 - [ ] how to overwrite variables in terraform.
 - [ ] create go cli interactive.
 - [ ] golang address structure.
-- [ ] [mapstructureを使って複雑な構造のJSONを構造体にマッピングする - Qiita](https://qiita.com/syumai/items/9e2441b0e8fda8281fdf)
+- [ ] [mapstructure を使って複雑な構造の JSON を構造体にマッピングする - Qiita](https://qiita.com/syumai/items/9e2441b0e8fda8281fdf)
+- read [Go を学ぶときにつまずきやすいポイント FAQ | フューチャー技術ブログ](https://future-architect.github.io/articles/20190713/)
+- read [Go で Web アプリ開発時にあるあるだったレビューコメント | フューチャー技術ブログ](https://future-architect.github.io/articles/20200709/)
+- [ ] [「Go 初心者が気を付けること」の解説](https://zenn.dev/nobonobo/articles/e0af4e8afc6c38b42ae1)
+- [ ] read <https://golang.org/doc/effective_go>
+- [Quick start | Go | gRPC](https://grpc.io/docs/languages/go/quickstart/)
+- [ ] <https://astaxie.gitbooks.io/build-web-application-with-golang>
+- [ ] read http3 expandained <https://http3-explained.haxx.se/ja>
+- [ ] grpc golang <https://qiita.com/mikankitten/items/f1b8660c73f9cecabfb0>
+- [ ] as a terraform command line interface. reference <https://github.com/hashicorp/terraform-exec/>
+- [ ] copy main.tf file to env directory.
+- [x] watch golang code static analytics <https://www.youtube.com/watch?v=IPLmqfJphBM>
+- [ ] TUI applicatoin golang.
+- [ ] Cross compile with golang
+- [【Golang】フィボナッチ数列をメモ化や積み上げ式で解く - Qiita](https://qiita.com/ShrimpF/items/2f50a0b76d1cee29f0b3)
+- [Go 言語で作るマリオ風 2D ゲーム - Qiita](https://qiita.com/KMim/items/aebb9d7a9116bf6294b3)
