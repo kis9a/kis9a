@@ -66,5 +66,22 @@ rawstringも
 
 <!--}}}-->
 
+- [go の TUI について | Noboru Saito's page](https://noborus.github.io/blog/go_tui/)
 
-- [goのTUIについて | Noboru Saito's page](https://noborus.github.io/blog/go_tui/)
+cache clean<!--{{{-->
+
+The -i flag causes clean to remove the corresponding installed archive or binary (what 'go install' would create).
+
+The -n flag causes clean to print the remove commands it would execute, but not run them.
+
+The -r flag causes clean to be applied recursively to all the dependencies of the packages named by the import paths.
+
+The -x flag causes clean to print remove commands as it executes them.
+
+The -cache flag causes clean to remove the entire go build cache.
+
+The -testcache flag causes clean to expire all test results in the go build cache.
+
+The -modcache flag causes clean to remove the entire module download cache, including unpacked source code of versioned dependencies.
+
+<!--}}}-->

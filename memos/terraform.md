@@ -293,3 +293,5 @@ best practice.
 - 依存関係の反転 (Dependency Inversion)
 - マルチクラウドの抽象化 (Multi-cloud Abstractions)
 - data ブロックのみのモジュール (Data-only Modules)
+
+- [Terraform から Ansible の playbook を実行する - Qiita](https://qiita.com/hayaosato/items/ee0d6eabb7b3d0a22136)

@@ -31,6 +31,11 @@
 - [ ] [AST を取得する方法を調べる #golang - Qiita](https://qiita.com/tenntenn/items/13340f2845316532b55a)
 - [ ] [Golang で Markdown TOC 作成ツールを作り直してみた - stamemo](https://stakiran.hatenablog.com/entry/2019/06/19/072427)
 
+## Interprinter
+
+- [ ] 字句解析 golang
+<!-- - [ ] -->
+
 ## DevOps
 
 - [ ] benchmarking with docker <https://github.com/okdyy75/bench-docker>
@@ -91,6 +96,7 @@
 
 ## Golang
 
+- [ ] golang rune() [Goのruneを理解するためのUnicode知識 - Qiita](https://qiita.com/seihmd/items/4a878e7fa340d7963fee)
 - [ ] create default tmpls and json.
 - [ ] golang create template output function.
 - [ ] golang template useage.
@@ -116,3 +122,4 @@
 - [ ] Cross compile with golang
 - [【Golang】フィボナッチ数列をメモ化や積み上げ式で解く - Qiita](https://qiita.com/ShrimpF/items/2f50a0b76d1cee29f0b3)
 - [Go 言語で作るマリオ風 2D ゲーム - Qiita](https://qiita.com/KMim/items/aebb9d7a9116bf6294b3)
+- [ ] 5 Most Difficult Programming Languages of the World <https://zenn.dev/e99h2121/articles/0ece8217c6c091>

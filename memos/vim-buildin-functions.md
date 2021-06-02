@@ -1,4 +1,4 @@
-USAGE RESULT DESCRIPTION ~
+USAGE RESULT DESCRIPTION ~ :h vim-function
 
 abs({expr}) Float or Number absolute value of {expr}
 acos({expr}) Float arc cosine of {expr}
@@ -500,3 +500,416 @@ wordcount() Dict get byte/char/word statistics
 writefile({list}, {fname} [, {flags}])
 Number write list of lines to file {fname}
 xor({expr}, {expr}) Number bitwise XOR
+
+---
+
+      *system-functions* *file-functions*
+     *buffer-functions* *window-functions* *arg-functions*
+
+Buffers, windows and the argument list:
+Command line: _command-line-functions_
+Context Stack: _ctx-functions_
+Cursor and mark position: _cursor-functions_ _mark-functions_
+Date and Time: _date-functions_ _time-functions_
+Dictionary manipulation: _dict-functions_
+Floating point computation: _float-functions_
+Folding: _folding-functions_
+GUI: _gui-functions_
+History: _history-functions_
+Insert mode completion: _completion-functions_
+Interactive: _interactive-functions_
+List manipulation: _list-functions_
+Mappings: _mapping-functions_
+Other computation: _bitwise-function_
+Prompt Buffer: _promptbuffer-functions_
+Quickfix and location lists: _quickfix-functions_
+Signs: _sign-functions_
+Spelling: _spell-functions_
+String manipulation: _string-functions_
+Syntax and highlighting: _syntax-functions_ _highlighting-functions_
+System functions and manipulation of files:
+Tags: _tag-functions_
+Testing: _test-functions_
+Timers: _timer-functions_
+Variables: _var-functions_
+Various: _various-functions_
+Vim server: _server-functions_
+Window size and position: _window-size-functions_
+Working with text in the current buffer: _text-functions_
+
+---
+
+abs() absolute value (also works for Number)
+acos() arc cosine
+add() append an item to a List
+and() bitwise AND
+append() append line or list of lines in the buffer
+appendbufline() append a list of lines in the specified buffer
+argc() number of entries in the argument list
+argidx() current position in the argument list
+arglistid() get id of the argument list
+argv() get one entry from the argument list
+asin() arc sine
+assert_beeps() assert that a command beeps
+assert_equal() assert that two expressions values are equal
+assert_equalfile() assert that two file contents are equal
+assert_exception() assert that a command throws an exception
+assert_fails() assert that a command fails
+assert_false() assert that an expression is false
+assert_inrange() assert that an expression is inside a range
+assert_match() assert that a pattern matches the value
+assert_nobeep() assert that a command does not cause a beep
+assert_notequal() assert that two expressions values are not equal
+assert_notmatch() assert that a pattern does not match the value
+assert_true() assert that an expression is true
+atan() arc tangent
+atan2() arc tangent
+balloon_gettext() get the text in the balloon
+balloon_show() set the balloon content
+balloon_split() split a message for a balloon
+browse() put up a file requester
+browsedir() put up a directory requester
+bufexists() check if a buffer exists
+buflisted() check if a buffer exists and is listed
+bufloaded() check if a buffer exists and is loaded
+bufname() get the name of a specific buffer
+bufnr() get the buffer number of a specific buffer
+bufwinid() get the window ID of a specific buffer
+bufwinnr() get the window number of a specific buffer
+byte2line() get line number at a specific byte count
+byteidx() byte index of a character in a string
+byteidxcomp() like byteidx() but count composing characters
+call() call a function with List as arguments
+ceil() round up
+changenr() return number of most recent change
+char2nr() get number value of a character
+charidx() character index of a byte in a string
+cindent() indent according to C indenting
+clearmatches() clear all matches defined by |matchadd()| and
+col() column number of the cursor or a mark
+complete() set found matches
+complete_add() add to found matches
+complete_check() check if completion should be aborted
+complete_info() get current completion information
+confirm() let the user make a choice
+copy() make a shallow copy of a Dictionary
+copy() make a shallow copy of a List
+cos() cosine
+cosh() hyperbolic cosine
+count() count number of times a value appears
+count() count number of times a value appears in a List
+cscope_connection() check if a cscope connection exists
+ctxget() return context at given index from top
+ctxpop() pop and restore top context
+ctxpush() push given context
+ctxset() set context at given index from top
+ctxsize() return context stack size
+cursor() position the cursor at a line/column
+debugbreak() interrupt a program being debugged
+deepcopy() make a full copy of a Dictionary
+deepcopy() make a full copy of a List
+delete() delete a file
+deletebufline() delete lines from a specified buffer
+did_filetype() check if a FileType autocommand was used
+diff_filler() get the number of filler lines above a line
+diff_hlID() get highlight ID for diff mode at a position
+empty() check if Dictionary is empty
+empty() check if List is empty
+environ() get all environment variables
+escape() escape characters in a string with a '\'
+eval() evaluate a string expression
+eventhandler() check if invoked by an event handler
+executable() check if an executable program exists
+execute() execute an Ex command and get the output
+exepath() full path of an executable program
+exists() check if a variable, function, etc. exists
+exp() exponential
+expand() expand special keywords
+expandcmd() expand a command like done for `:edit`
+extend() add entries from one Dictionary to another
+extend() append a List to a List
+feedkeys() put characters in the typeahead queue
+filereadable() check if a file can be read
+filewritable() check if a file can be written to
+filter() remove selected entries from a Dictionary
+filter() remove selected items from a List
+finddir() find a directory in a list of directories
+findfile() find a file in a list of directories
+flatten() flatten a List
+float2nr() convert Float to Number
+floor() round down
+fmod() remainder of division
+fnameescape() escape a file name for use with a Vim command
+fnamemodify() modify a file name
+foldclosed() check for a closed fold at a specific line
+foldclosedend() like foldclosed() but return the last line
+foldlevel() check for the fold level at a specific line
+foldtext() generate the line displayed for a closed fold
+foldtextresult() get the text displayed for a closed fold
+foreground() move the Vim window to the foreground
+funcref() get a Funcref for a function reference
+function() get a Funcref for a function name
+garbagecollect() possibly free memory
+get() get an entry without an error for a wrong key
+get() get an item without error for wrong index
+getbufinfo() get a list with buffer information
+getbufline() get a list of lines from the specified buffer
+getbufvar() get a variable value from a specific buffer
+getchangelist() get a list of change list entries
+getchar() get a character from the user
+getcharmod() get modifiers for the last typed character
+getcharsearch() return character search information
+getcmdline() get the current command line
+getcmdpos() get position of the cursor in the command line
+getcmdtype() return the current command-line type
+getcmdwintype() return the current command-line window type
+getcompletion() list of command-line completion matches
+getcurpos() get position of the cursor
+getcwd() get the current working directory
+getenv() get one environment variable
+getfontname() get name of current font being used
+getfperm() get the permissions of a file
+getfsize() get the size of a file
+getftime() get last modification time of a file
+getftype() get the kind of a file
+getjumplist() get a list of jump list entries
+getline() get a line or list of lines from the buffer
+getloclist() list of location list items
+getmarklist() list of global/local marks
+getmatches() get all matches defined by |matchadd()| and
+getpid() get process ID of Vim
+getpos() get position of cursor, mark, etc.
+getqflist() list of quickfix errors
+getreg() get contents of a register
+getregtype() get type of a register
+gettabinfo() get a list with tab page information
+gettabvar() get a variable from specific tab page
+gettabwinvar() get a variable from specific window & tab page
+gettagstack() get the tag stack of a window
+getwininfo() get a list with window information
+getwinpos() position of the Vim window
+getwinposx() X position of the Vim window
+getwinposy() Y position of the Vim window
+getwinvar() get a variable from specific window
+glob() expand wildcards
+glob2regpat() convert a glob pattern into a search pattern
+globpath() expand wildcards in a number of directories
+has() check if a feature is supported in Vim
+has_key() check whether a key appears in a Dictionary
+haslocaldir() check if current window used |:lcd|
+hasmapto() check if a mapping exists
+histadd() add an item to a history
+histdel() delete an item from a history
+histget() get an item from a history
+histnr() get highest index of a history list
+hlID() get ID of a highlight group
+hlexists() check if a highlight group exists
+hostname() name of the system
+iconv() convert text from one encoding to another
+indent() indent of a specific line
+index() index of a value in a List
+input() get a line from the user
+inputdialog() get a line from the user in a dialog
+inputlist() let the user pick an entry from a list
+inputrestore() restore typeahead
+inputsave() save and clear typeahead
+inputsecret() get a line from the user without showing it
+insert() insert an item somewhere in a List
+invert() bitwise invert
+isdirectory() check if a directory exists
+islocked() check if a variable is locked
+items() get List of Dictionary key-value pairs
+join() join List items into a String
+keys() get List of Dictionary keys
+len() number of entries in a Dictionary
+len() number of items in a List
+libcall() call a function in an external library
+libcallnr() idem, returning a number
+line() line number of the cursor or mark
+line2byte() byte count at a specific line
+lispindent() indent according to Lisp indenting
+list2str() get a character string from a list of numbers
+localtime() get current time in seconds
+log() natural logarithm (logarithm to base e)
+log10() logarithm to base 10
+luaeval() evaluate Lua expression
+map() change each Dictionary entry
+map() change each List item
+maparg() get rhs of a mapping
+mapcheck() check if a matching mapping exists
+match() position where a pattern matches in a string
+matchadd() define a pattern to highlight (a "match")
+matchaddpos() define a list of positions to highlight
+matcharg() get info about |:match| arguments
+matchdelete() delete a match defined by |matchadd()| or a
+matchend() position where a pattern match ends in a string
+matchlist() like matchstr() and also return submatches
+matchstr() match of a pattern in a string
+matchstrpos() match and positions of a pattern in a string
+max() maximum value in a Dictionary
+max() maximum value in a List
+min() minimum value in a Dictionary
+min() minimum value in a List
+mkdir() create a new directory
+mode() get current editing mode
+nextnonblank() find next non-blank line
+nr2char() get a character by its number value
+or() bitwise OR
+pathshorten() shorten directory names in a path
+pow() value of x to the exponent y
+prevnonblank() find previous non-blank line
+printf() format a string according to % items
+prompt_setcallback() set prompt callback for a buffer
+prompt_setinterrupt() set interrupt callback for a buffer
+prompt_setprompt() set the prompt text for a buffer
+pumvisible() check if the popup menu is displayed
+py3eval() evaluate Python expression (|+python3|)
+pyeval() evaluate Python expression (|+python|)
+pyxeval() evaluate |python_x| expression
+range() return a List with a sequence of numbers
+readdir() get a List of file names in a directory
+readfile() read a file into a List of lines
+reg_executing() return the name of the register being executed
+reg_recording() return the name of the register being recorded
+reltime() get the current or elapsed time accurately
+reltimefloat() convert reltime() result to a Float
+reltimestr() convert reltime() result to a string
+remote_expr() evaluate an expression in a Vim server
+remote_foreground() move the Vim server window to the foreground
+remote_peek() check if there is a reply from a Vim server
+remote_read() read a reply from a Vim server
+remote_send() send command characters to a Vim server
+remote_startserver() run a server
+remove() remove an entry from a Dictionary
+remove() remove one or more items from a List
+rename() rename a file
+repeat() repeat a List multiple times
+repeat() repeat a string multiple times
+resolve() find out where a shortcut points to
+reverse() reverse the order of a List
+round() round off
+screenattr() get attribute at a screen line/row
+screenchar() get character code at a screen line/row
+screencol() get screen column of the cursor
+screenrow() get screen row of the cursor
+search() find a match for a pattern
+searchdecl() search for the declaration of a name
+searchpair() find the other end of a start/skip/end
+searchpairpos() find the other end of a start/skip/end
+searchpos() find a match for a pattern
+server2client() send a reply to a client of a Vim server
+serverlist() return the list of server names
+setbufline() replace a line in the specified buffer
+setbufvar() set a variable in a specific buffer
+setcharsearch() set character search information
+setcmdpos() set position of the cursor in the command line
+setenv() set an environment variable
+setfperm() set the permissions of a file
+setline() replace a line in the buffer
+setloclist() modify a location list
+setmatches() restore a list of matches saved by
+setpos() set position of cursor, mark, etc.
+setqflist() modify a quickfix list
+setreg() set contents and type of a register
+settabvar() set a variable in a specific tab page
+settabwinvar() set a variable in a specific window & tab page
+settagstack() modify the tag stack of a window
+setwinvar() set a variable in a specific window
+sha256() SHA-256 hash
+shellescape() escape a string for use with a shell command
+shiftwidth() effective value of 'shiftwidth'
+sign_define() define or update a sign
+sign_getdefined() get a list of defined signs
+sign_getplaced() get a list of placed signs
+sign_jump() jump to a sign
+sign_place() place a sign
+sign_placelist() place a list of signs
+sign_undefine() undefine a sign
+sign_unplace() unplace a sign
+sign_unplacelist() unplace a list of signs
+simplify() simplify a path without changing its meaning
+sin() sine
+sinh() hyperbolic sine
+sort() sort a List
+soundfold() return the sound-a-like equivalent of a word
+spellbadword() locate badly spelled word at or after cursor
+spellsuggest() return suggested spelling corrections
+split() split a String into a List
+sqrt() square root
+str2float() convert a string to a Float
+str2list() get list of numbers from a string
+str2nr() convert a string to a Number
+strcharpart() get part of a string using char index
+strchars() length of a string in characters
+strdisplaywidth() size of string when displayed, deals with tabs
+strftime() convert time to a string
+strgetchar() get character from a string using char index
+stridx() first index of a short string in a long string
+string() String representation of a Dictionary
+string() String representation of a List
+strlen() length of a string in bytes
+strpart() get part of a string using byte index
+strptime() convert a date/time string to time
+strridx() last index of a short string in a long string
+strtrans() translate a string to make it printable
+strwidth() size of string when displayed
+submatch() get a specific match in ":s" and substitute()
+substitute() substitute a pattern match with a string
+swapinfo() information about a swap file
+swapname() get the swap file path of a buffer
+synID() get syntax ID at a specific position
+synIDattr() get a specific attribute of a syntax ID
+synIDtrans() get translated syntax ID
+synconcealed() get info about concealing
+synstack() get list of syntax IDs at a specific position
+system() get the result of a shell command as a string
+systemlist() get the result of a shell command as a list
+tabpagebuflist() return List of buffers in a tab page
+tabpagenr() get the number of a tab page
+tabpagewinnr() like winnr() for a specified tab page
+tagfiles() get a list of tags files
+taglist() get list of matching tags
+tan() tangent
+tanh() hyperbolic tangent
+tempname() get the name of a temporary file
+the |:match| commands
+the |:match| commands
+timer_info() get information about timers
+timer_pause() pause or unpause a timer
+timer_start() create a timer
+timer_stop() stop a timer
+timer_stopall() stop all timers
+tolower() turn a string to lowercase
+toupper() turn a string to uppercase
+tr() translate characters from one set to another
+trim() trim characters from a string
+trunc() remove value after decimal point
+type() type of a variable
+undofile() get the name of the undo file
+undotree() return the state of the undo tree
+uniq() remove copies of repeated adjacent items
+values() get List of Dictionary values
+virtcol() screen column of the cursor or a mark
+visualmode() last visual mode used
+wait() wait for a condition
+wildmenumode() check if the wildmode is active
+win_execute() like execute() but in a specified window
+win_findbuf() find windows containing a buffer
+win_getid() get window ID of a window
+win_gotoid() go to window with ID
+win_id2tabwin() get tab and window nr from window ID
+win_id2win() get window nr from window ID
+win_screenpos() get screen position of a window
+winbufnr() get the buffer number of a specific window
+wincol() window column number of the cursor
+winheight() get height of a specific window
+winlayout() get layout of windows in a tab page
+winline() window line number of the cursor
+winnr() get the window number for the current window
+winrestcmd() return command to restore window sizes
+winrestview() restore saved view of current window
+winsaveview() get view of current window
+winwidth() get width of a specific window
+wordcount() get byte/word/char count of buffer
+writefile() write a List of lines or Blob into a file
+xor() bitwise XOR
