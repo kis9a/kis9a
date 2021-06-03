@@ -9,19 +9,17 @@ import (
 	"log"
 	"os"
 	"os/exec"
-	"reflect"
 	"strings"
-)
-
-type (
-	mapf    func(interface{}) interface{}
-	reducef func(interface{}, interface{}) interface{}
-	filterf func(interface{}) bool
 )
 
 type Content struct {
 	Name    string `json:"name"`
 	Content string `json:"content"`
+}
+
+type Index struct {
+	Name string `json:"name"`
+	Upt  string `json:"upt"`
 }
 
 type Output struct {
@@ -42,13 +40,11 @@ func main() {
 	}
 }
 
-func typeof(i interface{}) interface{} {
-	return reflect.TypeOf(i)
-}
-
 func diff() {
 	gs, err := execOutput("git status -b -s")
-	checkError(err)
+	if err != nil {
+		log.Fatal(err)
+	}
 	status := ParseShort(gs)
 	memos := []string{}
 	for _, v := range status.FilesStatus {
@@ -105,97 +101,102 @@ func parseBranch(input string) string {
 
 func all() {
 	files, err := ioutil.ReadDir("memos")
-	checkError(err)
-	indexes, contents := make([]map[string]interface{}, 0, 0), make([]map[string]interface{}, 0, 0)
-	for _, file := range files {
-		fname := file.Name()
-		index, content := make(map[string]interface{}), make(map[string]interface{})
-		index["name"], content["name"] = fname, fname
-		index["upt"] = file.ModTime().String()
+	if err != nil {
+		log.Fatal(err)
+	}
+	var indexes []Index
+	var contents []Content
+	for _, f := range files {
+		name := f.Name()
+		var index Index
+		var content Content
+		index.Name = name
+		content.Name = name
+		index.Upt = f.ModTime().String()
 		indexes = append(indexes, index)
-		content["content"] = getContentStr(fname)
+		content.Content, err = getContentStr(name)
+		if err != nil {
+			log.Fatal(err)
+		}
 		contents = append(contents, content)
 	}
-	reWriteFile("src/data/memos-indexes.json", arr2json(indexes))
-	reWriteFile("src/data/memos-contents.json", arr2json(contents))
+	indexesJson, err := json.Marshal(indexes)
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = writeFile("src/data/memos-indexes.json", indexesJson)
+	if err != nil {
+		log.Fatal(err)
+	}
+	contentsJson, err := json.Marshal(contents)
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = writeFile("src/data/memos-contents.json", contentsJson)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func buildDiff(files []string) {
-	cjson, err := os.Open("src/data/memos-contents.json")
-	checkError(err)
-	defer cjson.Close()
-	byteValue, _ := ioutil.ReadAll(cjson)
-	var c []Content
-	json.Unmarshal([]byte(byteValue), &c)
-
+	contentsJson, err := os.Open("src/data/memos-contents.json")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer contentsJson.Close()
+	byteValue, err := ioutil.ReadAll(contentsJson)
+	if err != nil {
+		log.Fatal(err)
+	}
+	var contents []Content
+	err = json.Unmarshal([]byte(byteValue), &contents)
+	if err != nil {
+		log.Fatal(err)
+	}
 	for _, f := range files {
 		fn := strings.Split(f, "/")
 		fnn := fn[len(fn)-1]
-		for i, ci := range c {
-			if ci.Name == fnn {
-				ci.Content = getContentStr(fnn)
+		for i, c := range contents {
+			if c.Name == fnn {
+				c.Content, err = getContentStr(fnn)
+				if err != nil {
+					log.Fatal(err)
+				}
 			}
-			c[i] = ci
+			contents[i] = c
 		}
 	}
-	json, err := json.Marshal(c)
-	checkError(err)
-	reWriteFile("src/data/memos-contents.json", json)
+	json, err := json.Marshal(contents)
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = writeFile("src/data/memos-contents.json", json)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
-func arr2json(arr []map[string]interface{}) []byte {
-	json, err := json.Marshal(arr)
-	checkError(err)
-	return json
+func getContentStr(fname string) (string, error) {
+	f, err := readFile("memos/" + fname)
+	if err != nil {
+		return "", err
+	}
+	str := string(f)
+	str = strings.ReplaceAll(str, "\n", "")
+	str = strings.ReplaceAll(str, " ", "")
+	return str, err
 }
 
-func getContentStr(fname string) string {
-	fc, err := ioutil.ReadFile("memos/" + fname)
-	checkError(err)
-	fcStr := string(fc)
-	fcStr = strings.ReplaceAll(fcStr, "\n", "")
-	fcStr = strings.ReplaceAll(fcStr, " ", "")
-	return fcStr
+func readFile(path string) ([]byte, error) {
+	return ioutil.ReadFile(path)
 }
 
-func reWriteFile(fname string, fcontent []byte) {
-	os.Remove(fname)
-	os.Create(fname)
-	ioutil.WriteFile(fname, fcontent, 0)
+func writeFile(path string, data []byte) error {
+	return ioutil.WriteFile(path, data, 0666)
 }
 
 func checkError(err error) {
 	if err != nil {
 		log.Fatal(err)
 	}
-}
-
-func Map(in interface{}, fn mapf) interface{} {
-	val := reflect.ValueOf(in)
-	out := make([]interface{}, val.Len())
-	for i := 0; i < val.Len(); i++ {
-		out[i] = fn(val.Index(i).Interface())
-	}
-	return out
-}
-
-func Reduce(in interface{}, memo interface{}, fn reducef) interface{} {
-	val := reflect.ValueOf(in)
-	for i := 0; i < val.Len(); i++ {
-		memo = fn(val.Index(i).Interface(), memo)
-	}
-	return memo
-}
-
-func Filter(in interface{}, fn filterf) interface{} {
-	val := reflect.ValueOf(in)
-	out := make([]interface{}, 0, val.Len())
-	for i := 0; i < val.Len(); i++ {
-		current := val.Index(i).Interface()
-
-		if fn(current) {
-			out = append(out, current)
-		}
-	}
-	return out
 }

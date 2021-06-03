@@ -5,19 +5,22 @@
 
 ## Frontend
 
+- [ ] /kis9a tasks vim syntax highlighting
 - [ ] /kis9a 512 > icons generator golang, shellscript.
 - [ ] /kis9a hyperapp rooting best practice.
 - [ ] /kis9a images list view init.
 - [ ] /kis9a rss feed with pure js test zenn post.
 - [ ] /kis9a add draw/ with javascript. reference dev.to.
+- [ ] /nvim syntax highlighting.
 - [ ] /kis9a /snippets plantuml syntaxs collection to can actually use with scrooloose/vim-slumlord.
 - [ ] /kis9a /src content search with loading.
 - [ ] /kis9a /src manage common meta-tags with js.
 - [ ] /kis9a /snippets rust basic syntax
 - [ ] /kis9a /uml usecase and basic syntaxes search.
-- [ ] /kis9a <https://zenn.dev/mebiusbox/books/22d4c1ed9b0003>
-- [ ] /kis9a buy me a cofee to cooperation to github and supporter.
+- [ ] k/kis9a <https://zenn.dev/mebiusbox/books/22d4c1ed9b0003>
+- [ ] /is9a buy me a cofee to cooperation to github and supporter.
 - [ ] /kis9a design to minimal and modern.
+- [ ] /kis9a project view
 - [ ] gh-pages script rewriting with option to contain ignore files.
 - [ ] create hyperapp module for production.
       and create version controll cli.
@@ -96,7 +99,7 @@
 
 ## Golang
 
-- [ ] golang rune() [Goのruneを理解するためのUnicode知識 - Qiita](https://qiita.com/seihmd/items/4a878e7fa340d7963fee)
+- [ ] golang rune() [Go の rune を理解するための Unicode 知識 - Qiita](https://qiita.com/seihmd/items/4a878e7fa340d7963fee)
 - [ ] create default tmpls and json.
 - [ ] golang create template output function.
 - [ ] golang template useage.
