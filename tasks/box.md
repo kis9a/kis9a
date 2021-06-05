@@ -89,7 +89,6 @@
 - [Go で Headless browser を使い Client Side Rendering を Cloud Run で動かす](https://zenn.dev/0gm/articles/go_headless-browser_cloud-run)
 - [ ] <https://note.hiko1129.com/1577762164534/>
 - [ ] zennzennzennse
-- [ ] if exit local configure file then load file. zsh, vim.
 - [ ] untracked file, and keybindings switch terminal color mode.
 - [ ] vim plugin one color. background light or dark. when dark front text is color.
 - [ ] terragrunt website configuration <https://github.com/gruntwork-io/terragrunt/tree/master/docs>
