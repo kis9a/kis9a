@@ -14,6 +14,8 @@ import (
 	"os/exec"
 	"path/filepath"
 	"strings"
+
+	"github.com/fsnotify/fsnotify"
 )
 
 type MemosContent struct {
@@ -53,6 +55,7 @@ type PATHS struct {
 	Images            string
 	Tasks             string
 	Waka              string
+	Web               string
 	Data              string
 }
 
@@ -69,6 +72,7 @@ var (
 func init() {
 	profile := os.Getenv("PROFILE")
 	paths.Src = filepath.Join(profile, "src")
+	paths.Web = filepath.Join(profile, "src/web")
 	paths.Memos = filepath.Join(profile, "memos")
 	paths.Images = filepath.Join(profile, "images")
 	paths.Data = filepath.Join(profile, "src/data")
@@ -102,6 +106,45 @@ func main() {
 }
 
 func serve() {
+	watcher, err := fsnotify.NewWatcher()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer watcher.Close()
+
+	watchDir := func(path string, fi os.FileInfo, err error) error {
+		if fi.Mode().IsDir() {
+			return watcher.Add(path)
+		}
+		return nil
+	}
+
+	done := make(chan bool)
+	go func() {
+		for {
+			select {
+			case event, ok := <-watcher.Events:
+				if !ok {
+					return
+				}
+				log.Println("event:", event)
+				if event.Op&fsnotify.Write == fsnotify.Write {
+					log.Println("modified file:", event.Name)
+				}
+			case err, ok := <-watcher.Errors:
+				if !ok {
+					return
+				}
+				log.Println("error:", err)
+			}
+		}
+	}()
+
+	if err := filepath.Walk(paths.Web, watchDir); err != nil {
+		fmt.Println("ERROR", err)
+	}
+	<-done
+
 	fs := http.FileServer(http.Dir(paths.Src))
 	http.Handle("/", fs)
 	log.Println("Listening...")

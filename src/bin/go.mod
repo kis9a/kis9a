@@ -1,4 +1,4 @@
-module kis9a/utiles
+module kis9a/bin
 
 go 1.16
 
