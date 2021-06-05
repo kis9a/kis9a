@@ -5,7 +5,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"flag"
-	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
@@ -23,6 +22,10 @@ type MemosContent struct {
 type MmoesIndex struct {
 	Name string `json:"name"`
 	Upt  string `json:"upt"`
+}
+
+type ImagesIndex struct {
+	Name string `json:"name"`
 }
 
 type GitOutput struct {
@@ -43,6 +46,7 @@ type PATHS struct {
 	Memos             string
 	MemosContentsJson string
 	MemosIndexesJson  string
+	ImagesIndexesJson string
 	Images            string
 	Tasks             string
 	Waka              string
@@ -66,6 +70,7 @@ func init() {
 	paths.Data = filepath.Join(profile, "src/data")
 	paths.MemosContentsJson = filepath.Join(paths.Data, "/memos-contents.json")
 	paths.MemosIndexesJson = filepath.Join(paths.Data, "/memos-indexes.json")
+	paths.ImagesIndexesJson = filepath.Join(paths.Data, "/images-indexes.json")
 
 	flag.CommandLine.Init("cmd", flag.ExitOnError)
 	cmdopts.Memos.FlagSet = flag.NewFlagSet("cmd memos", flag.ExitOnError)
@@ -85,8 +90,29 @@ func main() {
 				buildMemosAll()
 			}
 		case "images":
-			fmt.Println("images")
+			buildImages()
 		}
+	}
+}
+
+func buildImages() {
+	files, err := ioutil.ReadDir(paths.Images)
+	if err != nil {
+		log.Fatal(err)
+	}
+	var index ImagesIndex
+	var indexes []ImagesIndex
+	for _, f := range files {
+		index.Name = f.Name()
+		indexes = append(indexes, index)
+	}
+	indexesJson, err := json.Marshal(indexes)
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = writeFile(paths.ImagesIndexesJson, indexesJson)
+	if err != nil {
+		log.Fatal(err)
 	}
 }
 
@@ -178,7 +204,7 @@ func parseGitBranch(input string) string {
 }
 
 func buildMemosAll() {
-	files, err := ioutil.ReadDir("memos")
+	files, err := ioutil.ReadDir(paths.Memos)
 	if err != nil {
 		log.Fatal(err)
 	}

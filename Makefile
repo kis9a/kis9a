@@ -1,4 +1,5 @@
-PROFILE := $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
+PROFILE_PATH := $(realpath $(dir $(lastword $(MAKEFILE_LIST))))
+PROFILE := $(shell basename $(PROFILE_PATH))
 LINKFILES := memos images
 EXCLUDES := Makefile .git .gitignore
 DIRS := $(filter-out $(EXCLUDES), $(wildcard ??*))
@@ -113,10 +114,12 @@ publish-zenn: ## publish zenn
 	-@(which gh-pages >/dev/null || gh-pages -b zenn -d zenn -t)
 
 link:
-	@$(foreach val, $(LINKFILES), ln -sfnv $(abspath $(val)) $(PROFILE)/src/$(val);)
+	@$(foreach val, $(LINKFILES), ln -sfnv $(abspath $(val)) $(PROFILE_PATH)/src/$(val);)
+	@ln -sfnv $(PROFILE_PATH)/src/utiles $(GOPATH)/src/$(PROFILE)/utiles
 
 unlink:
-	@$(foreach val, $(LINKFILES), unlink $(PROFILE)/src/$(val);)
+	@$(foreach val, $(LINKFILES), unlink $(PROFILE_PATH)/src/$(val);)
+	@unlink $(PROFILE_PATH)/src/utiles 
 
 serve-src: ## serve src
 	-@(cd ./src; which live-server >/dev/null && live-server --port=9000 &)

@@ -51,7 +51,6 @@
 - [ ] read [Terragrunt によるシステム管理](https://zenn.dev/aquamarinearia/articles/56202d4ae825dd)
 - [ ] devops upload s3 cli golang and aws sdk.
 - [ ] devops dockerlize
-- [ ] devops github actions schedule. and awesome-aws-services update.
 - [ ] set detail goal and iterations scheme -> pkis9a repo.
 
 ## Backend
