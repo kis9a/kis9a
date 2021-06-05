@@ -44,10 +44,11 @@ images-format: ## images format
 	# (cd ./images; ls | xargs -I {} -n 1 bash -c 'sips -s format ')
 
 memos2json: ## memos export json
+	@./src/utiles/utiles
 	# MEMO if only names: @tree memos -J | jq '.[0].contents | .[] | { "name": .name }'  > ./src/data/memos.json
 	# @bash ./src/utiles/memos2json.sh
 	# @go run ./src/utiles/memos2json.go
-	@go run ./src/utiles/memos2json.go all
+	# @go run ./src/utiles/memos2json.go all
 
 push-images: ## push optimized images
 	@make images-resize
@@ -114,16 +115,17 @@ publish-zenn: ## publish zenn
 	-@(which gh-pages >/dev/null || gh-pages -b zenn -d zenn -t)
 
 link:
-	@$(foreach val, $(LINKFILES), ln -sfnv $(abspath $(val)) $(PROFILE_PATH)/src/$(val);)
-	@ln -sfnv $(PROFILE_PATH)/src/utiles $(GOPATH)/src/$(PROFILE)/utiles
+	@$(foreach val, $(LINKFILES), ln -sfnv $(abspath $(val)) $(PROFILE_PATH)/src/dist/$(val);)
+	@ln -sfnv $(PROFILE_PATH)/src/bin $(GOPATH)/src/$(PROFILE)/bin
 
 unlink:
 	@$(foreach val, $(LINKFILES), unlink $(PROFILE_PATH)/src/$(val);)
-	@unlink $(PROFILE_PATH)/src/utiles 
+	@unlink $(PROFILE_PATH)/src/bin
 
 serve-src: ## serve src
-	-@(cd ./src; which live-server >/dev/null && live-server --port=9000 &)
-	-@(cd ./src; which live-server >/dev/null || npx live-server --port=9000 &)
+	# -@(cd ./src; which live-server >/dev/null && live-server --port=9000 &)
+	# -@(cd ./src; which live-server >/dev/null || npx live-server --port=9000 &)
+
 
 serve-zenn: ## serve zenn
 	-@(which zenn >/dev/null && (cd ./zenn; zenn preview -p 7000 &))
