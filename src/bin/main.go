@@ -8,13 +8,10 @@ import (
 	"io/fs"
 	"io/ioutil"
 	"log"
-	"net/http"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"strings"
-
-	"github.com/fsnotify/fsnotify"
 )
 
 type MemosContent struct {
@@ -61,9 +58,21 @@ type Paths struct {
 	Data              string
 }
 
+type CmdServer struct {
+	FlagSet *flag.FlagSet
+	Port    string
+}
+
+type CmdMinify struct {
+	FlagSet *flag.FlagSet
+	Target  string
+}
+
 type CmdOptions struct {
 	Memos  CmdMemos
 	Images CmdImages
+	Server CmdServer
+	Minify CmdMinify
 }
 
 var (
@@ -85,10 +94,14 @@ func init() {
 	flag.CommandLine.Init("cmd", flag.ExitOnError)
 	cmdopts.Memos.FlagSet = flag.NewFlagSet("cmd memos", flag.ExitOnError)
 	cmdopts.Images.FlagSet = flag.NewFlagSet("cmd images", flag.ExitOnError)
+	cmdopts.Server.FlagSet = flag.NewFlagSet("cmd server", flag.ExitOnError)
+	cmdopts.Minify.FlagSet = flag.NewFlagSet("cmd minify", flag.ExitOnError)
 	cmdopts.Memos.FlagSet.BoolVar(&cmdopts.Memos.Diff, "d", false, "diff")
 	cmdopts.Memos.FlagSet.BoolVar(&cmdopts.Memos.All, "a", false, "all")
 	cmdopts.Images.FlagSet.BoolVar(&cmdopts.Images.Resize, "r", false, "resize")
 	cmdopts.Images.FlagSet.BoolVar(&cmdopts.Images.Convert, "c", false, "convert")
+	cmdopts.Server.FlagSet.StringVar(&cmdopts.Server.Port, "p", "7777", "port")
+	cmdopts.Minify.FlagSet.StringVar(&cmdopts.Minify.Target, "t", "all", "minify")
 
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 }
@@ -117,55 +130,15 @@ func main() {
 				images2Json()
 			}
 		case "server":
-			serve()
+			cmdopts.Server.FlagSet.Parse(args[1:])
+			fmt.Println(cmdopts.Server.Port)
+			server()
+		case "minify":
+			cmdopts.Minify.FlagSet.Parse(args[1:])
+			fmt.Println(cmdopts.Minify.Target)
+			allMinify([]byte{})
 		}
 	}
-}
-
-func serve() {
-	watcher, err := fsnotify.NewWatcher()
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer watcher.Close()
-
-	watchDir := func(path string, fi os.FileInfo, err error) error {
-		if fi.Mode().IsDir() {
-			return watcher.Add(path)
-		}
-		return nil
-	}
-
-	done := make(chan bool)
-	go func() {
-		for {
-			select {
-			case event, ok := <-watcher.Events:
-				if !ok {
-					return
-				}
-				log.Println("event:", event)
-				if event.Op&fsnotify.Write == fsnotify.Write {
-					log.Println("modified file:", event.Name)
-				}
-			case err, ok := <-watcher.Errors:
-				if !ok {
-					return
-				}
-				log.Println("error:", err)
-			}
-		}
-	}()
-
-	if err := filepath.Walk(paths.Web, watchDir); err != nil {
-		fmt.Println("ERROR", err)
-	}
-	<-done
-
-	fs := http.FileServer(http.Dir(paths.Src))
-	http.Handle("/", fs)
-	log.Println("Listening...")
-	http.ListenAndServe(":9000", nil)
 }
 
 func readDir(path string) ([]fs.FileInfo, error) {
