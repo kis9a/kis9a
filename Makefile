@@ -117,10 +117,12 @@ publish-zenn: ## publish zenn
 link:
 	@$(foreach val, $(LINKFILES), ln -sfnv $(abspath $(val)) $(PROFILE_PATH)/src/dist/$(val);)
 	@ln -sfnv $(PROFILE_PATH)/src/bin $(GOPATH)/src/$(PROFILE)/bin
+	@ln -sfnv $(PROFILE_PATH)/snippets/go $(GOPATH)/src/$(PROFILE)/snippets
 
 unlink:
 	@$(foreach val, $(LINKFILES), unlink $(PROFILE_PATH)/src/$(val);)
 	@unlink $(PROFILE_PATH)/src/bin
+	@unlink -sfnv $(PROFILE_PATH)/snippets/go
 
 serve-src: ## serve src
 	# -@(cd ./src; which live-server >/dev/null && live-server --port=9000 &)
