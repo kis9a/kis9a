@@ -11,6 +11,7 @@ import (
 	"github.com/tdewolff/minify/v2/html"
 	"github.com/tdewolff/minify/v2/js"
 	"github.com/tdewolff/minify/v2/json"
+	"github.com/tdewolff/minify/v2/svg"
 )
 
 func allMinify(data []byte) {
@@ -33,6 +34,14 @@ func walkMinify(path string, fi os.FileInfo, err error) error {
 		}
 	case HTML:
 		if err := minifyHTML(m, path); err != nil {
+			log.Fatal(err)
+		}
+	case JSON:
+		if err := minifyJson(m, path); err != nil {
+			log.Fatal(err)
+		}
+	case SVG:
+		if err := minifySVG(m, path); err != nil {
 			log.Fatal(err)
 		}
 	default:
@@ -112,6 +121,18 @@ func minifyJson(m *minify.M, path string) error {
 		log.Fatal(err)
 	}
 	err = json.Minify(m, w, r, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return err
+}
+
+func minifySVG(m *minify.M, path string) error {
+	r, w, err := getMinifyRW(path)
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = svg.Minify(m, w, r, nil)
 	if err != nil {
 		log.Fatal(err)
 	}

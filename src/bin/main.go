@@ -192,6 +192,10 @@ func isExistPath(path string) bool {
 }
 
 func copyFile(from, to string) error {
+	bd := filepath.Dir(to)
+	if !isExistPath(bd) {
+		os.MkdirAll(bd, 0755)
+	}
 	f, err := ioutil.ReadFile(from)
 	if err != nil {
 		log.Fatal(err)
