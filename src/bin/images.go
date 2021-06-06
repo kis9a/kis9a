@@ -2,16 +2,18 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"image"
 	"image/gif"
 	"image/jpeg"
 	"image/png"
 	"io/ioutil"
 	"log"
+	"math"
 	"os"
 	"path/filepath"
 	"strings"
+
+	"golang.org/x/image/draw"
 )
 
 func images2Json() {
@@ -58,7 +60,6 @@ func images2Png() {
 }
 
 func imageConvert(path string, outPath string) error {
-	fmt.Println(path, outPath)
 	slice := strings.Split(outPath, ".")
 	extension := slice[len(slice)-1]
 	f, err := os.Open(path)
@@ -75,22 +76,80 @@ func imageConvert(path string, outPath string) error {
 		return err
 	}
 	defer output.Close()
+	if err := imageEncode(extension, input, output); err != nil {
+		log.Fatal(err)
+	} else {
+		log.Println("convert ", input, " to ", output)
+	}
+	return nil
+}
+
+func imageEncode(extension string, input image.Image, output *os.File) error {
+	var err error
 	switch extension {
 	case "jpeg", "jpg", "JPEG", "JPG":
-		if err = jpeg.Encode(output, input, &jpeg.Options{}); err != nil {
+		if err = jpeg.Encode(output, input, &jpeg.Options{Quality: 100}); err != nil {
 			return err
 		}
-		log.Printf(strings.Join([]string{"convert ", path, " to ", outPath}, ""))
 	case "png", "PNG":
 		if err = png.Encode(output, input); err != nil {
 			return err
 		}
-		log.Printf(strings.Join([]string{"convert ", path, " to ", outPath}, ""))
 	case "gif", "GIF":
 		if err = gif.Encode(output, input, nil); err != nil {
 			return err
 		}
-		log.Printf(strings.Join([]string{"convert ", path, " to ", outPath}, ""))
 	}
 	return nil
+}
+
+func imagesResize() {
+	fs, err := readDir(paths.Images)
+	if err != nil {
+		log.Fatal(err)
+	}
+	for _, f := range fs {
+		err = imageResize(f.Name())
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+}
+
+func imageResize(path string) error {
+	data, err := os.Open(path)
+	if err != nil {
+		return err
+	}
+	defer data.Close()
+	imgData, _, err := image.Decode(data)
+	if err != nil {
+		return err
+	}
+	imgRectangle := imgData.Bounds()
+	width := imgRectangle.Dx()
+	height := imgRectangle.Dy()
+	limitEdge := 750
+	newImgData := &image.RGBA{}
+	if height >= width {
+		f := float64((width * limitEdge))
+		w := math.Round(f / float64(height))
+		newImgData = image.NewRGBA(image.Rect(0, 0, int(w), limitEdge))
+	} else {
+		f := float64((limitEdge * height))
+		h := math.Round(f / float64(width))
+		newImgData = image.NewRGBA(image.Rect(0, 0, int(h), limitEdge))
+	}
+	draw.CatmullRom.Scale(newImgData, newImgData.Bounds(), imgData, imgRectangle, draw.Over, nil)
+	newImg, err := os.Create(path)
+	if err != nil {
+		return err
+	}
+	defer newImg.Close()
+	slice := strings.Split(path, ".")
+	extension := slice[len(slice)-1]
+	if err := imageEncode(extension, newImgData, newImg); err != nil {
+		log.Fatal(err)
+	}
+	return err
 }

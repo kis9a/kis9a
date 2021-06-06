@@ -44,7 +44,7 @@ type CmdMemos struct {
 
 type CmdImages struct {
 	FlagSet *flag.FlagSet
-	Format  bool
+	Resize  bool
 	Convert bool
 }
 
@@ -87,7 +87,7 @@ func init() {
 	cmdopts.Images.FlagSet = flag.NewFlagSet("cmd images", flag.ExitOnError)
 	cmdopts.Memos.FlagSet.BoolVar(&cmdopts.Memos.Diff, "d", false, "diff")
 	cmdopts.Memos.FlagSet.BoolVar(&cmdopts.Memos.All, "a", false, "all")
-	cmdopts.Images.FlagSet.BoolVar(&cmdopts.Images.Format, "f", false, "format")
+	cmdopts.Images.FlagSet.BoolVar(&cmdopts.Images.Resize, "r", false, "resize")
 	cmdopts.Images.FlagSet.BoolVar(&cmdopts.Images.Convert, "c", false, "convert")
 
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
@@ -111,6 +111,8 @@ func main() {
 			cmdopts.Images.FlagSet.Parse(args[1:])
 			if cmdopts.Images.Convert {
 				images2Png()
+			} else if cmdopts.Images.Resize {
+				imagesResize()
 			} else {
 				images2Json()
 			}
