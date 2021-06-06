@@ -1,16 +1,24 @@
 package main
 
 import (
-	"bytes"
-	"fmt"
-	"io/ioutil"
+	"log"
+	"os"
+	"path/filepath"
 
 	"github.com/tdewolff/minify/v2"
 	"github.com/tdewolff/minify/v2/js"
 )
 
 func allMinify(data []byte) {
-	fmt.Println("minify")
-	r := bytes.NewBuffer(data)
-	_ = js.Minify(minify.New(), ioutil.Discard, r, nil)
+	inputPath := filepath.Join(paths.Src, "bin", "test.js")
+	outputPath := filepath.Join(paths.Src, "bin", "minify.test.js")
+	input, err := os.Open(inputPath)
+	if err != nil {
+		log.Fatal(err)
+	}
+	output, err := os.Create(outputPath)
+	err = js.Minify(minify.New(), output, input, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
