@@ -118,7 +118,7 @@ func init() {
 	cmdopts.Memos.FlagSet.BoolVar(&cmdopts.Memos.All, "a", false, "all")
 	cmdopts.Images.FlagSet.BoolVar(&cmdopts.Images.Resize, "r", false, "resize")
 	cmdopts.Images.FlagSet.BoolVar(&cmdopts.Images.Convert, "c", false, "convert")
-	cmdopts.Server.FlagSet.StringVar(&cmdopts.Server.Port, "p", "7777", "port")
+	cmdopts.Server.FlagSet.StringVar(&cmdopts.Server.Port, "p", "9000", "port")
 	cmdopts.Minify.FlagSet.StringVar(&cmdopts.Minify.Target, "t", "all", "minify")
 
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
@@ -149,12 +149,10 @@ func main() {
 			}
 		case "server":
 			cmdopts.Server.FlagSet.Parse(args[1:])
-			fmt.Println(cmdopts.Server.Port)
-			server()
+			server(cmdopts.Server.Port)
 		case "minify":
 			cmdopts.Minify.FlagSet.Parse(args[1:])
-			minifySrc()
-			minifyPages()
+			minifyAll()
 		}
 	}
 }

@@ -15,6 +15,11 @@ import (
 
 var minifyWalkBase = ""
 
+func minifyAll() {
+	minifySrc()
+	minifyPages()
+}
+
 func minifySrc() {
 	minifyWalkBase = paths.Src
 	if err := filepath.Walk(minifyWalkBase, walkMinify); err != nil {
@@ -30,6 +35,14 @@ func minifyPages() {
 }
 
 func walkMinify(path string, fi os.FileInfo, err error) error {
+	if err != nil {
+		log.Println(err)
+	}
+	minifyByFileType(path)
+	return nil
+}
+
+func minifyByFileType(path string) {
 	m := minify.New()
 	fileType := getFileType(path)
 	switch fileType {
@@ -54,11 +67,14 @@ func walkMinify(path string, fi os.FileInfo, err error) error {
 			log.Fatal(err)
 		}
 	default:
-		if !fi.IsDir() {
+		fs, err := os.Stat(path)
+		if err != nil {
+			log.Println(err)
+		}
+		if !fs.IsDir() {
 			copyFileToDist(path)
 		}
 	}
-	return nil
 }
 
 func getMinifyRW(path string) (*os.File, *os.File, error) {
