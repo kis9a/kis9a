@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 	"path/filepath"
@@ -14,9 +13,19 @@ import (
 	"github.com/tdewolff/minify/v2/svg"
 )
 
-func allMinify(data []byte) {
-	if err := filepath.Walk(paths.Src, walkMinify); err != nil {
-		fmt.Println("ERROR", err)
+var minifyWalkBase = ""
+
+func minifySrc() {
+	minifyWalkBase = paths.Src
+	if err := filepath.Walk(minifyWalkBase, walkMinify); err != nil {
+		log.Fatal(err)
+	}
+}
+
+func minifyPages() {
+	minifyWalkBase = paths.Pages
+	if err := filepath.Walk(minifyWalkBase, walkMinify); err != nil {
+		log.Fatal(err)
 	}
 }
 
@@ -46,7 +55,7 @@ func walkMinify(path string, fi os.FileInfo, err error) error {
 		}
 	default:
 		if !fi.IsDir() {
-			copyFileSrc2Dist(path)
+			copyFileToDist(path)
 		}
 	}
 	return nil
@@ -61,7 +70,7 @@ func getMinifyRW(path string) (*os.File, *os.File, error) {
 		log.Fatal(err)
 		return r, w, err
 	}
-	rp, err := filepath.Rel(paths.Src, path)
+	rp, err := filepath.Rel(minifyWalkBase, path)
 	if err != nil {
 		log.Fatal(err)
 		return r, w, err
@@ -139,8 +148,8 @@ func minifySVG(m *minify.M, path string) error {
 	return err
 }
 
-func copyFileSrc2Dist(path string) error {
-	rp, err := filepath.Rel(paths.Src, path)
+func copyFileToDist(path string) error {
+	rp, err := filepath.Rel(minifyWalkBase, path)
 	if err != nil {
 		return err
 	}

@@ -56,6 +56,7 @@ type Paths struct {
 	Tasks             string
 	Waka              string
 	Src               string
+	Pages               string
 	Data              string
 }
 
@@ -101,6 +102,7 @@ func init() {
 	paths.Images = filepath.Join(profile, "images")
 	paths.Sources = filepath.Join(profile, "sources")
 	paths.Src = filepath.Join(profile, "sources/src")
+	paths.Pages = filepath.Join(profile, "sources/pages")
 	paths.Dist = filepath.Join(profile, "sources/dist")
 	paths.Data = filepath.Join(profile, "sources/dist/data")
 	paths.MemosContentsJson = filepath.Join(paths.Data, "/memos-contents.json")
@@ -151,7 +153,8 @@ func main() {
 			server()
 		case "minify":
 			cmdopts.Minify.FlagSet.Parse(args[1:])
-			allMinify([]byte{})
+			minifySrc()
+			minifyPages()
 		}
 	}
 }

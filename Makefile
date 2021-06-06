@@ -115,19 +115,18 @@ publish-zenn: ## publish zenn
 	-@(which gh-pages >/dev/null || gh-pages -b zenn -d zenn -t)
 
 link:
-	@$(foreach val, $(LINKFILES), ln -sfnv $(abspath $(val)) $(PROFILE_PATH)/sources/dist/$(val);)
+	@$(foreach val, $(LINKFILES), ln -sfnv $(abspath $(val)) $(PROFILE_PATH)/sources/dist/data/$(val);)
 	@ln -sfnv $(PROFILE_PATH)/sources/bin $(GOPATH)/sources/$(PROFILE)/bin
 	@ln -sfnv $(PROFILE_PATH)/snippets/go $(GOPATH)/sources/$(PROFILE)/snippets
 
 unlink:
-	@$(foreach val, $(LINKFILES), unlink $(PROFILE_PATH)/sources/$(val);)
+	@$(foreach val, $(LINKFILES), unlink $(PROFILE_PATH)/sources/dist/data/$(val);)
 	@unlink $(PROFILE_PATH)/sources/bin
 	@unlink -sfnv $(PROFILE_PATH)/snippets/go
 
 serve-sources: ## serve sources
 	# -@(cd ./sources; which live-server >/dev/null && live-server --port=9000 &)
 	# -@(cd ./sources; which live-server >/dev/null || npx live-server --port=9000 &)
-
 
 serve-zenn: ## serve zenn
 	-@(which zenn >/dev/null && (cd ./zenn; zenn preview -p 7000 &))
