@@ -1,0 +1,1 @@
+import{assign}from"../utils.js";function httpEffect(b,a){fetch(a.url,a.options).then(function(a){if(!a.ok)throw a;return a}).then(function(b){return b[a.response]()}).then(function(c){b(a.action,c)}).catch(function(c){b(a.error,c)})}export function Http(a){return[httpEffect,assign({options:{},response:"json",error:a.action},a)]}

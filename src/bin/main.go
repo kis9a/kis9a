@@ -47,6 +47,7 @@ type CmdImages struct {
 
 type Paths struct {
 	Src               string
+	Dist              string
 	Memos             string
 	MemosContentsJson string
 	MemosIndexesJson  string
@@ -80,12 +81,27 @@ var (
 	cmdopts CmdOptions
 )
 
+type FileType int
+
+const (
+	PNG FileType = iota
+	JPEG
+	GIF
+	JS
+	CSS
+	HTML
+	JSON
+	SVG
+	UNKNOWN
+)
+
 func init() {
 	profile := os.Getenv("PROFILE")
 	paths.Memos = filepath.Join(profile, "memos")
 	paths.Images = filepath.Join(profile, "images")
 	paths.Src = filepath.Join(profile, "src")
 	paths.Web = filepath.Join(profile, "src/web")
+	paths.Dist = filepath.Join(profile, "src/dist")
 	paths.Data = filepath.Join(profile, "src/dist/data")
 	paths.MemosContentsJson = filepath.Join(paths.Data, "/memos-contents.json")
 	paths.MemosIndexesJson = filepath.Join(paths.Data, "/memos-indexes.json")
@@ -135,7 +151,6 @@ func main() {
 			server()
 		case "minify":
 			cmdopts.Minify.FlagSet.Parse(args[1:])
-			fmt.Println(cmdopts.Minify.Target)
 			allMinify([]byte{})
 		}
 	}
@@ -174,6 +189,30 @@ func removeWhiteSpace(str string) string {
 func isExistPath(path string) bool {
 	_, err := os.Stat(path)
 	return !os.IsNotExist(err)
+}
+
+func getFileType(path string) FileType {
+	slice := strings.Split(path, ".")
+	extension := slice[len(slice)-1]
+	switch extension {
+	case "jpeg", "jpg", "JPEG", "JPG":
+		return JPEG
+	case "png", "PNG":
+		return PNG
+	case "gif", "GIF":
+		return GIF
+	case "js":
+		return JS
+	case "css":
+		return CSS
+	case "html":
+		return CSS
+	case "json":
+		return JSON
+	case "svg":
+		return SVG
+	}
+	return UNKNOWN
 }
 
 func is_yes(msg string) bool {
