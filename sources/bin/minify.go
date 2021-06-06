@@ -15,7 +15,7 @@ import (
 )
 
 func allMinify(data []byte) {
-	if err := filepath.Walk(paths.Web, walkMinify); err != nil {
+	if err := filepath.Walk(paths.Src, walkMinify); err != nil {
 		fmt.Println("ERROR", err)
 	}
 }
@@ -46,7 +46,7 @@ func walkMinify(path string, fi os.FileInfo, err error) error {
 		}
 	default:
 		if !fi.IsDir() {
-			copyFileWeb2Dist(path)
+			copyFileSrc2Dist(path)
 		}
 	}
 	return nil
@@ -61,7 +61,7 @@ func getMinifyRW(path string) (*os.File, *os.File, error) {
 		log.Fatal(err)
 		return r, w, err
 	}
-	rp, err := filepath.Rel(paths.Web, path)
+	rp, err := filepath.Rel(paths.Src, path)
 	if err != nil {
 		log.Fatal(err)
 		return r, w, err
@@ -139,8 +139,8 @@ func minifySVG(m *minify.M, path string) error {
 	return err
 }
 
-func copyFileWeb2Dist(path string) error {
-	rp, err := filepath.Rel(paths.Web, path)
+func copyFileSrc2Dist(path string) error {
+	rp, err := filepath.Rel(paths.Src, path)
 	if err != nil {
 		return err
 	}

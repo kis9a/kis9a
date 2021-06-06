@@ -46,7 +46,7 @@ type CmdImages struct {
 }
 
 type Paths struct {
-	Src               string
+	Sources           string
 	Dist              string
 	Memos             string
 	MemosContentsJson string
@@ -55,7 +55,7 @@ type Paths struct {
 	Images            string
 	Tasks             string
 	Waka              string
-	Web               string
+	Src               string
 	Data              string
 }
 
@@ -99,10 +99,10 @@ func init() {
 	profile := os.Getenv("PROFILE")
 	paths.Memos = filepath.Join(profile, "memos")
 	paths.Images = filepath.Join(profile, "images")
-	paths.Src = filepath.Join(profile, "src")
-	paths.Web = filepath.Join(profile, "src/web")
-	paths.Dist = filepath.Join(profile, "src/dist")
-	paths.Data = filepath.Join(profile, "src/dist/data")
+	paths.Sources = filepath.Join(profile, "sources")
+	paths.Src = filepath.Join(profile, "sources/src")
+	paths.Dist = filepath.Join(profile, "sources/dist")
+	paths.Data = filepath.Join(profile, "sources/dist/data")
 	paths.MemosContentsJson = filepath.Join(paths.Data, "/memos-contents.json")
 	paths.MemosIndexesJson = filepath.Join(paths.Data, "/memos-indexes.json")
 	paths.ImagesIndexesJson = filepath.Join(paths.Data, "/images-indexes.json")

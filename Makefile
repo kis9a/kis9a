@@ -11,11 +11,11 @@ all:
 
 # aliases
 p: push
-ss: serve-src
+ss: serve-sources
 sz: serve-zenn
 ls: show-list
 pbz: publish-zenn
-pbs: publish-src
+pbs: publish-sources
 help: show-help
 
 date:
@@ -44,11 +44,11 @@ images-format: ## images format
 	# (cd ./images; ls | xargs -I {} -n 1 bash -c 'sips -s format ')
 
 memos2json: ## memos export json
-	@./src/utiles/utiles
-	# MEMO if only names: @tree memos -J | jq '.[0].contents | .[] | { "name": .name }'  > ./src/data/memos.json
-	# @bash ./src/utiles/memos2json.sh
-	# @go run ./src/utiles/memos2json.go
-	# @go run ./src/utiles/memos2json.go all
+	@./sources/utiles/utiles
+	# MEMO if only names: @tree memos -J | jq '.[0].contents | .[] | { "name": .name }'  > ./sources/data/memos.json
+	# @bash ./sources/utiles/memos2json.sh
+	# @go run ./sources/utiles/memos2json.go
+	# @go run ./sources/utiles/memos2json.go all
 
 push-images: ## push optimized images
 	@make images-resize
@@ -59,11 +59,11 @@ push-images: ## push optimized images
 	@git commit -m "images: update ${DATE}"
 	@git push
 
-push-src: ## push src
+push-sources: ## push sources
 	@git reset
-	@git add ./src/*
+	@git add ./sources/*
 	@make check-staged
-	@git commit -m "src: update ${DATE}"
+	@git commit -m "sources: update ${DATE}"
 	@git push
 
 push-waka: ## push waka
@@ -102,31 +102,31 @@ push-snippets: ## push snippets
 	@git commit -m "snippets: update ${DATE}"
 	@git push
 
-publish-src: ## publish src
-	@rm -rf src/memos
+publish-sources: ## publish sources
+	@rm -rf sources/memos
 	@make memos2json
-	@cp -rf memos/ src/memos
-	-@(which gh-pages >/dev/null && gh-pages -d src -t)
-	-@(which gh-pages >/dev/null || npx gh-pages -d src -t)
-	@rm -rf src/memos
+	@cp -rf memos/ sources/memos
+	-@(which gh-pages >/dev/null && gh-pages -d sources -t)
+	-@(which gh-pages >/dev/null || npx gh-pages -d sources -t)
+	@rm -rf sources/memos
 
 publish-zenn: ## publish zenn
 	-@(which gh-pages >/dev/null && gh-pages -b zenn -d zenn -t)
 	-@(which gh-pages >/dev/null || gh-pages -b zenn -d zenn -t)
 
 link:
-	@$(foreach val, $(LINKFILES), ln -sfnv $(abspath $(val)) $(PROFILE_PATH)/src/dist/$(val);)
-	@ln -sfnv $(PROFILE_PATH)/src/bin $(GOPATH)/src/$(PROFILE)/bin
-	@ln -sfnv $(PROFILE_PATH)/snippets/go $(GOPATH)/src/$(PROFILE)/snippets
+	@$(foreach val, $(LINKFILES), ln -sfnv $(abspath $(val)) $(PROFILE_PATH)/sources/dist/$(val);)
+	@ln -sfnv $(PROFILE_PATH)/sources/bin $(GOPATH)/sources/$(PROFILE)/bin
+	@ln -sfnv $(PROFILE_PATH)/snippets/go $(GOPATH)/sources/$(PROFILE)/snippets
 
 unlink:
-	@$(foreach val, $(LINKFILES), unlink $(PROFILE_PATH)/src/$(val);)
-	@unlink $(PROFILE_PATH)/src/bin
+	@$(foreach val, $(LINKFILES), unlink $(PROFILE_PATH)/sources/$(val);)
+	@unlink $(PROFILE_PATH)/sources/bin
 	@unlink -sfnv $(PROFILE_PATH)/snippets/go
 
-serve-src: ## serve src
-	# -@(cd ./src; which live-server >/dev/null && live-server --port=9000 &)
-	# -@(cd ./src; which live-server >/dev/null || npx live-server --port=9000 &)
+serve-sources: ## serve sources
+	# -@(cd ./sources; which live-server >/dev/null && live-server --port=9000 &)
+	# -@(cd ./sources; which live-server >/dev/null || npx live-server --port=9000 &)
 
 
 serve-zenn: ## serve zenn

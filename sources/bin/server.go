@@ -45,7 +45,7 @@ func server() {
 		}
 	}()
 
-	if err := filepath.Walk(paths.Web, watchDir); err != nil {
+	if err := filepath.Walk(paths.Src, watchDir); err != nil {
 		fmt.Println("ERROR", err)
 	}
 	<-done
