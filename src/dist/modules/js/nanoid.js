@@ -1,1 +1,0 @@
-export let nanoid=(a=21)=>{let b="",c=crypto.getRandomValues(new Uint8Array(a));for(;a--;){let d=63&c[a];b+=d<36?d.toString(36):d<62?(d-26).toString(36).toUpperCase():d<63?"_":"-"}return b}
