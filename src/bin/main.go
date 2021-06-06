@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"io"
+	"io/fs"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -76,17 +77,20 @@ func init() {
 	paths.Images = filepath.Join(profile, "images")
 	paths.Src = filepath.Join(profile, "src")
 	paths.Web = filepath.Join(profile, "src/web")
-	paths.Data = filepath.Join(profile, "src/dist/datas")
+	paths.Data = filepath.Join(profile, "src/dist/data")
 	paths.MemosContentsJson = filepath.Join(paths.Data, "/memos-contents.json")
 	paths.MemosIndexesJson = filepath.Join(paths.Data, "/memos-indexes.json")
 	paths.ImagesIndexesJson = filepath.Join(paths.Data, "/images-indexes.json")
 
 	flag.CommandLine.Init("cmd", flag.ExitOnError)
 	cmdopts.Memos.FlagSet = flag.NewFlagSet("cmd memos", flag.ExitOnError)
+	cmdopts.Images.FlagSet = flag.NewFlagSet("cmd images", flag.ExitOnError)
 	cmdopts.Memos.FlagSet.BoolVar(&cmdopts.Memos.Diff, "d", false, "diff")
 	cmdopts.Memos.FlagSet.BoolVar(&cmdopts.Memos.All, "a", false, "all")
-	// cmdopts.Images.FlagSet.BoolVar(&cmdopts.Images.Format, "f", false, "format")
-	// cmdopts.Images.FlagSet.BoolVar(&cmdopts.Images.Convert, "c", false, "convert")
+	cmdopts.Images.FlagSet.BoolVar(&cmdopts.Images.Format, "f", false, "format")
+	cmdopts.Images.FlagSet.BoolVar(&cmdopts.Images.Convert, "c", false, "convert")
+
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
 }
 
 func main() {
@@ -104,7 +108,12 @@ func main() {
 				fmt.Println(args[1:])
 			}
 		case "images":
-			images2Json()
+			cmdopts.Images.FlagSet.Parse(args[1:])
+			if cmdopts.Images.Convert {
+				images2Png()
+			} else {
+				images2Json()
+			}
 		case "server":
 			serve()
 		}
@@ -157,6 +166,10 @@ func serve() {
 	http.ListenAndServe(":9000", nil)
 }
 
+func readDir(path string) ([]fs.FileInfo, error) {
+	return ioutil.ReadDir(path)
+}
+
 func readFile(path string) ([]byte, error) {
 	return ioutil.ReadFile(path)
 }
@@ -181,4 +194,16 @@ func removeParagraph(str string) string {
 
 func removeWhiteSpace(str string) string {
 	return strings.ReplaceAll(str, " ", "")
+}
+
+func isExistPath(path string) bool {
+	_, err := os.Stat(path)
+	return !os.IsNotExist(err)
+}
+
+func is_yes(msg string) bool {
+	var r string
+	fmt.Println(strings.Join([]string{msg, " [y/n]"}, ""))
+	fmt.Scan(&r)
+	return r == "y" || r == "Y"
 }

@@ -2,7 +2,7 @@ package main
 
 import (
 	"encoding/json"
-	"flag"
+	"fmt"
 	"image"
 	"image/gif"
 	"image/jpeg"
@@ -12,16 +12,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-	"sync"
-)
-
-type FileType int
-
-const (
-	PNG FileType = iota
-	JPG
-	GIF
-	ERR
 )
 
 func images2Json() {
@@ -45,166 +35,62 @@ func images2Json() {
 	}
 }
 
-func getFileType(input string) FileType {
-	switch input {
-	case "jpg":
-		fallthrough
-	case "jpeg":
-		return JPG
-	case "png":
-		return PNG
-	case "gif":
-		return GIF
-	default:
-		return ERR
-	}
-}
-
-func getFileExtension(input FileType) string {
-	switch input {
-	case JPG:
-		return "jpg"
-	case PNG:
-		return "png"
-	case GIF:
-		return "gif"
-	default:
-		return ""
-	}
-}
-
-func convert(files []string, outputDir string, fileType FileType) {
-	var wg sync.WaitGroup
-	for _, currPath := range files {
-		wg.Add(1)
-		go convertFile(&wg, currPath, outputDir, fileType)
-	}
-	wg.Wait()
-}
-
-func convertFile(wg *sync.WaitGroup, currPath string, outputDir string, fileType FileType) {
-	defer wg.Done()
-	ext := strings.ToLower(filepath.Ext(currPath))
-	newExt := getFileExtension(fileType)
-	_, filename := filepath.Split(currPath)
-	filenameNoExt := filename[0 : len(filename)-len(ext)]
-	newFileName := filenameNoExt + "." + newExt
-	newFilePath := outputDir + "/" + newFileName
-	startType := getFileType(ext[1:])
-	if startType == ERR {
-		log.Fatalf("input file type not valid")
-	}
-	file, err := os.Open(currPath)
+func images2Png() {
+	fs, err := readDir(paths.Images)
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer file.Close()
-	outFile := openOrCreate(newFilePath)
-	defer outFile.Close()
-	imageData, _, err := image.Decode(file)
+	for _, f := range fs {
+		slice := strings.Split(f.Name(), ".")
+		extension := slice[len(slice)-1]
+		if extension != "png" {
+			inputPath := filepath.Join(paths.Images, f.Name())
+			bases := slice[:len(slice)-1]
+			basename := strings.Join(bases[:], ".")
+			outputPath := filepath.Join(paths.Images, strings.Join([]string{basename, ".png"}, ""))
+			err = imageConvert(inputPath, outputPath)
+			if err != nil {
+				log.Fatal(err)
+			}
+			filepath.Join()
+		}
+	}
+}
+
+func imageConvert(path string, outPath string) error {
+	fmt.Println(path, outPath)
+	slice := strings.Split(outPath, ".")
+	extension := slice[len(slice)-1]
+	f, err := os.Open(path)
 	if err != nil {
-		log.Fatalf("error decoding image")
+		return err
 	}
-	switch fileType {
-	case JPG:
-		err := jpeg.Encode(outFile, imageData, nil)
-		if err != nil {
-			log.Fatalf("error converting to jpeg")
-		}
-	case PNG:
-		err := png.Encode(outFile, imageData)
-		if err != nil {
-			log.Fatal(err)
-		}
-	case GIF:
-		err := gif.Encode(outFile, imageData, nil)
-		if err != nil {
-			log.Fatalf("error converting to gif")
-		}
-	}
-}
-
-func openOrCreate(filename string) *os.File {
-	if _, err := os.Stat(filename); os.IsNotExist(err) {
-		file, err := os.Create(filename)
-		if err != nil {
-			log.Fatalf("error creating output file")
-		}
-		return file
-	} else {
-		file, err := os.Open(filename)
-		if err != nil {
-			log.Fatalf("error opening output file")
-		}
-		return file
-	}
-}
-
-func testimg() {
-	files, outputDir, fileType := parseConvertInput(os.Args[2:])
-	convert(files, outputDir, fileType)
-}
-
-func parseConvertInput(args []string) ([]string, string, FileType) {
-	fset := flag.NewFlagSet("fset", flag.ContinueOnError)
-	typePtr := fset.String("type", "", "Target image type")
-	outPtr := fset.String("out", "", "Directory to write to")
-	fset.Parse(args)
-	if *typePtr == "" || *outPtr == "" {
-		log.Fatalf("type or output dir not provided")
-	}
-	outputPath, err := filepath.Abs(*outPtr)
+	defer f.Close()
+	input, _, err := image.Decode(f)
 	if err != nil {
-		log.Fatalf("invalid file path")
+		return err
 	}
-	outputStat, err := os.Stat(outputPath)
+	output, err := os.Create(outPath)
 	if err != nil {
-		log.Fatalf("error getting outputdir stats")
+		return err
 	}
-	if !outputStat.Mode().IsDir() {
-		log.Fatalf("output path is not directory")
-	}
-	targetType := getFileType(*typePtr)
-	if targetType == ERR {
-		log.Fatalf("invalid target file type")
-	}
-	files := formatFiles(args[4:])
-	return files, outputPath, targetType
-}
-
-func parseMergeInput(args []string) ([]string, string) {
-	fset := flag.NewFlagSet("fset", flag.ContinueOnError)
-	outPtr := fset.String("out", "", "Directory to write to")
-	fset.Parse(args)
-	if *outPtr == "" {
-		log.Fatalf("no output dir specified")
-	}
-	outputPath, err := filepath.Abs(*outPtr)
-	if err != nil {
-		log.Fatalf("invalid file path")
-	}
-	files := formatFiles(args[2:])
-	return files, outputPath
-}
-
-func formatFiles(args []string) []string {
-	cleanedFiles := make([]string, len(args))
-	for index, file := range args {
-		if _, err := os.Stat(file); os.IsNotExist(err) {
-			log.Fatalf("invalid file")
+	defer output.Close()
+	switch extension {
+	case "jpeg", "jpg", "JPEG", "JPG":
+		if err = jpeg.Encode(output, input, &jpeg.Options{}); err != nil {
+			return err
 		}
-		absPath, err := filepath.Abs(file)
-		if err != nil {
-			log.Fatalf("invalid file")
+		log.Printf(strings.Join([]string{"convert ", path, " to ", outPath}, ""))
+	case "png", "PNG":
+		if err = png.Encode(output, input); err != nil {
+			return err
 		}
-		fileStat, err := os.Stat(absPath)
-		if err != nil {
-			log.Fatalf("error checking input file stats")
+		log.Printf(strings.Join([]string{"convert ", path, " to ", outPath}, ""))
+	case "gif", "GIF":
+		if err = gif.Encode(output, input, nil); err != nil {
+			return err
 		}
-		if !fileStat.Mode().IsRegular() {
-			log.Fatalf("input file is not a regular file")
-		}
-		cleanedFiles[index] = absPath
+		log.Printf(strings.Join([]string{"convert ", path, " to ", outPath}, ""))
 	}
-	return cleanedFiles
+	return nil
 }
