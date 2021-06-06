@@ -67,4 +67,6 @@ gitignore files show
 git ls-files --others -i --exclude-standard
 ```
 
-- by [Githubで一番有名なGit TIPS集 - Qiita](https://qiita.com/rana_kualu/items/4d5e27244256e9689304)
+- by [Github で一番有名な Git TIPS 集 - Qiita](https://qiita.com/rana_kualu/items/4d5e27244256e9689304)
+
+git gc --aggressive --prune

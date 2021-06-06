@@ -189,3 +189,7 @@ indent<!--{{{-->
 | :changes | 変更リストを表示   |
 | g;       | 前の変更箇所へ移動 |
 | g,       | 次の変更箇所へ移動 |
+
+syntax hilight
+
+<https://github.com/yuzoiwasaki/fluentd.vim>
