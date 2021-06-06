@@ -191,6 +191,18 @@ func isExistPath(path string) bool {
 	return !os.IsNotExist(err)
 }
 
+func copyFile(from, to string) error {
+	f, err := ioutil.ReadFile(from)
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = ioutil.WriteFile(to, f, 0644)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return err
+}
+
 func getFileType(path string) FileType {
 	slice := strings.Split(path, ".")
 	extension := slice[len(slice)-1]
