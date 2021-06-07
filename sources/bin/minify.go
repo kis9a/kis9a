@@ -22,19 +22,19 @@ func minifyAll() {
 
 func minifySrc() {
 	minifyWalkBase = paths.Src
-	if err := filepath.Walk(minifyWalkBase, walkMinify); err != nil {
+	if err := filepath.Walk(minifyWalkBase, minifyWalk); err != nil {
 		log.Fatal(err)
 	}
 }
 
 func minifyPages() {
 	minifyWalkBase = paths.Pages
-	if err := filepath.Walk(minifyWalkBase, walkMinify); err != nil {
+	if err := filepath.Walk(minifyWalkBase, minifyWalk); err != nil {
 		log.Fatal(err)
 	}
 }
 
-func walkMinify(path string, fi os.FileInfo, err error) error {
+func minifyWalk(path string, fi os.FileInfo, err error) error {
 	if err != nil {
 		log.Println(err)
 	}
@@ -83,12 +83,10 @@ func getMinifyRW(path string) (*os.File, *os.File, error) {
 	var err error
 	r, err = os.Open(path)
 	if err != nil {
-		log.Fatal(err)
 		return r, w, err
 	}
 	rp, err := filepath.Rel(minifyWalkBase, path)
 	if err != nil {
-		log.Fatal(err)
 		return r, w, err
 	}
 	wp := filepath.Join(paths.Dist, rp)
@@ -98,7 +96,6 @@ func getMinifyRW(path string) (*os.File, *os.File, error) {
 	}
 	w, err = os.Create(wp)
 	if err != nil {
-		log.Fatal(err)
 		return r, w, err
 	}
 	return r, w, err

@@ -16,6 +16,7 @@ func server(port string) {
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer watcher.Close()
 	fs := http.FileServer(http.Dir(paths.Dist))
 	http.Handle("/", fs)
 	port = strings.Join([]string{":", port}, "")
@@ -24,7 +25,6 @@ func server(port string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer watcher.Close()
 	watchSrcDir := func(path string, fi os.FileInfo, err error) error {
 		if fi.Mode().IsDir() {
 			return watcher.Add(path)

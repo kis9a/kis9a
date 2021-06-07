@@ -56,7 +56,7 @@ type Paths struct {
 	Tasks             string
 	Waka              string
 	Src               string
-	Pages               string
+	Pages             string
 	Data              string
 }
 
