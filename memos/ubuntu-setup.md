@@ -70,3 +70,7 @@ sd: sed の使い方イマイチわからん人でも使えると思います
 ghq: git clone 時にどこに置くか考えなくて良くなるので便利です
 yq: jq の YAML 版です
 ```
+
+sudo add-apt-repository ppa:neovim-ppa/unstable
+sudo apt-get update
+sudo apt install neovim/focal
