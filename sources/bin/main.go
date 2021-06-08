@@ -56,7 +56,6 @@ type Paths struct {
 	Tasks             string
 	Waka              string
 	Src               string
-	Pages             string
 	Data              string
 }
 
@@ -102,7 +101,6 @@ func init() {
 	paths.Images = filepath.Join(profile, "images")
 	paths.Sources = filepath.Join(profile, "sources")
 	paths.Src = filepath.Join(profile, "sources/src")
-	paths.Pages = filepath.Join(profile, "sources/pages")
 	paths.Dist = filepath.Join(profile, "sources/dist")
 	paths.Data = filepath.Join(profile, "sources/dist/data")
 	paths.MemosContentsJson = filepath.Join(paths.Data, "/memos-contents.json")
@@ -114,6 +112,7 @@ func init() {
 	cmdopts.Images.FlagSet = flag.NewFlagSet("cmd images", flag.ExitOnError)
 	cmdopts.Server.FlagSet = flag.NewFlagSet("cmd server", flag.ExitOnError)
 	cmdopts.Minify.FlagSet = flag.NewFlagSet("cmd minify", flag.ExitOnError)
+
 	cmdopts.Memos.FlagSet.BoolVar(&cmdopts.Memos.Diff, "d", false, "diff")
 	cmdopts.Memos.FlagSet.BoolVar(&cmdopts.Memos.All, "a", false, "all")
 	cmdopts.Images.FlagSet.BoolVar(&cmdopts.Images.Resize, "r", false, "resize")
@@ -152,7 +151,7 @@ func main() {
 			server(cmdopts.Server.Port)
 		case "minify":
 			cmdopts.Minify.FlagSet.Parse(args[1:])
-			minifyAll()
+			minifySrc()
 		}
 	}
 }

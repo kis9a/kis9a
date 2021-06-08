@@ -3,6 +3,7 @@ module kis9a/bin
 go 1.16
 
 require (
+	github.com/evanw/esbuild v0.12.7 // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/tdewolff/minify v2.3.6+incompatible // indirect
 	github.com/tdewolff/minify/v2 v2.9.17 // indirect

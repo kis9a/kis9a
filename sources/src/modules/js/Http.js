@@ -1,4 +1,4 @@
-import { assign } from "../utils.js";
+import { assign } from "./utils.js";
 
 function httpEffect(dispatch, props) {
   fetch(props.url, props.options)

@@ -11,19 +11,12 @@ import (
 )
 
 func server(port string) {
-	minifyAll()
 	watcher, err := fsnotify.NewWatcher()
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer watcher.Close()
 	watchSrcDir := func(path string, fi os.FileInfo, err error) error {
-		if fi.Mode().IsDir() {
-			return watcher.Add(path)
-		}
-		return nil
-	}
-	watchPagesDir := func(path string, fi os.FileInfo, err error) error {
 		if fi.Mode().IsDir() {
 			return watcher.Add(path)
 		}
@@ -46,10 +39,8 @@ func server(port string) {
 					strs := strings.Split(relPath, "/")
 					base := strs[0]
 					if base == "pages" {
-						minifyWalkBase = paths.Pages
 						minifyByFileType(path)
 					} else if base == "src" {
-						minifyWalkBase = paths.Src
 						minifyByFileType(path)
 					}
 					log.Println("Wrote", path)
@@ -63,9 +54,6 @@ func server(port string) {
 		}
 	}()
 	if err := filepath.Walk(paths.Src, watchSrcDir); err != nil {
-		log.Println(err)
-	}
-	if err := filepath.Walk(paths.Pages, watchPagesDir); err != nil {
 		log.Println(err)
 	}
 	fs := http.FileServer(http.Dir(paths.Dist))

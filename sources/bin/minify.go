@@ -6,6 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/evanw/esbuild/pkg/api"
 	"github.com/tdewolff/minify/v2"
 	"github.com/tdewolff/minify/v2/css"
 	"github.com/tdewolff/minify/v2/html"
@@ -14,23 +15,10 @@ import (
 	"github.com/tdewolff/minify/v2/svg"
 )
 
-var minifyWalkBase = ""
-
-func minifyAll() {
-	fmt.Println("adsf")
-	minifySrc()
-	minifyPages()
-}
+var minifyWalkBase = paths.Src
 
 func minifySrc() {
 	minifyWalkBase = paths.Src
-	if err := filepath.Walk(minifyWalkBase, minifyWalk); err != nil {
-		log.Fatal(err)
-	}
-}
-
-func minifyPages() {
-	minifyWalkBase = paths.Pages
 	if err := filepath.Walk(minifyWalkBase, minifyWalk); err != nil {
 		log.Fatal(err)
 	}
@@ -49,7 +37,7 @@ func minifyByFileType(path string) {
 	fileType := getFileType(path)
 	switch fileType {
 	case JS:
-		if err := minifyJS(m, path); err != nil {
+		if err := bundleJS(path); err != nil {
 			log.Fatal(err)
 		}
 	case CSS:
@@ -101,6 +89,30 @@ func getMinifyRW(path string) (*os.File, *os.File, error) {
 		return r, w, err
 	}
 	return r, w, err
+}
+
+func bundleJS(path string) error {
+	var err error
+	rp, err := filepath.Rel(minifyWalkBase, path)
+	if err != nil {
+		return err
+	}
+	wp := filepath.Join(paths.Dist, rp)
+	fmt.Println(wp)
+	result := api.Build(api.BuildOptions{
+		EntryPoints:       []string{path},
+		Outfile:           wp,
+		Bundle:            true,
+		Write:             true,
+		MinifyIdentifiers: true,
+		MinifySyntax:      true,
+		MinifyWhitespace:  true,
+	})
+
+	if len(result.Errors) > 0 {
+		os.Exit(1)
+	}
+	return err
 }
 
 func minifyJS(m *minify.M, path string) error {
