@@ -106,3 +106,15 @@
 - [【Golang】フィボナッチ数列をメモ化や積み上げ式で解く - Qiita](https://qiita.com/ShrimpF/items/2f50a0b76d1cee29f0b3)
 - [Go 言語で作るマリオ風 2D ゲーム - Qiita](https://qiita.com/KMim/items/aebb9d7a9116bf6294b3)
 - [ ] 5 Most Difficult Programming Languages of the World <https://zenn.dev/e99h2121/articles/0ece8217c6c091>
+
+## Server
+
+<https://www.digitalocean.com/pricing>
+<https://www.conoha.jp/wing/?btn_id=wing-glonavi_wing>
+<https://github.com/grpc-ecosystem/grpc-gateway>
+
+- [NGINX による gRPC 通信のロードバラシング - au Kabucom Engineer Blog](https://engineering.kabu.com/entry/2020/11/24/192823)
+- [Introducing gRPC Support with NGINX 1.13.10 - NGINX](https://www.nginx.com/blog/nginx-1-13-10-grpc/)
+- [Basics tutorial | Go | gRPC](https://grpc.io/docs/languages/go/basics/)
+- [GitHub - grpc/grpc-web: gRPC for Web Clients](https://github.com/grpc/grpc-web)
+- [NginxにgRPCとHTTP/1.1の共存の設定をする  - Qiita](https://qiita.com/mikankitten/items/f1b8660c73f9cecabfb0)
