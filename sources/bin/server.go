@@ -17,14 +17,6 @@ func server(port string) {
 		log.Fatal(err)
 	}
 	defer watcher.Close()
-	fs := http.FileServer(http.Dir(paths.Dist))
-	http.Handle("/", fs)
-	port = strings.Join([]string{":", port}, "")
-	log.Println("Listening...", port)
-	err = http.ListenAndServe(port, nil)
-	if err != nil {
-		log.Fatal(err)
-	}
 	watchSrcDir := func(path string, fi os.FileInfo, err error) error {
 		if fi.Mode().IsDir() {
 			return watcher.Add(path)
@@ -75,6 +67,14 @@ func server(port string) {
 	}
 	if err := filepath.Walk(paths.Pages, watchPagesDir); err != nil {
 		log.Println(err)
+	}
+	fs := http.FileServer(http.Dir(paths.Dist))
+	http.Handle("/", fs)
+	port = strings.Join([]string{":", port}, "")
+	log.Println("Listening...", port)
+	err = http.ListenAndServe(port, nil)
+	if err != nil {
+		log.Fatal(err)
 	}
 	<-done
 }

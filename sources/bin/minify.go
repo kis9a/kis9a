@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"path/filepath"
@@ -16,6 +17,7 @@ import (
 var minifyWalkBase = ""
 
 func minifyAll() {
+	fmt.Println("adsf")
 	minifySrc()
 	minifyPages()
 }
