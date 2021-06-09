@@ -54,8 +54,6 @@
 ## Analytics
 
 - [x] [シェルと git で残業コミットを調べる - Qiita](https://qiita.com/310ma3/items/a44fee242c2076053834)
-      wakabox replacement beautiful and options with golang
-      [GitHub - matchai/waka-box: 📊 Update a pinned gist to contain your weekly WakaTime stats](https://github.com/matchai/waka-box)
 - <https://github.com/MacroPower/wakatime_exporter>
 - <https://github.com/lowlighter/metrics>
 - [ ] wakatime issue each data json

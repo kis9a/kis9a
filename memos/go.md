@@ -1,5 +1,8 @@
 [【Go】基本文法 ④(配列・スライス) - Qiita](https://qiita.com/k-penguin-sato/items/daad9986d6c42bdcde90)
 
+- [goroutine はなぜ軽量なのか - Carpe Diem](https://christina04.hatenablog.com/entry/why-goroutine-is-good)
+- [Non-Blocking I/O, I/O Multiplexing, Asynchronous I/O の区別 - Carpe Diem](https://christina04.hatenablog.com/entry/2017/07/05/005944)
+
 // Go module
 
 go mod init で、初期化する
@@ -85,3 +88,15 @@ The -testcache flag causes clean to expire all test results in the go build cach
 The -modcache flag causes clean to remove the entire module download cache, including unpacked source code of versioned dependencies.
 
 <!--}}}-->
+
+① Go 言語標準の正規表現ライブラリは、正規表現と検査文字列の長さに対して常に O(n2)O(n2)のオーダーで計算量が増加する安定したアルゴリズムを採用している。
+② "正規表現オブジェクト"を用いたマッチング処理には排他制御が行われている。
+
+このディレクトリは Go modules を利用することで不要になります。
+具体的には環境変数 GO111MODULE=on と設定することで、$GOPATH/src から開放されます。
+
+export GO111MODULE=on # Go 1.11 から利用可能
+export GOBIN=$HOME/bin
+export GOMODCACHE=$HOME/.cache/go_mod # Go 1.15 から利用可能
+
+そのため、例えば ~/bin を使いたい場合は GOBIN=$HOME/bin と指定することにより $GOPATH/bin から開放されます。
