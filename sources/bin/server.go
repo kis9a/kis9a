@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -33,19 +32,7 @@ func server(port string) {
 				}
 				if event.Op&fsnotify.Write == fsnotify.Write {
 					path := event.Name
-					relPath, err := filepath.Rel(paths.Sources, path)
-					if err != nil {
-						log.Println(err)
-					}
-					strs := strings.Split(relPath, "/")
-					base := strs[0]
-					fmt.Println(base)
-					bundleWalk()
-					// if base == "pages" {
-					// 	minifyByFileType(path)
-					// } else if base == "src" {
-					// 	minifyByFileType(path)
-					// }
+					bundleByFileType(path)
 					log.Println("Wrote", path)
 				}
 			case err, ok := <-watcher.Errors:
