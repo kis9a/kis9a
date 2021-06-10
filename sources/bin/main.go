@@ -207,25 +207,33 @@ func copyFile(from, to string) error {
 	return err
 }
 
+func changeExt(path string, ext string) string {
+	return strings.Join([]string{path[:len(path)-len(filepath.Ext(path))], ext}, "")
+}
+
+func withoutExt(fname string) string {
+	ext := filepath.Ext(fname)
+	return fname[:len(fname)-len(ext)]
+}
+
 func getFileType(path string) FileType {
-	slice := strings.Split(path, ".")
-	extension := slice[len(slice)-1]
+	extension := filepath.Ext(path)
 	switch extension {
-	case "jpeg", "jpg", "JPEG", "JPG":
+	case ".jpeg", ".jpg", ".JPEG", ".JPG":
 		return JPEG
-	case "png", "PNG":
+	case ".png", ".PNG":
 		return PNG
-	case "gif", "GIF":
+	case ".gif", ".GIF":
 		return GIF
-	case "js":
+	case ".js":
 		return JS
-	case "css":
+	case ".css":
 		return CSS
-	case "html":
+	case ".html":
 		return CSS
-	case "json":
+	case ".json":
 		return JSON
-	case "svg":
+	case ".svg":
 		return SVG
 	}
 	return UNKNOWN

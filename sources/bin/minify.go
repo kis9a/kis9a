@@ -34,8 +34,8 @@ func minifyWalk(path string, fi os.FileInfo, err error) error {
 
 func minifyByFileType(path string) {
 	m := minify.New()
-	fileType := getFileType(path)
-	switch fileType {
+	ft := getFileType(path)
+	switch ft {
 	case JS:
 		if err := bundleJS(path); err != nil {
 			log.Fatal(err)
