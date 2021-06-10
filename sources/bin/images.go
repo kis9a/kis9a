@@ -11,7 +11,6 @@ import (
 	"math"
 	"os"
 	"path/filepath"
-	"strings"
 
 	"golang.org/x/image/draw"
 )
@@ -43,25 +42,21 @@ func images2Png() {
 		log.Fatal(err)
 	}
 	for _, f := range fs {
-		slice := strings.Split(f.Name(), ".")
-		extension := slice[len(slice)-1]
-		if extension != "png" {
+		fname := f.Name()
+		ext := filepath.Ext(fname)
+		if ext != ".png" {
 			inputPath := filepath.Join(paths.Images, f.Name())
-			bases := slice[:len(slice)-1]
-			basename := strings.Join(bases[:], ".")
-			outputPath := filepath.Join(paths.Images, strings.Join([]string{basename, ".png"}, ""))
+			pngfs := changeExt(fname, ".png")
+			outputPath := filepath.Join(paths.Images, pngfs)
 			err = imageConvert(inputPath, outputPath)
 			if err != nil {
 				log.Fatal(err)
 			}
-			filepath.Join()
 		}
 	}
 }
 
 func imageConvert(path string, outPath string) error {
-	slice := strings.Split(outPath, ".")
-	extension := slice[len(slice)-1]
 	f, err := os.Open(path)
 	if err != nil {
 		return err
@@ -76,7 +71,7 @@ func imageConvert(path string, outPath string) error {
 		return err
 	}
 	defer output.Close()
-	if err := imageEncode(extension, input, output); err != nil {
+	if err := imageEncode(path, input, output); err != nil {
 		log.Fatal(err)
 	} else {
 		log.Println("convert ", input, " to ", output)
@@ -84,18 +79,19 @@ func imageConvert(path string, outPath string) error {
 	return nil
 }
 
-func imageEncode(extension string, input image.Image, output *os.File) error {
+func imageEncode(path string, input image.Image, output *os.File) error {
 	var err error
-	switch extension {
-	case "jpeg", "jpg", "JPEG", "JPG":
+	ft := getFileType(path)
+	switch ft {
+	case JPEG:
 		if err = jpeg.Encode(output, input, &jpeg.Options{Quality: 100}); err != nil {
 			return err
 		}
-	case "png", "PNG":
+	case PNG:
 		if err = png.Encode(output, input); err != nil {
 			return err
 		}
-	case "gif", "GIF":
+	case GIF:
 		if err = gif.Encode(output, input, nil); err != nil {
 			return err
 		}
@@ -146,9 +142,7 @@ func imageResize(path string) error {
 		return err
 	}
 	defer newImg.Close()
-	slice := strings.Split(path, ".")
-	extension := slice[len(slice)-1]
-	if err := imageEncode(extension, newImgData, newImg); err != nil {
+	if err := imageEncode(path, newImgData, newImg); err != nil {
 		log.Fatal(err)
 	}
 	return err
