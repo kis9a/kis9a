@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"path/filepath"
@@ -97,6 +98,7 @@ func bundleJS(path string) error {
 		return err
 	}
 	wp := filepath.Join(paths.Dist, rp)
+	fmt.Println(wp)
 	result := api.Build(api.BuildOptions{
 		EntryPoints:       []string{path},
 		Outfile:           wp,

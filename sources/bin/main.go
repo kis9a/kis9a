@@ -152,6 +152,9 @@ func main() {
 		case "minify":
 			cmdopts.Minify.FlagSet.Parse(args[1:])
 			minifySrc()
+		case "bundle":
+			cmdopts.Minify.FlagSet.Parse(args[1:])
+			bundleWalk()
 		}
 	}
 }

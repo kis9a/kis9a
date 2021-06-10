@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -38,11 +39,13 @@ func server(port string) {
 					}
 					strs := strings.Split(relPath, "/")
 					base := strs[0]
-					if base == "pages" {
-						minifyByFileType(path)
-					} else if base == "src" {
-						minifyByFileType(path)
-					}
+					fmt.Println(base)
+					bundleWalk()
+					// if base == "pages" {
+					// 	minifyByFileType(path)
+					// } else if base == "src" {
+					// 	minifyByFileType(path)
+					// }
 					log.Println("Wrote", path)
 				}
 			case err, ok := <-watcher.Errors:

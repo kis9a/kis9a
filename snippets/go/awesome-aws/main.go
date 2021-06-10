@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"io/fs"
 	"io/ioutil"
 	"log"
@@ -11,19 +10,59 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-type Item struct {
+type TableRow struct {
 	Service     string
 	Description string
 }
 
-func getItems(lang string) []Item {
+const defaultLanguage = "en"
+
+var supportedLanguages = []string{"ar", "cn", "de", "en", "es", "fr", "id", "it", "jp", "ko", "pt", "ru", "th", "tr", "tw", "vi"}
+
+func main() {
+	if len(os.Args) > 1 {
+		arg := os.Args[1]
+		if errMsg := checkLanguageSupport(arg); errMsg != "" {
+			log.Fatalf(errMsg)
+		}
+		if err := output(arg, arg == defaultLanguage); err != nil {
+			log.Fatal(err)
+		}
+	} else {
+		for _, lang := range supportedLanguages {
+			if err := output(lang, lang == defaultLanguage); err != nil {
+				log.Fatal(err)
+			}
+		}
+	}
+}
+
+func checkLanguageSupport(lang string) string {
+	is := false
+	var errMsg string
+	for _, v := range supportedLanguages {
+		if lang == v {
+			is = true
+		}
+	}
+	if is == false {
+		errMsg := strings.Join([]string{lang, " language is not supported\nsupported languages:"}, "")
+		for _, v := range supportedLanguages {
+			errMsg = strings.Join([]string{v, "\n"}, "")
+		}
+		return errMsg
+	}
+	return errMsg
+}
+
+func getTableRowItems(lang string) ([]TableRow, error) {
+	res := []TableRow{}
 	baseUrl := "https://aws.amazon.com/"
 	url := strings.Join([]string{baseUrl, lang}, "")
 	doc, err := goquery.NewDocument(url)
 	if err != nil {
-		log.Fatal(err)
+		return res, err
 	}
-	res := []Item{}
 	items := doc.Find(".lb-content-item")
 	items.Each(func(_ int, item *goquery.Selection) {
 		name := item.Find("span").Text()
@@ -31,82 +70,60 @@ func getItems(lang string) []Item {
 		path, _ := item.Find("a").Attr("href")
 		path = strings.Join([]string{baseUrl, path[1:]}, "")
 		name = strings.Join([]string{"[", name, "](", path, ")"}, "")
-		res = append(res, Item{Service: name, Description: description})
+		res = append(res, TableRow{Service: name, Description: description})
 	})
-	return res
+	return res, err
 }
 
-func outputItem(items []Item, langs []string, lang string, isDef bool) {
-	header := "| Service | Description |\n| - | - |\n"
-	content := ""
-	for _, item := range items {
-		content = strings.Join([]string{content, "| ", item.Service, " | ", item.Description, " |\n"}, "")
+func getNav(isDefaultOutput bool) string {
+	res := ""
+	for _, lang := range supportedLanguages {
+		isDefaultLanguage := lang == defaultLanguage
+		if isDefaultOutput {
+			if !isDefaultLanguage {
+				res = strings.Join([]string{res, " | [", lang, "](./languages/README.", lang, ".md)"}, "")
+			}
+		} else {
+			if isDefaultLanguage {
+				res = strings.Join([]string{res, " | [", lang, "](../README.md)"}, "")
+			} else {
+				res = strings.Join([]string{res, " | [", lang, "](./README.", lang, ".md)"}, "")
+			}
+		}
 	}
-	navs := getNavs(langs, isDef)
-	res := strings.Join([]string{navs, header, content}, "")
-	fmt.Println(res)
+	return strings.Join([]string{res, " |\n"}, "")
+}
+
+func output(lang string, isDefault bool) error {
+	var err error
+	items, err := getTableRowItems(lang)
+	if err != nil {
+		return err
+	}
+	nav := getNav(isDefault)
+	tableHeader := "| Service | Description |\n| --- | --- |\n"
+	tableContent := ""
+	for _, item := range items {
+		tableContent = strings.Join([]string{tableContent, "| ", item.Service, " | ", item.Description, " |\n"}, "")
+	}
+	res := strings.Join([]string{nav, "\n", tableHeader, tableContent}, "")
 	if _, err := os.Stat("./languages"); os.IsNotExist(err) {
 		if err := os.Mkdir("./languages", 0755); err != nil {
-			log.Fatal(err)
+			return err
 		}
 	}
-	if isDef {
+	if isDefault {
 		if err := WriteFile("./README.md", []byte(res), 0644); err != nil {
-			log.Fatal(err)
+			return err
+		}
+	} else {
+		if err := WriteFile(strings.Join([]string{"./languages/README.", lang, ".md"}, ""), []byte(res), 0644); err != nil {
+			return err
 		}
 	}
-	if err := WriteFile(strings.Join([]string{"./languages/README.", lang, ".md"}, ""), []byte(res), 0644); err != nil {
-		log.Fatal(err)
-	}
-}
-
-func getNavs(langs []string, isDef bool) string {
-	res := ""
-	for _, lang := range langs {
-		if isDef {
-			res = strings.Join([]string{res, " | [", lang, "](./languages/README.", lang, ".md)"}, "")
-		} else {
-			res = strings.Join([]string{res, " | [", lang, "](./README.", lang, ".md)"}, "")
-		}
-	}
-	res = strings.Join([]string{res, " |\n"}, "")
-	return res
-}
-
-func WriteFile(path string, data []byte, perm fs.FileMode) error {
-	err := ioutil.WriteFile(path, data, perm)
 	return err
 }
 
-func checkLanguageSupport(langs []string, lang string) {
-	is := false
-	for _, v := range langs {
-		if lang == v {
-			is = true
-		}
-	}
-	if is == false {
-		fmt.Println(lang + " language is not supported\nsupported languages:")
-		for _, v := range langs {
-			fmt.Println(v)
-		}
-		os.Exit(0)
-	}
-}
-
-func main() {
-	defaultLanguage := "en"
-	supportedLanguages := []string{"ar", "cn", "de", "en", "es", "fr", "id", "it", "jp", "ko", "pt", "ru", "th", "tr", "tw", "vi"}
-	if len(os.Args) > 1 {
-		arg := os.Args[1]
-		items := getItems(arg)
-		checkLanguageSupport(supportedLanguages, arg)
-		outputItem(items, supportedLanguages, arg, arg == defaultLanguage)
-	} else {
-		for _, lang := range supportedLanguages {
-			items := getItems(lang)
-			checkLanguageSupport(supportedLanguages, lang)
-			outputItem(items, supportedLanguages, lang, lang == defaultLanguage)
-		}
-	}
+func WriteFile(path string, data []byte, perm fs.FileMode) error {
+	return ioutil.WriteFile(path, data, perm)
 }
