@@ -1,4 +1,5 @@
 import { h, text, app, memo } from "../modules/js/hyperapp.js";
+import "./index.css"
 
 const onRoute = () => {
   const pathname = window.location.pathname;
@@ -6,7 +7,7 @@ const onRoute = () => {
 };
 
 window.history.pushState = () => {
-  console.log("pushState");
+  console.log("pushjState");
   onRoute();
 };
 
@@ -60,6 +61,7 @@ app({
       h("button", { onclick: Increment }, text("+1 to counter")),
       h("button", { onclick: ChangeUrl }, text("change")),
       h("button", { onclick: ToHome }, text("change")),
+      h("p", { class: "container" }, text(`Counter: ${state.counter}`)),
       h("p", {}, text(`Counter: ${state.counter}`)),
       h("p", {}, text("Regular view showing list:")),
       listView(state.list),

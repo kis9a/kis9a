@@ -16,7 +16,7 @@
 - [ ] /kis9a /snippets rust basic syntax
 - [ ] /kis9a /uml usecase and basic syntaxes search.
 - [ ] k/kis9a <https://zenn.dev/mebiusbox/books/22d4c1ed9b0003>
-- [ ] /is9a buy me a cofee to cooperation to github and supporter.
+- [ ] /us9a buy me a cofee to cooperation to github and supporter.
 - [ ] /kis9a design to minimal and modern.
 - [ ] gh-pages script rewriting with option to contain ignore files.
 - [ ] hyperapp version controll cli with golang.
@@ -115,4 +115,39 @@
 - [Introducing gRPC Support with NGINX 1.13.10 - NGINX](https://www.nginx.com/blog/nginx-1-13-10-grpc/)
 - [Basics tutorial | Go | gRPC](https://grpc.io/docs/languages/go/basics/)
 - [GitHub - grpc/grpc-web: gRPC for Web Clients](https://github.com/grpc/grpc-web)
-- [NginxにgRPCとHTTP/1.1の共存の設定をする  - Qiita](https://qiita.com/mikankitten/items/f1b8660c73f9cecabfb0)
+- [Nginx に gRPC と HTTP/1.1 の共存の設定をする - Qiita](https://qiita.com/mikankitten/items/f1b8660c73f9cecabfb0)
+
+improve markdown editting.<!--{{{-->
+
+- golang vim plugin 機構.
+- <https://github.com/SidOfc/mkdx>
+- markdown previewer with golang
+- golang ast vim script and fold to slides.
+  <https://doriankarter.com/customize-vims-gx-mapping/>
+  <https://github.com/stsewd/gx-extended.vim>
+- vim terminalize improvement.
+- [vimscript - Can I pass a custom string to the &#39;gx&#39; command? - Vi and Vim Stack Exchange](https://vi.stackexchange.com/questions/744/can-i-pass-a-custom-string-to-the-gx-command)
+- [Best of VIM Tips, gVIM's Key Features zzapper](https://www.ele.uri.edu/faculty/vetter/Other-stuff/vi/vimtips.html)
+[]
+<!--}}}-->
+
+- [ ] /saveandrun release with github actions
+- [ ] /saveandrun how register golang pkg.
+- [ ] read [【個人的】チーム開発における GitHub Organization (Free) の設定と運用ルール](https://zenn.dev/nekocodex/articles/a9163b6f935b6d)
+- [ ] /infrabuilder tf-exec state check.
+- [ ] /infrabuilder infra command check is exsist env.
+- [ ] /infrabuilder command line flags self documentation.
+- [ ] /infra connect with static ip alternative
+- [ ] /infra difference elastic ip and domain.
+
+- read <https://github.com/loteoo/hyperapp-rocks>
+- read <https://loteoo.github.io/hyperapp-todolist/>
+- read <https://github.com/loteoo/hyperstatic>
+- read <https://github.com/tangfei-china/hugo-search-fast>
+- read <https://qiita.com/unokun/items/dcf3ed4fbc4f532f664a>
+- read <https://zenn.dev/syumai/articles/77bc12aca9b654>
+- read <https://zenn.dev/nobonobo/articles/e0af4e8afc6c38b42ae1#http%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E5%87%A6%E7%90%86>
+- read <https://github.com/snipem/monako>
+- read <https://github.com/tangfei-china/hugo-search-fas>
+- read <https://github.com/fubarhouse/ansible-role-golang>
+- read <https://zenn.dev/endo/articles/f893ced432a9d2db8a5b#ansible%E6%A7%8B%E7%AF%89>

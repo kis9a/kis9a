@@ -9,6 +9,6 @@ published: false
 
 # zenn
 
-ZENNに敬意をこめて。  
+ZENN に敬意をこめて。
 
 💩

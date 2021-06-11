@@ -12,7 +12,7 @@ import {
 } from "../../components/icons.js";
 
 const getIndexesJson = Http({
-  url: "../data/memos-indexes.json",
+  url: "/data/memos-indexes.json",
   response: "json",
   action: (state, indexes) => {
     initialState[0].indexes = indexes;
@@ -25,7 +25,7 @@ const getIndexesJson = Http({
 
 const getContent = (index) => {
   return Http({
-    url: `../memos/${index}`,
+    url: `/data/memos/${index}`,
     response: "text",
     action: (state, content) => {
       return {

@@ -7,6 +7,7 @@
 <image width="600px" class="7day language-percent" src="https://wakatime.com/share/@824f1cc9-071d-465b-94ef-a2a0c6275122/9d587a33-8e0a-41c1-b239-c0eac7db7a6f.svg"></image>
 
 <image width="600px" class="7day language-bar" src="https://wakatime.com/share/@824f1cc9-071d-465b-94ef-a2a0c6275122/13e9364d-c5a9-43cb-b321-e37f1561787c.svg"></image>
+
 </details>
 
 </br>
@@ -18,6 +19,7 @@
 <image width="600px" class="30day language-percent" src="https://wakatime.com/share/@824f1cc9-071d-465b-94ef-a2a0c6275122/911648fd-88dc-4f20-b852-f2fad8aa9484.svg"></image>
 
 <image width="600px" class="30day language-bar" src="https://wakatime.com/share/@824f1cc9-071d-465b-94ef-a2a0c6275122/1f25fb50-e148-4be7-a3d8-fd9ca135167d.svg"></image>
+
 </details>
 
 </br>
@@ -29,6 +31,7 @@
 <image width="600px" class="last-year language-percent" src="https://wakatime.com/share/@824f1cc9-071d-465b-94ef-a2a0c6275122/4177d16b-6112-44b0-aa53-b39fc524390e.svg"></image>
 
 <image width="600px" class="last-year language-bar" src="https://wakatime.com/share/@824f1cc9-071d-465b-94ef-a2a0c6275122/1a11a291-518b-4bf9-abc1-5dfd4a57b02b.svg"></image>
+
 </details>
 
 <br>

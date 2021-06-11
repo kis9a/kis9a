@@ -100,3 +100,16 @@ export GOBIN=$HOME/bin
 export GOMODCACHE=$HOME/.cache/go_mod # Go 1.15 から利用可能
 
 そのため、例えば ~/bin を使いたい場合は GOBIN=$HOME/bin と指定することにより $GOPATH/bin から開放されます。
+
+- [GitHub - sekky0905/Go_equivalence: Go の等値と等価](https://github.com/sekky0905/Go_equivalence)
+  等値を確認したい時
+  &struct でもって、比較する。アドレスを比較し、指しているものが「完全に同一か」どうかを確認する。&struct1 == &struct2 を用いる。(アドレスを比較すので&をつけてつけて比較) reflect.DeepEqual(&struct1, &struct2) は一見等値に見えるが、そうではないので注意!
+
+等価を確認したい時
+struct でもって、比較する。アドレスは別で良くて、単純に指しているものが「同じ内容か」どうかを確認する。struct1 == struct2 か reflect.DeepEqual(struct1, struct2) だが、後者を使用した方がよさそう。
+
+- [Why Generics? - The Go Blog](https://blog.golang.org/why-generics)
+
+golang module management.
+
+- [GitHub - imdario/mergo: Mergo: merging Go structs and maps since 2013.](https://github.com/imdario/mergo)
