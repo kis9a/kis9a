@@ -43,7 +43,6 @@ func init() {
 
 	flag.BoolVar(&o.Version, "version", false, "output version information and exit")
 	flag.StringVar(&o.UserName, "name", "", "describe")
-	fmr.Println("hell")
 }
 
 func main() {
