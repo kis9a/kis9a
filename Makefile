@@ -28,79 +28,11 @@ push: ## push ${dir}
 	@git commit -m "${dir}: update ${DATE}"
 	@git push
 
-test-staged:
-	@echo "start"
-	@make check-staged
-	@echo "end"
-
 check-staged:
 	@git status --short | grep '^\w.' # show staged files or error stop
 
 images-resize: ## images resize
 	@ls ./images | xargs -I {} sips -Z 480 images/{}
-
-images-format: ## images format
-	# (cd ./images; ls -1 *.jpg | xargs -n 1 bash -c 'convert "$0" "${0%.jpg}.png"')
-	# (cd ./images; ls | xargs -I {} -n 1 bash -c 'sips -s format ')
-
-memos2json: ## memos export json
-	@./sources/utiles/utiles
-	# MEMO if only names: @tree memos -J | jq '.[0].contents | .[] | { "name": .name }'  > ./sources/data/memos.json
-	# @bash ./sources/utiles/memos2json.sh
-	# @go run ./sources/utiles/memos2json.go
-	# @go run ./sources/utiles/memos2json.go all
-
-push-images: ## push optimized images
-	@make images-resize
-	@make images-format
-	@git reset
-	@git add ./images/*
-	@make check-staged
-	@git commit -m "images: update ${DATE}"
-	@git push
-
-push-sources: ## push sources
-	@git reset
-	@git add ./sources/*
-	@make check-staged
-	@git commit -m "sources: update ${DATE}"
-	@git push
-
-push-waka: ## push waka
-	@git reset
-	@git add ./waka/*
-	@make check-staged
-	@git commit -m "waka: update ${DATE}"
-	@git push
-
-push-memos: ## push memos with build
-	@git reset
-	@git add ./memos/*
-	@make check-staged
-	@git commit -m "memos: update ${DATE}"
-	@git push
-	@make ghpush
-
-push-tasks: ## push tasks
-	@git reset
-	@git add ./tasks/*
-	@make check-staged
-	@git commit -m "tasks: udpate ${DATE}"
-	@git push
-
-push-zenn: ## push zenn
-	@git reset
-	@git add ./zenn/*
-	@make check-staged
-	@git commit -m "zenn: update ${DATE}"
-	@git push
-
-push-snippets: ## push snippets
-	@git reset
-	@git add ./snippets/*
-	@make check-staged
-	@git commit -m "snippets: update ${DATE}"
-	@git push
 
 publish-sources: ## publish sources
 	@rm -rf sources/memos
@@ -116,17 +48,12 @@ publish-zenn: ## publish zenn
 
 link:
 	@$(foreach val, $(LINKFILES), ln -sfnv $(abspath $(val)) $(PROFILE_PATH)/sources/dist/data/$(val);)
-	@ln -sfnv $(PROFILE_PATH)/sources/bin $(GOPATH)/sources/$(PROFILE)/bin
-	@ln -sfnv $(PROFILE_PATH)/snippets/go $(GOPATH)/sources/$(PROFILE)/snippets
 
 unlink:
 	@$(foreach val, $(LINKFILES), unlink $(PROFILE_PATH)/sources/dist/data/$(val);)
-	@unlink $(PROFILE_PATH)/sources/bin
-	@unlink -sfnv $(PROFILE_PATH)/snippets/go
 
 serve-sources: ## serve sources
-	# -@(cd ./sources; which live-server >/dev/null && live-server --port=9000 &)
-	# -@(cd ./sources; which live-server >/dev/null || npx live-server --port=9000 &)
+	@kis9a server
 
 serve-zenn: ## serve zenn
 	-@(which zenn >/dev/null && (cd ./zenn; zenn preview -p 7000 &))
