@@ -241,7 +241,7 @@ func getFileType(path string) FileType {
 	case ".css":
 		return CSS
 	case ".html":
-		return CSS
+		return HTML
 	case ".json":
 		return JSON
 	case ".svg":

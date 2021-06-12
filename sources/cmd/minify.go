@@ -5,7 +5,6 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/evanw/esbuild/pkg/api"
 	"github.com/tdewolff/minify/v2"
 	"github.com/tdewolff/minify/v2/css"
 	"github.com/tdewolff/minify/v2/html"
@@ -88,29 +87,6 @@ func getMinifyRW(path string) (*os.File, *os.File, error) {
 		return r, w, err
 	}
 	return r, w, err
-}
-
-func bundleJS(path string) error {
-	var err error
-	rp, err := filepath.Rel(minifyWalkBase, path)
-	if err != nil {
-		return err
-	}
-	wp := filepath.Join(paths.Dist, rp)
-	result := api.Build(api.BuildOptions{
-		EntryPoints:       []string{path},
-		Outfile:           wp,
-		Bundle:            true,
-		Write:             true,
-		MinifyIdentifiers: true,
-		MinifySyntax:      true,
-		MinifyWhitespace:  true,
-	})
-
-	if len(result.Errors) > 0 {
-		os.Exit(1)
-	}
-	return err
 }
 
 func minifyJS(m *minify.M, path string) error {

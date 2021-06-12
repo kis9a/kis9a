@@ -1,4 +1,4 @@
-import { h, text, app, memo } from "../modules/js/hyperapp.js";
+import { h, text, app, memo } from "/modules/js/hyperapp.js";
 import "./index.css"
 
 const onRoute = () => {

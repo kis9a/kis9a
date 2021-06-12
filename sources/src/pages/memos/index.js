@@ -1,7 +1,7 @@
-import { app, h, text } from "../../modules/js/hyperapp.js";
-import snarkdown from "../../modules/js/snarkdown.js";
-import { Header } from "../../components/header.js";
-import { Http } from "../../modules/js/Http.js";
+import { app, h, text } from "/modules/js/hyperapp.js";
+import snarkdown from "/modules/js/snarkdown.js";
+import { Header } from "/components/header";
+import { Http } from "/modules/js/Http.js";
 import {
   svg_top,
   svg_close,
@@ -9,7 +9,7 @@ import {
   svg_share,
   svg_raw,
   svg_memo,
-} from "../../components/icons.js";
+} from "../../components/icons";
 
 const getIndexesJson = Http({
   url: "/data/memos-indexes.json",
