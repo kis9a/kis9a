@@ -72,7 +72,6 @@
 
 ## Productivity·Tools
 
-- [ ] vim toggle terminal adjustments -> idea from merucari go vim live.
 - [ ] tour of golang to one file to reference. <https://tour.golang.org/list>
 - [ ] obsstrin blog graph ui create in javascript <https://minerva.mamansoft.net/IDEA/IntelliJ+IDEA>
 - [ ] memos/ link system like vim when snarkdown. and relationship.
