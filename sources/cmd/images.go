@@ -43,10 +43,11 @@ func images2Png() {
 	}
 	for _, f := range fs {
 		fname := f.Name()
+		fbase := filepath.Base(fname)
 		ext := filepath.Ext(fname)
 		if ext != ".png" {
 			inputPath := filepath.Join(paths.Images, f.Name())
-			pngfs := changeExt(fname, ".png")
+			pngfs := changeExt(fbase, ".png")
 			outputPath := filepath.Join(paths.Images, pngfs)
 			err = imageConvert(inputPath, outputPath)
 			if err != nil {
