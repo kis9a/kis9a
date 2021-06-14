@@ -151,3 +151,18 @@ improve markdown editting.<!--{{{-->
 - read <https://github.com/tangfei-china/hugo-search-fas>
 - read <https://github.com/fubarhouse/ansible-role-golang>
 - read <https://zenn.dev/endo/articles/f893ced432a9d2db8a5b#ansible%E6%A7%8B%E7%AF%89>
+
+- [ ] /kis9a study hugo pwa. manifestjson, service workder.
+- [ ] speed is great <https://naberhausj.com/> this is lighthousse 100 score. -> try this <https://github.com/JosephNaberhaus/naberhausj.com>
+- [ ] /kis9a /src top page animation <https://github.com/liabru/matter-js>
+- [ ] build a dependency file lists and draw graphical animation like obsstrin.
+- [ ] go as CGI + nginx -> go as microservice. docker, kubernetes. <https://github.com/hashicorp/terraform-exec/blob/main/.github/dependabot.yml>
+- [ ] /ev-devops saveAndRun hook to who no vscode user.
+- [ ] /webrootdev saveAndRun minify static content and output /webroot to user.
+
+- lighthouse, PageSpeed insights 項目を見る
+- nav.kis9a.com の改修 -> purejs での再現 -> minify, imgbot, preformance.
+- github sarch stripe topic
+- bank integration <https://github.com/JohnStarich/sage>
+- <https://github.com/JohnStarich/go/tree/master/gopages>
+- <https://github.com/tschaub/gh-pages>@3.00 -> rewite with golang

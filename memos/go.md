@@ -113,3 +113,5 @@ struct でもって、比較する。アドレスは別で良くて、単純に�
 golang module management.
 
 - [GitHub - imdario/mergo: Mergo: merging Go structs and maps since 2013.](https://github.com/imdario/mergo)
+
+learn golang topics <https://github.com/pathbox/learning-go/tree/dc1e02df7594f394d559c1fcf466a817473d6ad2/src>
