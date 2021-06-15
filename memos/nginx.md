@@ -75,3 +75,9 @@ C10K 問題
 /var/www/html は、Web サーバーのデフォルトのルートフォルダーです。 Apache.conf ファイル（通常/etc/Apache/conf にあります）を編集し、DocumentRoot 属性を変更することで、任意のフォルダーに変更できます（ http：// httpd .Apache.org/docs/current/mod/core.html＃documentroot その情報について）
 
 <https://www.tecmint.com/useful-nginx-command-examples/>
+
+systemctl start nginx
+systemctl status nginx
+systemctl stop nginx
+sudo systemctl reload nginx
+sudo systemctl enable nginx
