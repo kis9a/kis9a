@@ -51,3 +51,7 @@ sample
   ブラウザが増えた場合に、ブラウザ側の負担が P2P に比べて少ない
   SFU 側では画像の加工などは行わないため、SFU 自体の負担は低い
   Twilio Video の「Group」「Group-small」で利用される方式
+
+  <https://webrtc.ecl.ntt.com/>
+
+- [WebRTC を今から学ぶ人に向けて](https://zenn.dev/voluntas/scraps/82b9e111f43ab3)
