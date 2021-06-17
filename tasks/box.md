@@ -1,167 +1,124 @@
-## Infrabuilder
-
-- [ ] code generator cli. ./infra create <option> command
-- [ ] 構文解析 terraform with golang.
-
-## Frontend
-
-- [ ] /kis9a tasks vim syntax highlighting
-- [ ] /kis9a 512 > icons generator golang, shellscript.
-- [ ] /kis9a images list view init.
-- [ ] /kis9a rss feed with pure js test zenn post.
-- [ ] /kis9a add draw/ with javascript. reference dev.to.
-- [ ] /kis9a /snippets plantuml syntaxs collection to can actually use with scrooloose/vim-slumlord.
-- [ ] /kis9a /src content search with loading.
-- [ ] /kis9a /src manage common meta-tags with js. -> go template load html component.
-- [ ] /kis9a /snippets rust basic syntax
-- [ ] /kis9a /uml usecase and basic syntaxes search.
-- [ ] k/kis9a <https://zenn.dev/mebiusbox/books/22d4c1ed9b0003>
-- [ ] /us9a buy me a cofee to cooperation to github and supporter.
-- [ ] /kis9a design to minimal and modern.
-- [ ] gh-pages script rewriting with option to contain ignore files.
-- [ ] hyperapp version controll cli with golang.
-- [ ] code reading superfine. <https://github.com/jorgebucaran/superfine/> - [x] add snippets.
-- [ ] [Go 言語の golang/go パッケージで初めての構文解析 - Qiita](https://qiita.com/po3rin/items/a19d96d29284108ad442)
-- [ ] [Go で Headless browser を使い Client Side Rendering を Cloud Run で動かす](https://zenn.dev/0gm/articles/go_headless-browser_cloud-run)
-- [ ] [もっと楽して式の評価器を作る #golang - Qiita](https://qiita.com/tenntenn/items/590caa61b9701d2ada23)
-- [ ] [抽象構文木（AST）をいじってフォーマットをかける #golang - Qiita](https://qiita.com/tenntenn/items/8953f2ae80c610b353c8)
-- [ ] [AST を取得する方法を調べる #golang - Qiita](https://qiita.com/tenntenn/items/13340f2845316532b55a)
-- [ ] [Golang で Markdown TOC 作成ツールを作り直してみた - stamemo](https://stakiran.hatenablog.com/entry/2019/06/19/072427)
-
-## Interprinter
-
-- [ ] 字句解析 golang
-<!-- - [ ] -->
-
-## DevOps
-
-- [ ] benchmarking with docker <https://github.com/okdyy75/bench-docker>
-- [ECS 運用のノウハウ - Qiita](https://qiita.com/naomichi-y/items/d933867127f27524686a)
-- [OpenAI API](https://beta.openai.com/examples)
-- [Terraform でサーバーレスな会員制サイトを構築する - Qiita](https://qiita.com/okubot55/items/fa0625bb98ffa771cdc4)
-- [ ] miniapp infrastructure with lightsail with terraform.
-- [ ] org scheme mini application with aws lightsail.
-- [ ] tfsec <https://zenn.dev/aquamarinearia/articles/853ac65b62de2f>
-- [ ] read [Terragrunt によるシステム管理](https://zenn.dev/aquamarinearia/articles/56202d4ae825dd)
-- [ ] devops upload s3 cli golang and aws sdk.
-- [ ] devops dockerlize
-- [ ] set detail goal and iterations scheme -> pkis9a repo.
-
-## Backend
-
-- [ ] nginx + golang
-
-## Analytics
-
-- [x] [シェルと git で残業コミットを調べる - Qiita](https://qiita.com/310ma3/items/a44fee242c2076053834)
+- /ev-devops saveAndRun hook to who no vscode user.
+- /infra connect with static ip alternative
+- /infra difference elastic ip and domain.
+- /infrabuilder command line flags self documentation.
+- /infrabuilder infra command check is exsist env.
+- /infrabuilder tf-exec state check.
+- /kis9a /snippets plantuml syntaxs collection to can actually use with scrooloose/vim-slumlord.
+- /kis9a /snippets rust basic syntax
+- /kis9a /src content search with loading.
+- /kis9a /src manage common meta-tags with js. -> go template load html component.
+- /kis9a /src top page animation <https://github.com/liabru/matter-js>
+- /kis9a /uml usecase and basic syntaxes search.
+- /kis9a 512 > icons generator golang, shellscript.
+- /kis9a add draw/ with javascript. reference dev.to.
+- /kis9a design to minimal and modern.
+- /kis9a images list view init.
+- /kis9a rss feed with pure js test zenn post.
+- /kis9a study hugo pwa. manifestjson, service workder.
+- /kis9a tasks vim syntax highlighting
+- /saveandrun how register golang pkg.
+- /saveandrun release with github actions
+- /us9a buy me a cofee to cooperation to github and supporter.
+- /webrootdev saveAndRun minify static content and output /webroot to user.
+- 5 Most Difficult Programming Languages of the World <https://zenn.dev/e99h2121/articles/0ece8217c6c091>
+- <https://astaxie.gitbooks.io/build-web-application-with-golang>
+- <https://doriankarter.com/customize-vims-gx-mapping/>
+- <https://github.com/JohnStarich/go/tree/master/gopages>
 - <https://github.com/MacroPower/wakatime_exporter>
-- <https://github.com/lowlighter/metrics>
-- [ ] wakatime issue each data json
-- [ ] wakatime search github actions example
-- [ ] wakatime tracking analytics by go scripting.
-- [ ] wakatime tracking analytics update with some actions.
-- [ ] wakatime tearm development usage and draw scraping idea.
-
-## Algorithms
-
-- [ ] <https://github.com/fabianishere/brainfuck>
-- [ ] <https://github.com/llathasa-veleth/vim-brainfuck>
-- [ ] ~~leetcode termplate and snippet algorithms.~~ --> go algorithms
-- [ ] プログラムの高速化のための最適化技法 memolize, etc...
-- [AtCoder 黄色を目指してやってきたこと - Qiita](https://qiita.com/hamamu/items/2e342d46d9f54732d42c)
-
-## Productivity·Tools
-
-- [ ] tour of golang to one file to reference. <https://tour.golang.org/list>
-- [ ] obsstrin blog graph ui create in javascript <https://minerva.mamansoft.net/IDEA/IntelliJ+IDEA>
-- [ ] memos/ link system like vim when snarkdown. and relationship.
-- [ ] Maximize parallelism golang.
-- [ ] search mdx parser javascript and customize.
-- [Go で Headless browser を使い Client Side Rendering を Cloud Run で動かす](https://zenn.dev/0gm/articles/go_headless-browser_cloud-run)
-- [ ] <https://note.hiko1129.com/1577762164534/>
-- [ ] zennzennzennse
-- [ ] untracked file, and keybindings switch terminal color mode.
-- [ ] vim plugin one color. background light or dark. when dark front text is color.
-- [ ] terragrunt website configuration <https://github.com/gruntwork-io/terragrunt/tree/master/docs>
-
-## Post output
-
-## Golang
-
-- [ ] golang rune() [Go の rune を理解するための Unicode 知識 - Qiita](https://qiita.com/seihmd/items/4a878e7fa340d7963fee)
-- [ ] how to overwrite variables in terraform.
-- [ ] [mapstructure を使って複雑な構造の JSON を構造体にマッピングする - Qiita](https://qiita.com/syumai/items/9e2441b0e8fda8281fdf)
-- read [Go を学ぶときにつまずきやすいポイント FAQ | フューチャー技術ブログ](https://future-architect.github.io/articles/20190713/)
-- read [Go で Web アプリ開発時にあるあるだったレビューコメント | フューチャー技術ブログ](https://future-architect.github.io/articles/20200709/)
-- [ ] [「Go 初心者が気を付けること」の解説](https://zenn.dev/nobonobo/articles/e0af4e8afc6c38b42ae1)
-- [ ] read <https://golang.org/doc/effective_go>
-- [Quick start | Go | gRPC](https://grpc.io/docs/languages/go/quickstart/)
-- [ ] <https://astaxie.gitbooks.io/build-web-application-with-golang>
-- [ ] read http3 expandained <https://http3-explained.haxx.se/ja>
-- [ ] grpc golang <https://qiita.com/mikankitten/items/f1b8660c73f9cecabfb0>
-- [ ] Cross compile with golang
-- [【Golang】フィボナッチ数列をメモ化や積み上げ式で解く - Qiita](https://qiita.com/ShrimpF/items/2f50a0b76d1cee29f0b3)
-- [Go 言語で作るマリオ風 2D ゲーム - Qiita](https://qiita.com/KMim/items/aebb9d7a9116bf6294b3)
-- [ ] 5 Most Difficult Programming Languages of the World <https://zenn.dev/e99h2121/articles/0ece8217c6c091>
-
-## Server
-
-<https://www.digitalocean.com/pricing>
-<https://www.conoha.jp/wing/?btn_id=wing-glonavi_wing>
-<https://github.com/grpc-ecosystem/grpc-gateway>
-
-- [NGINX による gRPC 通信のロードバラシング - au Kabucom Engineer Blog](https://engineering.kabu.com/entry/2020/11/24/192823)
-- [Introducing gRPC Support with NGINX 1.13.10 - NGINX](https://www.nginx.com/blog/nginx-1-13-10-grpc/)
-- [Basics tutorial | Go | gRPC](https://grpc.io/docs/languages/go/basics/)
-- [GitHub - grpc/grpc-web: gRPC for Web Clients](https://github.com/grpc/grpc-web)
-- [Nginx に gRPC と HTTP/1.1 の共存の設定をする - Qiita](https://qiita.com/mikankitten/items/f1b8660c73f9cecabfb0)
-
-improve markdown editting.<!--{{{-->
-
-- golang vim plugin 機構.
 - <https://github.com/SidOfc/mkdx>
-- markdown previewer with golang
-- golang ast vim script and fold to slides.
-  <https://doriankarter.com/customize-vims-gx-mapping/>
-  <https://github.com/stsewd/gx-extended.vim>
-- vim terminalize improvement.
-- [vimscript - Can I pass a custom string to the &#39;gx&#39; command? - Vi and Vim Stack Exchange](https://vi.stackexchange.com/questions/744/can-i-pass-a-custom-string-to-the-gx-command)
+- <https://github.com/fabianishere/brainfuck>
+- <https://github.com/grpc-ecosystem/grpc-gateway>
+- <https://github.com/llathasa-veleth/vim-brainfuck>
+- <https://github.com/lowlighter/metrics>
+- <https://github.com/stsewd/gx-extended.vim>
+- <https://github.com/tschaub/gh-pages>@3.00 -> rewite with golang
+- <https://note.hiko1129.com/1577762164534/>
+- <https://www.conoha.jp/wing/?btn_id=wing-glonavi_wing>
+- <https://www.digitalocean.com/pricing>
+- Cross compile with golang
+- Maximize parallelism golang.
+- [AST を取得する方法を調べる #golang - Qiita](https://qiita.com/tenntenn/items/13340f2845316532b55a)
+- [AtCoder 黄色を目指してやってきたこと - Qiita](https://qiita.com/hamamu/items/2e342d46d9f54732d42c)
+- [Basics tutorial | Go | gRPC](https://grpc.io/docs/languages/go/basics/)
 - [Best of VIM Tips, gVIM's Key Features zzapper](https://www.ele.uri.edu/faculty/vetter/Other-stuff/vi/vimtips.html)
-[]
-<!--}}}-->
-
-- [ ] /saveandrun release with github actions
-- [ ] /saveandrun how register golang pkg.
-- [ ] read [【個人的】チーム開発における GitHub Organization (Free) の設定と運用ルール](https://zenn.dev/nekocodex/articles/a9163b6f935b6d)
-- [ ] /infrabuilder tf-exec state check.
-- [ ] /infrabuilder infra command check is exsist env.
-- [ ] /infrabuilder command line flags self documentation.
-- [ ] /infra connect with static ip alternative
-- [ ] /infra difference elastic ip and domain.
-
+- [ECS 運用のノウハウ - Qiita](https://qiita.com/naomichi-y/items/d933867127f27524686a)
+- [GitHub - grpc/grpc-web: gRPC for Web Clients](https://github.com/grpc/grpc-web)
+- [Go で Headless browser を使い Client Side Rendering を Cloud Run で動かす](https://zenn.dev/0gm/articles/go_headless-browser_cloud-run)
+- [Go で Headless browser を使い Client Side Rendering を Cloud Run で動かす](https://zenn.dev/0gm/articles/go_headless-browser_cloud-run)
+- [Go 言語の golang/go パッケージで初めての構文解析 - Qiita](https://qiita.com/po3rin/items/a19d96d29284108ad442)
+- [Go 言語で作るマリオ風 2D ゲーム - Qiita](https://qiita.com/KMim/items/aebb9d7a9116bf6294b3)
+- [Golang で Markdown TOC 作成ツールを作り直してみた - stamemo](https://stakiran.hatenablog.com/entry/2019/06/19/072427)
+- [Introducing gRPC Support with NGINX 1.13.10 - NGINX](https://www.nginx.com/blog/nginx-1-13-10-grpc/)
+- [NGINX による gRPC 通信のロードバラシング - au Kabucom Engineer Blog](https://engineering.kabu.com/entry/2020/11/24/192823)
+- [Nginx に gRPC と HTTP/1.1 の共存の設定をする - Qiita](https://qiita.com/mikankitten/items/f1b8660c73f9cecabfb0)
+- [OpenAI API](https://beta.openai.com/examples)
+- [Quick start | Go | gRPC](https://grpc.io/docs/languages/go/quickstart/)
+- [Terraform でサーバーレスな会員制サイトを構築する - Qiita](https://qiita.com/okubot55/items/fa0625bb98ffa771cdc4)
+- [mapstructure を使って複雑な構造の JSON を構造体にマッピングする - Qiita](https://qiita.com/syumai/items/9e2441b0e8fda8281fdf)
+- [vimscript - Can I pass a custom string to the &#39;gx&#39; command? - Vi and Vim Stack Exchange](https://vi.stackexchange.com/questions/744/can-i-pass-a-custom-string-to-the-gx-command)
+- [「Go 初心者が気を付けること」の解説](https://zenn.dev/nobonobo/articles/e0af4e8afc6c38b42ae1)
+- [【Golang】フィボナッチ数列をメモ化や積み上げ式で解く - Qiita](https://qiita.com/ShrimpF/items/2f50a0b76d1cee29f0b3)
+- [シェルと git で残業コミットを調べる - Qiita](https://qiita.com/310ma3/items/a44fee242c2076053834)
+- [抽象構文木（AST）をいじってフォーマットをかける #golang - Qiita](https://qiita.com/tenntenn/items/8953f2ae80c610b353c8)
+- [もっと楽して式の評価器を作る #golang - Qiita](https://qiita.com/tenntenn/items/590caa61b9701d2ada23)
+- bank integration <https://github.com/JohnStarich/sage>
+- benchmarking with docker <https://github.com/okdyy75/bench-docker>
+- build a dependency file lists and draw graphical animation like obsstrin.
+- code generator cli. ./infra create <option> command
+- code reading superfine. <https://github.com/jorgebucaran/superfine/> - add snippets.
+- devops dockerlize
+- devops upload s3 cli golang and aws sdk.
+- gh-pages script rewriting with option to contain ignore files.
+- go as CGI + nginx -> go as microservice. docker, kubernetes. <https://github.com/hashicorp/terraform-exec/blob/main/.github/dependabot.yml>
+- golang ast vim script and fold to slides.
+- golang rune() [Go の rune を理解するための Unicode 知識 - Qiita](https://qiita.com/seihmd/items/4a878e7fa340d7963fee)
+- golang vim plugin 機構.
+- grpc golang <https://qiita.com/mikankitten/items/f1b8660c73f9cecabfb0>
+- how to overwrite variables in terraform.
+- hyperapp version controll cli with golang.
+- kis9a <https://zenn.dev/mebiusbox/books/22d4c1ed9b0003>
+- lighthouse, PageSpeed insights 項目を見る
+- markdown previewer with golang
+- memos/ link system like vim when snarkdown. and relationship.
+- miniapp infrastructure with lightsail with terraform.
+- nav.kis9a.com の改修 -> purejs での再現 -> minify, imgbot, preformance.
+- nginx + golang
+- obsstrin blog graph ui create in javascript <https://minerva.mamansoft.net/IDEA/IntelliJ+IDEA>
+- org scheme mini application with aws lightsail.
+- read <https://github.com/fubarhouse/ansible-role-golang>
 - read <https://github.com/loteoo/hyperapp-rocks>
-- read <https://loteoo.github.io/hyperapp-todolist/>
 - read <https://github.com/loteoo/hyperstatic>
-- read <https://github.com/tangfei-china/hugo-search-fast>
-- read <https://qiita.com/unokun/items/dcf3ed4fbc4f532f664a>
-- read <https://zenn.dev/syumai/articles/77bc12aca9b654>
-- read <https://zenn.dev/nobonobo/articles/e0af4e8afc6c38b42ae1#http%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E5%87%A6%E7%90%86>
 - read <https://github.com/snipem/monako>
 - read <https://github.com/tangfei-china/hugo-search-fas>
-- read <https://github.com/fubarhouse/ansible-role-golang>
+- read <https://github.com/tangfei-china/hugo-search-fast>
+- read <https://golang.org/doc/effective_go>
+- read <https://loteoo.github.io/hyperapp-todolist/>
+- read <https://qiita.com/unokun/items/dcf3ed4fbc4f532f664a>
 - read <https://zenn.dev/endo/articles/f893ced432a9d2db8a5b#ansible%E6%A7%8B%E7%AF%89>
-
-- [ ] /kis9a study hugo pwa. manifestjson, service workder.
-- [ ] speed is great <https://naberhausj.com/> this is lighthousse 100 score. -> try this <https://github.com/JosephNaberhaus/naberhausj.com>
-- [ ] /kis9a /src top page animation <https://github.com/liabru/matter-js>
-- [ ] build a dependency file lists and draw graphical animation like obsstrin.
-- [ ] go as CGI + nginx -> go as microservice. docker, kubernetes. <https://github.com/hashicorp/terraform-exec/blob/main/.github/dependabot.yml>
-- [ ] /ev-devops saveAndRun hook to who no vscode user.
-- [ ] /webrootdev saveAndRun minify static content and output /webroot to user.
-
-- lighthouse, PageSpeed insights 項目を見る
-- nav.kis9a.com の改修 -> purejs での再現 -> minify, imgbot, preformance.
-- github sarch stripe topic
-- bank integration <https://github.com/JohnStarich/sage>
-- <https://github.com/JohnStarich/go/tree/master/gopages>
-- <https://github.com/tschaub/gh-pages>@3.00 -> rewite with golang
+- read <https://zenn.dev/nobonobo/articles/e0af4e8afc6c38b42ae1#http%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E5%87%A6%E7%90%86>
+- read <https://zenn.dev/syumai/articles/77bc12aca9b654>
+- read [Go で Web アプリ開発時にあるあるだったレビューコメント | フューチャー技術ブログ](https://future-architect.github.io/articles/20200709/)
+- read [Go を学ぶときにつまずきやすいポイント FAQ | フューチャー技術ブログ](https://future-architect.github.io/articles/20190713/)
+- read [Terragrunt によるシステム管理](https://zenn.dev/aquamarinearia/articles/56202d4ae825dd)
+- read [【個人的】チーム開発における GitHub Organization (Free) の設定と運用ルール](https://zenn.dev/nekocodex/articles/a9163b6f935b6d)
+- read http3 expandained <https://http3-explained.haxx.se/ja>
+- search mdx parser javascript and customize.
+- set detail goal and iterations scheme -> pkis9a repo.
+- speed is great <https://naberhausj.com/> this is lighthousse 100 score. -> try this <https://github.com/JosephNaberhaus/naberhausj.com>
+- terragrunt website configuration <https://github.com/gruntwork-io/terragrunt/tree/master/docs>
+- tfsec <https://zenn.dev/aquamarinearia/articles/853ac65b62de2f>
+- tour of golang to one file to reference. <https://tour.golang.org/list>
+- untracked file, and keybindings switch terminal color mode.
+- vim plugin one color. background light or dark. when dark front text is color.
+- vim terminalize improvement.
+- wakatime issue each data json
+- wakatime search github actions example
+- wakatime tearm development usage and draw scraping idea.
+- wakatime tracking analytics by go scripting.
+- wakatime tracking analytics update with some actions.
+- zennzennzennse
+- ~~leetcode termplate and snippet algorithms.~~ --> go algorithms
+- 字句解析 golang
+- 構文解析 terraform with golang.
+- プログラムの高速化のための最適化技法 memolize, etc...

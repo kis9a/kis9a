@@ -108,6 +108,7 @@ func init() {
 	paths.MemosIndexesJson = filepath.Join(paths.Data, "/memos-indexes.json")
 	paths.ImagesIndexesJson = filepath.Join(paths.Data, "/images-indexes.json")
 
+	flag.Usage = showHelp
 	flag.CommandLine.Init("cmd", flag.ExitOnError)
 	cmdopts.Memos.FlagSet = flag.NewFlagSet("cmd memos", flag.ExitOnError)
 	cmdopts.Images.FlagSet = flag.NewFlagSet("cmd images", flag.ExitOnError)
@@ -122,6 +123,31 @@ func init() {
 	cmdopts.Minify.FlagSet.StringVar(&cmdopts.Minify.Target, "t", "all", "minify")
 
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
+
+	// escape
+	if len(os.Args) > 1 {
+		firstArg := os.Args[1]
+		if firstArg == "help" || isFlag(firstArg) {
+			showHelp()
+		}
+	} else {
+		showHelp()
+	}
+}
+
+func showHelp() {
+	visit := func(f *flag.Flag) {
+		fmt.Println(strings.Join([]string{"  -", f.Name, "\t", f.Usage}, ""))
+	}
+	fmt.Println("\nimages:")
+	cmdopts.Images.FlagSet.VisitAll(visit)
+	fmt.Println("\nmemos:")
+	cmdopts.Memos.FlagSet.VisitAll(visit)
+	fmt.Println("\ndelete:")
+	cmdopts.Minify.FlagSet.VisitAll(visit)
+	fmt.Println("\nserver:")
+	cmdopts.Server.FlagSet.VisitAll(visit)
+	os.Exit(0)
 }
 
 func main() {
@@ -250,9 +276,13 @@ func getFileType(path string) FileType {
 	return UNKNOWN
 }
 
-func is_yes(msg string) bool {
+func isYes(msg string) bool {
 	var r string
 	fmt.Println(strings.Join([]string{msg, " [y/n]"}, ""))
 	fmt.Scan(&r)
 	return r == "y" || r == "Y"
+}
+
+func isFlag(str string) bool {
+	return strings.HasPrefix(str, "-")
 }
