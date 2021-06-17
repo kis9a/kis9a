@@ -1,5 +1,5 @@
 import { h, text, app, memo } from "/modules/js/hyperapp.js";
-import "./index.css"
+import "./index.css";
 
 const onRoute = () => {
   const pathname = window.location.pathname;

@@ -1,4 +1,6 @@
-2021-06-17
+2021-06-17<!--{{{-->
+https://www.nginx.com/resources/wiki/start/topics/examples/full/
+lean as nginx + php server structure
 
 o adfadfadsfadsf
 o adfadsfadsf
@@ -15,11 +17,23 @@ x clean up memos and separate topics.
 - start sleep tracking.
 - start pay traking.
 - saveandrun
-x change to prepend task.
+  x change to prepend task.
 - images list view in me.kis9a.com
 - <https://github.com/GavinOB/Sleep_Cycle>
 
-<https://github.com/peterlundgren/vim-todo>
+2021-01-12 - yyyy-mm-dd - orange
+
+o (2) #new new task is added - green
+o (2) #neww new task is added - green
+x #done this task is done - gray
+~ stoped this task - gray
+r <https://github.com/kis9a/vim-gtd> - inside <> and start <http.\*\>
+r <https://github.com/peterlundgren/vim-todo>
+m this is memos
+
+- this task is idea - white
+- this task is new ideas - white
+<!--}}}-->
 
 ### 2021-06-02<!--{{{-->
 
