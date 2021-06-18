@@ -1,3 +1,42 @@
+<https://github.com/caixw/gobuild>
+<https://github.com/olebedev/on>
+<https://github.com/yaacov/observer>
+---
+
+Of course vim have similarly features, but make vim heavy.  
+So, I use core feature of vim, other have external.
+
+example:
+
+```
+~/.vimrc
+if !empty(glob("~/.vimrc.local"))
+  source ~/.vimrc.local
+endif
+
+~/.local.vimrc
+au BufWritePost *.lua,*.conf :!nginx -s reload
+au BufWritePost *.js,*.inc :!brew services restart httpd
+```
+
+2021-06-18
+WebRTC servey
+Argora 
+one day
+10 user x 100 min = 8$
+10000 user x 100 min = 800$
+User ごとに全ての
+Composition
+Agora calculates your billing based on the usage of all sessions under each project. The billing for each session equals the total sum of charges for all users in the session.
+At the end of each month, Agora adds up the usage duration (in seconds) of audio and video in each category, and divides them by 60 to get the respective service minutes (rounded up to the nearest integer). Then, Agora multiplies the service minutes by the corresponding pricing to get the cost of that month.
+Cost = audio charges + video charges = audio pricing × audio service minutes + video pricing × video service minutes
+If the user subscribes to multiple audio and video streams at the same time, the total service minutes per stream are not additive. For example:
+If User A subscribes to the video streams of both B and C for the same 10 minutes, A uses 10 minutes of video service.
+If User A subscribes to the audio stream of B, and video stream of C, both for the same 10 minutes, A also uses 10 minutes of video service.
+For more information, see How does Agora calculate service minutes?
+① Agora determines video category based on aggregate video resolution, which is the sum of resolutions of all the video streams a user subscribes to at the same time. For details, see Aggregate video resolution.
+Once a user joins an RTC channel from apps integrated with the Agora RTC SDK, the user subscribes to the audio and video streams sent by all other users in the channel by default, giving rise to usage and cost. The Agora RTC SDK includes the Agora Voice or Video SDK for native platforms and third-party frameworks.
+
 2021-06-17<!--{{{-->
 https://www.nginx.com/resources/wiki/start/topics/examples/full/
 lean as nginx + php server structure
