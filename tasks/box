@@ -1,9 +1,3 @@
-- /ev-devops saveAndRun hook to who no vscode user.
-- /infra connect with static ip alternative
-- /infra difference elastic ip and domain.
-- /infrabuilder command line flags self documentation.
-- /infrabuilder infra command check is exsist env.
-- /infrabuilder tf-exec state check.
 - /kis9a /snippets plantuml syntaxs collection to can actually use with scrooloose/vim-slumlord.
 - /kis9a /snippets rust basic syntax
 - /kis9a /src content search with loading.
