@@ -1,3 +1,15 @@
+└─987 /usr/bin/memcached -u memcached -p 11211 -m 64 -c 1024
+
+大人になってからの人間関係　信頼を深めるための３ステップ
+マニピュレーター（潜在的攻撃性パーソナリティ)
+503 trouble shutting
+HTTP 503とは”Service Unavailable”であり、一時的にサーバーにアクセスできないこと
+ターゲットグループのフロントにあるALB がSSL/TLS接続の終端であれば、ターゲットグループは80で受けます。
+一方、ターゲットグループのフロントがNLB であれば、ターゲットグループは443 となりますね。
+
+vpc + subnet を作る。
+
+- [Microtone Trainer](https://yuichkun.github.io/quarterToneTrainer/index.html)
 x /infrabuilder command line flags self documentation.
 x /ev-devops saveAndRun hook to who no vscode user.
 x /infra connect with static ip alternative
