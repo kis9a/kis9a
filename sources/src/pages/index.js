@@ -1,6 +1,7 @@
 import { h, text, app } from "/modules/js/hyperapp.js";
 import { Header } from "/components/header";
 import "./index.css";
+import "/modules/css/mvp.css";
 
 app({
   init: {},
@@ -12,5 +13,3 @@ app({
   subscriptions: () => {},
   node: document.getElementById("app"),
 });
-
-// history.replaceState(null, null, "/hoge")

@@ -32,9 +32,10 @@ func server(port string) {
 					return
 				}
 				if event.Op&fsnotify.Write == fsnotify.Write {
-					path := event.Name
-					bundleByFileType(path)
-					log.Println("Wrote", path)
+					bundle()
+					// path := event.Name
+					// bundleByFileType(path)
+					// log.Println("Wrote", path)
 				}
 			case err, ok := <-watcher.Errors:
 				if !ok {
