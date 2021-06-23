@@ -26,6 +26,7 @@ html {
   --width-card-medium: 460px;
   --width-card-wide: 800px;
   --width-content: 1080px;
+  --width-main: 980px;
 }
 
 /* Layout */
@@ -56,6 +57,9 @@ main {
 
 main {
   margin: 1.5rem auto;
+  margin-bottom: 4rem;
+  padding: 1rem 2rem;
+  max-width: var(--width-main);
 }
 
 .container {
@@ -129,7 +133,7 @@ nav {
   display: flex;
   font-weight: bold;
   justify-content: space-between;
-  margin-bottom: 3rem;
+  margin: 2rem 0;
 }
 
 nav ul {

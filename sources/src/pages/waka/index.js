@@ -7,20 +7,21 @@ import "./index.css";
 const getSvgs = Http({
   url: "/data/wakatime.json",
   response: "json",
-  action: (state, svgs) => {
+  action: (state, json) => {
+    pureState.svgs = json.svgs;
     return {
       ...state,
-      svgs: svgs.svgs || [],
+      svgs: json.svgs || [],
     };
   },
 });
 
-const state = {
-  svgs: {},
+const pureState = {
+  svgs: [],
 };
 
 const initSvgs = getSvgs;
-const initialState = [state, initSvgs];
+const initialState = [pureState, initSvgs];
 
 app({
   init: initialState,
@@ -31,13 +32,14 @@ app({
         h(
           "div",
           { class: "svgs" },
-          svgs.map((s) =>
-            h("div", { class: "item" }, [
-              h("img", { src: s.activity }),
-              h("img", { src: s.percent }),
-              h("img", { src: s.bar }),
-            ])
-          )
+          svgs &&
+            svgs.map((s) =>
+              h("div", { class: "item" }, [
+                h("img", { src: s.activity }),
+                h("img", { src: s.percent }),
+                h("img", { src: s.bar }),
+              ])
+            )
         ),
       ]),
     ]),

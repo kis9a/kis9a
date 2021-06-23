@@ -10,6 +10,8 @@ import {
   svg_raw,
   svg_memo,
 } from "../../components/icons";
+import "/modules/css/mvp.css";
+import "./index.css";
 
 const getIndexesJson = Http({
   url: "/data/memos-indexes.json",
@@ -209,9 +211,9 @@ onscroll = function () {
 app({
   init: initialState,
   view: ({ indexes, content, contents, inputValue, showIndexes, rawMode }) =>
-    h("main", { class: "main" }, [
+    h("div", { class: "container" }, [
       Header(),
-      h("div", { class: "container" }, [
+      h("main", {}, [
         h("div", { class: "inputs" }, [
           h("input", {
             type: "text",
