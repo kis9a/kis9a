@@ -63,7 +63,17 @@ const setContent = (state, event) => {
 const setInputValue = (state, event) => {
   const str = event.target.value;
   const indexes = onSearchIndex(state, str);
+  if (str === "") {
+    return { ...state, inputValue: str, indexes: indexes, showIndexes: false };
+  }
   return { ...state, inputValue: str, indexes: indexes, showIndexes: true };
+};
+
+const onInputFocus = (state) => {
+  if (state.inputValue === "") {
+    return { ...state, showIndexes: false };
+  }
+  return { ...state };
 };
 
 const setInputContent = (state, event) => {
@@ -219,6 +229,7 @@ app({
             type: "text",
             value: inputValue,
             oninput: setInputValue,
+            onfocus: onInputFocus,
             class: "index-search",
           }),
           h("input", {

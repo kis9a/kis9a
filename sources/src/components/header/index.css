@@ -12,3 +12,8 @@
   align-items: center;
   margin: auto 0;
 }
+
+.header-wrapper {
+  background-color: var(--color-shadow);
+  border: 1px solid var(--color-bg-secondary);
+}

@@ -1,0 +1,1 @@
+(()=>{function r(t,e){var n={},o;for(o in t)n[o]=t[o];for(o in e)n[o]=e[o];return n}function i(t,e){fetch(e.url,e.options).then(function(n){if(!n.ok)throw n;return n}).then(function(n){return n[e.response]()}).then(function(n){t(e.action,n)}).catch(function(n){t(e.error,n)})}function f(t){return[i,r({options:{},response:"json",error:t.action},t)]}})();

@@ -24,14 +24,16 @@ export const Header = () => {
   const c = routes.find((v) => {
     return parse(sn) === parse(v.href);
   });
-  return h("header", { class: "header" }, [
-    h("nav", {}, [
-      h("h1", { class: "logo" }, text("KIS9A")),
-      h(
-        "div",
-        { class: "links" },
-        routes.map((r) => Link(r.name, { active: r.name !== c.name }))
-      ),
+  return h("div", { class: "header-wrapper" }, [
+    h("header", {}, [
+      h("nav", {}, [
+        h("h1", { class: "logo" }, text("KIS9A")),
+        h(
+          "div",
+          { class: "links" },
+          routes.map((r) => Link(r.name, { active: r.name !== c.name }))
+        ),
+      ]),
     ]),
   ]);
 };
