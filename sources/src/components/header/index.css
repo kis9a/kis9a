@@ -1,0 +1,12 @@
+.logo {
+  margin: auto 1rem;
+  text-align: left;
+  max-width: var(--width-content);
+  letter-spacing: 0.2rem;
+  width: 100%;
+  display: flex;
+}
+
+.links {
+  display: flex;
+}
