@@ -163,6 +163,7 @@ syntax hilight
 :%s/^/\=line('.').". "
 
 " url parse<!--{{{-->
+
 # フォーマット：指定したパターンにマッチしない行を削除
 
 :%v/<パターン>/d
@@ -182,5 +183,8 @@ syntax hilight
 # 例２：相対 URL を絶対 URL に置換
 
 :%s/^\//http:\/\/b.hatena.ne.jp\//
+
 <!--}}}-->
 
+sudo yum -y install libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzipi
+./configure --disable-selinux --enable-cscope --enable-fontset --enable-gpm --enable-multibyte --enable-rubyinterp --enable-xim

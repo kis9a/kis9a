@@ -1,3 +1,50 @@
+https://zenn.dev/riku/books/36d9873ee1c0e6/viewer/9da6f5
+https://qiita.com/wasaooo/items/efa9915d365248233a2b
+https://github.com/Kong/kong
+https://github.com/dariubs/GoBooks
+https://github.com/starwing/lpath
+- OAuthについて学ぶ。
+- [YouTubeのURLを投げたら字幕だけ取り出してくれるオレオレAPIをつくる](https://zenn.dev/ukkz/articles/74330ba50757d9)
+- [ワタシ マク○ナル○ チョットデキル](https://zenn.dev/yabeyuji/articles/b35668585a0ddc)
+- [コンテナで試すポートフォワード](https://zenn.dev/b1essk/articles/port-forward-docker)
+- [GitHub - keitakn/cv: My resume and work resume](https://github.com/keitakn/cv)
+既存のプロジェクトに、Dockerfileが用意されている場合。
+ホストの環境でプログラムが正常に動くか確認、ホスト環境で開発を進め、
+定期的にDockerfile 環境で動作するかも確認する必要がある。
+
+
+2 [Go basic authentication]
+1 [Go Gin Docker AWSで完璧なTodoアプリを作る - Qiita](https://qiita.com/wasaooo/items/efa9915d365248233a2b)
+
+https://<ユーザ名>:<パスワード>@www.example.com/login
+- [少人数での爆速開発を目指してgolang×GCPの技術選定をした話](https://zenn.dev/sh_komine/articles/35527f84a2be3a)
+- why local: week for development surpport tools. - nvim.
+
+Rustの後にGo書くと「2022年にもなってぬるぽとか辛い」と思うしGoの後にNode触ると「開発環境構築地獄だし足速すぎ」と思うしNodeの後にDeno触ると「ライブラリ無さすぎるし根幹機能も足りないとこあって辛い」と思うしDenoの後にRust書くと「メモリ配置のためにMapするたびに型が変わるしimplかけるとこ限定的すぎて辛い」となるので、全て辛い
+
+sudo yum -y install libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip
+git clone https://github.com/neovim/neovim
+cd neovim
+make
+
+- [AWS EC2をゲーミングPCとして150時間プレイした感想 &#8211; icecream](https://troches.jp/contents/tech/730)
+sudo make install
+nvim (確認)
+mkdir ~/.config
+cd ~/.config
+mkdir nvim
+cd nvim
+
+- https://github.com/uji/dotfiles
+- https://zenn.dev/uji/articles/112da02adc7ff3
+- https://oki2a24.com/2020/11/16/develop-env-with-visual-studio-code-remote-container-or-vim-and-docker-compose-command/
+- [Developing inside a Container using Visual Studio Code Remote Development](https://code.visualstudio.com/docs/remote/containers)
+
+function docker-exec
+  set name (docker ps --format "{{.Names}}" | fzf)
+  docker exec -it $name $argv
+end
+
 - logo
 
 └─987 /usr/bin/memcached -u memcached -p 11211 -m 64 -c 1024
