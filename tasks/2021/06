@@ -1,5 +1,35 @@
+there
+
+Cache
+Templates
+Routing
+Middewares
+Sessions
+Mails
+Logging
+Authentication
+Database Querying
+Database Migrations
+upcomming
+
+Database CRUD
+Encryption
+I18n
+Validation
+Background Jobs
+Cron Jobs
+Deployment
+File Storage
+Security
+Test Helpers
+offered as plugins
+
+Auth (w/ signin, signup pages and users table)
+Admin (to manage arbitrary entity a la django admin)
+Forms (e.g. contact form, feedback form)
+Subscriptions Billing (manage stripe subscriptions and offer a billing page)
 https://zenn.dev/riku/books/36d9873ee1c0e6/viewer/9da6f5
-https://qiita.com/wasaooo/items/efa9915d365248233a2b
+https://github.com/kiasaki/weeb
 https://github.com/Kong/kong
 https://github.com/dariubs/GoBooks
 https://github.com/starwing/lpath
