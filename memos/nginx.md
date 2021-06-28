@@ -1,3 +1,17 @@
+- [３つの nginx をうまく使い分けよう〜nginx、OpenResty、Tengine〜 | メルカリエンジニアリング](https://engineering.mercari.com/blog/entry/2016-05-25-170108/)
+- [ハイパフォーマンス ngx_lua | メルカリエンジニアリング](https://engineering.mercari.com/blog/entry/2015-11-25-170049/)
+- [lua-nginx-module を使いこなす - Qiita](https://qiita.com/kz_takatsu/items/e94805a8e3cc285f9b33)
+- [Nginx を OpenID Connect の Relying Party として実装する - Qiita](https://qiita.com/kg0r0/items/954549ff0ea59c411f8a)
+
+> パフォーマンスやスケーラビリティが要求される様々なコンポーネントでnginxをヘビーに活用しています。例えば、
+
+コンテンツ配信／キャッシュ／リバースプロキシ／TLSターミネーション
+20,000 req/secオーバーのAPI（HTTPS）リクエストを捌くロードバランサ
+gRPC、Apache Solr、Gaurun等のミドルウェアのためのロードバランサ
+ngx_luaによるログ分析基盤のフロントエンド、ロードバランサやリバースプロキシの拡張
+といったものです。メルカリではこれらのコンポーネントをnginxやOpenRestyで用途に応じて使い分けながら構築・運用しています。
+
+
 -? | -h - コマンドラインパラメータのヘルプを表示する。
 -c file - デフォルトのファイルの代わりに別の設定 file を使用する。
 -g directives - グローバル設定ディレクティブを設定する。例えば、

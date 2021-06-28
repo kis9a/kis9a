@@ -1,0 +1,1 @@
+- [Chrome DevToolsを用いたメルカリWebのパフォーマンス計測 | メルカリエンジニアリング](https://engineering.mercari.com/blog/entry/2018-12-12-090156/)
