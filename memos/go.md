@@ -14,8 +14,10 @@ go mod tidy で、使われていない依存モジュールを削除する
 - [Go · GitHub](https://github.com/golang/)
 - [Packages - The Go Programming Language](https://golang.org/pkg/)
 
+- [Go で並行処理(基本編)｜ Go での並行処理を徹底解剖！](https://zenn.dev/hsaki/books/golang-concurrency/viewer/basicusage)
 - [go 言語の slice 操作をまとめてみた（shift したり push したり） - Qiita](https://qiita.com/egnr-in-5matroom/items/282aa2fd117aab9469bd)
-
+- [Go エラーハンドリング戦略](https://zenn.dev/nobonobo/articles/0b722c9c2b18d5)
+  <https://zenn.dev/nobonobo/articles/19c84c231aff46#map%E3%81%AE%E3%82%AD%E3%83%BC%E5%AD%98%E5%9C%A8%E5%88%A4%E5%AE%9A%E3%81%A8%E9%96%A2%E6%95%B0%E3%81%AE%E8%BF%94%E5%80%A4>
 - [サンプルで学ぶ Go 言語：Regular Expressions](https://www.spinute.org/go-by-example/regular-expressions.html)
 - [Go の言語仕様書精読のススメ 英語彙集](https://zenn.dev/hsaki/articles/gospecdictionary)
 - [Golang でプログレスバーを表示するためのパッケージ 3 選 - Qiita](https://qiita.com/Akazawa_Naoki/items/a63193e3ac4c8cd4f19a)
@@ -115,3 +117,103 @@ golang module management.
 - [GitHub - imdario/mergo: Mergo: merging Go structs and maps since 2013.](https://github.com/imdario/mergo)
 
 learn golang topics <https://github.com/pathbox/learning-go/tree/dc1e02df7594f394d559c1fcf466a817473d6ad2/src>
+
+モジュールとパッケージとは
+モジュール＝パッケージを一つまたは複数のサブパッケージを取りまとめたカタマリ。
+パッケージ＝フォルダ単位で単一ファイルまたは複数ファイルのカタマリ。
+サブパッケージ＝サブフォルダにおくだけで扱いはパッケージと同等。
+
+defer の呼ばれるタイミングを関数スコープより狭いスコープと勘違いする
+「ブロック単位」で動くと勘違いしがちなんですがあくまで関数(func 付随ブロック)単位で defer は処理されます。
+
+単独{...}
+for 付随ブロック
+if 付随ブロック、else ブロック
+switch 付随ブロック
+select 付随ブロック
+
+```
+type Hoge struct {
+	Field string
+}
+func func1() {
+	m := map[string]*Hoge{"hoge": &Hoge{}}
+	m["hoge"].Field = "hello"
+}
+func func2 () {
+	m := map[string]Hoge{"hoge": Hoge{}}
+	m["hoge"].Field = "hello"
+}
+- [「Go 初心者が気を付けること」の解説](https://zenn.dev/nobonobo/articles/e0af4e8afc6c38b42ae1)
+
+```
+
+func1 ではマップから取り出した値が構造体ポインタなので元の実体のフィールドに代入することはできます。func2 ではマップから取り出した値は構造体のコピーなのでそのフィールドを書き換えても元の値が書き換わることはありません。
+
+go2
+
+```
+package main
+
+import (
+	"fmt"
+)
+
+func ʔ[T any](cond bool, t, f T) T {
+	if cond {
+		return t
+	}
+	return f
+}
+
+func main() {
+	fmt.Println(ʔ(true, "yes", "no"))
+	fmt.Println(ʔ(false, "yes", "no"))
+}
+```
+
+<https://storage.googleapis.com/zenn-user-upload/rnaugoc5gva6ra9kkxzexjjgno2o>
+
+io.Reader , io.Writer の抽象性
+
+```
+func TranslateIntoGerman(r io.Reader) {
+	data := make([]byte, 300)
+	len, _ := r.Read(data)
+	str := string(data[:len])
+
+	result := strings.ReplaceAll(str, "Hello", "Guten Tag")
+	fmt.Println(result)
+}
+```
+
+```
+// ファイルの中身を読み込んで文字列置換する関数
+func FileTranslateIntoGerman(f *os.File) {
+	data := make([]byte, 300)
+	len, _ := f.Read(data)
+	str := string(data[:len])
+
+	result := strings.ReplaceAll(str, "Hello", "Guten Tag")
+	fmt.Println(result)
+}
+
+// ネットワークコネクションからデータを受信して文字列置換する関数
+func NetTranslateIntoGerman(conn net.Conn) {
+	data := make([]byte, 300)
+	len, _ := conn.Read(data)
+	str := string(data[:len])
+
+	result := strings.ReplaceAll(str, "Hello", "Guten Tag")
+	fmt.Println(result)
+}
+```
+
+bufio.Reader 型を作るための元になるリーダーが、具体型ではなく io.Reader であることで、「ネットワークでもファイルでもその他の I/O であっても、buffered I/O にできる」のです。
+ここからも「io パッケージによる I/O 抽象化」のメリットを感じることができます。
+
+- [bufio パッケージによる buffered I/O ｜ Go から学ぶ I/O](https://zenn.dev/hsaki/books/golang-io-package/viewer/bufio)
+
+ですが「ファイルを 1 個 1 個用意する」とかいう面倒な方法をせずとも、strings.Reader 型を使うことで、テスト内容をコード内で用意することができるのです。
+
+- [Go の言語仕様書精読のススメ &amp; 英語彙集](https://zenn.dev/hsaki/articles/gospecdictionary)
