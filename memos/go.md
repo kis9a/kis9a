@@ -217,3 +217,20 @@ bufio.Reader 型を作るための元になるリーダーが、具体型では�
 ですが「ファイルを 1 個 1 個用意する」とかいう面倒な方法をせずとも、strings.Reader 型を使うことで、テスト内容をコード内で用意することができるのです。
 
 - [Go の言語仕様書精読のススメ &amp; 英語彙集](https://zenn.dev/hsaki/articles/gospecdictionary)
+
+- [Go 言語で「embedded で継承ができる」と思わないほうがいいのはなぜか？ - Qiita](https://qiita.com/Maki-Daisuke/items/511b8989e528f7c70f80)
+
+Go でリテラルと呼ばれるものを挙げると以下の通り。
+
+整数リテラル
+小数点リテラル
+複素数リテラル
+rune リテラル
+文字列リテラル
+型リテラル
+composite リテラル
+構造体リテラル
+配列リテラル
+スライスリテラル
+マップリテラル
+関数リテラル

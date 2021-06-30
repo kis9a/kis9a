@@ -1,3 +1,13 @@
+
+- [GitHub - alec-gibson/nvim-tetris: Bringing emacs&#39; greatest feature to neovim - Tetris!](https://github.com/alec-gibson/nvim-tetris)
+ポリモフィズム
+Goでは継承を使ったポリモフィズムは実現できませんが、interfaceを実装することでポリモフィズムを実現することができます。
+- https://github.com/JohnStarich/go
+
+- #kis9a tools: <https://github.com/saki-engineering/drawingApp>
+- #sar .sar.toml add what watcher current directory and files.
+- #gotask OOP structure scheme.
+
 - [code2img/main.go at master · skanehira/code2img · GitHub](https://github.com/skanehira/code2img/blob/master/main.go)
 fix parse env token.
 - [GitHub - eyuta/golang-tdd](https://github.com/eyuta/golang-tdd)
