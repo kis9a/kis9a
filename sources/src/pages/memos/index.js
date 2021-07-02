@@ -9,9 +9,9 @@ import {
   svg_share,
   svg_raw,
   svg_memo,
-} from "../../components/icons";
+} from "/components/icons";
 import "/modules/css/mvp.css";
-import "./index.css";
+import "index.css";
 
 const getIndexesJson = Http({
   url: "/data/memos-indexes.json",
