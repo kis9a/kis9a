@@ -23,6 +23,33 @@ const pureState = {
 const initSvgs = getSvgs;
 const initialState = [pureState, initSvgs];
 
+yymmdd = (dt) => {
+  var y = dt.getFullYear();
+  var m = ("00" + (dt.getMonth() + 1)).slice(-2);
+  var d = ("00" + dt.getDate()).slice(-2);
+  return y + "-" + m + "-" + d;
+};
+
+afterDay = (n) => {
+  date.setDate(date.getDate() + n);
+  return yymmdd(date);
+};
+
+date = new Date();
+const today = yymmdd(date);
+
+dateRange = (name) => {
+  if (name == "w") {
+    return -7;
+  }
+  if (name == "m") {
+    return -30;
+  }
+  if (name == "y") {
+    return -365;
+  }
+};
+
 app({
   init: initialState,
   view: ({ svgs }) =>
@@ -34,10 +61,18 @@ app({
           { class: "svgs" },
           svgs &&
             svgs.map((s) =>
-              h("div", { class: "item" }, [
-                h("img", { src: s.activity }),
-                h("img", { src: s.percent }),
-                h("img", { src: s.bar }),
+              h("div", {}, [
+                s.name &&
+                  h(
+                    "h2",
+                    { class: "date" },
+                    text(afterDay(dateRange(s.name)) + " - " + today)
+                  ),
+                h("div", { class: "item" }, [
+                  h("img", { src: s.activity }),
+                  h("img", { src: s.percent }),
+                  h("img", { src: s.bar }),
+                ]),
               ])
             )
         ),

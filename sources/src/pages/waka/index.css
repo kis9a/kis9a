@@ -5,7 +5,7 @@
 
 .svgs .item {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   grid-gap: 2rem;
   padding: 2rem;
   margin-bottom: 4rem;
@@ -13,4 +13,8 @@
 
 .svgs img {
   border: 1px solid var(--color-bg-secondary);
+}
+
+.date {
+  padding: 1rem;
 }
