@@ -188,3 +188,47 @@ syntax hilight
 
 sudo yum -y install libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzipi
 ./configure --disable-selinux --enable-cscope --enable-fontset --enable-gpm --enable-multibyte --enable-rubyinterp --enable-xim
+
+" puremourning/vimspector {{{
+fun! GotoWindow(id)
+   :call win_gotoid(a:id)
+ endfun
+ func! AddToWatch()
+   let word = expand("<cexpr>")
+   call vimspector#AddWatch(word)
+ endfunction
+ let g:vimspector_base_dir = expand('$HOME/.config/vim/vimspector-config')
+ let g:vimspector_sidebar_width = 60
+ nnoremap <leader>sa :call vimspector#Launch()<CR>
+ nnoremap <leader>sc :call GotoWindow(g:vimspector_session_windows.code)<CR>
+ nnoremap <leader>sv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
+ nnoremap <leader>sw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
+ nnoremap <leader>ss :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
+ nnoremap <leader>so :call GotoWindow(g:vimspector_session_windows.output)<CR>
+ nnoremap <leader>si :call AddToWatch()<CR>
+ nnoremap <leader>sx :call vimspector#Reset()<CR>
+ nnoremap <leader>sX :call vimspector#ClearBreakpoints()<CR>
+ nnoremap <leader>st :call vimspector#StepOut()<CR>
+ nnoremap <leader>sf :call vimspector#StepInto()<CR>
+ nnoremap <leader>ss :call vimspector#StepOver()<CR>
+ nnoremap <leader>s_ :call vimspector#Restart()<CR>
+ nnoremap <leader>sn :call vimspector#Continue()<CR>
+ nnoremap <leader>src :call vimspector#RunToCursor()<CR>
+ nnoremap <leader>sh :call vimspector#ToggleBreakpoint()<CR>
+ nnoremap <leader>se :call vimspector#ToggleConditionalBreakpoint()<CR>
+ let g:vimspector_sign_priority = {
+   \    'vimspectorBP':         998,
+   \    'vimspectorBPCond':     997,
+   \    'vimspectorBPDisabled': 996,
+   \    'vimspectorPC':         999,
+   \ }
+"}}}
+
+"Plug 'easymotion/vim-easymotion'
+"" easymotion/vim-easymotion{{{
+"map , <Plug>(easymotion-overwin-f)
+""}}}
+
+Plug 'scrooloose/vim-slumlord', { 'for': 'uml' }
+Plug 'aklt/plantuml-syntax', { 'for': 'uml' }
+" Plug 'honza/vim-snippets'

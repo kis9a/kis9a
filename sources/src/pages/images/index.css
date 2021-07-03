@@ -1,8 +1,8 @@
 .indexes {
   background-color: var(--color-shadow);
-  border: 1px solid var(--color-bg-secondary);
+  border: 2px solid var(--color-bg-secondary);
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   grid-gap: 2rem;
   padding: 2rem;
   margin-bottom: 4rem;
