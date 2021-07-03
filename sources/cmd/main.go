@@ -97,6 +97,9 @@ const (
 
 func init() {
 	profile := os.Getenv("PROFILE")
+	if profile == "" {
+		log.Fatalf("$PROFILE is not found")
+	}
 	paths.Memos = filepath.Join(profile, "memos")
 	paths.Images = filepath.Join(profile, "images")
 	paths.Sources = filepath.Join(profile, "sources")
@@ -189,6 +192,9 @@ func main() {
 		case "bundle":
 			cmdopts.Minify.FlagSet.Parse(args[1:])
 			bundle()
+		case "ws":
+			cmdopts.Minify.FlagSet.Parse(args[1:])
+			ws()
 		}
 	}
 }

@@ -77,3 +77,15 @@ func commandExists(cmd string) bool {
 		return true
 	}
 }
+
+func ws() {
+	port := cmdopts.Server.Port
+	fs := http.FileServer(http.Dir(paths.Dist))
+	http.Handle("/", fs)
+	port = strings.Join([]string{":", port}, "")
+	log.Println("Listening...", port)
+	err := http.ListenAndServe(port, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+}

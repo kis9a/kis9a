@@ -1,0 +1,6 @@
+[[sar]]
+base = "./src"
+
+[[sar.commands]]
+match = "**"
+cmd = "kis9a bundle"

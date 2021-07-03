@@ -11,7 +11,7 @@ import {
   svg_memo,
 } from "/components/icons";
 import "/modules/css/mvp.css";
-import "index.css";
+import "./index.css";
 
 const getIndexesJson = Http({
   url: "/data/memos-indexes.json",
