@@ -10,7 +10,7 @@ import (
 )
 
 func bundle() {
-	pages := filepath.Join(paths.Src, "pages")
+	pages := filepath.Join(getSrcPath(), "pages")
 	minifyWalkBase = pages
 	if err := filepath.Walk(pages, bundleWalk); err != nil {
 		log.Fatal(err)
@@ -28,7 +28,7 @@ func bundleWalk(path string, fi os.FileInfo, err error) error {
 func bundleByFileType(path string) error {
 	m := minify.New()
 	ft := getFileType(path)
-	pages := filepath.Join(paths.Src, "pages")
+	pages := filepath.Join(getSrcPath(), "pages")
 	minifyWalkBase = pages
 	switch ft {
 	case JS:
@@ -52,7 +52,7 @@ func bundleJS(path string) error {
 	if err != nil {
 		return err
 	}
-	wp := filepath.Join(paths.Dist, rp)
+	wp := filepath.Join(getDistPath(), rp)
 	result := api.Build(api.BuildOptions{
 		EntryPoints:       []string{path},
 		Outfile:           wp,
@@ -76,7 +76,7 @@ func bundleCSS(path string) error {
 	if err != nil {
 		return err
 	}
-	wp := filepath.Join(paths.Dist, rp)
+	wp := filepath.Join(getDistPath(), rp)
 	result := api.Build(api.BuildOptions{
 		EntryPoints:       []string{path},
 		Outfile:           wp,

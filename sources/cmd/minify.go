@@ -13,10 +13,10 @@ import (
 	"github.com/tdewolff/minify/v2/svg"
 )
 
-var minifyWalkBase = paths.Src
+var minifyWalkBase = getSrcPath()
 
 func minifySrc() {
-	minifyWalkBase = paths.Src
+	minifyWalkBase = getSrcPath()
 	if err := filepath.Walk(minifyWalkBase, minifyWalk); err != nil {
 		log.Fatal(err)
 	}
@@ -77,7 +77,7 @@ func getMinifyRW(path string) (*os.File, *os.File, error) {
 	if err != nil {
 		return r, w, err
 	}
-	wp := filepath.Join(paths.Dist, rp)
+	wp := filepath.Join(getDistPath(), rp)
 	bd := filepath.Dir(wp)
 	if !isExistPath(bd) {
 		os.MkdirAll(bd, 0755)
@@ -154,7 +154,7 @@ func copyFileToDist(path string) error {
 	if err != nil {
 		return err
 	}
-	wp := filepath.Join(paths.Dist, rp)
+	wp := filepath.Join(getDistPath(), rp)
 	copyFile(path, wp)
 	return err
 }

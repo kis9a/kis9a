@@ -3,4 +3,4 @@ base = "./src"
 
 [[sar.commands]]
 match = "**"
-cmd = "kis9a bundle"
+cmd = "echo $(basename $PROFILE) | xargs -I {} bash -c '{} bundle'"

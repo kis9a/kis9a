@@ -6,6 +6,11 @@ import (
 	"strings"
 )
 
+type GitOutput struct {
+	Branch      string
+	FilesStatus []string
+}
+
 func getGitStatus(r io.Reader) GitOutput {
 	s := bufio.NewScanner(r)
 	var branch string

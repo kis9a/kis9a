@@ -10,6 +10,16 @@ import (
 	"strings"
 )
 
+type MemosContent struct {
+	Name    string `json:"name"`
+	Content string `json:"content"`
+}
+
+type MmoesIndex struct {
+	Name string `json:"name"`
+	Upt  string `json:"upt"`
+}
+
 func diffMemos2Json() {
 	gs, err := execOutput("git status -b -s")
 	if err != nil {
@@ -25,7 +35,7 @@ func diffMemos2Json() {
 			memos = append(memos, ns)
 		}
 	}
-	contentsJson, err := os.Open(paths.MemosContentsJson)
+	contentsJson, err := os.Open(getMemosIndexesJson())
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -56,14 +66,14 @@ func diffMemos2Json() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	err = writeFile(paths.MemosContentsJson, json)
+	err = writeFile(getMemosContentsJson(), json)
 	if err != nil {
 		log.Fatal(err)
 	}
 }
 
 func allMemos2Json() {
-	files, err := ioutil.ReadDir(paths.Memos)
+	files, err := ioutil.ReadDir(getMemosPath())
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -87,7 +97,7 @@ func allMemos2Json() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	err = writeFile(paths.MemosIndexesJson, indexesJson)
+	err = writeFile(getMemosIndexesJson(), indexesJson)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -96,14 +106,14 @@ func allMemos2Json() {
 		log.Fatal(err)
 	}
 	fmt.Println(string(contentsJson))
-	err = writeFile(paths.MemosContentsJson, contentsJson)
+	err = writeFile(getMemosContentsJson(), contentsJson)
 	if err != nil {
 		log.Fatal(err)
 	}
 }
 
 func getMemoContentString(name string) (string, error) {
-	fs, err := readFile(filepath.Join(paths.Memos, name))
+	fs, err := readFile(filepath.Join(getMemosPath(), name))
 	if err != nil {
 		return "", err
 	}

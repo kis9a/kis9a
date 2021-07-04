@@ -14,25 +14,6 @@ import (
 	"strings"
 )
 
-type MemosContent struct {
-	Name    string `json:"name"`
-	Content string `json:"content"`
-}
-
-type MmoesIndex struct {
-	Name string `json:"name"`
-	Upt  string `json:"upt"`
-}
-
-type ImagesIndex struct {
-	Name string `json:"name"`
-}
-
-type GitOutput struct {
-	Branch      string
-	FilesStatus []string
-}
-
 type CmdMemos struct {
 	FlagSet *flag.FlagSet
 	Diff    bool
@@ -43,20 +24,6 @@ type CmdImages struct {
 	FlagSet *flag.FlagSet
 	Resize  bool
 	Convert bool
-}
-
-type Paths struct {
-	Sources           string
-	Dist              string
-	Memos             string
-	MemosContentsJson string
-	MemosIndexesJson  string
-	ImagesIndexesJson string
-	Images            string
-	Tasks             string
-	Waka              string
-	Src               string
-	Data              string
 }
 
 type CmdServer struct {
@@ -77,7 +44,7 @@ type CmdOptions struct {
 }
 
 var (
-	paths   Paths
+	profile string
 	cmdopts CmdOptions
 )
 
@@ -100,18 +67,7 @@ func init() {
 	if profile == "" {
 		log.Fatalf("$PROFILE is not found")
 	}
-	paths.Memos = filepath.Join(profile, "memos")
-	paths.Images = filepath.Join(profile, "images")
-	paths.Sources = filepath.Join(profile, "sources")
-	paths.Src = filepath.Join(profile, "sources/src")
-	paths.Dist = filepath.Join(profile, "sources/dist")
-	paths.Data = filepath.Join(profile, "sources/dist/data")
-	paths.Waka = filepath.Join(profile, "waka")
-	paths.MemosContentsJson = filepath.Join(paths.Data, "/memos-contents.json")
-	paths.MemosIndexesJson = filepath.Join(paths.Data, "/memos-indexes.json")
-	paths.ImagesIndexesJson = filepath.Join(paths.Data, "/images-indexes.json")
 
-	flag.Usage = showHelp
 	flag.CommandLine.Init("cmd", flag.ExitOnError)
 	cmdopts.Memos.FlagSet = flag.NewFlagSet("cmd memos", flag.ExitOnError)
 	cmdopts.Images.FlagSet = flag.NewFlagSet("cmd images", flag.ExitOnError)

@@ -15,8 +15,12 @@ import (
 	"golang.org/x/image/draw"
 )
 
+type ImagesIndex struct {
+	Name string `json:"name"`
+}
+
 func images2Json() {
-	files, err := ioutil.ReadDir(paths.Images)
+	files, err := ioutil.ReadDir(getImagesPath())
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -30,14 +34,14 @@ func images2Json() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	err = writeFile(paths.ImagesIndexesJson, indexesJson)
+	err = writeFile(getImagesIndexesJson(), indexesJson)
 	if err != nil {
 		log.Fatal(err)
 	}
 }
 
 func images2Png() {
-	fs, err := readDir(paths.Images)
+	fs, err := readDir(getImagesPath())
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -46,9 +50,9 @@ func images2Png() {
 		fbase := filepath.Base(fname)
 		ext := filepath.Ext(fname)
 		if ext != ".png" {
-			inputPath := filepath.Join(paths.Images, f.Name())
+			inputPath := filepath.Join(getImagesPath(), f.Name())
 			pngfs := changeExt(fbase, ".png")
-			outputPath := filepath.Join(paths.Images, pngfs)
+			outputPath := filepath.Join(getImagesPath(), pngfs)
 			err = imageConvert(inputPath, outputPath)
 			if err != nil {
 				log.Fatal(err)
@@ -101,7 +105,7 @@ func imageEncode(path string, input image.Image, output *os.File) error {
 }
 
 func imagesResize() {
-	fs, err := readDir(paths.Images)
+	fs, err := readDir(getImagesPath())
 	if err != nil {
 		log.Fatal(err)
 	}

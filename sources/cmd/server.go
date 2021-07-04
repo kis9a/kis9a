@@ -33,9 +33,6 @@ func server(port string) {
 				}
 				if event.Op&fsnotify.Write == fsnotify.Write {
 					bundle()
-					// path := event.Name
-					// bundleByFileType(path)
-					// log.Println("Wrote", path)
 				}
 			case err, ok := <-watcher.Errors:
 				if !ok {
@@ -45,15 +42,15 @@ func server(port string) {
 			}
 		}
 	}()
-	if err := filepath.Walk(paths.Src, watchSrcDir); err != nil {
+	if err := filepath.Walk(getSrcPath(), watchSrcDir); err != nil {
 		log.Println(err)
 	}
 	if commandExists("live-server") {
 		var cmd string
 		if port != "" {
-			cmd = strings.Join([]string{"live-server ", paths.Dist, " --port=", port}, "")
+			cmd = strings.Join([]string{"live-server ", getDistPath(), " --port=", port}, "")
 		} else {
-			cmd = strings.Join([]string{"live-server ", paths.Dist}, "")
+			cmd = strings.Join([]string{"live-server ", getDistPath()}, "")
 		}
 		log.Println("Listening...", port)
 		_, err := execOutput(cmd)
@@ -61,7 +58,7 @@ func server(port string) {
 			log.Fatal(err)
 		}
 	} else {
-		fs := http.FileServer(http.Dir(paths.Dist))
+		fs := http.FileServer(http.Dir(getDistPath()))
 		http.Handle("/", fs)
 		port = strings.Join([]string{":", port}, "")
 		log.Println("Listening...", port)
@@ -80,7 +77,7 @@ func commandExists(cmd string) bool {
 
 func ws() {
 	port := cmdopts.Server.Port
-	fs := http.FileServer(http.Dir(paths.Dist))
+	fs := http.FileServer(http.Dir(getDistPath()))
 	http.Handle("/", fs)
 	port = strings.Join([]string{":", port}, "")
 	log.Println("Listening...", port)
