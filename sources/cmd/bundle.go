@@ -9,50 +9,50 @@ import (
 	"github.com/tdewolff/minify/v2"
 )
 
-func bundle() {
+func bundlePages() error {
 	pages := filepath.Join(getSrcPath(), "pages")
-	minifyWalkBase = pages
+	bundleWalk := func(path string, fi os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+		if err := bundleByFileType(path, pages); err != nil {
+			log.Println(err)
+		}
+		return nil
+	}
 	if err := filepath.Walk(pages, bundleWalk); err != nil {
 		log.Fatal(err)
 	}
-}
-
-func bundleWalk(path string, fi os.FileInfo, err error) error {
-	if err != nil {
-		log.Fatal(err)
-	}
-	bundleByFileType(path)
 	return nil
 }
 
-func bundleByFileType(path string) error {
-	m := minify.New()
-	ft := getFileType(path)
-	pages := filepath.Join(getSrcPath(), "pages")
-	minifyWalkBase = pages
-	switch ft {
-	case JS:
-		if err := bundleJS(path); err != nil {
-			log.Fatal(err)
-		}
-	case CSS:
-		if err := bundleCSS(path); err != nil {
-			log.Fatal(err)
-		}
-	case HTML:
-		if err := minifyHTML(m, path); err != nil {
-			log.Fatal(err)
-		}
-	}
-	return nil
-}
-
-func bundleJS(path string) error {
-	rp, err := filepath.Rel(minifyWalkBase, path)
+func bundleByFileType(path string, base string) error {
+	rp, err := filepath.Rel(base, path)
 	if err != nil {
 		return err
 	}
 	wp := filepath.Join(getDistPath(), rp)
+	m := minify.New()
+	ft := getFileType(path)
+	switch ft {
+	case JS:
+		if err := bundleJS(path, wp); err != nil {
+			return err
+		}
+	case CSS:
+		if err := bundleCSS(path, wp); err != nil {
+			return err
+		}
+	case HTML:
+		if err := minifyHTML(m, path); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func bundleJS(path string, wp string) error {
+	var err error
 	result := api.Build(api.BuildOptions{
 		EntryPoints:       []string{path},
 		Outfile:           wp,
@@ -71,12 +71,8 @@ func bundleJS(path string) error {
 	return err
 }
 
-func bundleCSS(path string) error {
-	rp, err := filepath.Rel(minifyWalkBase, path)
-	if err != nil {
-		return err
-	}
-	wp := filepath.Join(getDistPath(), rp)
+func bundleCSS(path string, wp string) error {
+	var err error
 	result := api.Build(api.BuildOptions{
 		EntryPoints:       []string{path},
 		Outfile:           wp,

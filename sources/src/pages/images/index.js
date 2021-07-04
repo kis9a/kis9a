@@ -1,4 +1,4 @@
-import { h, text, app } from "/modules/js/hyperapp.js";
+import { h, app } from "/modules/js/hyperapp.js";
 import { Http } from "/modules/js/Http.js";
 import { Header } from "/components/header";
 import "/layouts/index.css";
@@ -15,26 +15,6 @@ const getIndexes = Http({
     };
   },
 });
-
-// const getContent = (index) => {
-//   return Http({
-//     url: `/data/images/${index}`,
-//     response: "text",
-//     action: (state, content) => {
-//       return {
-//         ...state,
-//         content: { ...state.content, name: index, content: content },
-//         contents: [
-//           ...state.contents,
-//           {
-//             name: index,
-//             content: content,
-//           },
-//         ],
-//       };
-//     },
-//   });
-// };
 
 const pureState = {
   indexes: [],
@@ -62,7 +42,7 @@ app({
           { class: "indexes" },
           indexes &&
             shuffle(indexes).map((s) =>
-              h("img", { src: `/data/images/${s.name}` }, [])
+              h("img", { alt: s.name, src: `/data/images/${s.name}` }, [])
             )
         ),
       ]),

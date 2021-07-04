@@ -35,7 +35,7 @@ func minifyByFileType(path string) {
 	ft := getFileType(path)
 	switch ft {
 	case JS:
-		if err := bundleJS(path); err != nil {
+		if err := bundleJS(path, ""); err != nil {
 			log.Fatal(err)
 		}
 	case CSS:
