@@ -1,0 +1,5 @@
+@import "../modules/css/mvp.css";
+
+body {
+  background-color: var(--color-shadow);
+}

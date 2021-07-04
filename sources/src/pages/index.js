@@ -1,7 +1,7 @@
 import { h, text, app } from "/modules/js/hyperapp.js";
 import { Header } from "/components/header";
 import "./index.css";
-import "/modules/css/mvp.css";
+import "/layouts/index.css"
 
 app({
   init: {},

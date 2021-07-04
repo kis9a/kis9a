@@ -26,7 +26,7 @@ html {
   --width-card-medium: 460px;
   --width-card-wide: 800px;
   --width-content: 1080px;
-  --width-main: 980px;
+  --width-main: 1024px;
 }
 
 /* Layout */
@@ -56,8 +56,7 @@ main {
 }
 
 main {
-  margin: 1.5rem auto;
-  margin-bottom: 4rem;
+  margin: 1rem auto;
   padding: 1rem;
   max-width: var(--width-main);
 }

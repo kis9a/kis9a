@@ -1,8 +1,9 @@
 import { h, text, app } from "/modules/js/hyperapp.js";
 import { Http } from "/modules/js/Http.js";
 import { Header } from "/components/header";
-import "/modules/css/mvp.css";
+// import "/modules/css/mvp.css";
 import "./index.css";
+import "/layouts/index.css"
 
 const getSvgs = Http({
   url: "/data/wakatime.json",

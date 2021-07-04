@@ -6,8 +6,8 @@ import (
 )
 
 func waka2Json() {
-	wj := filepath.Join(paths.Waka, "wakatime.json")
-	oj := filepath.Join(paths.Data, "wakatime.json")
+	wj := filepath.Join(getWakaPath(), "wakatime.json")
+	oj := filepath.Join(getWakaPath(), "wakatime.json")
 	fmt.Println(wj, oj)
 	copyFile(wj, oj)
 }

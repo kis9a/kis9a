@@ -1,7 +1,7 @@
 import { h, text, app } from "/modules/js/hyperapp.js";
 import { Http } from "/modules/js/Http.js";
 import { Header } from "/components/header";
-import "/modules/css/mvp.css";
+import "/layouts/index.css";
 import "./index.css";
 
 const getIndexes = Http({
@@ -53,9 +53,7 @@ app({
           "div",
           { class: "indexes" },
           indexes &&
-            indexes.map((s) =>
-              h("img", { src: `/data/images/${s.name}` }, [])
-            )
+            indexes.map((s) => h("img", { src: `/data/images/${s.name}` }, []))
         ),
       ]),
     ]),

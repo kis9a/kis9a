@@ -10,8 +10,8 @@ import {
   svg_raw,
   svg_memo,
 } from "/components/icons";
-import "/modules/css/mvp.css";
 import "./index.css";
+import "/layouts/index.css";
 
 const getIndexesJson = Http({
   url: "/data/memos-indexes.json",
@@ -232,16 +232,16 @@ app({
             onfocus: onInputFocus,
             class: "index-search",
           }),
-          h("input", {
-            type: "date",
-            placeholder: "Date",
-            class: "input",
-          }),
-          h("input", {
-            type: "date",
-            placeholder: "Date",
-            class: "input",
-          }),
+          // h("input", {
+          //   type: "date",
+          //   placeholder: "Date",
+          //   class: "input",
+          // }),
+          // h("input", {
+          //   type: "date",
+          //   placeholder: "Date",
+          //   class: "input",
+          // }),
           h("div", {
             class: "index-toggle-button",
             onclick: toggleShowIndex,

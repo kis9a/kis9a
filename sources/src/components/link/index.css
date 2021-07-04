@@ -1,8 +1,9 @@
 .link {
   margin: 0.6rem;
   padding: 0.5rem;
+  color: gray;
 }
 
 .disable {
-  color: gray;
+  color: #204a87;
 }
