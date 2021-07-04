@@ -20,7 +20,7 @@ push: ## push ${dir}
 	@git reset .
 	@git add ${dir}
 	@make check-staged
-	@git commit -m "${dir}: update ${DATE}"
+	@git commit -m "${dir}: update ${DATE} ${msg}"
 	@git push
 
 publish-sources: ## publish sources
