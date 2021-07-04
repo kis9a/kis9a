@@ -1,0 +1,176 @@
+#!/bin/bash
+readonly cf="\\033[0m"
+readonly red="\\033[0;31m"
+readonly green="\\033[0;32m"
+readonly yellow="\\033[0;33m"
+readonly purple="\\033[0;35m"
+
+is_debug=false
+
+trap exit_EXIT EXIT
+trap exit_CTRL QUIT SIGINT
+
+err() {
+	local _date
+	_date=$(showdate)
+	echo -e "[$_date][${red}ERROR${cf}]: $1" 1>&2
+}
+
+err_die() {
+	local _date
+	_date=$(showdate)
+	echo -e "[$_date][${red}ERROR${cf}]: $1 -> use -h parameter for help." 1>&2
+	echo -e "[$_date][${red}ERROR${cf}]: Cleaning & Exiting."
+	if [[ "$2" == "1" ]]; then
+		showhelp
+	fi
+	exit 1
+}
+
+warn() {
+	local _date
+	_date=$(showdate)
+	echo -e "[$_date][${yellow}WARNING${cf}]: $1"
+}
+
+info() {
+	local _date
+	_date=$(showdate)
+	echo -e "[$_date][INFO]: $1 "
+}
+
+succ() {
+	local _date
+	_date=$(showdate)
+	echo -e "[$_date][${green}SUCCESS${cf}]: $1"
+}
+
+showdate() {
+	local _date
+	_date=$(date +%d-%H.%M)
+	printf "%s" "$_date"
+}
+
+debug() {
+	local _date
+	_date=$(showdate)
+	if [[ "$is_debug" == "true" ]]; then
+		echo -e "[$_date][${purple}DEBUG${cf}]: $1"
+	fi
+}
+
+exit_EXIT() {
+	info "Script ended! Cleanup & Exit."
+	cleanup
+	exit 1
+}
+
+exit_CTRL() {
+	err "User pressed CTRL+C!"
+	exit 1
+}
+
+cleanup() {
+	info "cleanup.."
+}
+
+showhelp() {
+	echo "-h: Shows this help text."
+	echo "-d: For optional debug messages."
+	echo "-f: select install function"
+}
+
+is_exists() {
+	which "$1" >/dev/null 2>&1
+	return $?
+}
+
+install-zenn() {
+	npm install -g zenn-cli
+}
+
+install-gh-pages() {
+	npm install -g gh-pages@3.0
+}
+
+install-profile() {
+	git clone https://github.com/kis9a/kis9a "$PROFILE"
+	go install "$PROFILE"/sources/cmd
+}
+
+if [ -z "$PROFILE" ]; then
+	err "PROFILE is not found"
+	exit 1
+fi
+
+if ! is_exists "npm"; then
+	err "npm is not found"
+	exit 1
+fi
+
+if ! is_exists "make"; then
+	err "make is not found"
+	exit 1
+fi
+
+if ! is_exists "git"; then
+	err "git is not found"
+	exit 1
+fi
+
+if ! is_exists "go"; then
+	err "go is not found"
+	exit 1
+fi
+
+if ! is_exists "zenn"; then
+	install-zenn
+fi
+
+if ! is_exists "gh-pages"; then
+	install-gh-pages
+fi
+
+if [[ ! -d $PROFILE ]]; then
+	install-profile
+fi
+
+showList() {
+	info 'list'
+	cat ./"$0" | grep install- | grep -v { | sed -e "s/install-//g" | tr -d "\ " | sort | uniq
+}
+
+install() {
+	case "$1" in
+	"zenn")
+		install-zenn
+		;;
+	"gh-pages")
+		install-gh-pages
+		;;
+	"profile")
+		install-profile
+		;;
+	*)
+		showList
+		;;
+	esac
+}
+
+while getopts ":hdf" o; do
+	case "${o}" in
+	h)
+		showhelp
+		exit 1
+		;;
+	d)
+		is_debug=true
+		;;
+	f)
+		install "$2"
+		;;
+	*)
+		err "No valid option choosed."
+		;;
+	esac
+done
