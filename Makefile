@@ -18,14 +18,12 @@ install: ## install
 
 push: ## push ${dir}
 	@git reset .
-	@git add ${dir}/*
+	@git add ${dir}
 	@make check-staged
 	@git commit -m "${dir}: update ${DATE}"
 	@git push
 
 publish-sources: ## publish sources
-	@rm -rf sources/memos
-	@${PROFILE_NAME} bundle
 	-@(which gh-pages >/dev/null && gh-pages -d sources/dist -t)
 	-@(which gh-pages >/dev/null || npx gh-pages -d sources/dist -t)
 
