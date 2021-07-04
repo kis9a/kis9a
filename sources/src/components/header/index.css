@@ -17,3 +17,7 @@
   background-color: var(--color-shadow);
   border: 1px solid var(--color-bg-secondary);
 }
+
+.link {
+  margin: 0.2rem;
+}

@@ -1,15 +1,17 @@
-.indexes {
-  background-color: var(--color-shadow);
-  border: 2px solid var(--color-bg-secondary);
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  grid-gap: 2rem;
-  padding: 2rem;
-  margin-bottom: 4rem;
+@supports (display: grid) {
+  .indexes {
+    background-color: var(--color-shadow);
+    border: 2px solid var(--color-bg-secondary);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-gap: 2rem;
+    padding: 2rem;
+    margin-bottom: 4rem;
+  }
 }
 
 .indexes img {
-  height: 100%;
+  height: auto;
   width: 100%;
 }
 
