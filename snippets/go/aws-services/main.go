@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"io/fs"
 	"io/ioutil"
 	"log"
@@ -22,8 +23,8 @@ var supportedLanguages = []string{"ar", "cn", "de", "en", "es", "fr", "id", "it"
 func main() {
 	if len(os.Args) > 1 {
 		arg := os.Args[1]
-		if errMsg := checkLanguageSupport(arg); errMsg != "" {
-			log.Fatalf(errMsg)
+		if err := checkLanguageSupport(arg); err != nil {
+			log.Fatal(err)
 		}
 		if err := output(arg, arg == defaultLanguage); err != nil {
 			log.Fatal(err)
@@ -37,9 +38,8 @@ func main() {
 	}
 }
 
-func checkLanguageSupport(lang string) string {
+func checkLanguageSupport(lang string) error {
 	is := false
-	var errMsg string
 	for _, v := range supportedLanguages {
 		if lang == v {
 			is = true
@@ -50,9 +50,9 @@ func checkLanguageSupport(lang string) string {
 		for _, v := range supportedLanguages {
 			errMsg = strings.Join([]string{v, "\n"}, "")
 		}
-		return errMsg
+		return errors.New(errMsg)
 	}
-	return errMsg
+	return nil
 }
 
 func getTableRowItems(lang string) ([]TableRow, error) {
@@ -127,3 +127,4 @@ func output(lang string, isDefault bool) error {
 func WriteFile(path string, data []byte, perm fs.FileMode) error {
 	return ioutil.WriteFile(path, data, perm)
 }
+

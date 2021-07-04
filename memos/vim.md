@@ -232,3 +232,5 @@ fun! GotoWindow(id)
 Plug 'scrooloose/vim-slumlord', { 'for': 'uml' }
 Plug 'aklt/plantuml-syntax', { 'for': 'uml' }
 " Plug 'honza/vim-snippets'
+
+- [Vim プラグインを書く言語について と宣伝](https://zenn.dev/octaltree/articles/c5757d9a126415)

@@ -234,3 +234,5 @@ composite リテラル
 スライスリテラル
 マップリテラル
 関数リテラル
+
+https://python.ms/rust-or-go/#_2-%E7%94%A8%E9%80%94

@@ -93,10 +93,13 @@ install-gh-pages() {
 	npm install -g gh-pages@3.0
 }
 
+<<<<<<< HEAD
 install-sar() {
 	go get github.com/kis9a/sar
 }
 
+=======
+>>>>>>> e0954ce7763612d5866eeca626bc64af8a6221e3
 install-profile() {
 	git clone https://github.com/kis9a/kis9a "$PROFILE"
 	go install "$PROFILE"/sources/cmd
@@ -139,11 +142,16 @@ if [[ ! -d $PROFILE ]]; then
 	install-profile
 fi
 
+<<<<<<< HEAD
 if ! is_exists "sar"; then
 	install-sar
 fi
 
 showList() {
+=======
+showList() {
+	info 'list'
+>>>>>>> e0954ce7763612d5866eeca626bc64af8a6221e3
 	cat ./"$0" | grep install- | grep -v { | sed -e "s/install-//g" | tr -d "\ " | sort | uniq
 }
 
@@ -158,9 +166,12 @@ install() {
 	"profile")
 		install-profile
 		;;
+<<<<<<< HEAD
 	"sar")
 		install-sar
 		;;
+=======
+>>>>>>> e0954ce7763612d5866eeca626bc64af8a6221e3
 	*)
 		showList
 		;;
