@@ -43,6 +43,14 @@ const pureState = {
 const initIndexes = getIndexes;
 const initialState = [pureState, initIndexes];
 
+const shuffle = ([...array]) => {
+  for (let i = array.length - 1; i >= 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+};
+
 app({
   init: initialState,
   view: ({ indexes }) =>
@@ -53,7 +61,9 @@ app({
           "div",
           { class: "indexes" },
           indexes &&
-            indexes.map((s) => h("img", { src: `/data/images/${s.name}` }, []))
+            shuffle(indexes).map((s) =>
+              h("img", { src: `/data/images/${s.name}` }, [])
+            )
         ),
       ]),
     ]),

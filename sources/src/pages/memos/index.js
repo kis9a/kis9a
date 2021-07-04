@@ -311,10 +311,6 @@ app({
               oninput: setInputContent,
               class: "content tab-memo-input",
             }),
-            h("div", {
-              class: "content tab-memo-view",
-              innerHTML: snarkdown(content.content),
-            }),
           ]),
         content.name !== "memo" &&
           h("div", {
