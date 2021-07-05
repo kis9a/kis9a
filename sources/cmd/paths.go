@@ -1,6 +1,8 @@
 package main
 
-import "path/filepath"
+import (
+	"path/filepath"
+)
 
 func getImagesPath() string {
 	return filepath.Join(profile, "images")
@@ -11,11 +13,11 @@ func getSourcesPath() string {
 }
 
 func getDistPath() string {
-	return filepath.Join(profile, getSourcesPath(), "dist")
+	return filepath.Join(getSourcesPath(), "dist")
 }
 
 func getDataPath() string {
-	return filepath.Join(profile, getDistPath(), "/data")
+	return filepath.Join(getDistPath(), "/data")
 }
 
 func getWakaPath() string {

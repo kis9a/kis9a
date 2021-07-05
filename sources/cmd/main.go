@@ -63,7 +63,7 @@ const (
 )
 
 func init() {
-	profile := os.Getenv("PROFILE")
+	profile = os.Getenv("PROFILE")
 	if profile == "" {
 		log.Fatalf("$PROFILE is not found")
 	}
@@ -147,7 +147,7 @@ func main() {
 			minifySrc()
 		case "bundle":
 			cmdopts.Minify.FlagSet.Parse(args[1:])
-			bundle()
+			bundlePages()
 		case "ws":
 			cmdopts.Minify.FlagSet.Parse(args[1:])
 			ws()

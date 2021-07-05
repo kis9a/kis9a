@@ -73,7 +73,7 @@ func getMinifyRW(path string) (*os.File, *os.File, error) {
 	if err != nil {
 		return r, w, err
 	}
-	rp, err := filepath.Rel(minifyWalkBase, path)
+	rp, err := filepath.Rel(filepath.Join(getSrcPath(), "pages"), path)
 	if err != nil {
 		return r, w, err
 	}
@@ -115,6 +115,29 @@ func minifyCSS(m *minify.M, path string) error {
 
 func minifyHTML(m *minify.M, path string) error {
 	r, w, err := getMinifyRW(path)
+	if err != nil {
+		return err
+	}
+	err = html.Minify(m, w, r, nil)
+	if err != nil {
+		return err
+	}
+	return err
+}
+
+func toMinifyHTML(m *minify.M, path string, wp string) error {
+	var r *os.File
+	var w *os.File
+	var err error
+	r, err = os.Open(path)
+	if err != nil {
+		return err
+	}
+	bd := filepath.Dir(wp)
+	if !isExistPath(bd) {
+		os.MkdirAll(bd, 0755)
+	}
+	w, err = os.Create(wp)
 	if err != nil {
 		return err
 	}
