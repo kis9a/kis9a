@@ -1,3 +1,77 @@
+https://future-architect.github.io/articles/20210408/
+https://future-architect.github.io/articles/20210409/
+https://future-architect.github.io/articles/20210617a/
+https://future-architect.github.io/articles/20200327/
+https://future-architect.github.io/articles/20210604a/
+https://future-architect.github.io/articles/20200207/
+https://github.com/9sako6/imgcmp
+go get golang.org/x/tools/cmd/godoc
+
+Client    Response   ResponseWriter
+Response  Header     HandlerFunc
+          Cookie     ServerMux
+
+unicode.go
+serverless
+<https://github.com/apex/up-examples/blob/master/oss/golang-api/main.go> <https://apex.sh/docs/up/links/>
+- [結局、Go言語をやめる理由はなかった件 - Qiita](https://qiita.com/Maki-Daisuke/items/23c1285500208048de80)
+vCPU: 2
+Intel(R) Xeon(R) Platinum 8175M CPU @ 2.50GHz (最大3.1GHz)
+メモリ: 8 GiB
+ストレージ: 1 x 75 GiB NVMe SSD
+OS: Amazon Linux 2
+　今回、m5d.large インスタンスを採用したのは次の理由からです:
+
+汎用ワークロード向けインスタンスである
+Docker Composeを使うため、メモリに余裕をもたせて8GB用意する
+MySQLでストレージがボトルネックになることを少しでも抑えるため、NVMe SSD を使う
+
+```diff
+
+-    print('平均秒数：%f' % svg)
++    # 標準偏差を計算
++    sdev = 0.0
++    for t in times:
++        sdev += (t - svg) ** 2
++    sdev = math.sqrt(sdev / len(times))
++    print('平均秒数：%f, 標準偏差: %.1f' % (svg, sdev))
+
+ユーザー空間で実行されてる時間（user time)
+カーネル空間で実行されている時間（system time）
+ファイルやネットワークなどの入出力結果を待っている時間（idle time）
+```
+
+https://github.com/heppu/gkill
+https://github.com/apex
+https://github.com/b4b4r07/go-finder
+https://nojov.kou-pg.com/
+//go:embed message.txt
+
+```
+func Filter[T any](a []T, f func(T) bool) []T {
+    var n []T
+    for _, e := range a {
+        if f(e) {
+            n = append(n, e)
+        }
+    }
+    return n
+}
+
+func Map[T any, M any](a []T, f func(T) M) []M {
+    n := make([]M, len(a), cap(a))
+    for i, e := range a {
+        n[i] = f(e)
+    }
+    return n
+}
+```
+https://go.googlesource.com/go https://go2goplay.golang.org/
+「TLS」をつけたhttp.ListenAndServeTLSを実践では使うことになるかもしれません。こちらはセキュリティーの話
+try watch https://esbuild.github.io/api/#watch
+https://zenn.dev/mohira/scraps/f99095d2fd74da
+https://github.com/nitaking/gitmoji-c
+https://github.com/BrightLocal/FrontBuilder/
 http://ghv.artzub.com/
 - onclick import javascript
 - [JavaScript の静的インポートと動的インポート &#8211; ラボラジアン](https://laboradian.com/js-static-and-dynamic-import/)
