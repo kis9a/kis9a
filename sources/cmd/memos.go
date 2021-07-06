@@ -2,12 +2,9 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
-	"os"
 	"path/filepath"
-	"strings"
 )
 
 type MemosContent struct {
@@ -18,58 +15,6 @@ type MemosContent struct {
 type MmoesIndex struct {
 	Name string `json:"name"`
 	Upt  string `json:"upt"`
-}
-
-func diffMemos2Json() {
-	gs, err := execOutput("git status -b -s")
-	if err != nil {
-		log.Fatal(err)
-	}
-	gitStatus := getGitStatus(gs)
-	memos := []string{}
-	for _, v := range gitStatus.FilesStatus {
-		s := strings.Split(v, " ")
-		ns := s[len(s)-1]
-		nss := strings.Split(ns, "/")[0]
-		if strings.TrimSpace(nss) == "memos" {
-			memos = append(memos, ns)
-		}
-	}
-	contentsJson, err := os.Open(getMemosIndexesJson())
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer contentsJson.Close()
-	byteValue, err := ioutil.ReadAll(contentsJson)
-	if err != nil {
-		log.Fatal(err)
-	}
-	var contents []MemosContent
-	err = json.Unmarshal([]byte(byteValue), &contents)
-	if err != nil {
-		log.Fatal(err)
-	}
-	for _, f := range memos {
-		fn := strings.Split(f, "/")
-		fnn := fn[len(fn)-1]
-		for i, c := range contents {
-			if c.Name == fnn {
-				c.Content, err = getMemoContentString(fnn)
-				if err != nil {
-					log.Fatal(err)
-				}
-			}
-			contents[i] = c
-		}
-	}
-	json, err := json.Marshal(contents)
-	if err != nil {
-		log.Fatal(err)
-	}
-	err = writeFile(getMemosContentsJson(), json)
-	if err != nil {
-		log.Fatal(err)
-	}
 }
 
 func allMemos2Json() {
@@ -105,7 +50,6 @@ func allMemos2Json() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(string(contentsJson))
 	err = writeFile(getMemosContentsJson(), contentsJson)
 	if err != nil {
 		log.Fatal(err)

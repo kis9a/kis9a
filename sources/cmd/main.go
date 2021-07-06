@@ -14,12 +14,6 @@ import (
 	"strings"
 )
 
-type CmdMemos struct {
-	FlagSet *flag.FlagSet
-	Diff    bool
-	All     bool
-}
-
 type CmdImages struct {
 	FlagSet *flag.FlagSet
 	Resize  bool
@@ -31,16 +25,9 @@ type CmdServer struct {
 	Port    string
 }
 
-type CmdMinify struct {
-	FlagSet *flag.FlagSet
-	Target  string
-}
-
 type CmdOptions struct {
-	Memos  CmdMemos
 	Images CmdImages
 	Server CmdServer
-	Minify CmdMinify
 }
 
 var (
@@ -67,46 +54,13 @@ func init() {
 	if profile == "" {
 		log.Fatalf("$PROFILE is not found")
 	}
-
-	flag.CommandLine.Init("cmd", flag.ExitOnError)
-	cmdopts.Memos.FlagSet = flag.NewFlagSet("cmd memos", flag.ExitOnError)
-	cmdopts.Images.FlagSet = flag.NewFlagSet("cmd images", flag.ExitOnError)
-	cmdopts.Server.FlagSet = flag.NewFlagSet("cmd server", flag.ExitOnError)
-	cmdopts.Minify.FlagSet = flag.NewFlagSet("cmd minify", flag.ExitOnError)
-
-	cmdopts.Memos.FlagSet.BoolVar(&cmdopts.Memos.Diff, "d", false, "diff")
-	cmdopts.Memos.FlagSet.BoolVar(&cmdopts.Memos.All, "a", false, "all")
+	flag.CommandLine.Init("kis9a", flag.ExitOnError)
+	cmdopts.Images.FlagSet = flag.NewFlagSet("kis9a images", flag.ExitOnError)
+	cmdopts.Server.FlagSet = flag.NewFlagSet("kis9a server", flag.ExitOnError)
 	cmdopts.Images.FlagSet.BoolVar(&cmdopts.Images.Resize, "r", false, "resize")
 	cmdopts.Images.FlagSet.BoolVar(&cmdopts.Images.Convert, "c", false, "convert")
 	cmdopts.Server.FlagSet.StringVar(&cmdopts.Server.Port, "p", "9000", "port")
-	cmdopts.Minify.FlagSet.StringVar(&cmdopts.Minify.Target, "t", "all", "minify")
-
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
-
-	// escape
-	if len(os.Args) > 1 {
-		firstArg := os.Args[1]
-		if firstArg == "help" || isFlag(firstArg) {
-			showHelp()
-		}
-	} else {
-		showHelp()
-	}
-}
-
-func showHelp() {
-	visit := func(f *flag.Flag) {
-		fmt.Println(strings.Join([]string{"  -", f.Name, "\t", f.Usage}, ""))
-	}
-	fmt.Println("\nimages:")
-	cmdopts.Images.FlagSet.VisitAll(visit)
-	fmt.Println("\nmemos:")
-	cmdopts.Memos.FlagSet.VisitAll(visit)
-	fmt.Println("\ndelete:")
-	cmdopts.Minify.FlagSet.VisitAll(visit)
-	fmt.Println("\nserver:")
-	cmdopts.Server.FlagSet.VisitAll(visit)
-	os.Exit(0)
 }
 
 func main() {
@@ -115,14 +69,7 @@ func main() {
 		args := flag.Args()
 		switch args[0] {
 		case "memos":
-			cmdopts.Memos.FlagSet.Parse(args[1:])
-			if cmdopts.Memos.Diff {
-				diffMemos2Json()
-			} else if cmdopts.Memos.All {
-				allMemos2Json()
-			} else {
-				fmt.Println(args[1:])
-			}
+			allMemos2Json()
 		case "images":
 			cmdopts.Images.FlagSet.Parse(args[1:])
 			if cmdopts.Images.Convert {
@@ -132,8 +79,6 @@ func main() {
 			} else {
 				images2Json()
 			}
-		case "waka":
-			waka2Json()
 		case "data":
 			cmdopts.Images.FlagSet.Parse(args[1:])
 			images2Json()
@@ -142,14 +87,9 @@ func main() {
 		case "server":
 			cmdopts.Server.FlagSet.Parse(args[1:])
 			server(cmdopts.Server.Port)
-		case "minify":
-			cmdopts.Minify.FlagSet.Parse(args[1:])
-			minifySrc()
 		case "bundle":
-			cmdopts.Minify.FlagSet.Parse(args[1:])
 			bundlePages()
 		case "ws":
-			cmdopts.Minify.FlagSet.Parse(args[1:])
 			ws()
 		}
 	}
@@ -247,4 +187,51 @@ func isYes(msg string) bool {
 
 func isFlag(str string) bool {
 	return strings.HasPrefix(str, "-")
+}
+
+func getImagesPath() string {
+	return filepath.Join(profile, "images")
+}
+
+func getSourcesPath() string {
+	return filepath.Join(profile, "sources")
+}
+
+func getDistPath() string {
+	return filepath.Join(getSourcesPath(), "dist")
+}
+
+func getDataPath() string {
+	return filepath.Join(getDistPath(), "/data")
+}
+
+func getWakaPath() string {
+	return filepath.Join(profile, "waka")
+}
+
+func getMemosPath() string {
+	return filepath.Join(profile, "memos")
+}
+
+func getMemosIndexesJson() string {
+	return filepath.Join(getDataPath(), "memos-indexes.json")
+}
+
+func getMemosContentsJson() string {
+	return filepath.Join(getDataPath(), "memos-contents.json")
+}
+
+func getImagesIndexesJson() string {
+	return filepath.Join(getDataPath(), "images-indexes.json")
+}
+
+func getSrcPath() string {
+	return filepath.Join(getSourcesPath(), "src")
+}
+
+func waka2Json() {
+	wj := filepath.Join(getWakaPath(), "wakatime.json")
+	oj := filepath.Join(getWakaPath(), "wakatime.json")
+	fmt.Println(wj, oj)
+	copyFile(wj, oj)
 }

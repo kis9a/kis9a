@@ -8,6 +8,7 @@ import (
 
 	"github.com/evanw/esbuild/pkg/api"
 	"github.com/tdewolff/minify/v2"
+	"github.com/tdewolff/minify/v2/html"
 )
 
 func bundlePages() error {
@@ -71,16 +72,51 @@ func genHTML(path string, base string) error {
 	if err != nil {
 		return err
 	}
-	defer nf.Close()
+	// defer nf.Close()
 	err = tpl.Execute(nf, nil)
 	if err != nil {
 		return err
 	}
-	m := minify.New()
-	if err := toMinifyHTML(m, wp, wp); err != nil {
+	// m := minify.New()
+	// if err := toMinifyHTML(m, wp, wp); err != nil {
+	// 	return err
+	// }
+	return nil
+}
+
+func toMinifyHTML(m *minify.M, path string, wp string) error {
+	var r *os.File
+	var w *os.File
+	var err error
+	r, err = os.Open(path)
+	if err != nil {
 		return err
 	}
-	return nil
+	// defer r.Close()
+	bd := filepath.Dir(wp)
+	if !isExistPath(bd) {
+		os.MkdirAll(bd, 0755)
+	}
+	w, err = os.Create(wp)
+	if err != nil {
+		return err
+	}
+	// defer w.Close()
+	err = html.Minify(m, w, r, nil)
+	if err != nil {
+		return err
+	}
+	return err
+}
+
+func copyFileToDist(path string, base string) error {
+	rp, err := filepath.Rel(base, path)
+	if err != nil {
+		return err
+	}
+	wp := filepath.Join(getDistPath(), rp)
+	copyFile(path, wp)
+	return err
 }
 
 func bundleJS(path string, wp string) error {
