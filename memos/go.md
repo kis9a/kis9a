@@ -236,3 +236,5 @@ composite リテラル
 関数リテラル
 
 https://python.ms/rust-or-go/#_2-%E7%94%A8%E9%80%94
+
+optional parameter - [Go でオプショナルパラメータをどう扱うか - 1 ミリもわからん](https://raahii.github.io/posts/optional-parameters-in-go/)

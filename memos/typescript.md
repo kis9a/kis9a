@@ -153,3 +153,4 @@ derivedCtor.prototype[name] = baseCtor.prototype[name];
 <!--}}}-->
 
 [ ./type-challenge.md ]
+https://github.com/kena0ki/adima
