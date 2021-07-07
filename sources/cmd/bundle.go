@@ -2,6 +2,7 @@ package main
 
 import (
 	"html/template"
+	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
@@ -72,41 +73,28 @@ func genHTML(path string, base string) error {
 	if err != nil {
 		return err
 	}
-	// defer nf.Close()
+	defer nf.Close()
 	err = tpl.Execute(nf, nil)
 	if err != nil {
 		return err
 	}
-	// m := minify.New()
-	// if err := toMinifyHTML(m, wp, wp); err != nil {
-	// 	return err
-	// }
+	wfs, err := ioutil.ReadFile(wp)
+	m := htmlMinifier()
+	str, err := m.String("text/html", string(wfs))
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = ioutil.WriteFile(wp, []byte(str), 0644)
+	if err != nil {
+		log.Fatal(err)
+	}
 	return nil
 }
 
-func toMinifyHTML(m *minify.M, path string, wp string) error {
-	var r *os.File
-	var w *os.File
-	var err error
-	r, err = os.Open(path)
-	if err != nil {
-		return err
-	}
-	// defer r.Close()
-	bd := filepath.Dir(wp)
-	if !isExistPath(bd) {
-		os.MkdirAll(bd, 0755)
-	}
-	w, err = os.Create(wp)
-	if err != nil {
-		return err
-	}
-	// defer w.Close()
-	err = html.Minify(m, w, r, nil)
-	if err != nil {
-		return err
-	}
-	return err
+func htmlMinifier() *minify.M {
+	m := minify.New()
+	m.AddFunc("text/html", html.Minify)
+	return m
 }
 
 func copyFileToDist(path string, base string) error {
