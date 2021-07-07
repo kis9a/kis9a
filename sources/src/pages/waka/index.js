@@ -2,7 +2,7 @@ import { h, text, app } from "/modules/js/hyperapp.js";
 import { Http } from "/modules/js/Http.js";
 import { Header } from "/components/header";
 import "./index.css";
-import "/layouts/index.css"
+import "/layouts/index.css";
 
 const getSvgs = Http({
   url: "/data/wakatime.json",
@@ -23,22 +23,22 @@ const pureState = {
 const initSvgs = getSvgs;
 const initialState = [pureState, initSvgs];
 
-yymmdd = (dt) => {
+const yymmdd = (dt) => {
   var y = dt.getFullYear();
   var m = ("00" + (dt.getMonth() + 1)).slice(-2);
   var d = ("00" + dt.getDate()).slice(-2);
   return y + "-" + m + "-" + d;
 };
 
-afterDay = (n) => {
+const afterDay = (n) => {
   date.setDate(date.getDate() + n);
   return yymmdd(date);
 };
 
-date = new Date();
+const date = new Date();
 const today = yymmdd(date);
 
-dateRange = (name) => {
+const dateRange = (name) => {
   if (name == "w") {
     return -7;
   }

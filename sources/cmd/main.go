@@ -80,10 +80,7 @@ func main() {
 				images2Json()
 			}
 		case "data":
-			cmdopts.Images.FlagSet.Parse(args[1:])
-			images2Json()
-			allMemos2Json()
-			waka2Json()
+			initializeData()
 		case "server":
 			cmdopts.Server.FlagSet.Parse(args[1:])
 			server(cmdopts.Server.Port)
@@ -230,8 +227,23 @@ func getSrcPath() string {
 }
 
 func waka2Json() {
-	wj := filepath.Join(getWakaPath(), "wakatime.json")
-	oj := filepath.Join(getWakaPath(), "wakatime.json")
-	fmt.Println(wj, oj)
-	copyFile(wj, oj)
+	copyFile(filepath.Join(getWakaPath(), "wakatime.json"),
+		filepath.Join(getDataPath(), "wakatime.json"))
+}
+
+func initializeData() {
+	if !isExistPath(getDataPath()) {
+		os.MkdirAll(getDistPath(), 0755)
+	}
+	images2Json()
+	allMemos2Json()
+	waka2Json()
+}
+
+func initializeDist() error {
+	initializeData()
+	if !isExistPath(getDistPath()) {
+		os.MkdirAll(getDistPath(), 0755)
+	}
+	return bundlePages()
 }

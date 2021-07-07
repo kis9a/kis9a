@@ -12,17 +12,15 @@ import (
 )
 
 func server(port string) {
+	err := initializeDist()
+	if err != nil {
+		log.Fatal(err)
+	}
 	watcher, err := fsnotify.NewWatcher()
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer watcher.Close()
-	watchSrcDir := func(path string, fi os.FileInfo, err error) error {
-		if fi.Mode().IsDir() {
-			return watcher.Add(path)
-		}
-		return nil
-	}
 	done := make(chan bool)
 	go func() {
 		for {
@@ -42,27 +40,17 @@ func server(port string) {
 			}
 		}
 	}()
-	if err := filepath.Walk(getSrcPath(), watchSrcDir); err != nil {
-		log.Println(err)
+	if err := filepath.Walk(getSrcPath(), func(path string, fi os.FileInfo, err error) error {
+		if fi.Mode().IsDir() {
+			return watcher.Add(path)
+		}
+		return nil
+	}); err != nil {
+		log.Fatal(err)
 	}
-	if commandExists("live-server") {
-		var cmd string
-		if port != "" {
-			cmd = strings.Join([]string{"live-server ", getDistPath(), " --port=", port}, "")
-		} else {
-			cmd = strings.Join([]string{"live-server ", getDistPath()}, "")
-		}
-		log.Println("Listening...", port)
-		_, err := execOutput(cmd)
-		if err != nil {
-			log.Fatal(err)
-		}
-	} else {
-		fs := http.FileServer(http.Dir(getDistPath()))
-		http.Handle("/", fs)
-		port = strings.Join([]string{":", port}, "")
-		log.Println("Listening...", port)
-		err = http.ListenAndServe(port, nil)
+	err = ws()
+	if err != nil {
+		log.Fatal(err)
 	}
 	<-done
 }
@@ -75,14 +63,27 @@ func commandExists(cmd string) bool {
 	}
 }
 
-func ws() {
+func ws() error {
+	var err error
 	port := cmdopts.Server.Port
-	fs := http.FileServer(http.Dir(getDistPath()))
-	http.Handle("/", fs)
-	port = strings.Join([]string{":", port}, "")
-	log.Println("Listening...", port)
-	err := http.ListenAndServe(port, nil)
-	if err != nil {
-		log.Fatal(err)
+	if commandExists("live-server") {
+		var cmd string
+		if port != "" {
+			cmd = strings.Join([]string{"live-server ", getDistPath(), " --port=", port}, "")
+		} else {
+			cmd = strings.Join([]string{"live-server ", getDistPath()}, "")
+		}
+		log.Println("Listening...", port)
+		_, err := execOutput(cmd)
+		if err != nil {
+			return err
+		}
+	} else {
+		fs := http.FileServer(http.Dir(getDistPath()))
+		http.Handle("/", fs)
+		port = strings.Join([]string{":", port}, "")
+		log.Println("Listening...", port)
+		err = http.ListenAndServe(port, nil)
 	}
+	return err
 }
