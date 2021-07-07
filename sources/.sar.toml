@@ -4,3 +4,10 @@ base = "./src"
 [[sar.commands]]
 match = "**"
 cmd = "echo $(basename $PROFILE) | xargs -I {} bash -c '{} bundle'"
+
+[[sar]]
+base = "./cmd"
+
+[[sar.commands]]
+match = "**.go"
+cmd = "(cd ./cmd; go build .)"
