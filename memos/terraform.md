@@ -344,3 +344,5 @@ resources
 | data     | aws_iam_policy_document                | cloudwatch_logs      | CloudWatch Logs 用 IAM ロールポリシードキュメント |
 | module   | -                                      | cloudwatch_logs_role | CloudWatch Logs 用 IAM ロール                     |
 | resource | aws_cloudwatch_log_subscription_filter | example              | CloudWatch Logs サブスクリプションフィルタ        |
+
+- [GitHub - hashicorp/setup-terraform: Sets up Terraform CLI in your GitHub Actions workflow.](https://github.com/hashicorp/setup-terraform)
