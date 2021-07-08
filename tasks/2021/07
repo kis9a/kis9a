@@ -1,7 +1,70 @@
+https://www.nippehome-online.jp/diypaint/it_2kg.html
+- [ページが見つかりませんでした &#8211; 壁紙屋本舗](https://kabegamiyahonpo.com/blog/howto/howto-paint/chintai_painting.htmltasks/2021/07paintable)
+```
+package costexplorer
+
+import (
+    "github.com/aws/aws-sdk-go/aws"
+    "github.com/aws/aws-sdk-go/service/costexplorer"
+    "github.com/aws/aws-sdk-go/service/costexplorer/costexploreriface"
+)
+
+type CostExplorer struct {
+    session costexploreriface.CostExplorerAPI
+}
+
+func NewCostExplorer(session costexploreriface.CostExplorerAPI) CostExplorer {
+    return CostExplorer{
+        session: session,
+    }
+
+}
+
+func (c CostExplorer) GetCostForDaily(time_start string, time_end string, metrics []string) (*costexplorer.GetCostAndUsageOutput, error) {
+    granularity := aws.String("DAILY")
+    metric := aws.StringSlice(metrics)
+    resp, err := c.session.GetCostAndUsage(&costexplorer.GetCostAndUsageInput{Metrics: metric, Granularity: granularity, TimePeriod: &costexplorer.DateInterval{Start: aws.String(time_start), End: aws.String(time_end)}})
+    if err != nil {
+        return nil, err
+    }
+    return resp, nil
+}
+func (c CostExplorer) GetCostDetail(time_start string, time_end string, metrics []string) (*costexplorer.GetCostAndUsageOutput, error) {
+    granularity := aws.String("DAILY")
+    metric := aws.StringSlice(metrics)
+    group := costexplorer.GroupDefinition{Key: aws.String("SERVICE"), Type: aws.String("DIMENSION")}
+    resp, err := c.session.GetCostAndUsage(&costexplorer.GetCostAndUsageInput{GroupBy: []*costexplorer.GroupDefinition{&group}, Metrics: metric, Granularity: granularity, TimePeriod: &costexplorer.DateInterval{Start: aws.String(time_start), End: aws.String(time_end)}})
+    if err != nil {
+        return nil, err
+    }
+    return resp, nil
+}
+```
+https://techblog.zozo.com/entry/aws-billing-bot
+
+プロビジョニングツール：CloudFormation(CFn)、Serverless Application Model(SAM)
+
+作成されたアプリケーションはLambda上で動作しており、CloudWatch Eventsでcronを平日10時に設定してLambdaを動かしています。また、AWSの料金の取得はAWSのCost Explorer APIを使って取得しています。
+
+Go言語ではAWS SDKが提供されているのでGetCostAndUsage
+
+https://github.com/mercari/tfnotify
+<https://zenn.dev/ryo_kawamata/articles/improve-dependabot-pr>
+@dependabot ignore this minor version
+- [Go 1.16以降はGitHub版Dependabotを使った方がよさそう - くりにっき](https://sue445.hatenablog.com/entry/2021/03/20/075551)
+- https://aws.amazon.com/jp/cdp/ec-container/
+- github actions can checkt terraform state on infra.bonp.me.
+- [現代的なウェブアプリケーションの構築](https://aws.amazon.com/jp/getting-started/hands-on/build-modern-app-fargate-lambda-dynamodb-python/?sc_icampaign=acq_jp_getting-started-handson-202010-build-modern-app-fargate-lambda-dynamodb-python&sc_language=jp&sc_icontent=awssm-6350&sc_iplace=ribbon&trk=ha_ribbon_acq_jp_getting-started-handson-202010-build-modern-app-fargate-lambda-dynamodb-python)
+
+- [【docker buildのマニアックすぎる狂宴】Container Build Meetup #1に参加してきた #container_build | DevelopersIO](https://dev.classmethod.jp/articles/docker-build-meetup-1/)
+
+- [2019年1月にAWS Fargateが大幅値下げしたのでEC2との価格比を確認してみた | DevelopersIO](https://dev.classmethod.jp/articles/compare-fees-for-fargat-and-ec2-2019-1/)
+
+- https://docs.google.com/forms/d/e/1FAIpQLSfl4UH7DHiU2uZkj45Z-Pd3TTDgQ_B252bsGDbB5EFnvGsk3w/viewform
+
+- Amazon ECS では、アプリケーション、サービス、バッチ処理を実行する Docker コンテナを簡単にデプロイ、管理、スケーリングできます。Amazon ECS は、リソースのニーズに基づいてクラスター全体にコンテナを配置し、Elastic Load Balancing、EC2 セキュリティグループ、EBS ボリューム、IAM のロールなどの使い慣れた機能と統合されます。
 
 FROM 
-- [net/http 2 ＜Mux＞｜Go言語によるWebサーバー作成入門](https://zenn.dev/ichi320/books/0f544e3a076ba2b7212f/viewer/36a3ca)
-- [AWS CDK×LINE BOTハンズオン～アプリとインフラをコード管理しよう～](https://zenn.dev/ufoo68/books/3fbd1969bd4b21c5454b)
 https://future-architect.github.io/articles/20210408/
 https://future-architect.github.io/articles/20210409/
 https://future-architect.github.io/articles/20210617a/
@@ -18,7 +81,6 @@ Response  Header     HandlerFunc
 unicode.go
 serverless
 <https://github.com/apex/up-examples/blob/master/oss/golang-api/main.go> <https://apex.sh/docs/up/links/>
-- [結局、Go言語をやめる理由はなかった件 - Qiita](https://qiita.com/Maki-Daisuke/items/23c1285500208048de80)
 vCPU: 2
 Intel(R) Xeon(R) Platinum 8175M CPU @ 2.50GHz (最大3.1GHz)
 メモリ: 8 GiB
