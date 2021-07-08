@@ -1,0 +1,34 @@
+- ファイル開いて読み込み
+- ファイル開いて読み込み２
+- ファイル開いて書き込み
+- ファイル開いて書き込み２
+- 追記モード (Append) で開いて書き込み
+- /dev/null のように出力を捨てる
+- Shift-JIS なファイルを読み込み
+- Shift-JIS なファイルを書き込み
+- EUC-JP なファイルを読み込み
+- EUC-JP なファイルを書き込み
+- CSV データの読み込み
+- CSV データの書き込み
+- TSV データの読み込み
+- TSV データの書き込み
+- JSON (Marshal, シリアライズ)
+- JSON (Unmarshal, デシリアライズ)
+- JSON (Marshal, 日付, RFC3339)
+- JSON (Unmarshal, 日付, RFC3339)
+- JSON (Marshal, 日付, カスタム)
+- JSON (Unmarshal, 日付, カスタム)
+- JSON (Decoder)
+- JSON (Encoder)
+- XML (Marshal, シリアライズ)
+- XML (Unmarshal, デシリアライズ)
+- XML (Decoder)
+- XML (Encoder)
+- YAML (Marshal, シリアライズ)
+- YAML (Unmarshal, デシリアライズ)
+- YAML (Decoder)
+- YAML (Encoder)
+- バイナリデータの読み込み
+- バイナリデータの書き込み
+- バイナリデータを構造体にマッピング
+  [Go メモ-153 (Go でのファイル I/O のやり方まとめ) - いろいろ備忘録日記](https://devlights.hatenablog.com/entry/2021/06/16/014722)

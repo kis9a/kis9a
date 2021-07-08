@@ -1,0 +1,1 @@
+- [GitHub のスターは金にならない - Qiita](https://qiita.com/rana_kualu/items/db62ad8d7dc0a4cce9db)

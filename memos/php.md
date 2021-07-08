@@ -7,3 +7,5 @@ $\_SESSION
 - [【PHP 超入門】Cookie とセッションについて - Qiita](https://qiita.com/7968/items/ce03feb17c8eaa6e4672)
 
 [PHP のセッションを使ったログイン認証はなぜ安全なのか？ | あぱーブログ](https://blog.apar.jp/php/12373/)
+
+
