@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"html/template"
 	"io/ioutil"
 	"log"
@@ -26,7 +25,6 @@ func bundle() error {
 func bundlePages() error {
 	pages := filepath.Join(getSrcPath(), "pages")
 	bundleWalk := func(path string, fi os.FileInfo, err error) error {
-		fmt.Println(path)
 		if err != nil {
 			return err
 		}
@@ -44,15 +42,14 @@ func bundlePages() error {
 func bundleComponents() error {
 	components := filepath.Join(getSrcPath(), "components")
 	bundleWalk := func(path string, fi os.FileInfo, err error) error {
-		fmt.Println(path)
 		if err != nil {
 			return err
 		}
-		if fi.IsDir() {
+		if fi.IsDir() && path != components {
 			return filepath.SkipDir
 		}
 		if err := bundleByFileType(path, components); err != nil {
-			return err
+			log.Print(err)
 		}
 		return nil
 	}
@@ -105,6 +102,15 @@ func bundleByFileType(path string, base string) error {
 }
 
 func genHTML(path string, base string) error {
+	type Template struct {
+		Title string
+	}
+	var tp Template
+	if filepath.Base(base) == filepath.Base(path) {
+		tp.Title = ""
+	} else {
+		tp.Title = filepath.Base(path)
+	}
 	tpl, err := template.ParseFiles(filepath.Join(getSrcPath(), "layouts/index.html"))
 	if err != nil {
 		return err
@@ -118,7 +124,7 @@ func genHTML(path string, base string) error {
 		return err
 	}
 	defer nf.Close()
-	err = tpl.Execute(nf, nil)
+	err = tpl.Execute(nf, tp)
 	if err != nil {
 		return err
 	}
