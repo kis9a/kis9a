@@ -261,7 +261,6 @@ func initializeDist() error {
 func copyAssetsDirectory() error {
 	dir := filepath.Join(getSrcPath(), "assets")
 	walk := func(path string, fi os.FileInfo, err error) error {
-		fmt.Println(path)
 		rp, err := filepath.Rel(getSrcPath(), path)
 		if err != nil {
 			return err
