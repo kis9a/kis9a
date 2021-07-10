@@ -85,7 +85,7 @@ func main() {
 			cmdopts.Server.FlagSet.Parse(args[1:])
 			server(cmdopts.Server.Port)
 		case "bundle":
-			bundlePages()
+			bundle()
 		case "ws":
 			ws()
 		}

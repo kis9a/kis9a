@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"io/ioutil"
 	"log"
@@ -12,29 +13,73 @@ import (
 	"github.com/tdewolff/minify/v2/html"
 )
 
-func bundlePages() error {
-	pages := filepath.Join(getSrcPath(), "pages")
-	bundleWalk := func(path string, fi os.FileInfo, err error) error {
-		if err != nil {
-			return err
-		}
-		if err := bundleByFileType(path, pages); err != nil {
-			log.Println(err)
-		}
-		return nil
+func bundle() error {
+	if err := bundlePages(); err != nil {
+		return err
 	}
-	if err := filepath.Walk(pages, bundleWalk); err != nil {
-		log.Fatal(err)
+	if err := bundleComponents(); err != nil {
+		return err
 	}
 	return nil
 }
 
-func bundleByFileType(path string, base string) error {
+func bundlePages() error {
+	pages := filepath.Join(getSrcPath(), "pages")
+	bundleWalk := func(path string, fi os.FileInfo, err error) error {
+		fmt.Println(path)
+		if err != nil {
+			return err
+		}
+		if err := bundleByFileType(path, pages); err != nil {
+			return err
+		}
+		return nil
+	}
+	if err := filepath.Walk(pages, bundleWalk); err != nil {
+		return err
+	}
+	return nil
+}
+
+func bundleComponents() error {
+	components := filepath.Join(getSrcPath(), "components")
+	bundleWalk := func(path string, fi os.FileInfo, err error) error {
+		fmt.Println(path)
+		if err != nil {
+			return err
+		}
+		if fi.IsDir() {
+			return filepath.SkipDir
+		}
+		if err := bundleByFileType(path, components); err != nil {
+			return err
+		}
+		return nil
+	}
+	if err := filepath.Walk(components, bundleWalk); err != nil {
+		return err
+	}
+	return nil
+}
+
+func getBundleWp(path string, base string) (string, error) {
+	name := filepath.Base(base)
 	rp, err := filepath.Rel(base, path)
+	if err != nil {
+		return "", err
+	}
+	if name == "pages" {
+		return filepath.Join(getDistPath(), rp), err
+	} else {
+		return filepath.Join(getDistPath(), name, rp), err
+	}
+}
+
+func bundleByFileType(path string, base string) error {
+	wp, err := getBundleWp(path, base)
 	if err != nil {
 		return err
 	}
-	wp := filepath.Join(getDistPath(), rp)
 	ft := getFileType(path)
 	switch ft {
 	case JS:
@@ -64,11 +109,10 @@ func genHTML(path string, base string) error {
 	if err != nil {
 		return err
 	}
-	rp, err := filepath.Rel(base, path)
+	wp, err := getBundleWp(filepath.Join(path, "index.html"), base)
 	if err != nil {
 		return err
 	}
-	wp := filepath.Join(getDistPath(), rp, "index.html")
 	nf, err := os.Create(wp)
 	if err != nil {
 		return err
