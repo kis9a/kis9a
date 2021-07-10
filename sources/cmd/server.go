@@ -30,7 +30,9 @@ func server(port string) {
 					return
 				}
 				if event.Op&fsnotify.Write == fsnotify.Write {
-					bundlePages()
+					if err := bundle(); err != nil {
+						log.Println(err)
+					}
 				}
 			case err, ok := <-watcher.Errors:
 				if !ok {

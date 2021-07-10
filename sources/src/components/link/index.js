@@ -3,7 +3,10 @@ import { routes } from "/modules/js/router.js";
 import "./index.css";
 
 export const Link = (name, opts = { as: "", active: true }) => {
-  const item = routes.find((v) => v.name == name);
+  let item = routes.find((v) => v.name == name);
+  if (!item) {
+    item = { name: name, href: "#" };
+  }
   return h(
     "a",
     { class: `link ${opts.active ? "" : "disable"}`, href: item.href },
