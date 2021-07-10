@@ -177,8 +177,9 @@
 .tab-memo-input {
   max-width: unset;
   margin: 0;
-  padding: 0.5rem;
-  font-size: 2rem;
+  padding: 0.8rem;
+  font-size: 1.8rem !important;
+  line-height: 3.4rem;
 }
 
 .tab-memo-view {

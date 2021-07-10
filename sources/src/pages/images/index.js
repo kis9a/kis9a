@@ -42,7 +42,10 @@ app({
           { class: "indexes" },
           indexes &&
             shuffle(indexes).map((s) =>
-              h("img", { alt: s.name, src: `/data/images/${s.name}` }, [])
+              h("img", {
+                alt: s.name,
+                src: `/data/images/${s.name}`,
+              })
             )
         ),
       ]),

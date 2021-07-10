@@ -81,6 +81,9 @@ func main() {
 			}
 		case "data":
 			initializeData()
+		case "dist":
+			err := initializeDist()
+			log.Fatal(err)
 		case "server":
 			cmdopts.Server.FlagSet.Parse(args[1:])
 			server(cmdopts.Server.Port)
@@ -245,5 +248,34 @@ func initializeDist() error {
 	if !isExistPath(getDistPath()) {
 		os.MkdirAll(getDistPath(), 0755)
 	}
-	return bundlePages()
+	err := copyAssetsDirectory()
+	if err != nil {
+		return err
+	}
+	if err = bundlePages(); err != nil {
+		return err
+	}
+	return err
+}
+
+func copyAssetsDirectory() error {
+	dir := filepath.Join(getSrcPath(), "assets")
+	walk := func(path string, fi os.FileInfo, err error) error {
+		fmt.Println(path)
+		rp, err := filepath.Rel(getSrcPath(), path)
+		if err != nil {
+			return err
+		}
+		if !fi.IsDir() {
+			wp := filepath.Join(getDistPath(), rp)
+			if err := copyFile(path, wp); err != nil {
+				return err
+			}
+		}
+		return nil
+	}
+	if err := filepath.Walk(dir, walk); err != nil {
+		return err
+	}
+	return nil
 }
