@@ -21,9 +21,12 @@ export const Header = () => {
     str = path.normalize(str);
     return str.replaceAll("/", "");
   };
-  const c = routes.find((v) => {
+  let c = routes.find((v) => {
     return parse(sn) === parse(v.href);
   });
+  if (!c) {
+    c = { name: "" };
+  }
   return h("div", { class: "header-wrapper" }, [
     h("header", {}, [
       h("nav", {}, [
