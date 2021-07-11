@@ -1,3 +1,51 @@
+```
+
+jobs:
+  zenn:
+    runs-on: ubuntu-20.04
+    env:
+      REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
+    steps:
+      - name: install go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ^1.16
+      - name: version
+        run: go version
+      - name: go get aws-services
+        run: go get github.com/kis9a/aws-services
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          repository: kis9a/kis9a
+          path: kis9a
+      - name: update zenn article
+        run: |
+          cd kis9a/
+          git config user.name "kis9a"
+          git config user.email "kis9ax@gmail.com"
+          aws-services jp -t zenn/articles/aws-services.template -o zenn/articles/aws-services.md
+          ls -la zenn/articles
+          git add zenn/articles/aws-services.md
+          git commit -m "zenn: update aws-services"
+          git push -f -q https://kis9a:$REPO_TOKEN@github.com/kis9a/kis9a.git
+```
+
+                    git clone https://kis9a:$REPO_TOKEN@github.com/kis9a/kis9a
+
+          # git checkout -b api-version-$COMMIT
+          # touch new-file.sh
+          # git add new-file.sh
+          # git commit -m "Add new file"
+          # git remote -v # Prints:
+          # # origin ***github.com/owner/my-repo.git (fetch)
+          # # origin ***github.com/owner/my-repo.git (push)
+          # git push --set-upstream origin api-version-$COMMIT # This does not work
+          # git push --set-upstream httpset//user:$GITHUB_TOKEN@github.com/owner/my-repo api-version-$COMMIT # This does not work either
+
+github project export to tasks/2021/*.md
+
+- [GitHub Actionsのワークフロー構文 - GitHub Docs](https://docs.github.com/ja/enterprise-server@2.22/actions/reference/workflow-syntax-for-github-actions)
 - [golangでgitのサブコマンドを作ろう - Qiita](https://qiita.com/mziyut/items/73be60dd39020c3507fc)
 https://github.com/tj/git-extras
 - [歴史の長いプロダクトでAmazon Linux 2への移行をやり遂げた話 | 株式会社ヌーラボ(Nulab inc.)](https://nulab.com/ja/blog/backlog/amazon-linux-2-migration/)
