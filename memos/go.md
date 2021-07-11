@@ -237,3 +237,5 @@ go list -m all で、現在の依存モジュールを表示する
 go mod tidy で、使われていない依存モジュールを削除する
 
 <!--}}}-->
+
+GOOS=linux GOARCH=amd64 go build main.go

@@ -1,10 +1,13 @@
-- [昔作ったGitHubのLabelを供養する](https://zenn.dev/sh090/articles/8291abdb1be48f5765ec)
+- [github actionsでzenn記事の予約投稿を実現する](https://zenn.dev/ryo_kawamata/articles/schedule-publish-on-zenn-article)
+- [昔作った GitHub の Label を供養する](https://zenn.dev/sh090/articles/8291abdb1be48f5765ec)
 - [github-script は便利です - Qiita](https://qiita.com/bugfire/items/a2fa85fa58dd20322e3f)
 - [GitHub Actions の記事一覧 | Zenn](https://zenn.dev/topics/githubactions)
 - [GitHub - actions/checkout: Action for checking out a repo](https://github.com/actions/checkout)
 - [GitHub - actions/github-script: Write workflows scripting the GitHub API in JavaScript](https://github.com/actions/github-script)
 - [GitHub - technote-space/get-diff-action: GitHub Actions to get git diff](https://github.com/technote-space/get-diff-action)
 - [awesome-terraform-pipeline/awesome-terraform-pipeline.yml at main · bmbferreira/awesome-terraform-pipeline · GitHub](https://github.com/bmbferreira/awesome-terraform-pipeline/blob/main/.github/workflows/awesome-terraform-pipeline.yml)
+
+- [github-action-push-to-another-repository/action.yml at main · cpina/github-action-push-to-another-repository · GitHub](https://github.com/cpina/github-action-push-to-another-repository/blob/main/action.yml)
 
 ```
 # name: test
