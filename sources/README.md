@@ -1,3 +1,56 @@
+## workflow
+
+\# example
+
+### installation
+
+```sh
+curl -sL https://raw.githubusercontent.com/kis9a/kis9a/master/sources/install | bash
+cd $PROFILE
+make link
+make server
+
+```
+
+### deployment
+
+```sh
+
+make pbs
+make pbz
+
+```
+
+### command
+
+````
+
+### command
+
+```sh
+# if $PROFILE=kis9a
+
+kis9a server
+kis9a bundle
+kis9a images -r # resize
+kis9a images -c # comvert
+kis9a data
+kis9a dist
+````
+
+### src
+
+modules/\*.esm.js
+
+### src components
+
+https://localhost:9000/components
+
+### src to dist
+
+<details>
+  <summary>src</summary>
+
 ```
 src
 ├── assets
@@ -58,6 +111,11 @@ src
         └── index.js
 ```
 
+</details>
+
+<details>
+  <summary>dist</summary>
+
 ```
 dist
 ├── assets
@@ -100,4 +158,16 @@ dist
     ├── index.html
     └── index.js
 
+```
+
+</details>
+
+### options
+
+```sh
+go get https://github.com/kis9a/sar
+
+kis9a ws
+
+(cd $PROFILE/sources/; sar)
 ```

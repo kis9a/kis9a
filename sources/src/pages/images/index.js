@@ -3,6 +3,7 @@ import { Http } from "/modules/js/Http.js";
 import { Header } from "/components/header";
 import "/layouts/index.css";
 import "./index.css";
+import lazyLoadInit from "./lazyload-init";
 
 const getIndexes = Http({
   url: "/data/images-indexes.json",
@@ -43,8 +44,10 @@ app({
           indexes &&
             shuffle(indexes).map((s) =>
               h("img", {
+                class: "lazy",
                 alt: s.name,
                 src: `/data/images/${s.name}`,
+                "data-src": `${s.name}`,
               })
             )
         ),
@@ -53,3 +56,5 @@ app({
   subscriptions: () => {},
   node: document.getElementById("app"),
 });
+
+lazyLoadInit();

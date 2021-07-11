@@ -98,7 +98,7 @@ install-sar() {
 }
 
 install-profile() {
-	git clone https://github.com/kis9a/kis9a "$PROFILE"
+	git clone https://github.com/"$PROFILE"/"$PROFILE" "$PROFILE"
 	go install "$PROFILE"/sources/cmd
 }
 

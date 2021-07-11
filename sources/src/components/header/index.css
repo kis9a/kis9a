@@ -10,7 +10,7 @@
 .links {
   display: flex;
   align-items: center;
-  margin: auto 0;
+  margin: auto 1rem;
 }
 
 .header-wrapper {
