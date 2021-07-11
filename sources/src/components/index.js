@@ -1,41 +1,27 @@
 import { Header } from "/components/header";
 import { h, text, app } from "/modules/js/hyperapp.js";
-import { Link } from "/components/link";
-import {
-  svg_top,
-  svg_close,
-  svg_clear,
-  svg_share,
-  svg_raw,
-  svg_memo,
-} from "/components/icons";
+import { viewLink, viewLinkActive } from "/components/link/unit.js";
+import { viewIcons } from "/components/icons/unit.js";
+import { viewHeader } from "/components/header/unit.js";
 import "/layouts/index.css";
 import "./index.css";
 
-const viewLinkDefault = () => {
-  return Link("name");
-};
-
-const viewLinkActive = () => {
-  return Link("name");
-};
-
-const viewIcons = () => {
-  const icons = [svg_top, svg_close, svg_clear, svg_share, svg_raw, svg_memo];
-  return h(
-    "div",
-    {},
-    icons.map((v) => h("div", { innerHTML: v }))
-  );
-};
-
 const sides = [
+  {
+    name: "Header",
+    views: [
+      {
+        name: "default",
+        view: viewHeader,
+      },
+    ],
+  },
   {
     name: "Link",
     views: [
       {
         name: "default",
-        view: viewLinkDefault,
+        view: viewLink,
       },
       {
         name: "active",
