@@ -1,7 +1,7 @@
 import { h, text } from "/modules/js/hyperapp.js";
 import { routes } from "/modules/js/router.js";
 import { LinkIcon } from "/components/link";
-import { svg_dot_vercel } from "/components/icons";
+import { svg_dot_horizon } from "/components/icons";
 import "./index.css";
 
 var path = require("./path.js");
@@ -41,17 +41,15 @@ export const Header = () => {
         h(
           "div",
           {
-            class: `menu-icon link-icon ${
-              window.innerWidth < 800 ? "" : "none"
-            }`,
-            innerHTML: svg_dot_vercel,
+            class: "menu-icon link-icon",
+            innerHTML: svg_dot_horizon,
             onclick: toggleViewLinks,
           },
           text("menu")
         ),
         h(
           "div",
-          { class: `links ${window.innerWidth < 800 ? "none" : ""}` },
+          { class: `links ${window.innerWidth < 600 ? "none" : ""}` },
           routes.map((r) => LinkIcon(r.name, { active: r.name !== c.name }))
         ),
       ]),

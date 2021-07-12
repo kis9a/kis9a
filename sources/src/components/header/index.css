@@ -13,7 +13,8 @@ header {
   padding: 0.8rem 0.6rem;
   font-size: 1.2rem;
   border-radius: 50%;
-  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-bg-secondary);
+  background-color: var(--color-shadow);
   pointer-events: none;
 }
 
@@ -61,7 +62,16 @@ header {
   display: none !important;
 }
 
-@media (max-width: 800px) {
+.menu-icon {
+  display: none;
+}
+
+.menu-icon:hover {
+  cursor: pointer;
+  z-index: 1000;
+}
+
+@media (max-width: 600px) {
   .links {
     top: 8rem;
     right: 0;
@@ -73,9 +83,16 @@ header {
     background-color: var(--color-shadow);
     padding: 12px;
     border-radius: 6px;
+    border: 1px solid var(--color-bg-secondary);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 6px;
+    z-index: 900;
   }
-}
-
-.menu-icon:hover {
-  cursor: pointer;
+  .links:hover {
+    box-shadow: 0 0 1px 1px var(--color-bg-secondary);
+  }
+  .menu-icon {
+    display: unset;
+  }
 }

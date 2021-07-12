@@ -12,7 +12,7 @@ const getIndexes = Http({
     pureState.indexes = res;
     return {
       ...state,
-      indexes: res || [],
+      indexes: shuffle(res) || [],
     };
   },
 });
@@ -42,7 +42,7 @@ app({
           "div",
           { class: "indexes" },
           indexes &&
-            shuffle(indexes).map((s) =>
+            indexes.map((s) =>
               h("div", { class: "imgc" }, [
                 h("img", {
                   alt: s.name,
