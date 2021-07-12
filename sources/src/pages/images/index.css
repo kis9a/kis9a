@@ -13,8 +13,40 @@
 .indexes img {
   height: auto;
   width: 100%;
+  pointer-events: none;
+  border: 1px solid var(--color-bg-secondary);
 }
 
-.indexes img {
-  border: 1px solid var(--color-bg-secondary);
+.imgc {
+  position: relative;
+  height: auto;
+  width: 100%;
+  float: left;
+  opacity: 0.95;
+  box-shadow: 0 0 4px 4px var(--color-bg-secondary);
+}
+
+.imgc div {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: black;
+  color: white;
+  font-family: sans-serif;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: visibility 0s, opacity 0.5s linear;
+  transition: visibility 0s, opacity 0.5s linear;
+}
+
+.imgc:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.imgc:hover div {
+  width: 100px;
+  padding: 8px 12px;
+  visibility: visible;
+  opacity: 0.6;
 }

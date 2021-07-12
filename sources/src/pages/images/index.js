@@ -1,9 +1,9 @@
-import { h, app } from "/modules/js/hyperapp.js";
+import { h, app, text } from "/modules/js/hyperapp.js";
 import { Http } from "/modules/js/Http.js";
 import { Header } from "/components/header";
 import "/layouts/index.css";
 import "./index.css";
-import lazyLoadInit from "./lazyload-init";
+// import lazyLoadInit from "./lazyload-init";
 
 const getIndexes = Http({
   url: "/data/images-indexes.json",
@@ -43,12 +43,14 @@ app({
           { class: "indexes" },
           indexes &&
             shuffle(indexes).map((s) =>
-              h("img", {
-                class: "lazy",
-                alt: s.name,
-                src: `/data/images/${s.name}`,
-                "data-src": `${s.name}`,
-              })
+              h("div", { class: "imgc" }, [
+                h("img", {
+                  alt: s.name,
+                  src: `/data/images/${s.name}`,
+                  "data-src": `${s.name}`,
+                }),
+                h("div", {}, text(s.name)),
+              ])
             )
         ),
       ]),
@@ -57,4 +59,4 @@ app({
   node: document.getElementById("app"),
 });
 
-lazyLoadInit();
+// lazyLoadInit();

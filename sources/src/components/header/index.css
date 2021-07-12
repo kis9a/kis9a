@@ -10,22 +10,18 @@ header {
   margin-left: 8rem;
   display: flex;
   z-index: 100;
-  padding: 0.2rem 0.4rem;
-  font-size: 1.3rem;
-  border-radius: 10%;
+  padding: 0.8rem 0.6rem;
+  font-size: 1.2rem;
+  border-radius: 50%;
   background-color: var(--color-bg-secondary);
-}
-
-.logo-text:hover {
-  cursor: pointer;
-  box-shadow: 0 0 1px 1px var(--color-bg-secondary);
+  pointer-events: none;
 }
 
 .links {
   display: flex;
   align-items: center;
   margin: auto 1rem;
-  margin-right: 1.5rem; 
+  margin-right: 1.5rem;
 }
 
 .header-wrapper {
@@ -47,8 +43,13 @@ header {
   opacity: 0.9;
 }
 
+.logo-image img {
+  pointer-events: none;
+  -webkit-touch-callout: none;
+}
+
 .logo-image:hover {
   opacity: 1;
   cursor: pointer;
-  box-shadow: 0 0 4px 4px var(--color-bg-secondary);
+  box-shadow: 0 0 2px 2px var(--color-bg-secondary);
 }
