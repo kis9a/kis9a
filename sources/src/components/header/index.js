@@ -30,8 +30,12 @@ export const Header = () => {
   return h("div", { class: "header-wrapper" }, [
     h("header", {}, [
       h("nav", {}, [
-        h("h1", { class: "logo-text" }, text("KIS9A")),
-        h("img", { class: "logo-image", src: "/assets/logo.png" }),
+        h("h1", { class: "logo-text", onclick: toNavigation }, text("KIS9A")),
+        h("img", {
+          class: "logo-image",
+          src: "/assets/logo.png",
+          onclick: toNavigation,
+        }),
         h(
           "div",
           { class: "links" },
@@ -40,4 +44,9 @@ export const Header = () => {
       ]),
     ]),
   ]);
+};
+
+const toNavigation = () => {
+  window.open("https://nav.kis9a.com", "_blank");
+  return { ...state };
 };
