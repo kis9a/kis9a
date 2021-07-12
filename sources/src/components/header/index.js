@@ -31,11 +31,12 @@ export const Header = () => {
     h("header", {}, [
       h("nav", {}, [
         h("h1", { class: "logo-text", onclick: toNavigation }, text("KIS9A")),
-        h("img", {
-          class: "logo-image",
-          src: "/assets/logo.png",
-          onclick: toNavigation,
-        }),
+        h("div", { class: "logo-image" }, [
+          h("img", {
+            src: "/assets/logo.png",
+            onclick: toNavigation,
+          }),
+        ]),
         h(
           "div",
           { class: "links" },
