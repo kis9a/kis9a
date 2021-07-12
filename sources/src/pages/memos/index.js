@@ -2,13 +2,14 @@ import { app, h, text } from "/modules/js/hyperapp.js";
 import snarkdown from "/modules/js/snarkdown.js";
 import { Header } from "/components/header";
 import { Http } from "/modules/js/Http.js";
+import { Toast } from "/components/toast";
 import {
   svg_top,
   svg_close,
   svg_clear,
   svg_share,
   svg_raw,
-  svg_memo,
+  svg_pencil_alt,
 } from "/components/icons";
 import "./index.css";
 import "/layouts/index.css";
@@ -148,7 +149,7 @@ const copyUrl = (state) => {
   element.select();
   document.execCommand("copy");
   document.body.removeChild(element);
-  alert("copied url to share link");
+  Toast("Copied to clipboard share url");
   return { ...state };
 };
 
@@ -224,42 +225,6 @@ app({
     h("div", { class: "container" }, [
       Header(),
       h("main", {}, [
-        h("div", { class: "inputs" }, [
-          h("input", {
-            type: "text",
-            value: inputValue,
-            oninput: setInputValue,
-            onfocus: onInputFocus,
-            class: "index-search",
-          }),
-          // h("input", {
-          //   type: "date",
-          //   placeholder: "Date",
-          //   class: "input",
-          // }),
-          // h("input", {
-          //   type: "date",
-          //   placeholder: "Date",
-          //   class: "input",
-          // }),
-          h("div", {
-            class: "index-toggle-button",
-            onclick: toggleShowIndex,
-            innerHTML: `${showIndexes ? "&#9660" : "&#9650"}`,
-          }),
-        ]),
-        h(
-          "div",
-          { class: `indexes  ${showIndexes ? "showIndexes" : "hide"}` },
-          indexes &&
-            indexes.map((index) =>
-              h(
-                "span",
-                { class: "index", onclick: setContent },
-                text(index.name)
-              )
-            )
-        ),
         h("div", { class: "tabs" }, [
           h("div", {
             class: "tab svg-clear tab-clear",
@@ -289,7 +254,7 @@ app({
                     {
                       onclick: () => [onSelect, c.name],
                       class: "tab-label memo-tab-label",
-                      innerHTML: c.name === "memo" ? svg_memo : "",
+                      innerHTML: c.name === "memo" ? svg_pencil_alt : "",
                     },
                     c.name !== "memo" ? text(c.name) : text("")
                   ),
@@ -303,10 +268,36 @@ app({
               )
             )),
         ]),
+        h("div", { class: "inputs" }, [
+          h("input", {
+            type: "text",
+            value: inputValue,
+            oninput: setInputValue,
+            onfocus: onInputFocus,
+            class: "index-search",
+          }),
+          h("div", {
+            class: "index-toggle-button",
+            onclick: toggleShowIndex,
+            innerHTML: `${showIndexes ? "&#9660" : "&#9650"}`,
+          }),
+        ]),
+        h(
+          "div",
+          { class: `indexes  ${showIndexes ? "showIndexes" : "hide"}` },
+          indexes &&
+            indexes.map((index) =>
+              h(
+                "span",
+                { class: "index", onclick: setContent },
+                text(index.name)
+              )
+            )
+        ),
         content.name === "memo" &&
           h("div", { class: "tab-memo" }, [
             h("textarea", {
-              rows: 20,
+              rows: 15,
               value: content.content || " ",
               oninput: setInputContent,
               class: "content tab-memo-input",

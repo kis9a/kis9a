@@ -35,6 +35,7 @@ export const Header = () => {
         h("div", { class: "logo-image" }, [
           h("img", {
             src: "/assets/logo.png",
+            alt: "kis9a.png",
             onclick: toNavigation,
           }),
         ]),

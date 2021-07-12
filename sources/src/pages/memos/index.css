@@ -40,21 +40,17 @@
 }
 
 .inputs {
-  width: 20rem;
   display: flex;
   align-items: center;
   padding: 0.2rem;
   background-color: var(--color-shadow);
   border: 1px solid var(--color-bg-secondary);
   margin: 0;
-  margin-bottom: 0.4rem;
-  margin-right: auto;
 }
 
 .inputs input {
   height: 1.2rem;
-  margin: 0;
-  margin-right: 0.2rem;
+  margin: 0.4rem 0.4rem;
 }
 
 .inputs .index-toggle-button {
@@ -68,7 +64,6 @@
 }
 
 .inputs .index-search {
-  margin-right: 1rem;
   min-width: 18rem;
 }
 
@@ -100,8 +95,8 @@
   flex-wrap: wrap;
   word-break: break-all;
   margin: 0;
-  margin-bottom: 0.4rem;
   background-color: var(--color-shadow);
+  border: 0.5px solid var(--color-bg-secondary);
 }
 .index {
   display: block;
