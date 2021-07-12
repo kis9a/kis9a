@@ -119,9 +119,13 @@ func genHTML(path string, base string) error {
 	if err != nil {
 		return err
 	}
+	bd := filepath.Dir(wp)
+	if !isExistPath(bd) {
+		os.MkdirAll(bd, 0755)
+	}
 	nf, err := os.Create(wp)
 	if err != nil {
-		return err
+		log.Fatal(err)
 	}
 	defer nf.Close()
 	err = tpl.Execute(nf, tp)

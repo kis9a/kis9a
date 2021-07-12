@@ -252,7 +252,7 @@ func initializeDist() error {
 	if err != nil {
 		return err
 	}
-	if err = bundlePages(); err != nil {
+	if err = bundle(); err != nil {
 		return err
 	}
 	return err
