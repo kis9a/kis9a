@@ -1,6 +1,6 @@
 import { h, text } from "/modules/js/hyperapp.js";
 import { routes } from "/modules/js/router.js";
-import { Link } from "/components/link";
+import { LinkIcon } from "/components/link";
 import "./index.css";
 
 var path = require("./path.js");
@@ -30,11 +30,12 @@ export const Header = () => {
   return h("div", { class: "header-wrapper" }, [
     h("header", {}, [
       h("nav", {}, [
-        h("h1", { class: "logo" }, text("KIS9A")),
+        h("h1", { class: "logo-text" }, text("KIS9A")),
+        h("img", { class: "logo-image", src: "/assets/logo.png" }),
         h(
           "div",
           { class: "links" },
-          routes.map((r) => Link(r.name, { active: r.name !== c.name }))
+          routes.map((r) => LinkIcon(r.name, { active: r.name !== c.name }))
         ),
       ]),
     ]),
