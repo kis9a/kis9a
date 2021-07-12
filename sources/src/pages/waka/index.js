@@ -1,6 +1,7 @@
 import { h, text, app } from "/modules/js/hyperapp.js";
 import { Http } from "/modules/js/Http.js";
 import { Header } from "/components/header";
+import { svg_calendar } from "/components/icons";
 import "./index.css";
 import "/layouts/index.css";
 
@@ -63,11 +64,14 @@ app({
             svgs.map((s) =>
               h("div", {}, [
                 s.name &&
-                  h(
-                    "h2",
-                    { class: "date" },
-                    text(afterDay(dateRange(s.name)) + " - " + today)
-                  ),
+                  h("div", { class: "date" }, [
+                    h("div", { class: "date-svg", innerHTML: svg_calendar }),
+                    h(
+                      "h2",
+                      { class: "date-text" },
+                      text(afterDay(dateRange(s.name)) + " - " + today)
+                    ),
+                  ]),
                 h("div", { class: "item" }, [
                   h("img", { src: s.activity }),
                   h("img", { src: s.percent }),
