@@ -56,3 +56,26 @@ header {
   cursor: pointer;
   box-shadow: 0 0 2px 2px var(--color-bg-secondary);
 }
+
+.none {
+  display: none !important;
+}
+
+@media (max-width: 800px) {
+  .links {
+    top: 8rem;
+    right: 0;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    margin: auto 1rem;
+    margin-right: 1.5rem;
+    background-color: var(--color-shadow);
+    padding: 12px;
+    border-radius: 6px;
+  }
+}
+
+.menu-icon:hover {
+  cursor: pointer;
+}

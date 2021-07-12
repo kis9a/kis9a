@@ -3,6 +3,9 @@
   padding: 0.5rem;
   margin: 0 0.4rem;
   color: #665c54;
+  max-height: 3rem;
+  max-width: 4rem;
+  word-wrap: break-word;
 }
 
 .disable {
