@@ -1,4 +1,20 @@
-
+https://github.com/users/kis9a/projects/1?fullscreen=true
+<https://qiita.com/greenteabiscuit/items/282ae184b3aad7edf92f>
+- [](https://medium.com/wesionary-team/create-your-first-rest-api-with-golang-using-gin-gorm-and-mysql-d439bcc6f987)
+https://yhidetoshi.hatenablog.com/entry/2019/12/08/162853#ECRに登録するGoコンテナを作成する
+[go-ginでサクッとRESTAPIを構築する - Qiita](https://qiita.com/shiei_kawa/items/eddf48287455380f618f)
+https://github.com/riboseinc/terraform-aws-s3-cloudfront-website
+https://github.com/cloudmaniac/terraform-aws-static-website
+/.github/workflows/terraform.yml :on change sources/terraform/ - creaet aws resources
+/.github/workflows/deploy.yml :on change dist branch/ -> upload s3 files
+https://dev.classmethod.jp/articles/static-web-with-cf-s3-tf/
+migreate site to s3+cloudfront 
+because can't caching assets in website served from GitHub pages
+> [Caching assets in website served from GitHub pages - Web Applications Stack Exchange](https://webapps.stackexchange.com/questions/119286/caching-assets-in-website-served-from-github-pages)
+[S3にアップロードされた画像にCache-Controlを付ける方法3選 - Qiita](https://qiita.com/KeitaMoromizato/items/b3fef6a2c9bc87662740)
+最近ISRをしていたサイトをSSR + FastlyのSWRキャッシュに切り替えましたがISRのときとほぼ変わらずに動いています。一つ懸念点があるとすればNextjsはSSRにするとprefetchがされなくなるので、キャッシュヒットしない場合のページ遷移が遅くなります。
+- [高専生が一人でWebサービスを開発したのでリリースまでのストーリーを書きました！](https://zenn.dev/makiart/articles/6b9c25ba40af1c955c87)
+[lambda@edge上でwasmを使用した画像リサイズにおける速度](https://zenn.dev/takenokogohan/articles/4d9d1c4d3a5b26)
 [GitHub - flowchartsman/swaggerui: Embedded, self-hosted swagger-ui for go servers](https://github.com/flowchartsman/swaggerui)
 [GitHub - flowchartsman/shttp: A stronger, better net/http server with sane defaults](https://github.com/flowchartsman/shttp)
 https://github.com/wricardo/gomux
