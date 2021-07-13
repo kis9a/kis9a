@@ -1,0 +1,24 @@
+name: imgcmp
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "images/**.jpg"
+      - "images/**.jpeg"
+      - "images/**.png"
+      - ".github/workflows/imgcmp.yml"
+
+jobs:
+  build:
+    name: calibreapp/image-actions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      - name: Compress Images
+        uses: calibreapp/image-actions@main
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          compressOnly: true
