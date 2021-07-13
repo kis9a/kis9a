@@ -1,3 +1,22 @@
+provider "aws" {
+  profile                = "kis9a-src"
+  skip_region_validation = true
+  alias                  = "us-east-1"
+}
+
+terraform {
+  backend "s3" {
+    region                 = "ap-northeast-1"
+    encrypt                = true
+    key                    = "kis9a-src.tfstate"
+    bucket                 = "kis9a-terraform-states"
+    skip_region_validation = true
+  }
+}
+
+
+
+https://github.com/lucheholdings/terraform_static_site
 https://github.com/users/kis9a/projects/1?fullscreen=true
 <https://qiita.com/greenteabiscuit/items/282ae184b3aad7edf92f>
 - [](https://medium.com/wesionary-team/create-your-first-rest-api-with-golang-using-gin-gorm-and-mysql-d439bcc6f987)

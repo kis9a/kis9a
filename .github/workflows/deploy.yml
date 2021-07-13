@@ -11,5 +11,5 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
-      - name: init
-      - run: echo hello
+      - name: Checkout
+        uses: actions/checkout@v2
