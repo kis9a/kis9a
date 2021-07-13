@@ -1,3 +1,4 @@
+- [ServiceWorker for github pages. · GitHub](https://gist.github.com/kosamari/7c5d1e8449b2fbc97d372675f16b566e)
 - [Chrome DevTools を用いたメルカリ Web のパフォーマンス計測 | メルカリエンジニアリング](https://engineering.mercari.com/blog/entry/2018-12-12-090156/)
 
 Incremental SSG
@@ -123,3 +124,17 @@ Dummies
 <!--}}}-->
 
 - [OGP 対応をした - mizdev](https://mizchi.dev/202006211925-support-ogp)
+
+- [Front End Optimization (FEO) | CDN Guide | Imperva](https://www.imperva.com/learn/performance/front-end-optimization-feo/)
+
+構築済み HTML·CSS を CDN で返す。
+裏で先読みする。
+
+- lambda edge
+- cloudflare workers
+- fastify cloud platform
+
+next.js link rel=preload
+webworker
+
+Cache-Control: stale-while-revalidate,
