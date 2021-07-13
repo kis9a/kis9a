@@ -24,8 +24,8 @@ push: ## push ${dir}
 	@git push
 
 publish-sources: ## publish sources
-	-@(which gh-pages >/dev/null && gh-pages -d sources/dist -t)
-	-@(which gh-pages >/dev/null || npx gh-pages -d sources/dist -t)
+	-@(which gh-pages >/dev/null && gh-pages -b dist -d sources/dist -t)
+	-@(which gh-pages >/dev/null || npx gh-pages -b dist -d sources/dist -t)
 
 publish-zenn: ## publish zenn
 	-@(which gh-pages >/dev/null && gh-pages -b zenn -d zenn -t)
