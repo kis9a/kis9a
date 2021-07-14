@@ -1,3 +1,46 @@
+password関数で変更しようとした
+rootのpasswordを変更に関する多くの解説記事ではpassword関数で変更しようとしていますが、
+
+mysql> update user set password=password('********') where user = 'root';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '('********') where user = 'root'' at line 1
+password関数は廃止されていた
+MySQL8でユーザーのパスワードの変更 / リセット方法
+はい、ありがとうございます。
+ver. 5.6.7時点でどうやら廃止されたようでした。
+
+mysql> set password for 'root'@'localhost' = '********';
+Query OK, 0 rows affected (0.02 sec)
+
+sequel pro caching_sha2_password fail
+sudo mysqld_safe –skip-grant-tables
+
+mysql> set password for 'root'@'localhost' = '****';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.00 sec)
+
+```
+#! /bin/bash
+
+function rec {
+    for FILE in `ls ${2}`
+        do
+           local FULL=${2}/${FILE}
+           if [ -f $FULL ]; then $1 $FULL
+           elif [ -d $FULL ]; then rec $1 $FULL
+           fi
+        done
+}
+
+rec $1 `pwd`/${2}
+```
+tput
+- [GitHub - jandelgado/golang-ci-template-github-actions: example for golang project using github actions](https://github.com/jandelgado/golang-ci-template-github-actions)
+redirect te.kis9a.com/
+git clone alias function -u kis9a/some, without https://
+cat kis9a/kis9a/path/file
+
 provider "aws" {
   profile                = "kis9a-src"
   skip_region_validation = true
