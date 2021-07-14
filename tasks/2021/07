@@ -1,3 +1,61 @@
+
+[Go で作る SPA 用バックエンド - l12a](https://lnly.hatenablog.com/entry/2020/02/26/225722)
+- [【Go】ginを使った一連の認証実装をまとめる](https://zenn.dev/someone7140/articles/02181927acd040)
+[404 File Not Found](https://note.crohaco.net/2019/golang-gin/tasks/2021/07preparing)
+
+func sessionCheck() gin.HandlerFunc {
+    return func(c *gin.Context) {
+
+        session := sessions.Default(c)
+        LoginInfo.UserId = session.Get("UserId")
+
+        // セッションがない場合、ログインフォームをだす
+        if LoginInfo.UserId == nil {
+            log.Println("ログインしていません")
+            c.Redirect(http.StatusMovedPermanently, "/login")
+            c.Abort() // これがないと続けて処理されてしまう
+        } else {
+            c.Set("UserId", LoginInfo.UserId) // ユーザidをセット
+            c.Next()
+        }
+        log.Println("ログインチェック終わり")
+    }
+}
+- [GitHub - x-color/tools](https://github.com/x-color/tools)
+axios https://qiita.com/melty_go/items/1432da74804a9dca112a
+- [Go Code Samples &nbsp;|&nbsp; YouTube Data API &nbsp;|&nbsp; Google Developers](https://developers.google.com/youtube/v3/code_samples/go)
+ログイン済みであれば、ログイン画面にアクセスしてもホーム画面にリダイレクトされる
+ログイン済みでなければ、どのページにアクセスしてもログイン画面にリダイレクトされる
+ログイン済みでない場合、アクセスしたページがレンダリングされる前にリダイレクトされる
+操作中にログインが切れた場合、ログイン画面にリダイレクトされる。
+
+	// // ユーザー登録画面
+	// router.GET("/signup", func(c *gin.Context) {
+	// 	c.HTML(200, "signup.html", gin.H{})
+	// })
+
+	// // ユーザー登録
+	// router.POST("/signup", func(c *gin.Context) {
+	// 	var form User
+	// 	// バリデーション処理
+	// 	if err := c.Bind(&form); err != nil {
+	// 		c.HTML(http.StatusBadRequest, "signup.html", gin.H{"err": err})
+	// 		c.Abort()
+	// 	} else {
+	// 		username := c.PostForm("username")
+	// 		password := c.PostForm("password")
+	// 		// 登録ユーザーが重複していた場合にはじく処理
+	// 		if err := createUser(username, password); err != nil {
+	// 			c.HTML(http.StatusBadRequest, "signup.html", gin.H{"err": err})
+	// 		}
+	// 		c.Redirect(302, "/")
+	// 	}
+	// })
+
+
+GitHub - herusdianto/gorm_crud_example: GoLang, GORM &amp; Gin CRUD Example](https://github.com/herusdianto/gorm_crud_example)
+- [glide - パッケージ管理のお困りの方へ - - Qiita](https://qiita.com/usk81/items/8e192e68d6b18bec3b4a)
+
 password関数で変更しようとした
 rootのpasswordを変更に関する多くの解説記事ではpassword関数で変更しようとしていますが、
 
