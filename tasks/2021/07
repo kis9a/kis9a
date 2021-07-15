@@ -1,3 +1,21 @@
+[できた！S3 オリジンへの直接アクセス制限と、インデックスドキュメント機能を共存させる方法 | DevelopersIO](https://dev.classmethod.jp/articles/directory-indexes-in-s3-origin-backed-cloudfront/)
+https://github.com/twstewart42/terraform-aws-cloudfront-s3-website-lambda-edge
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity EXUOTVVU94CF8"
+            },
+            "Action": "s3:GetObject",
+ 
+        }
+    ]
+}
+
+- [CloudFront + S3 で静的サイトを運用する際の注意点 - Qiita](https://qiita.com/ooxif/items/d28b7caf72bf5290588c)
 https://re-engines.com/2020/03/02/go%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AFgin%E3%81%A7%E3%83%9F%E3%83%89%E3%83%AB%E3%82%A6%E3%82%A7%E3%82%A2%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%83%AD%E3%82%B0%E3%82%A4/
 - [ginを最速でマスターしよう - Qiita](https://qiita.com/Syoitu/items/8e7e3215fb7ac9dabc3a)
 - [Future Corp · GitHub](https://github.com/future-architect)
