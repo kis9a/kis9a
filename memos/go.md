@@ -27,6 +27,7 @@
 - [AWS CDK×LINE BOT ハンズオン～アプリとインフラをコード管理しよう～](https://zenn.dev/ufoo68/books/3fbd1969bd4b21c5454b)
 - [結局、Go 言語をやめる理由はなかった件 - Qiita](https://qiita.com/Maki-Daisuke/items/23c1285500208048de80)
 - [GitHub - imdario/zas: Most zen static website generator in Golang.](https://github.com/imdario/zas)
+- [go bcrypt のコードを読む - Qiita](https://qiita.com/butterv/items/ca330d27fe51a6bf7a3d)
 
 Go 言語で文字列の連結を行う際には概ね以下の 4 つの方法がある。<!--{{{-->
 

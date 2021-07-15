@@ -4,3 +4,5 @@
 既存レコードを更新する時はできるだけ Update
 更新時に空値を含めて Struct で更新したい場合は Save
 更新時に空値を含めて Map で更新したい時は Update
+
+- [GO の ORM を分かりやすくまとめてみた【GORM 公式ドキュメントの焼き回し】 - Qiita](https://qiita.com/gold-kou/items/45a95d61d253184b0f33)
