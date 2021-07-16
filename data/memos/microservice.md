@@ -1,0 +1,2 @@
+- [What are microservices?](https://microservices.io/)
+- [ZOZOTOWN マイクロサービスプロジェクトにおける継続的な改善を支える CI/CD 戦略 - ZOZO Technologies TECH BLOG](https://techblog.zozo.com/entry/zozotown-cicd-strategy)

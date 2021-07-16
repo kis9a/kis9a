@@ -1,0 +1,3 @@
+- [Golang で Vim/neovim 双方で動くセレクタ系のプラグインを作ったときの話 - Qiita](https://qiita.com/hrsh7th@github/items/7430822bf906d2df99c3)
+- [Go で Vim プラグインを書く - haya14busa](http://haya14busa.com/vim-go-client/)
+- [GitHub - neovim/go-client: Nvim Go client](https://github.com/neovim/go-client)
