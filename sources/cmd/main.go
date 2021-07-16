@@ -229,6 +229,14 @@ func getSrcPath() string {
 	return filepath.Join(getSourcesPath(), "src")
 }
 
+func getActionsPath() string {
+	return filepath.Join(profile, ".github")
+}
+
+func getWorkflowPath() string {
+	return filepath.Join(getActionsPath(), "workflows")
+}
+
 func waka2Json() {
 	copyFile(filepath.Join(getWakaPath(), "wakatime.json"),
 		filepath.Join(getDataPath(), "wakatime.json"))
@@ -241,6 +249,10 @@ func initializeData() {
 	images2Json()
 	allMemos2Json()
 	waka2Json()
+	err := copyPublishAction()
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func initializeDist() error {
@@ -277,4 +289,19 @@ func copyAssetsDirectory() error {
 		return err
 	}
 	return nil
+}
+
+func copyPublishAction() error {
+	path := filepath.Join(getWorkflowPath(), "publish.yml")
+	rp, err := filepath.Rel(profile, path)
+	if err != nil {
+		return err
+	}
+	wp := filepath.Join(getDistPath(), rp)
+	bd := filepath.Dir(wp)
+	if !isExistPath(bd) {
+		os.MkdirAll(bd, 0755)
+	}
+	err = copyFile(path, wp)
+	return err
 }
