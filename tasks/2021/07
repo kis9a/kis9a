@@ -1,3 +1,30 @@
+exports.handler = async (event) => {
+    var request = event.Records[0].cf.request;
+    const olduri = request.uri;
+    if (olduri.match(/\/$/)) {
+        var newuri = olduri.replace(/\/$/, '\/index.html');
+    } else {
+        var newuri = olduri.replace(/\/[^.\/]+$/, '$&\/index.html');
+    }
+    request.uri = newuri;
+    return request;
+};
+- [簡単だった！CloudFront + S3 に BASIC認証を入れる方法 | カフーブログ](https://kahoo.blog/howto-basic-auth-on-cloudfront-s3/)
+- [[AWS] CloudFront + Lambda@Edge + S3 / DynamoDB 連携 - Qiita](https://qiita.com/ksh-fthr/items/4c7ccd5c9d5b09e5a36e)
+- [[レポート] Lambda@Edgeによるコンテンツ配信のカスタマイズ  #NET307 #reinvent 2019 | DevelopersIO](https://dev.classmethod.jp/articles/net307-report-customizing-cdn-lambda-edge-reinvent2019/)
+- [CloudFrontとLambda@Edgeを利用して画像をリサイズさせる | Bokyung's Note](https://bokyung.dev/ja/2021/05/14/lambda-edge-resize/)
+'use strict';
+exports.handler = (event, context, callback) => {
+    var request = event.Records[0].cf.request;
+    var olduri = request.uri;
+    var newuri = olduri.replace(/\/$/, '\/index.html');
+    console.log("Old URI: " + olduri);
+    console.log("New URI: " + newuri);
+    request.uri = newuri;
+    return callback(null, request);
+};
+
+vim tabline basedir prefix 1 char / filename
 https://re-engines.com/2020/03/02/go%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AFgin%E3%81%A7%E3%83%9F%E3%83%89%E3%83%AB%E3%82%A6%E3%82%A7%E3%82%A2%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%83%AD%E3%82%B0%E3%82%A4/
 - [ginを最速でマスターしよう - Qiita](https://qiita.com/Syoitu/items/8e7e3215fb7ac9dabc3a)
 - [Future Corp · GitHub](https://github.com/future-architect)
@@ -9,8 +36,6 @@ https://re-engines.com/2020/03/02/go%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%A
 - アルゴリズムの詳細(回数とか)
 - Salt
 - Hashed Password
-
-https://re-engines.com/2020/03/02/go%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%AF%E3%83%BC%E3%82%AFgin%E3%81%A7%E3%83%9F%E3%83%89%E3%83%AB%E3%82%A6%E3%82%A7%E3%82%A2%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%83%AD%E3%82%B0%E3%82%A4/
 
 cros origin golang
 
