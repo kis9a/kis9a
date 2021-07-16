@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - dist
-    paths:
-      - ".github/workflows/publish.yml"
 
 jobs:
   build:
