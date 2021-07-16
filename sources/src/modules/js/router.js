@@ -15,27 +15,27 @@ export const routes = [
   },
   {
     name: "images",
-    href: "/images",
+    href: "/images/",
     icon: svg_photo,
   },
   {
     name: "tools",
-    href: "/tools",
+    href: "/tools/",
     icon: svg_cube,
   },
   {
     name: "memos",
-    href: "/memos",
+    href: "/memos/",
     icon: svg_pencil_alt,
   },
   {
     name: "waka",
-    href: "/waka",
+    href: "/waka/",
     icon: svg_chart_bar,
   },
   {
     name: "comps",
-    href: "/components",
+    href: "/components/",
     icon: svg_template,
   },
 ];
