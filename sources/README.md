@@ -38,6 +38,21 @@ github actions
 - [terraform](../.github/workflows/terraform.yml) on change sources/terraform/\*
 - [publish](../.github/workflows/publish.yml) on push dist branch upload to s3
 
+### infrastructure
+
+- s3 + cloudfront + acm + route53 + lambda@Edge
+
+why ?
+
+- cloudfront cach is powerful and preformance.
+- I used before Github Pages but it's can't cache-controll
+
+why use lambda@Edge ?  
+when case of s3 object access, sub directory index.html can't resolve.  
+redirect to subdirectory index.html when origin request sub-directory/
+
+[example-redirect-function](./terraform/folder_index_redirect.js)
+
 ### Options
 
 ##### - javascript poricy
