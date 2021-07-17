@@ -226,95 +226,95 @@ app({
     h("div", { class: "container" }, [
       Header(),
       h("main", {}, [
-        h("div", { class: "tabs" }, [
-          h("div", {
-            class: "tab svg-clear tab-clear",
-            onclick: clearTabs,
-            innerHTML: svg_clear,
-          }),
-          h("div", {
-            class: "tab svg-share tab-share",
-            onclick: () => copyUrl,
-            innerHTML: svg_share,
-          }),
-          h("div", {
-            class: "tab svg-share tab-share",
-            onclick: () => toggleRaw,
-            innerHTML: svg_raw,
-          }),
-          ...(contents &&
-            contents.map((c) =>
-              h(
-                "div",
-                {
-                  class: `tab ${content.name === c.name ? "selected" : ""}`,
-                },
-                [
-                  h(
-                    "span",
-                    {
-                      onclick: () => [onSelect, c.name],
-                      class: "tab-label memo-tab-label",
-                      innerHTML: c.name === "memo" ? svg_pencil_alt : "",
-                    },
-                    c.name !== "memo" ? text(c.name) : text("")
-                  ),
-                  c.name !== "memo" &&
-                    h("div", {
-                      onclick: () => [removeContent, c.name],
-                      innerHTML: svg_close,
-                      class: "svg-close tab-close",
-                    }),
-                ]
-              )
-            )),
-        ]),
-        h("div", { class: "inputs" }, [
-          h("input", {
-            type: "text",
-            value: inputValue,
-            oninput: setInputValue,
-            onfocus: onInputFocus,
-            class: "index-search",
-          }),
-          h("div", {
-            class: "index-toggle-button",
-            onclick: toggleShowIndex,
-            innerHTML: `${showIndexes ? "&#9660" : "&#9650"}`,
-          }),
-        ]),
-        h(
-          "div",
-          { class: `indexes  ${showIndexes ? "showIndexes" : "hide"}` },
-          indexes &&
-            indexes.map((index) =>
-              h(
-                "span",
-                { class: "index", onclick: setContent },
-                text(index.name)
-              )
-            )
-        ),
-        content.name === "memo" &&
-          h("div", { class: "tab-memo" }, [
-            h("textarea", {
-              rows: 15,
-              value: content.content || " ",
-              oninput: setInputContent,
-              class: "content tab-memo-input",
+        h("div", { class: "content" }, [
+          h("div", { class: "tabs" }, [
+            h("div", {
+              class: "tab svg-clear tab-clear",
+              onclick: clearTabs,
+              innerHTML: svg_clear,
             }),
+            h("div", {
+              class: "tab svg-share tab-share",
+              onclick: () => copyUrl,
+              innerHTML: svg_share,
+            }),
+            h("div", {
+              class: "tab svg-share tab-share",
+              onclick: () => toggleRaw,
+              innerHTML: svg_raw,
+            }),
+            h("div", {
+              class: "tab index-toggle-button",
+              onclick: toggleShowIndex,
+              innerHTML: `${showIndexes ? "&#9660" : "&#9650"}`,
+            }),
+            h("input", {
+              type: "text",
+              value: inputValue,
+              oninput: setInputValue,
+              onfocus: onInputFocus,
+              class: "index-search",
+            }),
+            ...(contents &&
+              contents.map((c) =>
+                h(
+                  "div",
+                  {
+                    class: `tab ${content.name === c.name ? "selected" : ""}`,
+                  },
+                  [
+                    h(
+                      "span",
+                      {
+                        onclick: () => [onSelect, c.name],
+                        class: "tab-label memo-tab-label",
+                        innerHTML: c.name === "memo" ? svg_pencil_alt : "",
+                      },
+                      c.name !== "memo" ? text(c.name) : text("")
+                    ),
+                    c.name !== "memo" &&
+                      h("div", {
+                        onclick: () => [removeContent, c.name],
+                        innerHTML: svg_close,
+                        class: "svg-close tab-close",
+                      }),
+                  ]
+                )
+              )),
           ]),
-        content.name !== "memo" &&
+          h(
+            "div",
+            { class: `indexes  ${showIndexes ? "showIndexes" : "hide"}` },
+            indexes &&
+              indexes.map((index) =>
+                h(
+                  "span",
+                  { class: "index", onclick: setContent },
+                  text(index.name)
+                )
+              )
+          ),
+          content.name === "memo" &&
+            h("div", { class: "tab-memo" }, [
+              h("textarea", {
+                rows: 15,
+                value: content.content || "",
+                oninput: setInputContent,
+                class: "content tab-memo-input",
+              }),
+            ]),
+          content.name !== "memo" &&
+            h("div", {
+              class: `tab-content ${content.content ? "" : "no-content"}`,
+              innerHTML: rawMode ? content.content : snarkdown(content.content),
+            }),
           h("div", {
-            class: `content ${content.content ? "" : "no-content"}`,
-            innerHTML: rawMode ? content.content : snarkdown(content.content),
+            id: "top",
+            class: "svg-top hide",
+            innerHTML: svg_top,
+            onclick: Top,
           }),
-        h("div", {
-          id: "top",
-          class: "svg-top hide",
-          innerHTML: svg_top,
-          onclick: Top,
-        }),
+        ]),
       ]),
     ]),
   subscriptions: (state) => {

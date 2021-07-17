@@ -4,7 +4,7 @@ import {
   svg_chart_bar,
   svg_template,
   svg_cube,
-  svg_pencil_alt
+  svg_pencil_alt,
 } from "/components/icons";
 
 export const routes = [
@@ -14,24 +14,24 @@ export const routes = [
     icon: svg_home,
   },
   {
-    name: "images",
-    href: "/images/",
-    icon: svg_photo,
-  },
-  {
-    name: "tools",
-    href: "/tools/",
-    icon: svg_cube,
-  },
-  {
     name: "memos",
     href: "/memos/",
     icon: svg_pencil_alt,
   },
   {
+    name: "images",
+    href: "/images/",
+    icon: svg_photo,
+  },
+  {
     name: "waka",
     href: "/waka/",
     icon: svg_chart_bar,
+  },
+  {
+    name: "tools",
+    href: "/tools/",
+    icon: svg_cube,
   },
   {
     name: "comps",

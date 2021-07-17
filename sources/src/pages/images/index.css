@@ -1,12 +1,9 @@
 @supports (display: grid) {
   .indexes {
-    background-color: var(--color-shadow);
-    border: 2px solid var(--color-bg-secondary);
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     grid-gap: 2rem;
     padding: 2rem;
-    margin-bottom: 4rem;
   }
 }
 
@@ -15,21 +12,27 @@
   width: 100%;
   pointer-events: none;
   border: 1px solid var(--color-bg-secondary);
+  border-radius: 2px;
 }
 
 .imgc {
   position: relative;
   height: auto;
-  width: 100%;
   float: left;
   opacity: 0.95;
+  width: 100%;
+  padding-bottom: 0;
   box-shadow: 0 0 4px 4px var(--color-bg-secondary);
+  line-height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .imgc div {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 1px;
+  right: -1px;
   background: black;
   color: white;
   font-family: sans-serif;
@@ -42,11 +45,13 @@
 .imgc:hover {
   cursor: pointer;
   opacity: 1;
+  box-shadow: 0 0 10px 10px var(--color-bg-secondary);
 }
 
 .imgc:hover div {
   width: 100px;
-  padding: 8px 12px;
+  padding: 1.5rem;
   visibility: visible;
-  opacity: 0.6;
+  opacity: 0.7;
+  border-radius: 2px 0px 0px 0px;
 }

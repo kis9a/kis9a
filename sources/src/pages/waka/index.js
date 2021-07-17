@@ -59,7 +59,7 @@ app({
       h("main", {}, [
         h(
           "div",
-          { class: "svgs" },
+          { class: "content svgs" },
           svgs &&
             svgs.map((s) =>
               h("div", {}, [

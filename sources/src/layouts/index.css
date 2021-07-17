@@ -3,3 +3,9 @@
 body {
   background-color: var(--color-bg);
 }
+
+.content {
+  background-color: var(--color-shadow);
+  border: 2px solid var(--color-bg-secondary);
+  border-radius: 4px;
+}

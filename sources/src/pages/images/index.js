@@ -40,7 +40,7 @@ app({
       h("main", {}, [
         h(
           "div",
-          { class: "indexes" },
+          { class: "content indexes" },
           indexes &&
             indexes.map((s) =>
               h("div", { class: "imgc" }, [
@@ -49,7 +49,7 @@ app({
                   src: `/data/images/${s.name}`,
                   "data-src": `${s.name}`,
                 }),
-                h("div", {}, text(s.name)),
+                h("div", { class: "imgc-label"}, text(s.name)),
               ])
             )
         ),
