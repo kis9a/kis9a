@@ -203,9 +203,10 @@ const initContent = [
 const getUrl = () => window.location.href;
 const initialUrl = getUrl();
 
-const storageState = JSON.parse(window.localStorage.getItem("app"));
+// const storageState = JSON.parse(window.localStorage.getItem("app"));
 
-const state = storageState ? storageState : pureState;
+// const state = storageState ? storageState : pureState;
+const state = pureState;
 
 const initialState = [state, initIndexes, initContent];
 
@@ -323,7 +324,7 @@ app({
     } else if (cname == "memo") {
       window.location.href = "#/";
     }
-    window.localStorage.setItem("app", JSON.stringify(state));
+    // window.localStorage.setItem("app", JSON.stringify(state));
   },
   node: document.getElementById("app"),
 });
