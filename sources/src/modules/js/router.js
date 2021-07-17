@@ -33,11 +33,11 @@ export const routes = [
     href: "/tools/",
     icon: svg_cube,
   },
-  {
-    name: "comps",
-    href: "/components/",
-    icon: svg_template,
-  },
+  // {
+  //   name: "comps",
+  //   href: "/components/",
+  //   icon: svg_template,
+  // },
 ];
 
 export const pushRoute = (name) => {
