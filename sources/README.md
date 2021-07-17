@@ -1,173 +1,62 @@
-## workflow
+# kis9a - sources
 
-\# example
+## Workflow
 
-### installation
+### Installation
 
-```sh
-curl -sL https://raw.githubusercontent.com/kis9a/kis9a/master/sources/install | bash
-cd $PROFILE
+install script: [install](./install)  
+curl -sL https://raw.githubusercontent.com/kis9a/kis9a/master/sources/install | bash  
+cd \$PROFILE  
+\$PROFILE dist
 make link
-make server
 
-```
+### Development
 
-### deployment
+make server-sources # alias ss  
+make serve-zenn # alias sz
 
-```sh
+### Commands
 
-make pbs
-make pbz
+\# if $PROFILE=kis9a
 
-```
+kis9a server # serve dist/  
+kis9a bundle # bundle src to dist  
+kis9a images -r # resize  
+kis9a images -c # comvert  
+kis9a data # initialize datas  
+kis9a dist # initialize dist directory
 
-### command
+### Deployment
 
-````
+make publish-sources # alias pbs  
+make publish-zenn # alias pbz
 
-### command
+use [github-pages](https://github.com/tschaub/gh-pages) for push each branches
 
-```sh
-# if $PROFILE=kis9a
+github actions
 
-kis9a server
-kis9a bundle
-kis9a images -r # resize
-kis9a images -c # comvert
-kis9a data
-kis9a dist
-````
+- [terraform](../.github/workflows/terraform.yml) on change sources/terraform/\*
+- [publish](../.github/workflows/publish.yml) on push dist branch upload to s3
 
-### src
+### Options
 
-modules/\*.esm.js
+##### - javascript poricy
 
-### src components
+- don't use npm module  
+  use modules/\*.esm.js
 
-https://localhost:9000/components
+- use [sar](https://github.com/kis9a/sar) command  
+  go get https://github.com/kis9a/sar
+  (cd $PROFILE/sources/; sar)
 
-### src to dist
+- [imgcmp](../.github/workflows/imgcmp.yml) for compress images.
 
-<details>
-  <summary>src</summary>
+### Improvement
 
-```
-src
-├── assets
-│   ├── icons
-│   │   ├── favicon.ico
-│   │   ├── icon-128x128.png
-│   │   ├── icon-144x144.png
-│   │   ├── icon-152x152.png
-│   │   ├── icon-160x160.png
-│   │   ├── icon-180x180.png
-│   │   ├── icon-192x192.png
-│   │   ├── icon-196x196.png
-│   │   ├── icon-256x256.png
-│   │   └── icon-512x512.png
-│   └── manifest.json
-├── components
-│   ├── header
-│   │   ├── index.css
-│   │   ├── index.js
-│   │   └── path.js
-│   ├── icons
-│   │   └── index.js
-│   ├── index.css
-│   ├── index.html
-│   ├── index.js
-│   └── link
-│       ├── index.css
-│       └── index.js
-├── jsconfig.json
-├── layouts
-│   ├── index.css
-│   └── index.html
-├── modules
-│   ├── css
-│   │   ├── memos.css
-│   │   ├── mvp.css
-│   │   └── normalize.css
-│   └── js
-│       ├── Http.js
-│       ├── hyperapp.js
-│       ├── lazysize.js
-│       ├── matter.min.js
-│       ├── nanoid.js
-│       ├── router.js
-│       ├── snarkdown.js
-│       └── utils.js
-└── pages
-    ├── images
-    │   ├── index.css
-    │   └── index.js
-    ├── index.css
-    ├── index.js
-    ├── memos
-    │   ├── index.css
-    │   └── index.js
-    └── waka
-        ├── index.css
-        └── index.js
-```
-
-</details>
-
-<details>
-  <summary>dist</summary>
-
-```
-dist
-├── assets
-│   ├── icons
-│   │   ├── favicon.ico
-│   │   ├── icon-128x128.png
-│   │   ├── icon-144x144.png
-│   │   ├── icon-152x152.png
-│   │   ├── icon-160x160.png
-│   │   ├── icon-180x180.png
-│   │   ├── icon-192x192.png
-│   │   ├── icon-196x196.png
-│   │   ├── icon-256x256.png
-│   │   └── icon-512x512.png
-│   └── manifest.json
-├── components
-│   ├── index.css
-│   ├── index.html
-│   └── index.js
-├── data
-│   ├── images -> $PROFILE/images
-│   ├── images-indexes.json
-│   ├── memos -> $PROFILE/memos
-│   ├── memos-contents.json
-│   ├── memos-indexes.json
-│   └── wakatime.json
-├── images
-│   ├── index.css
-│   ├── index.html
-│   └── index.js
-├── index.css
-├── index.html
-├── index.js
-├── memos
-│   ├── index.css
-│   ├── index.html
-│   └── index.js
-└── waka
-    ├── index.css
-    ├── index.html
-    └── index.js
-
-```
-
-</details>
-
-### options
-
-```sh
-go get https://github.com/kis9a/sar
-
-kis9a ws
-
-(cd $PROFILE/sources/; sar)
-```
+- bundle mode "Development", "Production"
+- incremental bundle
+- components manage and easy to distribute
+- data files lifecycle
+- terraform clean up and more cover management resources
+- gh-pages command self made
+- abstract and separation for application and devOps staff
