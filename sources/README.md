@@ -7,8 +7,8 @@
 install script: [install](./install)  
 curl -sL https://raw.githubusercontent.com/kis9a/kis9a/master/sources/install | bash  
 cd \$PROFILE  
-\$PROFILE dist
-make link
+\$PROFILE dist  
+make link  
 
 ### Development
 
@@ -48,8 +48,8 @@ why ?
 - I used before Github Pages but it's can't cache-controll
 
 why use lambda@Edge ?  
-when case of s3 object access, sub directory index.html can't resolve.  
-redirect to subdirectory index.html when origin request sub-directory/
+- when case of s3 object access, sub directory index.html can't resolve.  
+  redirect to subdirectory index.html when origin request sub-directory/
 
 [example-redirect-function](./terraform/folder_index_redirect.js)
 
