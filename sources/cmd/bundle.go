@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"io/ioutil"
 	"log"
@@ -120,6 +121,7 @@ func genHTML(path string, base string) error {
 			return err
 		}
 		tp.Content = string(indexByte)
+		fmt.Println(tp.Content)
 	}
 	tpl, err := template.ParseFiles(filepath.Join(getSrcPath(), "layouts/index.html"))
 	if err != nil {

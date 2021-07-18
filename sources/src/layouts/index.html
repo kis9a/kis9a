@@ -66,11 +66,12 @@
       content="kis9a {{ .Title }} - manage profile, images, memos, snippets, tasks, zenn, wkatime | me.kis9a.com"
     />
     <link href="index.css" rel="stylesheet" />
-    {{ .Head }}
   </head>
   <body>
     <div id="app"></div>
     <script type="module" src="index.js"></script>
-    {{ .Content }}
+    <!-- {{ .Content }} -->
+    <!-- <div>{{ .Content }}</div> -->
+    <div>{{ .Title }}</div>
   </body>
 </html>
