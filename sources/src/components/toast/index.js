@@ -1,15 +1,13 @@
-import "./index.css";
-
 export const Toast = (
   msg,
   opts = {
     time: 1600,
-    width: "300px",
+    width: "320px",
     bottom: "10px",
     right: "10px",
     left: "auto",
     top: "auto",
-    bg: "#e6e6e6",
+    bg: "#f4f4f4",
   }
 ) => {
   const toast = document.createElement("div");
@@ -20,9 +18,10 @@ export const Toast = (
   toast.style.top = opts.top;
   toast.style.width = opts.width;
   toast.style.position = "fixed";
-  toast.style.padding = "1.2rem";
+  toast.style.padding = "1.2rem 1.6rem";
   toast.style.fontSize = "1.6rem";
   toast.style.borderRadius = "1rem 0.5rem 0rem 0.5rem";
+  toast.style.border = "2px solid #e6e6e6";
   toast.appendChild(document.createTextNode(msg));
   document.body.appendChild(toast);
   setTimeout(function () {
