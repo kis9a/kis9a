@@ -221,6 +221,10 @@ func getMemosContentsJson() string {
 	return filepath.Join(getDataPath(), "memos-contents.json")
 }
 
+func getMemosCategoriesJson() string {
+	return filepath.Join(getDataPath(), "memos-categories.json")
+}
+
 func getImagesIndexesJson() string {
 	return filepath.Join(getDataPath(), "images-indexes.json")
 }
