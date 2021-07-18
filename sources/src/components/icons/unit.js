@@ -17,6 +17,7 @@ import {
   svg_external_link,
   svg_link,
   svg_calendar,
+  svg_tag,
 } from "./index.js";
 
 export const viewIcons = () => {
@@ -38,6 +39,7 @@ export const viewIcons = () => {
     svg_external_link,
     svg_link,
     svg_dot_horizon,
+    svg_tag,
   ];
   return h(
     "div",

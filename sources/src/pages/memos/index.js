@@ -10,6 +10,7 @@ import {
   svg_share,
   svg_raw,
   svg_pencil_alt,
+  svg_tag,
 } from "/components/icons";
 import "./index.css";
 import "/layouts/index.css";
@@ -22,6 +23,18 @@ const getIndexesJson = Http({
     return {
       ...state,
       indexes: indexes || [],
+    };
+  },
+});
+
+const getCategories = Http({
+  url: "/data/memos-categories.json",
+  response: "json",
+  action: (state, categories) => {
+    initialState[0].categories = categories;
+    return {
+      ...state,
+      categories: categories || [],
     };
   },
 });
@@ -106,6 +119,26 @@ const removeContent = (state, index) => {
   return { ...state };
 };
 
+const getContentType = (content) => {
+  switch (content.name) {
+    case "memo":
+      return "memo";
+    case "category":
+      return "category";
+    default:
+      return "default";
+  }
+};
+
+const onClickCategory = (state, category) => {
+  const indexes = [];
+  category.files.forEach((v) => {
+    const index = { name: v, upd_t: "" };
+    indexes.push(index);
+  });
+  return { ...state, indexes: indexes, showIndexes: true };
+};
+
 const onSelect = (state, index) => {
   if (state.content.name == index) {
     return { ...state };
@@ -166,7 +199,11 @@ const Top = (state) => {
 const pureState = {
   indexes: "",
   content: { name: "memo", content: "" },
-  contents: [{ name: "memo", content: "" }],
+  contents: [
+    { name: "category", content: "" },
+    { name: "memo", content: "" },
+  ],
+  categories: [],
   inputValue: "",
   showIndexes: false,
   rawMode: false,
@@ -177,6 +214,8 @@ const baseName = (str) => {
 };
 
 const initIndexes = getIndexesJson;
+
+const initCategories = getCategories;
 
 const initContent = [
   (dispatch) => {
@@ -206,11 +245,10 @@ const initialUrl = getUrl();
 // const storageState = JSON.parse(window.localStorage.getItem("app"));
 
 // const state = storageState ? storageState : pureState;
-const state = pureState;
 
-const initialState = [state, initIndexes, initContent];
+const initialState = [pureState, initIndexes, initContent, initCategories];
 
-onscroll = function () {
+onscroll = () => {
   const top = document.getElementById("top");
   var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
   if (scrollTop > 500) {
@@ -222,24 +260,32 @@ onscroll = function () {
 
 app({
   init: initialState,
-  view: ({ indexes, content, contents, inputValue, showIndexes, rawMode }) =>
+  view: ({
+    indexes,
+    content,
+    contents,
+    categories,
+    inputValue,
+    showIndexes,
+    rawMode,
+  }) =>
     h("div", { class: "container" }, [
       Header(),
       h("main", {}, [
         h("div", { class: "content" }, [
           h("div", { class: "tabs" }, [
             h("div", {
-              class: "tab svg-clear tab-clear",
+              class: "tab",
               onclick: clearTabs,
               innerHTML: svg_clear,
             }),
             h("div", {
-              class: "tab svg-share tab-share",
+              class: "tab",
               onclick: () => copyUrl,
               innerHTML: svg_share,
             }),
             h("div", {
-              class: "tab svg-share tab-share",
+              class: "tab",
               onclick: () => toggleRaw,
               innerHTML: svg_raw,
             }),
@@ -268,11 +314,19 @@ app({
                       {
                         onclick: () => [onSelect, c.name],
                         class: "tab-label memo-tab-label",
-                        innerHTML: c.name === "memo" ? svg_pencil_alt : "",
+                        innerHTML:
+                          c.name === "memo"
+                            ? svg_pencil_alt
+                            : c.name == "category"
+                            ? svg_tag
+                            : "",
                       },
-                      c.name !== "memo" ? text(c.name) : text("")
+                      c.name === "memo" || c.name === "category"
+                        ? text("")
+                        : text(c.name)
                     ),
                     c.name !== "memo" &&
+                      c.name !== "category" &&
                       h("div", {
                         onclick: () => [removeContent, c.name],
                         innerHTML: svg_close,
@@ -294,7 +348,7 @@ app({
                 )
               )
           ),
-          content.name === "memo" &&
+          getContentType(content) === "memo" &&
             h("div", { class: "tab-memo" }, [
               h("textarea", {
                 rows: 15,
@@ -303,7 +357,29 @@ app({
                 class: "content tab-memo-input",
               }),
             ]),
-          content.name !== "memo" &&
+          getContentType(content) === "category" &&
+            h(
+              "div",
+              { class: "tab-content tab-category" },
+              getCategories &&
+                categories.map(
+                  (c) =>
+                    c.files &&
+                    c.files.length > 1 &&
+                    h(
+                      "div",
+                      {
+                        class: "category",
+                        onclick: [onClickCategory, c],
+                        style: {
+                          fontSize: `${10 + c.files.length * 3}px`,
+                        },
+                      },
+                      text(c.name)
+                    )
+                )
+            ),
+          getContentType(content) === "default" &&
             h("div", {
               class: `tab-content ${content.content ? "" : "no-content"}`,
               innerHTML: rawMode ? content.content : snarkdown(content.content),

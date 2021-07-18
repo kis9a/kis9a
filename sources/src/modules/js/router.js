@@ -34,6 +34,11 @@ export const routes = [
     icon: svg_cube,
   },
   // {
+  //   name: "tools",
+  //   href: "/tools/",
+  //   icon: svg_cube,
+  // },
+  // {
   //   name: "comps",
   //   href: "/components/",
   //   icon: svg_template,
