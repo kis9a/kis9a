@@ -307,30 +307,21 @@ app({
                   "div",
                   {
                     class: `tab ${content.name === c.name ? "selected" : ""}`,
+                    onclick: () => [onSelect, c.name],
+                    innerHTML:
+                      c.name === "memo"
+                        ? svg_pencil_alt
+                        : c.name == "category"
+                        ? svg_tag
+                        : `<span class="tab-label">${c.name}</span>`,
                   },
                   [
-                    h(
-                      "span",
-                      {
-                        onclick: () => [onSelect, c.name],
-                        class: "tab-label memo-tab-label",
-                        innerHTML:
-                          c.name === "memo"
-                            ? svg_pencil_alt
-                            : c.name == "category"
-                            ? svg_tag
-                            : "",
-                      },
-                      c.name === "memo" || c.name === "category"
-                        ? text("")
-                        : text(c.name)
-                    ),
                     c.name !== "memo" &&
                       c.name !== "category" &&
                       h("div", {
                         onclick: () => [removeContent, c.name],
                         innerHTML: svg_close,
-                        class: "svg-close tab-close",
+                        class: "tab-close",
                       }),
                   ]
                 )
@@ -372,7 +363,7 @@ app({
                         class: "category",
                         onclick: [onClickCategory, c],
                         style: {
-                          fontSize: `${10 + c.files.length * 3}px`,
+                          fontSize: `${8 + c.files.length * 4}px`,
                         },
                       },
                       text(c.name)

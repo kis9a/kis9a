@@ -1,9 +1,11 @@
 .index-search {
   width: 12rem;
   margin: 0;
-  border: 2px solid var(--color-bg-secondary);
   font-size: 1.2rem;
   border-radius: 1px;
+  border-color: var(--color-bg-secondary);
+  border-style: solid;
+  border-width: 0px 0px 1px 0px;
 }
 
 .index-toggle-button {
@@ -22,18 +24,18 @@
   word-break: break-all;
   margin: 0;
   background-color: var(--color-shadow);
-  border: 0.5px solid var(--color-bg-secondary);
+  margin: 1rem;
 }
 
 .index {
   display: block;
-  margin: 2px;
   padding: 2px 4px;
   width: auto;
   font-size: 1.2rem;
   letter-spacing: 2px;
   background-color: var(--color-shadow);
   border: 0.5px solid var(--color-bg-secondary);
+  margin: 0 3px 3px 0;
   cursor: pointer;
 }
 
@@ -43,7 +45,6 @@
 
 .tabs {
   display: flex;
-  align-items: center;
   width: 100%;
   overflow-x: scroll;
   overflow-y: hidden;
@@ -51,7 +52,6 @@
   position: sticky;
   top: 0px;
   background: var(--color-shadow);
-  border: 0.5px solid var(--color-bg-secondary);
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -63,7 +63,7 @@
   height: 1.5rem;
   cursor: pointer;
   opacity: 0.9;
-  color: gray;
+  color: #665c54;
   padding: 0.5rem;
 }
 
@@ -71,13 +71,31 @@
   padding: 0.4rem;
   height: 1.5rem;
   background-color: var(--color-shadow);
-  border: 1px solid var(--color-bg-secondary);
   cursor: pointer;
   white-space: nowrap;
-  border-radius: 2px 6px 0 0;
-  border-style: solid;
+  border-bottom: 1px solid var(--color-bg-secondary);
+  border-right: 1px solid var(--color-bg-secondary);
   display: flex;
   align-items: center;
+}
+
+.tab-label {
+  margin: 0 4px;
+}
+
+.tab-close {
+  display: flex;
+  align-items: center;
+}
+
+.tab-category {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.category {
+  cursor: pointer;
+  padding: 1rem;
 }
 
 .tab:hover {
@@ -102,6 +120,7 @@
   padding: 1rem;
   font-size: 1.8rem !important;
   line-height: 3.4rem;
+  border: unset !important;
 }
 
 .tab-memo-view {
