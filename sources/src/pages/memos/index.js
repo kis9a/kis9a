@@ -300,6 +300,7 @@ app({
               oninput: setInputValue,
               onfocus: onInputFocus,
               class: "index-search",
+              ariaLabel: "index-search-input",
             }),
             ...(contents &&
               contents.map((c) =>
@@ -349,6 +350,7 @@ app({
                 value: content.content || "",
                 oninput: setInputContent,
                 class: "content tab-memo-input",
+                ariaLabel: "tab-memo-input",
               }),
             ]),
           getContentType(content) === "category" &&
