@@ -28,11 +28,11 @@ export const routes = [
     href: "/waka/",
     icon: svg_chart_bar,
   },
-  {
-    name: "tools",
-    href: "/tools/",
-    icon: svg_cube,
-  },
+  // {
+  //   name: "tools",
+  //   href: "/tools/",
+  //   icon: svg_cube,
+  // },
   // {
   //   name: "tools",
   //   href: "/tools/",

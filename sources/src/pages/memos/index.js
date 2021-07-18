@@ -306,16 +306,19 @@ app({
                 h(
                   "div",
                   {
-                    class: `tab ${content.name === c.name ? "selected" : ""}`,
+                    class: `tab${content.name === c.name ? " selected" : ""}`,
                     onclick: () => [onSelect, c.name],
                     innerHTML:
                       c.name === "memo"
                         ? svg_pencil_alt
                         : c.name == "category"
                         ? svg_tag
-                        : `<span class="tab-label">${c.name}</span>`,
+                        : "",
                   },
                   [
+                    c.name !== "memo" &&
+                      c.name !== "category" &&
+                      h("span", { class: "tab-label" }, text(c.name)),
                     c.name !== "memo" &&
                       c.name !== "category" &&
                       h("div", {
