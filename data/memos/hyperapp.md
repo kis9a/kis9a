@@ -1,3 +1,5 @@
+- [feature: support string type styles (#617) by huozhi · Pull Request #618 · jorgebucaran/hyperapp · GitHub](https://github.com/jorgebucaran/hyperapp/pull/618)
+
 ### concept
 
 Minimal（最小限）
@@ -208,7 +210,7 @@ export const onUrlRequest = fx(
     foo(...),
   ],
 
-  
+
 // 指定した時間後に指定したActionを呼び出すEffect Runner
 const delayRunner = (dispatch, { action, interval }) => {
   setTimeout(() => dispatch(action, "delay!"), interval);
