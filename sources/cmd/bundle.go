@@ -104,8 +104,7 @@ func bundleByFileType(path string, base string) error {
 func genHTML(path string, base string) error {
 	type Template struct {
 		Title   string
-		Content string
-		Head    string
+		Content template.HTML
 	}
 	var tp Template
 	if filepath.Base(base) == filepath.Base(path) {
@@ -119,7 +118,7 @@ func genHTML(path string, base string) error {
 		if err != nil {
 			return err
 		}
-		tp.Content = string(indexByte)
+		tp.Content = template.HTML(indexByte)
 	}
 	tpl, err := template.ParseFiles(filepath.Join(getSrcPath(), "layouts/index.html"))
 	if err != nil {
