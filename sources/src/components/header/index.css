@@ -58,41 +58,30 @@ header {
   box-shadow: 0 0 2px 2px var(--color-bg-secondary);
 }
 
-.none {
-  display: none !important;
-}
-
-.menu-icon {
-  display: none;
-}
-
 .menu-icon:hover {
   cursor: pointer;
   z-index: 1000;
 }
 
 @media (max-width: 600px) {
+  .logo-image {
+    margin: 0;
+  }
+  .logo-image img {
+    width: 8rem;
+  }
+  .logo-text {
+    width: 0;
+    padding: 0;
+    visibility: hidden;
+  }
+  .link-icon span {
+    visibility: hidden;
+  }
+  .link-icon {
+    margin: 0.2rem;
+  }
   .links {
-    top: 8rem;
-    right: 0;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    margin: auto 1rem;
-    margin-right: 1.5rem;
-    background-color: var(--color-shadow);
-    padding: 12px;
-    border-radius: 6px;
-    border: 1px solid var(--color-bg-secondary);
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 6px;
-    z-index: 900;
-  }
-  .links:hover {
-    box-shadow: 0 0 1px 1px var(--color-bg-secondary);
-  }
-  .menu-icon {
-    display: unset;
+    margin-right: 0;
   }
 }
