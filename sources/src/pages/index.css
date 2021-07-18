@@ -1,0 +1,12 @@
+.box,
+.box1 {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  top: 300px;
+  bottom: 50px;
+  left: 30px;
+  right: 20px;
+  justify-content: center;
+  align-items: center;
+}
