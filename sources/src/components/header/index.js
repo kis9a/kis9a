@@ -1,6 +1,7 @@
 import { h, text } from "/modules/js/hyperapp.js";
 import { routes } from "/modules/js/router.js";
 import { LinkIcon } from "/components/link";
+import LogoImage from "/assets/logo.png";
 import "./index.css";
 
 var path = require("./path.js");
@@ -33,7 +34,7 @@ export const Header = () => {
         h("h1", { class: "logo-text", onclick: toNavigation }, text("KIS9A")),
         h("div", { class: "logo-image" }, [
           h("img", {
-            src: "/assets/logo.png",
+            src: LogoImage,
             alt: "kis9a.png",
             onclick: toNavigation,
           }),

@@ -49,7 +49,7 @@ app({
                   src: `/data/images/${s.name}`,
                   "data-src": `${s.name}`,
                 }),
-                h("div", { class: "imgc-label"}, text(s.name)),
+                h("div", { class: "imgc-label" }, text(s.name)),
               ])
             )
         ),
