@@ -172,14 +172,15 @@ func copyFileToDist(path string, base string) error {
 
 func bundleJS(path string, wp string) error {
 	var err error
+	isDev := cmdopts.Server.Dev
 	result := api.Build(api.BuildOptions{
 		EntryPoints:       []string{path},
 		Outfile:           wp,
 		Bundle:            true,
 		Write:             true,
-		MinifyIdentifiers: true,
-		MinifySyntax:      true,
-		MinifyWhitespace:  true,
+		MinifyIdentifiers: !isDev,
+		MinifySyntax:      !isDev,
+		MinifyWhitespace:  !isDev,
 		Incremental:       true,
 		AllowOverwrite:    true,
 		Loader: map[string]api.Loader{
@@ -196,14 +197,15 @@ func bundleJS(path string, wp string) error {
 
 func bundleCSS(path string, wp string) error {
 	var err error
+	isDev := cmdopts.Server.Dev
 	result := api.Build(api.BuildOptions{
 		EntryPoints:       []string{path},
 		Outfile:           wp,
 		Bundle:            true,
 		Write:             true,
-		MinifyIdentifiers: true,
-		MinifySyntax:      true,
-		MinifyWhitespace:  true,
+		MinifyIdentifiers: !isDev,
+		MinifySyntax:      !isDev,
+		MinifyWhitespace:  !isDev,
 		Incremental:       true,
 		AllowOverwrite:    true,
 	})

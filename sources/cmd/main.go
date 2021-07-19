@@ -23,6 +23,7 @@ type CmdImages struct {
 type CmdServer struct {
 	FlagSet *flag.FlagSet
 	Port    string
+	Dev     bool
 }
 
 type CmdOptions struct {
@@ -60,6 +61,7 @@ func init() {
 	cmdopts.Images.FlagSet.BoolVar(&cmdopts.Images.Resize, "r", false, "resize")
 	cmdopts.Images.FlagSet.BoolVar(&cmdopts.Images.Convert, "c", false, "convert")
 	cmdopts.Server.FlagSet.StringVar(&cmdopts.Server.Port, "p", "9000", "port")
+	cmdopts.Server.FlagSet.BoolVar(&cmdopts.Server.Dev, "d", false, "develop mode")
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 }
 
