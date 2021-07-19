@@ -1,11 +1,7 @@
-import {
-  svg_home,
-  svg_photo,
-  svg_chart_bar,
-  svg_template,
-  svg_cube,
-  svg_pencil_alt,
-} from "/components/icons";
+import svg_home from "/assets/svgs/home.svg";
+import svg_photograph from "/assets/svgs/photograph.svg";
+import svg_chart_bar from "/assets/svgs/chart-bar.svg";
+import svg_pencil_alt from "/assets/svgs/pencil-alt.svg";
 
 export const routes = [
   {
@@ -21,7 +17,7 @@ export const routes = [
   {
     name: "images",
     href: "/images/",
-    icon: svg_photo,
+    icon: svg_photograph,
   },
   {
     name: "waka",

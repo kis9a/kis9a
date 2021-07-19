@@ -3,17 +3,15 @@ import snarkdown from "/modules/js/snarkdown.js";
 import { Header } from "/components/header";
 import { Http } from "/modules/js/Http.js";
 import { Toast } from "/components/toast";
-import {
-  svg_top,
-  svg_close,
-  svg_clear,
-  svg_share,
-  svg_raw,
-  svg_pencil_alt,
-  svg_tag,
-} from "/components/icons";
 import "./index.css";
 import "/layouts/index.css";
+import svg_top from "/assets/svgs/arrow-circle-up.svg";
+import svg_clear from "/assets/svgs/trash.svg";
+import svg_close from "/assets/svgs/x-circle.svg";
+import svg_share from "/assets/svgs/external-link.svg";
+import svg_raw from "/assets/svgs/view-list.svg";
+import svg_tag from "/assets/svgs/tag.svg";
+import svg_pencil_alt from "/assets/svgs/pencil-alt.svg";
 
 // (function () {
 //   var LIMIT = 10;

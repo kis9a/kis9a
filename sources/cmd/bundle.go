@@ -182,6 +182,10 @@ func bundleJS(path string, wp string) error {
 		MinifyWhitespace:  true,
 		Incremental:       true,
 		AllowOverwrite:    true,
+		Loader: map[string]api.Loader{
+			".png": api.LoaderDataURL,
+			".svg": api.LoaderText,
+		},
 	})
 	if len(result.Errors) > 0 {
 		log.Println(result.Errors)

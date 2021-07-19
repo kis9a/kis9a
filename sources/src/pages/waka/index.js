@@ -1,7 +1,7 @@
 import { h, text, app } from "/modules/js/hyperapp.js";
 import { Http } from "/modules/js/Http.js";
 import { Header } from "/components/header";
-import { svg_calendar } from "/components/icons";
+import svg_calendar from "/assets/svgs/calendar.svg";
 import "./index.css";
 import "/layouts/index.css";
 

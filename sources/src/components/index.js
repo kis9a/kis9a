@@ -1,7 +1,6 @@
 import { Header } from "/components/header";
 import { h, text, app } from "/modules/js/hyperapp.js";
 import { viewLink, viewLinkActive } from "/components/link/unit.js";
-import { viewIcons } from "/components/icons/unit.js";
 import { viewHeader } from "/components/header/unit.js";
 import "/layouts/index.css";
 import "./index.css";
