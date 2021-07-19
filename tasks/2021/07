@@ -1,4 +1,24 @@
 
+- [Gogs: A painless self-hosted Git service](https://gogs.io/)
+
+- [GitHub - getify/moduloze: Convert CommonJS (CJS) modules to UMD and ESM formats](https://github.com/getify/moduloze)
+- [要素をフェードイン・フェードアウトする | JavaScript逆引き | Webサイト制作支援 | ShanaBrian Website](https://shanabrian.com/web/javascript/element-fade-in-fade-out.php)
+
+var mediaQuery = matchMedia('(max-width: 798px)');
+
+// ページが読み込まれた時に実行
+handle(mediaQuery);
+
+// ウィンドウサイズが変更されても実行されるように
+mediaQuery.addListener(handle);
+
+function handle(mq) {
+  if (mq.matches) {
+    // ウィンドウサイズが798px以下のとき
+  } else {
+    // それ以外
+  }
+}
 
 const viewContent = (content, rawMode) => {
   switch (content.name) {
