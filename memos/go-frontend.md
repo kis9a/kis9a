@@ -1,0 +1,3 @@
+- [GitHub - imdario/zas: Most zen static website generator in Golang.](https://github.com/imdario/zas)
+- [GitHub - evanw/esbuild: An extremely fast JavaScript bundler and minifier](https://github.com/evanw/esbuild)
+- [GitHub - gohugoio/hugo: The world’s fastest framework for building websites.](https://github.com/gohugoio/hugo)
