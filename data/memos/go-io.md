@@ -1,3 +1,7 @@
+- [Non-Blocking I/O, I/O Multiplexing, Asynchronous I/O の区別 - Carpe Diem](https://christina04.hatenablog.com/entry/2017/07/05/005944)
+
+- [bufio パッケージによる buffered I/O ｜ Go から学ぶ I/O](https://zenn.dev/hsaki/books/golang-io-package/viewer/bufio)
+
 - ファイル開いて読み込み
 - ファイル開いて読み込み２
 - ファイル開いて書き込み

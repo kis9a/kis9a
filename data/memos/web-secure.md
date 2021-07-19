@@ -20,7 +20,6 @@ IPA：安全な SQL の呼び出し方http://www.ipa.go.jp/security/vuln/websecu
 
 .summary
 
-
 ### path parameter check directory trapaserror.
 
 ### http header injection.
@@ -28,12 +27,12 @@ IPA：安全な SQL の呼び出し方http://www.ipa.go.jp/security/vuln/websecu
 ### mail header injection.
 
 - XSS (クロスサイトスクリプティング)
-- SQLインジェクション
-- LDAPインジェクション
+- SQL インジェクション
+- LDAP インジェクション
 - コードインジェクション
-- OSコマンドインジェクション
+- OS コマンドインジェクション
 - メールヘッダーインジェクション
-- Nullバイトインジェクション
+- Null バイトインジェクション
 - サイズ制限の無いファイルアップロード
 - 拡張子制限の無いファイルアップロード
 - オープンリダイレクト可能なログイン画面
@@ -45,5 +44,41 @@ IPA：安全な SQL の呼び出し方http://www.ipa.go.jp/security/vuln/websecu
 - 意図しないファイル公開
 - CSRF (クロスサイトリクエストフォージェリ)
 - クリックジャッキング
-- XEE (XMLエンティティ拡張)
-- XXE (XML外部エンティティ)
+- XEE (XML エンティティ拡張)
+- XXE (XML 外部エンティティ)
+
+XSRF 脆弱性
+
+クロスドメイン通信では、デフォルトでユーザー定義ヘッダーを参照できない
+ブラウザでヘッダーの参照を許可するには、サーバーサイドのレスポンスヘッダに Access-Control-Expose-Headers を付加する。
+例えば golang の gin framework をでは以下のようにする。
+
+// ブラウザがレスポンスヘッダーの読み取りを許可
+c.Header("Access-Control-Expose-Headers", "X-HogeApp-Hogeid")
+
+Same-Origin Policy
+Web セキュリティの重要なポリシーの一つに Same-Origin Policy (同一オリジンポリシー)があります。
+これは、オリジン間のリソース共有に制限をかけるもので、次のような脆弱性を防ぐことを目的としたものです。
+
+- XSS (Cross Site Scripting)
+  ユーザーが Web サイトにアクセスすることで不正なスクリプトが Client (Web ブラウザ) で実行されてしまう脆弱性。
+  被害例は、Cookie 内のセッション情報を抜き取られて不正ログインを行われる、など。
+
+- CSRF (Cross-Site Request Forgeries)
+  Web アプリケーションのユーザーが、意図しない処理を Web アプリケーション (Web Server) 上で実行される脆弱性。通称「しーさーふ」。
+  被害例は、本来はログインしたユーザーしか実行できない記事の投稿処理を勝手にされる、など。
+
+JavaScript の組み込み API で、Ajax 通信を実現する XMLHttpRequest (XHR) や Fetch API などは、これらの脆弱性を回避するため、Same-Origin Policy に従います。
+
+- XSS と CSRF
+  https://qiita.com/att55/items/a50ca43adde206017525
+
+- XSS とは
+  XSS とは一言で表すと ユーザー（被害者）の Web ブラウザで任意の JavaScript を実行させることを許す脆弱性または攻撃手法 です。
+  ちなみに略称が CSS ではなく XSS なのは、Cascading Style Sheets とかぶってるのでややこしいからのようです。
+
+- CSRF
+  続いて CSRF です。CSRF を一言で表すと 正規ユーザを誘導し、強制的に特定の処理を実行させる攻撃を許す脆弱性または攻撃手法 と言えます。
+  forgeries/forgery ってあまり聞かないですよね... 偽造 という意味らしいですよ。(サイトをまたがってリクエストを偽造する :thinking: )
+
+具体的な実装
