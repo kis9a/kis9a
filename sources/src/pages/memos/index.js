@@ -15,6 +15,39 @@ import {
 import "./index.css";
 import "/layouts/index.css";
 
+// (function () {
+//   var LIMIT = 10;
+//   var timer;
+//   var count = 0;
+//   var button1 = document.getElementById("button1");
+
+//   var start = function () {
+//     console.log("mousedown");
+//     if (!timer) {
+//       timer = setInterval(counter, 100);
+//     }
+//   };
+//   var stop = function () {
+//     console.log("mouseup");
+//     clearInterval(timer);
+//     timer = 0;
+//     count = 0;
+//   };
+
+//   button1.addEventListener("mousedown", start, false);
+//   button1.addEventListener("mouseup", stop, false);
+
+//   var counter = function () {
+//     console.log(count++);
+//     if (count > 9) {
+//       console.log("OK");
+//       clearInterval(timer);
+//       timer = 0;
+//       count = 0;
+//     }
+//   };
+// })();
+
 const getIndexesJson = Http({
   url: "/data/memos-indexes.json",
   response: "json",
