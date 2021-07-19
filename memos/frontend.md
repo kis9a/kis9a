@@ -138,3 +138,5 @@ next.js link rel=preload
 webworker
 
 Cache-Control: stale-while-revalidate,
+
+- [Lighthouse の計測結果を見ていく - Qiita](https://qiita.com/nightyknite/items/22d9f818dbab9bf171a3)
