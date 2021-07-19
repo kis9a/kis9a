@@ -1,27 +1,37 @@
 export const Toast = (
   msg,
-  opts = {
-    time: 1600,
-    width: "320px",
-    bottom: "10px",
-    right: "10px",
-    left: "auto",
-    top: "auto",
-    bg: "#f4f4f4",
-  }
+  {
+    time = 1600,
+    width = "280px",
+    bottom = "10px",
+    right = "10px",
+    left = "auto",
+    top = "auto",
+    bg = "#ffffff",
+    status = "info",
+  } = {}
 ) => {
   const toast = document.createElement("div");
-  toast.style.background = opts.bg;
-  toast.style.bottom = opts.bottom;
-  toast.style.left = opts.left;
-  toast.style.right = opts.right;
-  toast.style.top = opts.top;
-  toast.style.width = opts.width;
+  toast.style.background = bg;
+  if (status === "err") {
+    toast.style.background = "#e93c00";
+  }
+  if (status === "suc") {
+    toast.style.background = "#68c39f";
+  }
+  toast.style.bottom = bottom;
+  toast.style.left = left;
+  toast.style.right = right;
+  toast.style.top = top;
+  toast.style.width = width;
   toast.style.position = "fixed";
-  toast.style.padding = "1.2rem 1.6rem";
-  toast.style.fontSize = "1.6rem";
-  toast.style.borderRadius = "1rem 0.5rem 0rem 0.5rem";
-  toast.style.border = "2px solid #e6e6e6";
+  toast.style.padding = "0.8rem 1.2rem";
+  toast.style.fontSize = "1.2rem";
+  toast.style.borderRadius = "0.5rem 0rem 0rem 0rem";
+  toast.style.border = "1px solid #d0c9c3";
+  toast.style.boxShadow = "0 0 2px 2px #f2f2f2";
+  toast.style.fontColor = "inherit";
+
   fadeIn(toast, 500);
   setTimeout(() => {
     fadeOut(toast, 500);
@@ -29,7 +39,7 @@ export const Toast = (
       document.body.removeChild(toast);
       toast.style.display = "none";
     }, 500);
-  }, opts.time);
+  }, time);
   toast.appendChild(document.createTextNode(msg));
   document.body.appendChild(toast);
 };
@@ -42,7 +52,7 @@ function fadeIn(el, time) {
     last = +new Date();
     if (+el.style.opacity < 1) {
       (window.requestAnimationFrame && requestAnimationFrame(tick)) ||
-        setTimeout(tick, 16);
+        setTimeout(tick, 10);
     }
   };
   tick();
@@ -56,7 +66,7 @@ function fadeOut(el, time) {
     last = +new Date();
     if (+el.style.opacity > 0) {
       (window.requestAnimationFrame && requestAnimationFrame(tick)) ||
-        setTimeout(tick, 16);
+        setTimeout(tick, 10);
     }
   };
   tick();
