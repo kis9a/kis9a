@@ -13,39 +13,6 @@ import svg_raw from "/assets/svgs/view-list.svg";
 import svg_tag from "/assets/svgs/tag.svg";
 import svg_pencil_alt from "/assets/svgs/pencil-alt.svg";
 
-// (function () {
-//   var LIMIT = 10;
-//   var timer;
-//   var count = 0;
-//   var button1 = document.getElementById("button1");
-
-//   var start = function () {
-//     console.log("mousedown");
-//     if (!timer) {
-//       timer = setInterval(counter, 100);
-//     }
-//   };
-//   var stop = function () {
-//     console.log("mouseup");
-//     clearInterval(timer);
-//     timer = 0;
-//     count = 0;
-//   };
-
-//   button1.addEventListener("mousedown", start, false);
-//   button1.addEventListener("mouseup", stop, false);
-
-//   var counter = function () {
-//     console.log(count++);
-//     if (count > 9) {
-//       console.log("OK");
-//       clearInterval(timer);
-//       timer = 0;
-//       count = 0;
-//     }
-//   };
-// })();
-
 const getIndexesJson = Http({
   url: "/data/memos-indexes.json",
   response: "json",
@@ -227,6 +194,41 @@ const Top = (state) => {
   return state;
 };
 
+const tabShift = (state) => {
+  console.log(state);
+  // return state
+};
+
+document.addEventListener("keydown", function (event) {
+  if (event.keyCode == 37) {
+    // alert("Left was pressed");
+    // state.content = state.contents[id - 1];
+    tabShift();
+  } else if (event.keyCode == 39) {
+    alert("Right was pressed");
+  }
+});
+
+// | tab                                 | 9                         |
+// | enter                               | 13                        |
+// | arrow left                          | 37                        |
+// | arrow up                            | 38                        |
+// | arrow right                         | 39                        |
+// | arrow down                          | 40                        |
+// | comma                               | 188                       |
+
+const keyDownSubscription = [
+  (dispatch, { onup, ondown }) => {
+    console.log("helloooooooooooooo");
+    let handler = (ev) => {
+      if (ev.key === "ArrowUp") dispatch(onup);
+      if (ev.key === "ArrowDown") dispatch(ondown);
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  },
+];
+
 const pureState = {
   indexes: "",
   content: { name: "memo", content: "" },
@@ -288,6 +290,59 @@ onscroll = () => {
     top.classList.add("hide");
   }
 };
+
+const KeyDownSubscription = (dispatch, { onup, ondown }) => {
+  let handler = (ev) => {
+    if (ev.key === "ArrowUp") dispatch(onup);
+    if (ev.key === "ArrowDown") dispatch(ondown);
+  };
+  window.addEventListener("keydown", handler);
+  return () => window.removeEventListener("keydown", handler);
+};
+
+const keydownSubscriber = (dispatch, options) => {
+  const handler = (ev) => {
+    if (ev.key !== options.key) return;
+    dispatch(options.action);
+  };
+  addEventListener("keydown", handler);
+  return () => removeEventListener("keydown", handler);
+};
+
+const someDispatch = (dispatch, options) => {
+  dispatch(options.action);
+  return () => console.log("hello");
+};
+
+const onKeyDown = (key, action) => [keydownSubscriber, { key, action }];
+const onSome = (key, action) => [someDispatch, { key, action }];
+
+const SelectUp = (state) => {
+  if (state.selected === null) return state;
+  return [Select, state.selected - 1];
+};
+
+const SelectDown = (state) => {
+  if (state.selected === null) return state;
+  return [Select, state.selected + 1];
+};
+
+const Response = (state, payload) => ({ ...state, payload });
+const listenToEvent = (dispatch, props) => {
+  const listener = (event) =>
+    requestAnimationFrame(() => dispatch(props.action, event.detail));
+
+  addEventListener(props.type, listener);
+  return () => removeEventListener(props.type, listener);
+};
+
+const tickRunner = (dispatch, { action }) => {
+  return () => {};
+};
+const onChangeUri = (action, {}) => [tickRunner, { action }];
+const action = (state) => ({ ...state });
+
+const listen = (type, action) => [listenToEvent, { type, action }];
 
 app({
   init: initialState,
@@ -420,14 +475,18 @@ app({
         ]),
       ]),
     ]),
-  subscriptions: (state) => {
-    const cname = state.content && state.content.name;
-    if (cname && cname !== "memo") {
-      window.location.href = `#/${cname}`;
-    } else if (cname == "memo") {
-      window.location.href = "#/";
-    }
-    // window.localStorage.setItem("app", JSON.stringify(state));
-  },
+  subscriptions: (state) => [
+    // onKeyDown("ArrowUp", SelectUp),
+    onChangeUri(action, {}),
+  ],
+  // subscriptions: (state) => {
+  //   const cname = state.content && state.content.name;
+  //   if (cname && cname !== "memo") {
+  //     window.location.href = `#/${cname}`;
+  //   } else if (cname == "memo") {
+  //     window.location.href = "#/";
+  //   }
+  //   // window.localStorage.setItem("app", JSON.stringify(state));
+  // },
   node: document.getElementById("app"),
 });
