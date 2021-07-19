@@ -1,4 +1,36 @@
+- [Dockerビルドを分離してデプロイを高速化した話](https://zenn.dev/cumet04/articles/separete-frontend-docker-build)
+- [GitHub - Diwamoto/yource: A service that allows you to create a blog like slack.](https://github.com/Diwamoto/yource/)
+- [GitHub - gdamore/tcell: Tcell is an alternate terminal package, similar in some ways to termbox, but better in others.](https://github.com/gdamore/tcell)
+- [Go言語で理解するJWT認証 実装ハンズオン - Qiita](https://qiita.com/po3rin/items/740445d21487dfcb5d9f)
+- [NegipoyoChannel](https://negipoyoc.com/)
+- [GitHub - linzhengen/gin-admin-with-frontend-sample: A gin-admin with frontend sample Project](https://github.com/linzhengen/gin-admin-with-frontend-sample)
+```
+      const res = await fetch(`${apiURl}/login`, {
+        method: 'POST',
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }).then(res => res.json())
+```
 
+- [GhostをCloudFront+Nginxでキャッシュする](https://takipone.com/ghost-with-cloudfront/)
+- [microservicesはじめました (2) - 朝日ネット　技術者ブログ](https://techblog.asahi-net.co.jp/entry/2018/08/03/182218)
+Geolocation APIを使ってJavaScriptでクライアントの位置情報を取得して、その位置に関連する情報を表示する、というものを考えます。
+位置情報からの情報取得はYahoo! Open Local Platform (YOLP)を利用することにします。
+
+[GitHub - aesrael/go-postgres-jwt-react-starter: A go, gin, and postgres API with jwt auth, complete with a react frontend](https://github.com/aesrael/go-postgres-jwt-react-starter)
+
+- [GitHub - glromeo/esbuild-sass-plugin: esbuild plugin for sass](https://github.com/glromeo/esbuild-sass-plugin)
+- [GitHub - egoist/esbuild-service: esbuild as a service. bundle any npm package on the fly as you request.](https://github.com/egoist/esbuild-service)
+https://blog.icttoracon.net/2020/03/01/%E9%81%A9%E5%BD%93%E3%81%AB%E4%BF%B3%E5%8F%A5%E6%8A%95%E7%A8%BF%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E4%BD%9C%E3%81%A3%E3%81%9F%E3%82%89xsrf%E8%84%86%E5%BC%B1%E6%80%A7%E5%AD%95%E3%82%93%E3%81%A7/
+適当に俳句投稿サービス作ったらXSRF脆弱性孕んでた件。
+https://github.com/utrack/gin-csrf
+import images as base64
+- [我が家の BigQuery による台所事情分析 - nownab.log](https://blog.nownabe.com/2020/12/13/home-finance-with-bigquery/)
 - [Gogs: A painless self-hosted Git service](https://gogs.io/)
 
 - [GitHub - getify/moduloze: Convert CommonJS (CJS) modules to UMD and ESM formats](https://github.com/getify/moduloze)
