@@ -32,7 +32,7 @@ publish-zenn: ## publish zenn
 	-@(which gh-pages >/dev/null || gh-pages -b zenn -d zenn -t)
 
 serve-sources: ## serve sources
-	@${PROFILE_NAME} server
+	@${PROFILE_NAME} server -d
 
 serve-zenn: ## serve zenn
 	-@(which zenn >/dev/null && (cd ./zenn; zenn preview -p 7000 &))
