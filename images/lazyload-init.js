@@ -1,1 +1,580 @@
-(()=>{var d=typeof window!="undefined",x=d&&!("onscroll"in window)||typeof navigator!="undefined"&&/(gle|ing|ro)bot|crawl|spider/i.test(navigator.userAgent),C=d&&"IntersectionObserver"in window,N=d&&"classList"in document.createElement("p"),y=d&&window.devicePixelRatio>1,et={elements_selector:".lazy",container:x||d?document:null,threshold:300,thresholds:null,data_src:"src",data_srcset:"srcset",data_sizes:"sizes",data_bg:"bg",data_bg_hidpi:"bg-hidpi",data_bg_multi:"bg-multi",data_bg_multi_hidpi:"bg-multi-hidpi",data_poster:"poster",class_applied:"applied",class_loading:"loading",class_loaded:"loaded",class_error:"error",class_entered:"entered",class_exited:"exited",unobserve_completed:!0,unobserve_entered:!1,cancel_on_exit:!0,callback_enter:null,callback_exit:null,callback_applied:null,callback_loading:null,callback_loaded:null,callback_error:null,callback_finish:null,callback_cancel:null,use_native:!1},D=t=>Object.assign({},et,t),M=function(t,o){var s;let r="LazyLoad::Initialized",a=new t(o);try{s=new CustomEvent(r,{detail:{instance:a}})}catch(n){s=document.createEvent("CustomEvent"),s.initCustomEvent(r,!1,!1,{instance:a})}window.dispatchEvent(s)},ct=(t,o)=>{if(!!o)if(!o.length)M(t,o);else for(let s=0,r;r=o[s];s+=1)M(t,r)},p="loading",R="loaded",V="applied",nt="entered",E="error",H="native",F="data-",B="ll-status",e=(t,o)=>t.getAttribute(F+o),it=(t,o,s)=>{var r=F+o;if(s===null){t.removeAttribute(r);return}t.setAttribute(r,s)},_=t=>e(t,B),l=(t,o)=>it(t,B,o),L=t=>l(t,null),G=t=>_(t)===null,dt=t=>_(t)===p,lt=t=>_(t)===E,P=t=>_(t)===H,ut=[p,R,V,E],_t=t=>ut.indexOf(_(t))>=0,i=(t,o,s,r)=>{if(!!t){if(r!==void 0){t(o,s,r);return}if(s!==void 0){t(o,s);return}t(o)}},u=(t,o)=>{if(N){t.classList.add(o);return}t.className+=(t.className?" ":"")+o},g=(t,o)=>{if(N){t.classList.remove(o);return}t.className=t.className.replace(new RegExp("(^|\\s+)"+o+"(\\s+|$)")," ").replace(/^\s+/,"").replace(/\s+$/,"")},ft=t=>{t.llTempImage=document.createElement("IMG")},gt=t=>{delete t.llTempImage},U=t=>t.llTempImage,b=(t,o)=>{if(!o)return;let s=o._observer;!s||s.unobserve(t)},bt=t=>{t.disconnect()},vt=(t,o,s)=>{o.unobserve_entered&&b(t,s)},I=(t,o)=>{!t||(t.loadingCount+=o)},ht=t=>{!t||(t.toLoadCount-=1)},$=(t,o)=>{!t||(t.toLoadCount=o)},pt=t=>t.loadingCount>0,Et=t=>t.toLoadCount>0,j=t=>{let o=[];for(let s=0,r;r=t.children[s];s+=1)r.tagName==="SOURCE"&&o.push(r);return o},c=(t,o,s)=>{!s||t.setAttribute(o,s)},A=(t,o)=>{t.removeAttribute(o)},q=t=>!!t.llOriginalAttrs,W=t=>{if(q(t))return;let o={};o.src=t.getAttribute("src"),o.srcset=t.getAttribute("srcset"),o.sizes=t.getAttribute("sizes"),t.llOriginalAttrs=o},J=t=>{if(!q(t))return;let o=t.llOriginalAttrs;c(t,"src",o.src),c(t,"srcset",o.srcset),c(t,"sizes",o.sizes)},K=(t,o)=>{c(t,"sizes",e(t,o.data_sizes)),c(t,"srcset",e(t,o.data_srcset)),c(t,"src",e(t,o.data_src))},Q=t=>{A(t,"src"),A(t,"srcset"),A(t,"sizes")},O=(t,o)=>{let s=t.parentNode;if(!s||s.tagName!=="PICTURE")return;j(s).forEach(o)},Lt=(t,o)=>{j(t).forEach(o)},It=t=>{O(t,o=>{J(o)}),J(t)},At=(t,o)=>{O(t,s=>{W(s),K(s,o)}),W(t),K(t,o)},Ot=t=>{O(t,o=>{Q(o)}),Q(t)},St=(t,o)=>{c(t,"src",e(t,o.data_src))},kt=(t,o)=>{Lt(t,s=>{c(s,"src",e(s,o.data_src))}),c(t,"poster",e(t,o.data_poster)),c(t,"src",e(t,o.data_src)),t.load()},Tt={IMG:At,IFRAME:St,VIDEO:kt},wt=(t,o,s)=>{let r=e(t,o.data_bg),a=e(t,o.data_bg_hidpi),n=y&&a?a:r;!n||(t.style.backgroundImage=`url("${n}")`,U(t).setAttribute("src",n),Y(t,o,s))},zt=(t,o,s)=>{let r=e(t,o.data_bg_multi),a=e(t,o.data_bg_multi_hidpi),n=y&&a?a:r;!n||(t.style.backgroundImage=n,xt(t,o,s))},X=(t,o)=>{let s=Tt[t.tagName];!s||s(t,o)},xt=(t,o,s)=>{u(t,o.class_applied),l(t,V),o.unobserve_completed&&b(t,o),i(o.callback_applied,t,s)},Y=(t,o,s)=>{I(s,1),u(t,o.class_loading),l(t,p),i(o.callback_loading,t,s)},Ct=["IMG","IFRAME","VIDEO"],Nt=t=>Ct.indexOf(t.tagName)>-1,Z=(t,o)=>{o&&!pt(o)&&!Et(o)&&i(t.callback_finish,o)},m=(t,o,s)=>{t.addEventListener(o,s),t.llEvLisnrs[o]=s},yt=(t,o,s)=>{t.removeEventListener(o,s)},S=t=>!!t.llEvLisnrs,Dt=(t,o,s)=>{S(t)||(t.llEvLisnrs={});let r=t.tagName==="VIDEO"?"loadeddata":"load";m(t,r,o),m(t,"error",s)},k=t=>{if(!S(t))return;let o=t.llEvLisnrs;for(let s in o){let r=o[s];yt(t,s,r)}delete t.llEvLisnrs},tt=(t,o,s)=>{gt(t),I(s,-1),ht(s),g(t,o.class_loading),o.unobserve_completed&&b(t,s)},Mt=(t,o,s,r)=>{let a=P(o);tt(o,s,r),u(o,s.class_loaded),l(o,R),i(s.callback_loaded,o,r),a||Z(s,r)},Rt=(t,o,s,r)=>{let a=P(o);tt(o,s,r),u(o,s.class_error),l(o,E),i(s.callback_error,o,r),a||Z(s,r)},T=(t,o,s)=>{let r=U(t)||t;if(S(r))return;Dt(r,h=>{Mt(h,t,o,s),k(r)},h=>{Rt(h,t,o,s),k(r)})},Vt=(t,o,s)=>{ft(t),T(t,o,s),wt(t,o,s),zt(t,o,s)},Ht=(t,o,s)=>{T(t,o,s),X(t,o),Y(t,o,s)},w=(t,o,s)=>{Nt(t)?Ht(t,o,s):Vt(t,o,s)},Ft=(t,o,s)=>{t.setAttribute("loading","lazy"),T(t,o,s),X(t,o),l(t,H)},Bt=(t,o,s,r)=>{!s.cancel_on_exit||!dt(t)||t.tagName==="IMG"&&(k(t),Ot(t),It(t),g(t,s.class_loading),I(r,-1),L(t),i(s.callback_cancel,t,o,r))},Gt=(t,o,s,r)=>{let a=_t(t);l(t,nt),u(t,s.class_entered),g(t,s.class_exited),vt(t,s,r),i(s.callback_enter,t,o,r),!a&&w(t,s,r)},Pt=(t,o,s,r)=>{G(t)||(u(t,s.class_exited),Bt(t,o,s,r),i(s.callback_exit,t,o,r))},Ut=["IMG","IFRAME","VIDEO"],ot=t=>t.use_native&&"loading"in HTMLImageElement.prototype,$t=(t,o,s)=>{t.forEach(r=>{Ut.indexOf(r.tagName)!==-1&&Ft(r,o,s)}),$(s,0)},jt=t=>t.isIntersecting||t.intersectionRatio>0,qt=t=>({root:t.container===document?null:t.container,rootMargin:t.thresholds||t.threshold+"px"}),Wt=(t,o,s)=>{t.forEach(r=>jt(r)?Gt(r.target,r,o,s):Pt(r.target,r,o,s))},Jt=(t,o)=>{o.forEach(s=>{t.observe(s)})},Kt=(t,o)=>{bt(t),Jt(t,o)},Qt=(t,o)=>{!C||ot(t)||(o._observer=new IntersectionObserver(s=>{Wt(s,t,o)},qt(t)))},st=t=>Array.prototype.slice.call(t),z=t=>t.container.querySelectorAll(t.elements_selector),Xt=t=>st(t).filter(G),Yt=t=>lt(t),Zt=t=>st(t).filter(Yt),rt=(t,o)=>Xt(t||z(o)),mt=(t,o)=>{Zt(z(t)).forEach(r=>{g(r,t.class_error),L(r)}),o.update()},to=(t,o)=>{!d||window.addEventListener("online",()=>{mt(t,o)})},f=function(t,o){let s=D(t);this._settings=s,this.loadingCount=0,Qt(s,this),to(s,this),this.update(o)};f.prototype={update:function(t){let o=this._settings,s=rt(t,o);if($(this,s.length),x||!C){this.loadAll(s);return}if(ot(o)){$t(s,o,this);return}Kt(this._observer,s)},destroy:function(){this._observer&&this._observer.disconnect(),z(this._settings).forEach(t=>{delete t.llOriginalAttrs}),delete this._observer,delete this._settings,delete this.loadingCount,delete this.toLoadCount},loadAll:function(t){let o=this._settings;rt(t,o).forEach(r=>{b(r,this),w(r,o,this)})}};f.load=(t,o)=>{let s=D(o);w(t,s)};f.resetStatus=t=>{L(t)};d&&ct(f,window.lazyLoadOptions);var at=f;var v=(t,o)=>{console.log(Date.now(),t,o.getAttribute("data-src"),o.getAttribute("src"))},oo={elements_selector:".lazy",to_webp:!0,callback_enter:t=>{v("ENTERED",t)},callback_load:t=>{v("LOADED",t)},callback_set:t=>{v("SET",t)},callback_error:t=>{v("ERROR",t)}},so=()=>new at(oo),eo=()=>{document.addEventListener("DOMContentLoaded",so)};})();
+(() => {
+  // sources/src/modules/js/lazyload.js
+  var runningOnBrowser = typeof window !== "undefined";
+  var isBot = runningOnBrowser && !("onscroll" in window) || typeof navigator !== "undefined" && /(gle|ing|ro)bot|crawl|spider/i.test(navigator.userAgent);
+  var supportsIntersectionObserver = runningOnBrowser && "IntersectionObserver" in window;
+  var supportsClassList = runningOnBrowser && "classList" in document.createElement("p");
+  var isHiDpi = runningOnBrowser && window.devicePixelRatio > 1;
+  var defaultSettings = {
+    elements_selector: ".lazy",
+    container: isBot || runningOnBrowser ? document : null,
+    threshold: 300,
+    thresholds: null,
+    data_src: "src",
+    data_srcset: "srcset",
+    data_sizes: "sizes",
+    data_bg: "bg",
+    data_bg_hidpi: "bg-hidpi",
+    data_bg_multi: "bg-multi",
+    data_bg_multi_hidpi: "bg-multi-hidpi",
+    data_poster: "poster",
+    class_applied: "applied",
+    class_loading: "loading",
+    class_loaded: "loaded",
+    class_error: "error",
+    class_entered: "entered",
+    class_exited: "exited",
+    unobserve_completed: true,
+    unobserve_entered: false,
+    cancel_on_exit: true,
+    callback_enter: null,
+    callback_exit: null,
+    callback_applied: null,
+    callback_loading: null,
+    callback_loaded: null,
+    callback_error: null,
+    callback_finish: null,
+    callback_cancel: null,
+    use_native: false
+  };
+  var getExtendedSettings = (customSettings) => {
+    return Object.assign({}, defaultSettings, customSettings);
+  };
+  var createInstance = function(classObj, options) {
+    var event;
+    let eventString = "LazyLoad::Initialized";
+    let instance = new classObj(options);
+    try {
+      event = new CustomEvent(eventString, { detail: { instance } });
+    } catch (err) {
+      event = document.createEvent("CustomEvent");
+      event.initCustomEvent(eventString, false, false, { instance });
+    }
+    window.dispatchEvent(event);
+  };
+  var autoInitialize = (classObj, options) => {
+    if (!options) {
+      return;
+    }
+    if (!options.length) {
+      createInstance(classObj, options);
+    } else {
+      for (let i = 0, optionsItem; optionsItem = options[i]; i += 1) {
+        createInstance(classObj, optionsItem);
+      }
+    }
+  };
+  var statusLoading = "loading";
+  var statusLoaded = "loaded";
+  var statusApplied = "applied";
+  var statusEntered = "entered";
+  var statusError = "error";
+  var statusNative = "native";
+  var dataPrefix = "data-";
+  var statusDataName = "ll-status";
+  var getData = (element, attribute) => {
+    return element.getAttribute(dataPrefix + attribute);
+  };
+  var setData = (element, attribute, value) => {
+    var attrName = dataPrefix + attribute;
+    if (value === null) {
+      element.removeAttribute(attrName);
+      return;
+    }
+    element.setAttribute(attrName, value);
+  };
+  var getStatus = (element) => getData(element, statusDataName);
+  var setStatus = (element, status) => setData(element, statusDataName, status);
+  var resetStatus = (element) => setStatus(element, null);
+  var hasEmptyStatus = (element) => getStatus(element) === null;
+  var hasStatusLoading = (element) => getStatus(element) === statusLoading;
+  var hasStatusError = (element) => getStatus(element) === statusError;
+  var hasStatusNative = (element) => getStatus(element) === statusNative;
+  var statusesAfterLoading = [
+    statusLoading,
+    statusLoaded,
+    statusApplied,
+    statusError
+  ];
+  var hadStartedLoading = (element) => statusesAfterLoading.indexOf(getStatus(element)) >= 0;
+  var safeCallback = (callback, arg1, arg2, arg3) => {
+    if (!callback) {
+      return;
+    }
+    if (arg3 !== void 0) {
+      callback(arg1, arg2, arg3);
+      return;
+    }
+    if (arg2 !== void 0) {
+      callback(arg1, arg2);
+      return;
+    }
+    callback(arg1);
+  };
+  var addClass = (element, className) => {
+    if (supportsClassList) {
+      element.classList.add(className);
+      return;
+    }
+    element.className += (element.className ? " " : "") + className;
+  };
+  var removeClass = (element, className) => {
+    if (supportsClassList) {
+      element.classList.remove(className);
+      return;
+    }
+    element.className = element.className.replace(new RegExp("(^|\\s+)" + className + "(\\s+|$)"), " ").replace(/^\s+/, "").replace(/\s+$/, "");
+  };
+  var addTempImage = (element) => {
+    element.llTempImage = document.createElement("IMG");
+  };
+  var deleteTempImage = (element) => {
+    delete element.llTempImage;
+  };
+  var getTempImage = (element) => element.llTempImage;
+  var unobserve = (element, instance) => {
+    if (!instance)
+      return;
+    const observer = instance._observer;
+    if (!observer)
+      return;
+    observer.unobserve(element);
+  };
+  var resetObserver = (observer) => {
+    observer.disconnect();
+  };
+  var unobserveEntered = (element, settings, instance) => {
+    if (settings.unobserve_entered)
+      unobserve(element, instance);
+  };
+  var updateLoadingCount = (instance, delta) => {
+    if (!instance)
+      return;
+    instance.loadingCount += delta;
+  };
+  var decreaseToLoadCount = (instance) => {
+    if (!instance)
+      return;
+    instance.toLoadCount -= 1;
+  };
+  var setToLoadCount = (instance, value) => {
+    if (!instance)
+      return;
+    instance.toLoadCount = value;
+  };
+  var isSomethingLoading = (instance) => instance.loadingCount > 0;
+  var haveElementsToLoad = (instance) => instance.toLoadCount > 0;
+  var getSourceTags = (parentTag) => {
+    let sourceTags = [];
+    for (let i = 0, childTag; childTag = parentTag.children[i]; i += 1) {
+      if (childTag.tagName === "SOURCE") {
+        sourceTags.push(childTag);
+      }
+    }
+    return sourceTags;
+  };
+  var setAttributeIfValue = (element, attrName, value) => {
+    if (!value) {
+      return;
+    }
+    element.setAttribute(attrName, value);
+  };
+  var resetAttribute = (element, attrName) => {
+    element.removeAttribute(attrName);
+  };
+  var hasOriginalAttributes = (element) => {
+    return !!element.llOriginalAttrs;
+  };
+  var saveOriginalImageAttributes = (element) => {
+    if (hasOriginalAttributes(element)) {
+      return;
+    }
+    const originalAttributes = {};
+    originalAttributes["src"] = element.getAttribute("src");
+    originalAttributes["srcset"] = element.getAttribute("srcset");
+    originalAttributes["sizes"] = element.getAttribute("sizes");
+    element.llOriginalAttrs = originalAttributes;
+  };
+  var restoreOriginalImageAttributes = (element) => {
+    if (!hasOriginalAttributes(element)) {
+      return;
+    }
+    const originalAttributes = element.llOriginalAttrs;
+    setAttributeIfValue(element, "src", originalAttributes["src"]);
+    setAttributeIfValue(element, "srcset", originalAttributes["srcset"]);
+    setAttributeIfValue(element, "sizes", originalAttributes["sizes"]);
+  };
+  var setImageAttributes = (element, settings) => {
+    setAttributeIfValue(element, "sizes", getData(element, settings.data_sizes));
+    setAttributeIfValue(element, "srcset", getData(element, settings.data_srcset));
+    setAttributeIfValue(element, "src", getData(element, settings.data_src));
+  };
+  var resetImageAttributes = (element) => {
+    resetAttribute(element, "src");
+    resetAttribute(element, "srcset");
+    resetAttribute(element, "sizes");
+  };
+  var forEachPictureSource = (element, fn) => {
+    const parent = element.parentNode;
+    if (!parent || parent.tagName !== "PICTURE") {
+      return;
+    }
+    let sourceTags = getSourceTags(parent);
+    sourceTags.forEach(fn);
+  };
+  var forEachVideoSource = (element, fn) => {
+    let sourceTags = getSourceTags(element);
+    sourceTags.forEach(fn);
+  };
+  var restoreOriginalAttributesImg = (element) => {
+    forEachPictureSource(element, (sourceTag) => {
+      restoreOriginalImageAttributes(sourceTag);
+    });
+    restoreOriginalImageAttributes(element);
+  };
+  var setSourcesImg = (element, settings) => {
+    forEachPictureSource(element, (sourceTag) => {
+      saveOriginalImageAttributes(sourceTag);
+      setImageAttributes(sourceTag, settings);
+    });
+    saveOriginalImageAttributes(element);
+    setImageAttributes(element, settings);
+  };
+  var resetSourcesImg = (element) => {
+    forEachPictureSource(element, (sourceTag) => {
+      resetImageAttributes(sourceTag);
+    });
+    resetImageAttributes(element);
+  };
+  var setSourcesIframe = (element, settings) => {
+    setAttributeIfValue(element, "src", getData(element, settings.data_src));
+  };
+  var setSourcesVideo = (element, settings) => {
+    forEachVideoSource(element, (sourceTag) => {
+      setAttributeIfValue(sourceTag, "src", getData(sourceTag, settings.data_src));
+    });
+    setAttributeIfValue(element, "poster", getData(element, settings.data_poster));
+    setAttributeIfValue(element, "src", getData(element, settings.data_src));
+    element.load();
+  };
+  var setSourcesFunctions = {
+    IMG: setSourcesImg,
+    IFRAME: setSourcesIframe,
+    VIDEO: setSourcesVideo
+  };
+  var setBackground = (element, settings, instance) => {
+    const bg1xValue = getData(element, settings.data_bg);
+    const bgHiDpiValue = getData(element, settings.data_bg_hidpi);
+    const bgDataValue = isHiDpi && bgHiDpiValue ? bgHiDpiValue : bg1xValue;
+    if (!bgDataValue)
+      return;
+    element.style.backgroundImage = `url("${bgDataValue}")`;
+    getTempImage(element).setAttribute("src", bgDataValue);
+    manageLoading(element, settings, instance);
+  };
+  var setMultiBackground = (element, settings, instance) => {
+    const bg1xValue = getData(element, settings.data_bg_multi);
+    const bgHiDpiValue = getData(element, settings.data_bg_multi_hidpi);
+    const bgDataValue = isHiDpi && bgHiDpiValue ? bgHiDpiValue : bg1xValue;
+    if (!bgDataValue) {
+      return;
+    }
+    element.style.backgroundImage = bgDataValue;
+    manageApplied(element, settings, instance);
+  };
+  var setSources = (element, settings) => {
+    const setSourcesFunction = setSourcesFunctions[element.tagName];
+    if (!setSourcesFunction) {
+      return;
+    }
+    setSourcesFunction(element, settings);
+  };
+  var manageApplied = (element, settings, instance) => {
+    addClass(element, settings.class_applied);
+    setStatus(element, statusApplied);
+    if (settings.unobserve_completed) {
+      unobserve(element, settings);
+    }
+    safeCallback(settings.callback_applied, element, instance);
+  };
+  var manageLoading = (element, settings, instance) => {
+    updateLoadingCount(instance, 1);
+    addClass(element, settings.class_loading);
+    setStatus(element, statusLoading);
+    safeCallback(settings.callback_loading, element, instance);
+  };
+  var elementsWithLoadEvent = ["IMG", "IFRAME", "VIDEO"];
+  var hasLoadEvent = (element) => elementsWithLoadEvent.indexOf(element.tagName) > -1;
+  var checkFinish = (settings, instance) => {
+    if (instance && !isSomethingLoading(instance) && !haveElementsToLoad(instance)) {
+      safeCallback(settings.callback_finish, instance);
+    }
+  };
+  var addEventListener = (element, eventName, handler) => {
+    element.addEventListener(eventName, handler);
+    element.llEvLisnrs[eventName] = handler;
+  };
+  var removeEventListener = (element, eventName, handler) => {
+    element.removeEventListener(eventName, handler);
+  };
+  var hasEventListeners = (element) => {
+    return !!element.llEvLisnrs;
+  };
+  var addEventListeners = (element, loadHandler2, errorHandler2) => {
+    if (!hasEventListeners(element))
+      element.llEvLisnrs = {};
+    const loadEventName = element.tagName === "VIDEO" ? "loadeddata" : "load";
+    addEventListener(element, loadEventName, loadHandler2);
+    addEventListener(element, "error", errorHandler2);
+  };
+  var removeEventListeners = (element) => {
+    if (!hasEventListeners(element)) {
+      return;
+    }
+    const eventListeners = element.llEvLisnrs;
+    for (let eventName in eventListeners) {
+      const handler = eventListeners[eventName];
+      removeEventListener(element, eventName, handler);
+    }
+    delete element.llEvLisnrs;
+  };
+  var doneHandler = (element, settings, instance) => {
+    deleteTempImage(element);
+    updateLoadingCount(instance, -1);
+    decreaseToLoadCount(instance);
+    removeClass(element, settings.class_loading);
+    if (settings.unobserve_completed) {
+      unobserve(element, instance);
+    }
+  };
+  var loadHandler = (event, element, settings, instance) => {
+    const goingNative = hasStatusNative(element);
+    doneHandler(element, settings, instance);
+    addClass(element, settings.class_loaded);
+    setStatus(element, statusLoaded);
+    safeCallback(settings.callback_loaded, element, instance);
+    if (!goingNative)
+      checkFinish(settings, instance);
+  };
+  var errorHandler = (event, element, settings, instance) => {
+    const goingNative = hasStatusNative(element);
+    doneHandler(element, settings, instance);
+    addClass(element, settings.class_error);
+    setStatus(element, statusError);
+    safeCallback(settings.callback_error, element, instance);
+    if (!goingNative)
+      checkFinish(settings, instance);
+  };
+  var addOneShotEventListeners = (element, settings, instance) => {
+    const elementToListenTo = getTempImage(element) || element;
+    if (hasEventListeners(elementToListenTo)) {
+      return;
+    }
+    const _loadHandler = (event) => {
+      loadHandler(event, element, settings, instance);
+      removeEventListeners(elementToListenTo);
+    };
+    const _errorHandler = (event) => {
+      errorHandler(event, element, settings, instance);
+      removeEventListeners(elementToListenTo);
+    };
+    addEventListeners(elementToListenTo, _loadHandler, _errorHandler);
+  };
+  var loadBackground = (element, settings, instance) => {
+    addTempImage(element);
+    addOneShotEventListeners(element, settings, instance);
+    setBackground(element, settings, instance);
+    setMultiBackground(element, settings, instance);
+  };
+  var loadRegular = (element, settings, instance) => {
+    addOneShotEventListeners(element, settings, instance);
+    setSources(element, settings);
+    manageLoading(element, settings, instance);
+  };
+  var load = (element, settings, instance) => {
+    if (hasLoadEvent(element)) {
+      loadRegular(element, settings, instance);
+    } else {
+      loadBackground(element, settings, instance);
+    }
+  };
+  var loadNative = (element, settings, instance) => {
+    element.setAttribute("loading", "lazy");
+    addOneShotEventListeners(element, settings, instance);
+    setSources(element, settings);
+    setStatus(element, statusNative);
+  };
+  var cancelLoading = (element, entry, settings, instance) => {
+    if (!settings.cancel_on_exit)
+      return;
+    if (!hasStatusLoading(element))
+      return;
+    if (element.tagName !== "IMG")
+      return;
+    removeEventListeners(element);
+    resetSourcesImg(element);
+    restoreOriginalAttributesImg(element);
+    removeClass(element, settings.class_loading);
+    updateLoadingCount(instance, -1);
+    resetStatus(element);
+    safeCallback(settings.callback_cancel, element, entry, instance);
+  };
+  var onEnter = (element, entry, settings, instance) => {
+    const dontLoad = hadStartedLoading(element);
+    setStatus(element, statusEntered);
+    addClass(element, settings.class_entered);
+    removeClass(element, settings.class_exited);
+    unobserveEntered(element, settings, instance);
+    safeCallback(settings.callback_enter, element, entry, instance);
+    if (dontLoad)
+      return;
+    load(element, settings, instance);
+  };
+  var onExit = (element, entry, settings, instance) => {
+    if (hasEmptyStatus(element))
+      return;
+    addClass(element, settings.class_exited);
+    cancelLoading(element, entry, settings, instance);
+    safeCallback(settings.callback_exit, element, entry, instance);
+  };
+  var tagsWithNativeLazy = ["IMG", "IFRAME", "VIDEO"];
+  var shouldUseNative = (settings) => settings.use_native && "loading" in HTMLImageElement.prototype;
+  var loadAllNative = (elements, settings, instance) => {
+    elements.forEach((element) => {
+      if (tagsWithNativeLazy.indexOf(element.tagName) === -1) {
+        return;
+      }
+      loadNative(element, settings, instance);
+    });
+    setToLoadCount(instance, 0);
+  };
+  var isIntersecting = (entry) => entry.isIntersecting || entry.intersectionRatio > 0;
+  var getObserverSettings = (settings) => ({
+    root: settings.container === document ? null : settings.container,
+    rootMargin: settings.thresholds || settings.threshold + "px"
+  });
+  var intersectionHandler = (entries, settings, instance) => {
+    entries.forEach((entry) => isIntersecting(entry) ? onEnter(entry.target, entry, settings, instance) : onExit(entry.target, entry, settings, instance));
+  };
+  var observeElements = (observer, elements) => {
+    elements.forEach((element) => {
+      observer.observe(element);
+    });
+  };
+  var updateObserver = (observer, elementsToObserve) => {
+    resetObserver(observer);
+    observeElements(observer, elementsToObserve);
+  };
+  var setObserver = (settings, instance) => {
+    if (!supportsIntersectionObserver || shouldUseNative(settings)) {
+      return;
+    }
+    instance._observer = new IntersectionObserver((entries) => {
+      intersectionHandler(entries, settings, instance);
+    }, getObserverSettings(settings));
+  };
+  var toArray = (nodeSet) => Array.prototype.slice.call(nodeSet);
+  var queryElements = (settings) => settings.container.querySelectorAll(settings.elements_selector);
+  var excludeManagedElements = (elements) => toArray(elements).filter(hasEmptyStatus);
+  var hasError = (element) => hasStatusError(element);
+  var filterErrorElements = (elements) => toArray(elements).filter(hasError);
+  var getElementsToLoad = (elements, settings) => excludeManagedElements(elements || queryElements(settings));
+  var retryLazyLoad = (settings, instance) => {
+    const errorElements = filterErrorElements(queryElements(settings));
+    errorElements.forEach((element) => {
+      removeClass(element, settings.class_error);
+      resetStatus(element);
+    });
+    instance.update();
+  };
+  var setOnlineCheck = (settings, instance) => {
+    if (!runningOnBrowser) {
+      return;
+    }
+    window.addEventListener("online", () => {
+      retryLazyLoad(settings, instance);
+    });
+  };
+  var LazyLoad = function(customSettings, elements) {
+    const settings = getExtendedSettings(customSettings);
+    this._settings = settings;
+    this.loadingCount = 0;
+    setObserver(settings, this);
+    setOnlineCheck(settings, this);
+    this.update(elements);
+  };
+  LazyLoad.prototype = {
+    update: function(givenNodeset) {
+      const settings = this._settings;
+      const elementsToLoad = getElementsToLoad(givenNodeset, settings);
+      setToLoadCount(this, elementsToLoad.length);
+      if (isBot || !supportsIntersectionObserver) {
+        this.loadAll(elementsToLoad);
+        return;
+      }
+      if (shouldUseNative(settings)) {
+        loadAllNative(elementsToLoad, settings, this);
+        return;
+      }
+      updateObserver(this._observer, elementsToLoad);
+    },
+    destroy: function() {
+      if (this._observer) {
+        this._observer.disconnect();
+      }
+      queryElements(this._settings).forEach((element) => {
+        delete element.llOriginalAttrs;
+      });
+      delete this._observer;
+      delete this._settings;
+      delete this.loadingCount;
+      delete this.toLoadCount;
+    },
+    loadAll: function(elements) {
+      const settings = this._settings;
+      const elementsToLoad = getElementsToLoad(elements, settings);
+      elementsToLoad.forEach((element) => {
+        unobserve(element, this);
+        load(element, settings, this);
+      });
+    }
+  };
+  LazyLoad.load = (element, customSettings) => {
+    const settings = getExtendedSettings(customSettings);
+    load(element, settings);
+  };
+  LazyLoad.resetStatus = (element) => {
+    resetStatus(element);
+  };
+  if (runningOnBrowser) {
+    autoInitialize(LazyLoad, window.lazyLoadOptions);
+  }
+  var lazyload_default = LazyLoad;
+
+  // sources/src/pages/images/lazyload-init.js
+  var logEvent = (eventName, element) => {
+    console.log(Date.now(), eventName, element.getAttribute("data-src"), element.getAttribute("src"));
+  };
+  var lazyLoadOptions = {
+    elements_selector: ".lazy",
+    to_webp: true,
+    callback_enter: (element) => {
+      logEvent("ENTERED", element);
+    },
+    callback_load: (element) => {
+      logEvent("LOADED", element);
+    },
+    callback_set: (element) => {
+      logEvent("SET", element);
+    },
+    callback_error: (element) => {
+      logEvent("ERROR", element);
+    }
+  };
+  var createLazyLoadInstance = () => {
+    return new lazyload_default(lazyLoadOptions);
+  };
+  var lazyload_init_default = () => {
+    document.addEventListener("DOMContentLoaded", createLazyLoadInstance);
+  };
+})();

@@ -140,3 +140,5 @@ webworker
 Cache-Control: stale-while-revalidate,
 
 - [Lighthouse の計測結果を見ていく - Qiita](https://qiita.com/nightyknite/items/22d9f818dbab9bf171a3)
+
+- [GitHub - iamkun/dayjs: ⏰ Day.js 2kB immutable date-time library alternative to Moment.js with the same modern API](https://github.com/iamkun/dayjs)
