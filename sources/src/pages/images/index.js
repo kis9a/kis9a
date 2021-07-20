@@ -5,6 +5,9 @@ import "/layouts/index.css";
 import "./index.css";
 // import lazyLoadInit from "./lazyload-init";
 
+// make browser compatibility branch ? check work in modern browsers.
+const format = "webp";
+
 const getIndexes = Http({
   url: "/data/images-indexes.json",
   response: "json",
@@ -16,6 +19,14 @@ const getIndexes = Http({
     };
   },
 });
+
+const isFormat = (name) => {
+  return format == getExtension(name);
+};
+
+const getExtension = (file) => {
+  return file.split(".").pop();
+};
 
 const pureState = {
   indexes: [],
@@ -42,15 +53,18 @@ app({
           "div",
           { class: "content indexes" },
           indexes &&
-            indexes.map((s) =>
-              h("div", { class: "imgc" }, [
-                h("img", {
-                  alt: s.name,
-                  src: `/data/images/${s.name}`,
-                  "data-src": `${s.name}`,
-                }),
-                h("div", { class: "imgc-label" }, text(s.name)),
-              ])
+            indexes.map(
+              (s) =>
+                isFormat(s.name) &&
+                h("div", { class: "imgc" }, [
+                  h("img", {
+                    alt: s.name,
+                    src: `/data/images/${s.name}`,
+                    loading: "lazy",
+                    "data-src": `${s.name}`,
+                  }),
+                  h("div", { class: "imgc-label" }, text(s.name)),
+                ])
             )
         ),
       ]),

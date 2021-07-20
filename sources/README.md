@@ -8,7 +8,7 @@ install script: [install](./install)
 curl -sL https://raw.githubusercontent.com/kis9a/kis9a/master/sources/install | bash  
 cd \$PROFILE  
 \$PROFILE dist  
-make link  
+make link
 
 ### Development
 
@@ -47,7 +47,8 @@ why ?
 - cloudfront cach is powerful and preformance.
 - I used before Github Pages but it's can't cache-controll
 
-why use lambda@Edge ?  
+why use lambda@Edge ?
+
 - when case of s3 object access, sub directory index.html can't resolve.  
   redirect to subdirectory index.html when origin request sub-directory/
 
@@ -65,6 +66,11 @@ why use lambda@Edge ?
   (cd $PROFILE/sources/; sar)
 
 - [imgcmp](../.github/workflows/imgcmp.yml) for compress images.
+
+##### - data images to webp
+
+- cd $PROFILE/images
+- for file in _; do cwebp "$file" -o "${file%._}.webp"; done
 
 ### Improvement
 
