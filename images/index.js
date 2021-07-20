@@ -833,6 +833,7 @@
           h("img", {
             alt: s.name,
             src: `/data/images/${s.name}`,
+            loading: "lazy",
             "data-src": `${s.name}`
           }),
           h("div", { class: "imgc-label" }, text(s.name))
