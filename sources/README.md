@@ -23,6 +23,7 @@ kis9a server # serve dist/
 kis9a bundle # bundle src to dist  
 kis9a images -r # resize  
 kis9a images -c # comvert  
+kis9a images -d # developmode  
 kis9a data # initialize datas  
 kis9a dist # initialize dist directory
 
@@ -61,23 +62,31 @@ why use lambda@Edge ?
 - don't use npm module  
   use modules/\*.esm.js
 
+##### - whatch file changes
+
 - use [sar](https://github.com/kis9a/sar) command  
   go get https://github.com/kis9a/sar
   (cd $PROFILE/sources/; sar)
+
+##### - images compress action
 
 - [imgcmp](../.github/workflows/imgcmp.yml) for compress images.
 
 ##### - data images to webp
 
 - cd $PROFILE/images
-- for file in _; do cwebp "$file" -o "${file%._}.webp"; done
+- for file in _; do cwebp "\$file" -o "${file%._}.webp"; done
+
+### Preformance
+
+- PageSpeed Insights based Lighthouse, example:
+  <https://developers.google.com/speed/pagespeed/insights/?url=me.kis9a.com/images/&tab=desktop>
 
 ### Improvement
 
-- bundle mode "Development", "Production"
-- incremental bundle
 - components manage and easy to distribute
-- data files lifecycle
+- data files lifecycle with golang
 - terraform clean up and more cover management resources
 - gh-pages command self made
 - abstract and separation for application and devOps staff
+- incremental bundle -> use esbuild watch function ?
