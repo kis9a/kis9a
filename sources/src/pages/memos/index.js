@@ -2,6 +2,7 @@ import { app, h, text } from "/modules/js/hyperapp.js";
 import snarkdown from "/modules/js/snarkdown.js";
 import { Header } from "/components/header";
 import { Http } from "/modules/js/Http.js";
+import { Keyboard } from "/modules/js/subs/Keyboard.js";
 import { Toast } from "/components/toast";
 import "./index.css";
 import "/layouts/index.css";
@@ -199,36 +200,6 @@ const tabShift = (state) => {
   // return state
 };
 
-document.addEventListener("keydown", function (event) {
-  if (event.keyCode == 37) {
-    // alert("Left was pressed");
-    // state.content = state.contents[id - 1];
-    tabShift();
-  } else if (event.keyCode == 39) {
-    alert("Right was pressed");
-  }
-});
-
-// | tab                                 | 9                         |
-// | enter                               | 13                        |
-// | arrow left                          | 37                        |
-// | arrow up                            | 38                        |
-// | arrow right                         | 39                        |
-// | arrow down                          | 40                        |
-// | comma                               | 188                       |
-
-const keyDownSubscription = [
-  (dispatch, { onup, ondown }) => {
-    console.log("helloooooooooooooo");
-    let handler = (ev) => {
-      if (ev.key === "ArrowUp") dispatch(onup);
-      if (ev.key === "ArrowDown") dispatch(ondown);
-    };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  },
-];
-
 const pureState = {
   indexes: "",
   content: { name: "memo", content: "" },
@@ -253,13 +224,13 @@ const initCategories = getCategories;
 const initContent = [
   (dispatch) => {
     const url = initialUrl;
-    const cname = baseName(url);
+    const name = baseName(url);
     let content = pureState.content;
-    if (cname && cname !== "memo") {
+    if (name && name !== "memo") {
       const action = (state) => {
-        content = state.contents.find((v) => v.name === cname);
+        content = state.contents.find((v) => v.name === name);
         if (!content) {
-          content = getContent(cname);
+          content = getContent(name);
           return [state, content];
         }
         return {
@@ -291,58 +262,69 @@ onscroll = () => {
   }
 };
 
-const KeyDownSubscription = (dispatch, { onup, ondown }) => {
-  let handler = (ev) => {
-    if (ev.key === "ArrowUp") dispatch(onup);
-    if (ev.key === "ArrowDown") dispatch(ondown);
-  };
-  window.addEventListener("keydown", handler);
-  return () => window.removeEventListener("keydown", handler);
+// subscription scheme
+// const tick = (action, { interval }) => [
+//   (dispatch, { action, interval }) => {
+//     const id = setInterval(() => dispatch(action), interval);
+//     return () => clearInterval(id);
+//   },
+//   { action, interval },
+// ];
+
+const tick = (action) => [
+  (dispatch) => {
+    dispatch(action);
+    return () => {};
+  },
+  { action },
+];
+
+const KeySub = Keyboard({
+  downs: true,
+  ups: true,
+  action: (state, keyEvent) => {
+    switch (true) {
+      case keyEvent.key == "ArrowRight":
+        // TODO
+        // console.log("right");
+        // return [shiftTab, 1];
+        return state;
+      case keyEvent.key == "f" && keyEvent.ctrlKey:
+        focusIndexSearch();
+        return state;
+      case keyEvent.key == "t" && keyEvent.ctrlKey:
+        // showTags();
+        return [onSelect, "category"];
+      // return state;
+      default:
+        console.log(keyEvent);
+        return state;
+    }
+    // keyEvent has the props of the KeyboardEvent
+    // action will be called for keydown and keyup
+  },
+});
+
+// const showTags = (state) => {
+
+// };
+
+const focusIndexSearch = () => {
+  const input = document.getElementById("index-search");
+  input.focus();
 };
 
-const keydownSubscriber = (dispatch, options) => {
-  const handler = (ev) => {
-    if (ev.key !== options.key) return;
-    dispatch(options.action);
-  };
-  addEventListener("keydown", handler);
-  return () => removeEventListener("keydown", handler);
+const shiftTab = (state, count) => {
+  console.log(count);
+  let id = 0;
+  state.contents.forEach((v, i) => {
+    if (v.name == state.content.name) {
+      id = i;
+    }
+  });
+  state.content = state.contents[id - 1];
+  return { ...state };
 };
-
-const someDispatch = (dispatch, options) => {
-  dispatch(options.action);
-  return () => console.log("hello");
-};
-
-const onKeyDown = (key, action) => [keydownSubscriber, { key, action }];
-const onSome = (key, action) => [someDispatch, { key, action }];
-
-const SelectUp = (state) => {
-  if (state.selected === null) return state;
-  return [Select, state.selected - 1];
-};
-
-const SelectDown = (state) => {
-  if (state.selected === null) return state;
-  return [Select, state.selected + 1];
-};
-
-const Response = (state, payload) => ({ ...state, payload });
-const listenToEvent = (dispatch, props) => {
-  const listener = (event) =>
-    requestAnimationFrame(() => dispatch(props.action, event.detail));
-
-  addEventListener(props.type, listener);
-  return () => removeEventListener(props.type, listener);
-};
-
-const tickRunner = (dispatch, { action }) => {
-  return () => {};
-};
-const onChangeUri = (action, {}) => [tickRunner, { action }];
-const action = (state) => ({ ...state });
-
-const listen = (type, action) => [listenToEvent, { type, action }];
 
 app({
   init: initialState,
@@ -385,6 +367,7 @@ app({
               value: inputValue,
               oninput: setInputValue,
               onfocus: onInputFocus,
+              id: "index-search",
               class: "index-search",
               ariaLabel: "index-search-input",
             }),
@@ -476,18 +459,17 @@ app({
       ]),
     ]),
   subscriptions: (state) => [
-    // onMouseMove(MouseMoved)
-    // onKeyDown("ArrowUp", SelectUp),
+    state.content &&
+      tick((state) => {
+        const name = state.content && state.content.name;
+        if (name && name !== "memo") {
+          window.location.href = `#/${name}`;
+        } else if (name == "memo") {
+          window.location.href = "#/";
+        }
+        return state;
+      }),
+    KeySub,
   ],
   node: document.getElementById("app"),
 });
-
-// subscriptions: (state) => {
-//   const cname = state.content && state.content.name;
-//   if (cname && cname !== "memo") {
-//     window.location.href = `#/${cname}`;
-//   } else if (cname == "memo") {
-//     window.location.href = "#/";
-//   }
-//   // window.localStorage.setItem("app", JSON.stringify(state));
-// },
