@@ -1,6 +1,11 @@
 import { Header } from "/components/header";
 import { h, text, app } from "/modules/js/hyperapp.js";
 import { viewLink, viewLinkActive } from "/components/link/unit.js";
+import {
+  viewToast,
+  viewToastError,
+  viewToastSuccess,
+} from "/components/toast/unit.js";
 import { viewHeader } from "/components/header/unit.js";
 import "/layouts/index.css";
 import "./index.css";
@@ -29,11 +34,19 @@ const sides = [
     ],
   },
   {
-    name: "Icons",
+    name: "Toast",
     views: [
       {
         name: "default",
-        view: viewIcons,
+        view: viewToast,
+      },
+      {
+        name: "error",
+        view: viewToastError,
+      },
+      {
+        name: "success",
+        view: viewToastSuccess,
       },
     ],
   },
