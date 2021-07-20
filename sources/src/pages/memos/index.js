@@ -7,7 +7,7 @@ import "./index.css";
 import "/layouts/index.css";
 import svg_top from "/assets/svgs/arrow-circle-up.svg";
 import svg_clear from "/assets/svgs/trash.svg";
-import svg_close from "/assets/svgs/x-circle.svg";
+import svg_close from "/assets/svgs/x.svg";
 import svg_share from "/assets/svgs/external-link.svg";
 import svg_raw from "/assets/svgs/view-list.svg";
 import svg_tag from "/assets/svgs/tag.svg";
@@ -476,17 +476,18 @@ app({
       ]),
     ]),
   subscriptions: (state) => [
+    // onMouseMove(MouseMoved)
     // onKeyDown("ArrowUp", SelectUp),
-    onChangeUri(action, {}),
   ],
-  // subscriptions: (state) => {
-  //   const cname = state.content && state.content.name;
-  //   if (cname && cname !== "memo") {
-  //     window.location.href = `#/${cname}`;
-  //   } else if (cname == "memo") {
-  //     window.location.href = "#/";
-  //   }
-  //   // window.localStorage.setItem("app", JSON.stringify(state));
-  // },
   node: document.getElementById("app"),
 });
+
+// subscriptions: (state) => {
+//   const cname = state.content && state.content.name;
+//   if (cname && cname !== "memo") {
+//     window.location.href = `#/${cname}`;
+//   } else if (cname == "memo") {
+//     window.location.href = "#/";
+//   }
+//   // window.localStorage.setItem("app", JSON.stringify(state));
+// },
