@@ -49,6 +49,10 @@ export const Toast = (
   toast.style.borderRadius = "0.5rem 0rem 0rem 0rem";
   toast.style.border = "1px solid #d0c9c3";
   toast.style.boxShadow = "0 0 2px 2px #f2f2f2";
+  toast.style.cursor = "pointer";
+  toast.onclick = () => {
+    toast.style.display = "none";
+  };
 
   const svgNode = toast.childNodes[0];
   svgNode.style.height = "2.5rem";
