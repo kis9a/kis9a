@@ -142,3 +142,9 @@ Cache-Control: stale-while-revalidate,
 - [Lighthouse の計測結果を見ていく - Qiita](https://qiita.com/nightyknite/items/22d9f818dbab9bf171a3)
 
 - [GitHub - iamkun/dayjs: ⏰ Day.js 2kB immutable date-time library alternative to Moment.js with the same modern API](https://github.com/iamkun/dayjs)
+
+- [HTML に img 要素で画像を表示する 2020 年版 - Qiita Qiita](https://qiita.com/hibikikudo/items/853aafe32ad7900712c8)
+
+- [WebP に関する 10 の誤解〜5 分で学ぶ WebP - Qiita](https://qiita.com/miyanaga/items/1c8d0f8c2f44d8c3b5b5)
+
+- [ImageMagick と WebP - Qiita](https://qiita.com/yoya/items/0848a6b0b39db4cd57c2)

@@ -1,3 +1,69 @@
+https://github.com/diontools/typerapp
+
+```
+export type Effect<S, P = Empty> = [(props: P, dispatch: Dispatch<S>) => void, P]
+
+export type Subscription<S, P = Empty> = [(props: P, dispatch: Dispatch<S>) => () => void, P]
+
+export type Dispatch<S> = {
+    (action: Action<S, Empty>): void
+    <P>(action: Action<S, P>, params: P): void
+    <P>(actionWithParams: [Action<S, P>, P]): void
+    (result: ActionResult<S>): void
+    <P>(all: Action<S, Empty> | [Action<S, P>, P] | ActionResult<S>): void
+}
+
+```
+
+Subscription : [SubscriberFn, Payload?]
+SubscriberFn : (DispatchFn, Payload?) -> CleanupFn
+
+subscriptions プロパティ
+subscriptions プロパティには、Subscription オブジェクトの配列を返す関数を指定します。第一引数に State が渡されます。省略可能。
+この関数は State が変更されるたびに呼び出され、Effect に似た Subscription オブジェクトを返します。Effect との唯一の違いは、Effect Runner で「購読を解除する関数」を返すところです。
+
+```
+// 指定した時間間隔で指定したActionを定期的に呼び出すEffect Runner
+const tickRunner = (dispatch, { action, interval }) => {
+  const id = setInterval(() => dispatch(action), interval);
+  return () => clearInterval(id); // 購読解除用関数
+};
+
+// tickRunnerを実行するSubscriptionを作成するSubscription Constructor
+const tick = (action, { interval }) => [
+  tickRunner,
+  { action, interval }
+];
+
+// tickで呼び出されるAction
+const action = state => ({ ...state, value: state.value + 1 });
+
+app({
+  // valueが1のときにtickを購読
+  subscriptions: state => [
+      state.enabled && tick(action, { interval: 1000 })
+  ],
+});
+
+// State の enabled が true のとき tick を購読します。enabled が false になると tick が購読解除されます。
+```
+
+- Subscription を定義する場合、effect プロパティに指定する Effect Runner は別変数に格納しておきましょう。匿名関数を使用すると正しく購読が継続されません。effect の値が別オブジェクトと認識され、State が変化するたびに再講読されてしまいます。
+
+- Subscriptions は複数の Subscription オブジェクトを返せます。
+
+```
+app({
+  subscriptions: state => [
+    tick(...),
+    foo(...),
+  ],
+});
+```
+
+app()の subscriptions に指定する関数は、subscriptions の配列を返す必要がある。subsciptions 自体は[sub, props]という配列であるため、二重配列ということになる。
+ノードの on イベントに渡すのは[action, props]または(node, evente) => [action, props]になったっぽい。イベントオブジェクトをアクションに渡したいときは(\_, e) => [Action, {value: e.target.value)]みたいな書き方が必要。
+
 - [feature: support string type styles (#617) by huozhi · Pull Request #618 · jorgebucaran/hyperapp · GitHub](https://github.com/jorgebucaran/hyperapp/pull/618)
 
 ### concept
