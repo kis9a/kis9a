@@ -14,3 +14,5 @@
 - [React で multipart/form-data を送信、Gin で受信する - Qiita](https://qiita.com/harumaxy/items/035ee46c82e8211d831c)
 
 - [【GO】gin で FormData の POST リクエストを Bind する](https://zenn.dev/someone7140/articles/c0c66e6c9b29dd)
+
+- [gin を最速でマスターしよう - Qiita](https://qiita.com/Syoitu/items/8e7e3215fb7ac9dabc3a)
